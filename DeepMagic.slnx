@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DeepMagic.App/DeepMagic.App.csproj" />
+    <Project Path="src/DeepMagic.Core/DeepMagic.Core.csproj" />
+    <Project Path="src/DeepMagic.Services/DeepMagic.Services.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DeepMagic.Tests/DeepMagic.Tests.csproj" />
+  </Folder>
+</Solution>

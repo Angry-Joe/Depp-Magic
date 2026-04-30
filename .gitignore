@@ -1,0 +1,21 @@
+## .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.nupkg
+*.snupkg
+
+## Test results
+TestResults/
+coverage/
+*.trx
+
+## Generated output (runtime artefacts, not source)
+output/
+
+## IDE
+.idea/
+.vscode/
+*.DotSettings.user
