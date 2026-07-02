@@ -19,3 +19,8 @@ output/
 .idea/
 .vscode/
 *.DotSettings.user
+
+## Node.js (used for PDF extraction when .NET runtime is unavailable)
+node_modules/
+package-lock.json
+parsed-spells.json

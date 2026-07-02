@@ -42,16 +42,47 @@ public sealed class AthasianSpellParserService : ISpellParserService
     // ── Compiled regexes ─────────────────────────────────────────────────────
 
     /// <summary>
-    /// Matches a 2e spell header of the form:
-    ///   CREATE WATER  (Pr 1 · Creation)
-    ///   Detect Magic (Pr 1; Divination)
-    ///   DARKNESS, 15' RADIUS (Wz 2 Alteration)
-    /// Group 1 = spell name, Group 2 = class abbreviation (Pr/Wz), Group 3 = level,
-    /// Group 4 = optional school/sphere label.
+    /// Matches AD&amp;D 2e spell headers in two formats:
+    ///
+    ///   Format A — classic inline level (PHB / most 2e sources):
+    ///     CREATE WATER  (Pr 1 · Creation)
+    ///     Detect Magic (Pr 1; Divination)
+    ///     DARKNESS, 15' RADIUS (Wz 2 Alteration)
+    ///
+    ///   Format B — Dragon Kings / high-level sourcebooks:
+    ///     Wakefulness (Enchantment/Charm)
+    ///     Improved Haste (Alteration)
+    ///     Defiler Metamorphosis (Alteration/Evocation)
+    ///
+    /// In Format B, the level is determined by the preceding section heading
+    /// ("Second-Level Spells", "Tenth-Level Spells", etc.) which is tracked
+    /// by <see cref="_currentSectionLevel"/>.
     /// </summary>
     private static readonly Regex SpellHeaderRegex = new(
-        @"^(?<name>[A-Z][A-Z ',\-/0-9]{2,50})\s*\((?<cls>Pr|Wz|P|W)\s*(?<lvl>[1-9])\s*[·;,]?\s*(?<school>[^)]*)\)",
+        @"^(?<name>[A-Z][A-Za-z ',\-/0-9\.]{1,60})\s*\((?:(?<cls>Pr|Wz|P|W)\s*(?<lvl>[1-9])[·;,\s]*)?(?<school>[A-Za-z/\s,\.]+?)\)\s*(?:Reversible\s*)?$",
         RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+    /// <summary>
+    /// Matches section-level headings present in Dark Sun sourcebooks:
+    ///   "Second-Level Spells", "Tenth-Level Spells", etc.
+    /// Used to infer spell level when Format B headers are encountered.
+    /// </summary>
+    private static readonly Regex SectionLevelRegex = new(
+        @"^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth)-Level\s+(?:Spells?|Psionic)",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+    private static readonly Dictionary<string, int> OrdinalToLevel =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["First"]      = 1, ["Second"]   = 2, ["Third"]    = 3,
+            ["Fourth"]     = 4, ["Fifth"]    = 5, ["Sixth"]    = 6,
+            ["Seventh"]    = 7, ["Eighth"]   = 8, ["Ninth"]    = 9,
+            ["Tenth"]      = 10, ["Eleventh"] = 11, ["Twelfth"] = 12,
+            ["Thirteenth"] = 13,
+        };
+
+    /// <summary>Level inferred from the most recent section-level heading.</summary>
+    private int _currentSectionLevel = 1;
 
     /// <summary>Extracts "Level:" values from the block text.</summary>
     private static readonly Regex LevelLineRegex = new(
@@ -246,12 +277,22 @@ public sealed class AthasianSpellParserService : ISpellParserService
                 pageText.Split('\n').Length);
         }
 
-        // Detect spell-header lines
+        // Detect spell-header lines; track section-level headings for Format B PDFs.
         RawSpellBlock? current = null;
 
         foreach (var (text, page) in allLines)
         {
             cancellationToken.ThrowIfCancellationRequested();
+
+            // Track "Second-Level Spells" / "Tenth-Level Spells" headings.
+            var secMatch = SectionLevelRegex.Match(text);
+            if (secMatch.Success)
+            {
+                if (OrdinalToLevel.TryGetValue(secMatch.Groups["Ordinal"].Value, out int sectionLvl))
+                    _currentSectionLevel = sectionLvl;
+                current?.Lines.Add(text);
+                continue;
+            }
 
             if (IsSpellHeader(text, out string spellName, out SpellType spellType))
             {
@@ -260,11 +301,12 @@ public sealed class AthasianSpellParserService : ISpellParserService
 
                 current = new RawSpellBlock
                 {
-                    HeaderLine = text,
-                    DetectedName = spellName,
+                    HeaderLine        = text,
+                    DetectedName      = spellName,
                     DetectedSpellType = spellType,
-                    PageNumber = page,
-                    Lines = [text]
+                    PageNumber        = page,
+                    Lines             = [text],
+                    SectionLevel      = _currentSectionLevel,
                 };
             }
             else
@@ -281,23 +323,60 @@ public sealed class AthasianSpellParserService : ISpellParserService
     }
 
     /// <summary>
-    /// Extracts text from a single page, preserving newlines between text blocks.
-    /// PdfPig groups characters into words; we reconstruct lines by y-position.
+    /// Extracts text from a single page in two-column reading order and with
+    /// letter-spacing collapsed.
+    /// PdfPig groups characters into words; we reconstruct lines by y-position
+    /// within each column (left column top→bottom, then right column top→bottom)
+    /// to avoid interleaving the two columns when sorting by y alone.
     /// </summary>
     private static string ExtractPageText(Page page)
     {
-        var wordsByLine = page.GetWords()
-            .GroupBy(w => Math.Round(w.BoundingBox.Bottom, 0))
-            .OrderByDescending(g => g.Key)
-            .Select(g => string.Join(" ", g.OrderBy(w => w.BoundingBox.Left)
-                                           .Select(w => w.Text)));
+        var words = page.GetWords().ToList();
+        if (words.Count == 0) return string.Empty;
 
-        return string.Join("\n", wordsByLine);
+        double midX = (words.Min(w => w.BoundingBox.Left) +
+                       words.Max(w => w.BoundingBox.Right)) / 2.0;
+
+        IEnumerable<string> ColumnLines(IEnumerable<Word> colWords)
+        {
+            const double yTol = 2.0;
+            return colWords
+                .GroupBy(w => Math.Round(w.BoundingBox.Bottom / yTol) * yTol)
+                .OrderByDescending(g => g.Key)
+                .Select(g =>
+                {
+                    var raw = string.Join(" ",
+                        g.OrderBy(w => w.BoundingBox.Left).Select(w => w.Text));
+                    return CollapseLetterSpacing(raw).Trim();
+                })
+                .Where(l => l.Length > 0);
+        }
+
+        var leftLines  = ColumnLines(words.Where(w => w.BoundingBox.Left <  midX));
+        var rightLines = ColumnLines(words.Where(w => w.BoundingBox.Left >= midX));
+
+        return string.Join("\n", leftLines.Concat(rightLines));
+    }
+
+    /// <summary>
+    /// Collapses letter-spaced PDF text where every space-separated token is a
+    /// single character: "C o m p o n e n t s :" → "Components:".
+    /// Normal multi-character words are left untouched.
+    /// </summary>
+    private static string CollapseLetterSpacing(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return text;
+        var parts = text.Split(' ');
+        if (parts.Length > 2 && parts.All(p => p.Length <= 1))
+            return string.Concat(parts);
+        return text;
     }
 
     /// <summary>
     /// Returns true and populates <paramref name="spellName"/> / <paramref name="spellType"/>
     /// when <paramref name="line"/> looks like a 2e spell header.
+    /// Handles both Format A (inline class+level, e.g., "DETECT MAGIC (Pr 1; Div)")
+    /// and Format B (school only, e.g., "Wakefulness (Enchantment/Charm)").
     /// </summary>
     private static bool IsSpellHeader(
         string line,
@@ -305,14 +384,26 @@ public sealed class AthasianSpellParserService : ISpellParserService
         out SpellType spellType)
     {
         spellName = string.Empty;
-        spellType = SpellType.Priest;
+        spellType = SpellType.Wizard;  // Default for Dragon Kings (wizard-heavy book)
 
         var m = SpellHeaderRegex.Match(line);
         if (!m.Success) return false;
 
         spellName = ToTitleCase(m.Groups["name"].Value.Trim());
+
+        // Format A has an explicit class abbreviation in the parenthetical.
         var cls = m.Groups["cls"].Value;
-        spellType = cls is "Pr" or "P" ? SpellType.Priest : SpellType.Wizard;
+        if (!string.IsNullOrEmpty(cls))
+            spellType = cls is "Pr" or "P" ? SpellType.Priest : SpellType.Wizard;
+        // Format B (Dragon Kings): infer from school name heuristic.
+        else
+        {
+            var school = m.Groups["school"].Value.ToLowerInvariant();
+            spellType = school.Contains("healing") || school.Contains("sphere")
+                ? SpellType.Priest
+                : SpellType.Wizard;
+        }
+
         return true;
     }
 
@@ -402,12 +493,12 @@ public sealed class AthasianSpellParserService : ISpellParserService
 
     private static int ParseLevel(Dictionary<string, string> fields, RawSpellBlock block)
     {
-        // Try the block header regex first
+        // Try the block header regex first (Format A: "SPELL (Pr 3; School)").
         var m = SpellHeaderRegex.Match(block.HeaderLine);
         if (m.Success && int.TryParse(m.Groups["lvl"].Value, out int headerLevel))
             return headerLevel;
 
-        // Fall back to a "Level:" line in the block
+        // Fall back to a "Level:" line in the block.
         foreach (var line in block.Lines)
         {
             var lm = LevelLineRegex.Match(line);
@@ -415,7 +506,8 @@ public sealed class AthasianSpellParserService : ISpellParserService
                 return lineLevel;
         }
 
-        return 1;
+        // Format B (Dragon Kings): use the section-heading level.
+        return block.SectionLevel > 0 ? block.SectionLevel : 1;
     }
 
     private static SpellSchool ParseSchool(Dictionary<string, string> fields,
@@ -787,5 +879,10 @@ public sealed class AthasianSpellParserService : ISpellParserService
         public SpellType DetectedSpellType { get; set; }
         public int PageNumber { get; set; }
         public List<string> Lines { get; set; } = [];
+        /// <summary>
+        /// Level inferred from the most recent section heading
+        /// ("Second-Level Spells" etc.). Used when the header has no inline level.
+        /// </summary>
+        public int SectionLevel { get; set; } = 1;
     }
 }
