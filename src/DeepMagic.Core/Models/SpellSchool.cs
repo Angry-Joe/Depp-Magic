@@ -6,11 +6,13 @@ namespace DeepMagic.Core.Models;
 public enum SpellSchool
 {
     Abjuration,
+    Alteration,
     Conjuration,
     Divination,
     Enchantment,
     Evocation,
     Illusion,
     Necromancy,
-    Transmutation
+    Transmutation,
+    Universal
 }

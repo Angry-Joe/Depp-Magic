@@ -12,12 +12,14 @@ var builder = Host.CreateApplicationBuilder(args);
 // Configure the spell parser
 builder.Services.AddDeepMagicServices(options =>
 {
-    options.SourceBookName         = "Dark Sun Revised Boxed Set";
+    options.SourceBookName          = "Dark Sun Revised Boxed Set";
     options.MarkdownOutputDirectory = "output/markdown";
     options.JsonOutputPath          = "output/priest-spells.json";
     options.OverwriteExisting       = true;
     options.MaxFlavorWordCount      = 300;
 });
+builder.Services.AddScoped<DragonKingsSpellExtractor>();
+builder.Services.AddScoped<ISpellParserService, DragonKingsSpellParserService>();
 
 builder.Logging.AddConsole();
 
