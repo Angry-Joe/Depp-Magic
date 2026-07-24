@@ -24,22 +24,24 @@
 
 import { readFile, writeFile } from 'fs/promises';
 import { mkdirSync } from 'fs';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, join, basename } from 'path';
 import { createRequire } from 'module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// ── Load pdfjs-dist ────────────────────────────────────────────────────────────
+// ── Load pdfjs-dist ──────────────────────────────────────────────────────────
 
+// pathToFileURL keeps Windows happy: raw "C:\..." paths are rejected by the
+// ESM loader, which only accepts file:// URLs for absolute imports.
 let pdfjsLib;
 try {
-  pdfjsLib = await import(join(__dirname, 'node_modules/pdfjs-dist/legacy/build/pdf.mjs'));
+  pdfjsLib = await import(pathToFileURL(join(__dirname, 'node_modules/pdfjs-dist/legacy/build/pdf.mjs')).href);
 } catch {
-  pdfjsLib = await import(join(__dirname, 'node_modules/pdfjs-dist/build/pdf.mjs'));
+  pdfjsLib = await import(pathToFileURL(join(__dirname, 'node_modules/pdfjs-dist/build/pdf.mjs')).href);
 }
 
-// ── Regexes (mirrors C# DKSpellExtractor) ───────────────────────────────────────
+// ── Regexes (mirrors C# DKSpellExtractor) ───────────────────────────────────
 
 const SPELL_HEADER_RE = /^(?<Name>[A-Z][A-Za-z ,'\-\.]+?)\s*\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
 // Two-line header support (PHB style): name alone, then "(School)" on the next line.
@@ -153,7 +155,7 @@ async function extractPageLines(page) {
     .filter(l => l.length > 0 && !JUNK_LINE_RE.test(l));
 }
 
-// ── Field key normalisation ────────────────────────────────────────────────────
+// ── Field key normalisation ──────────────────────────────────────────────────
 
 function normaliseFieldKey(raw) {
   switch (raw.toLowerCase().replace(/\s+/g, '')) {
@@ -169,7 +171,7 @@ function normaliseFieldKey(raw) {
   }
 }
 
-// ── Description builder ────────────────────────────────────────────────────────
+// ── Description builder ──────────────────────────────────────────────────────
 
 function buildDescription(blockLines, fields) {
   let fieldCount = 0;
@@ -187,7 +189,7 @@ function buildDescription(blockLines, fields) {
   return descLines.length > 0 ? descLines.join(' ').trim() : 'See source for description.';
 }
 
-// ── Main extraction ──────────────────────────────────────────────────────────────
+// ── Main extraction ──────────────────────────────────────────────────────────
 
 async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName = 'Unknown') {
   const data = await readFile(pdfPath);
@@ -302,7 +304,7 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
   return spells;
 }
 
-// ── Run against supplied PDFs ──────────────────────────────────────────────────
+// ── Run against supplied PDFs ────────────────────────────────────────────────
 
 const cliArgs  = process.argv.slice(2);
 let cliStart = null, cliEnd = null;
@@ -364,7 +366,7 @@ for (const pdfPath of pdfPaths) {
   allResults.push({ file: fileName, spells });
 }
 
-// ── Write JSON output ──────────────────────────────────────────────────────────────
+// ── Write JSON output ────────────────────────────────────────────────────────
 
 mkdirSync(join(__dirname, 'output'), { recursive: true });
 await writeFile(join(__dirname, 'output', 'parsed-spells.json'),
