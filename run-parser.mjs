@@ -18,14 +18,14 @@
  *     keeps its 83–162 spell-section range)
  *   • Source label derived from the input filename
  *
- * Usage:  node run-parser.mjs [--start=N] [--end=N] [path/to/*.pdf ...]
+ * Usage:  node run-parser.mjs [--start=N] [--end=N] [--out=path.json] [path/to/*.pdf ...]
  *         (defaults to 04-DragonKings.pdf in the same directory)
  */
 
 import { readFile, writeFile } from 'fs/promises';
 import { mkdirSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { dirname, join, basename } from 'path';
+import { dirname, join, basename, resolve } from 'path';
 import { createRequire } from 'module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -49,7 +49,7 @@ const NAME_ONLY_RE = /^[A-Z][A-Za-z ,'\-]{1,60}$/;
 const SCHOOL_ONLY_RE = /^\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
 // Browser print-to-PDF artifacts: "7/4/26, 10:26 AM Full text of ...", file:/// URLs, "166/3963" page counters.
 const JUNK_LINE_RE = /file:\/\/\/|^\d{1,2}\/\d{1,2}\/\d{2,4},\s|Full text of "|^\d+\/\d+$/;
-const SECTION_LEVEL_RE = /^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth)-Level\s+(?:Spells?|Psionic)/i;
+const SECTION_LEVEL_RE = /^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth|\d{1,2}(?:st|nd|rd|th))-Level\s+(?:Spells?|Psionic)/i;
 const PSIONIC_SECTION_RE = /^Psionic\s+Enchantments?/i;
 const FIELD_LINE_RE = /^(?<Field>Range|Components?|Duration|CastingTime|Casting\s+Time|AreaofEffect|Area\s+of\s+Effect|SavingThrow|Saving\s+Throw|PreparationTime|Preparation\s+Time)\s*:\s*(?<Value>.+)$/i;
 // Global marker for splitting multiple fields that share one physical line,
@@ -79,6 +79,14 @@ const ORDINAL_TO_LEVEL = {
   seventh: 7, eighth: 8, ninth: 9, tenth: 10, eleventh: 11,
   twelfth: 12, thirteenth: 13,
 };
+
+/** Word ("First") or numeric ("1st") ordinal → level number, else null. */
+function ordinalToLevel(ord) {
+  const key = ord.toLowerCase();
+  if (key in ORDINAL_TO_LEVEL) return ORDINAL_TO_LEVEL[key];
+  const m = key.match(/^(\d{1,2})(?:st|nd|rd|th)$/);
+  return m ? Number(m[1]) : null;
+}
 
 // ── Letter-spacing collapse ──────────────────────────────────────────────────
 
@@ -244,7 +252,7 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
     // Section level heading
     const secM = text.match(SECTION_LEVEL_RE);
     if (secM) {
-      const lvl = ORDINAL_TO_LEVEL[secM.groups.Ordinal.toLowerCase()];
+      const lvl = ordinalToLevel(secM.groups.Ordinal);
       if (lvl) currentLevel = lvl;
       continue;
     }
@@ -307,11 +315,12 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
 // ── Run against supplied PDFs ────────────────────────────────────────────────
 
 const cliArgs  = process.argv.slice(2);
-let cliStart = null, cliEnd = null;
+let cliStart = null, cliEnd = null, cliOut = null;
 const pdfPaths = [];
 for (const a of cliArgs) {
   if (a.startsWith('--start=')) cliStart = Number(a.slice(8));
   else if (a.startsWith('--end=')) cliEnd = Number(a.slice(6));
+  else if (a.startsWith('--out=')) cliOut = a.slice(6);
   else pdfPaths.push(a);
 }
 
@@ -368,9 +377,11 @@ for (const pdfPath of pdfPaths) {
 
 // ── Write JSON output ────────────────────────────────────────────────────────
 
-mkdirSync(join(__dirname, 'output'), { recursive: true });
-await writeFile(join(__dirname, 'output', 'parsed-spells.json'),
-  JSON.stringify(allResults, null, 2));
+const outPath = cliOut
+  ? resolve(cliOut)                                   // --out=path (relative to cwd)
+  : join(__dirname, 'output', 'parsed-spells.json');  // default (back-compat)
+mkdirSync(dirname(outPath), { recursive: true });
+await writeFile(outPath, JSON.stringify(allResults, null, 2));
 
 console.log(`\n${'═'.repeat(60)}`);
-console.log(`Output written → output/parsed-spells.json`);
+console.log(`Output written → ${outPath}`);
