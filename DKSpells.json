@@ -1,0 +1,2008 @@
+{
+  "title": "Athasian Spell Compendium (Dark Sun, AD&D 2e)",
+  "description": "Cleric and Wizard spell reference for the DARK SUN setting (AD&D 2nd Edition), parsed from the source PDFs by Depp-Magic. Athasian clerical magic is organized into the elemental spheres (Earth, Air, Fire, Water), the paraelemental sub-spheres (Magma, Rain, Silt, Sun), and the general Sphere of the Cosmos.",
+  "sources": [
+    "Dragon Kings"
+  ],
+  "spheres": [
+    "Air",
+    "Earth",
+    "Fire",
+    "Water",
+    "Magma",
+    "Rain",
+    "Silt",
+    "Sun",
+    "Cosmos"
+  ],
+  "sphere_groups": {
+    "Elemental": [
+      "Air",
+      "Earth",
+      "Fire",
+      "Water"
+    ],
+    "Paraelemental": [
+      "Magma",
+      "Rain",
+      "Silt",
+      "Sun"
+    ],
+    "Cosmos": [
+      "Cosmos"
+    ]
+  },
+  "schools": [
+    "Abjuration",
+    "Alteration",
+    "Charm",
+    "Conjuration",
+    "Divination",
+    "Enchantment",
+    "Evocation",
+    "Illusion",
+    "Necromancy",
+    "Summoning"
+  ],
+  "counts": {
+    "total": 69,
+    "cleric": 34,
+    "wizard": 35
+  },
+  "cleric_by_sphere": {
+    "Air": 10,
+    "Earth": 3,
+    "Water": 7,
+    "Cosmos": 10
+  },
+  "wizard_by_school": {
+    "Alteration": 11,
+    "Necromancy": 5,
+    "Enchantment": 4,
+    "Conjuration": 4,
+    "Evocation": 3,
+    "Abjuration": 2,
+    "Charm": 2,
+    "Summoning": 2,
+    "Illusion": 1,
+    "Divination": 1
+  },
+  "by_source": {
+    "Dragon Kings": 69
+  },
+  "spells": [
+    {
+      "name": "Deep Breath",
+      "class": "Cleric",
+      "level": 1,
+      "level_name": "1st",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell the caster allows one creature to take a single breath that will last for the duration of the spell.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 round/level",
+        "casting_time": "1",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "With this spell the caster allows one creature to take a single breath that will last for the duration of the spell. The spell bestows no ability to maneuver or function underwater or while buried in sand, but it do e s te mpo r a rily r e m o v e the n e ed to br e athe . Once the spell\u0092s duration runs out, a character who cannot breathe normally begins to suffocate after 1 /3 his Constitution score in rounds (Constitution check each round with a -2 cumulative penalty to postpone damage; 1d6 damage per round after fail- ing a check). If the deep breath spell is cast after a character has already held his breath for a few rounds, it works as though he got a clean gulp of air\u0097when the spell wears off he begins the suffocation proce- dure fresh. The spell also lets the character avoid the ill effects most gaseous attacks, magical and otherwise. The material component for this spell is a tiny bladder of air, usually made from animal skins, which must be burst over the recipient\u0092s mouth and nose. 117",
+      "has_full_description": true
+    },
+    {
+      "name": "Elemental Bonding",
+      "class": "Cleric",
+      "level": 1,
+      "level_name": "1st",
+      "category": "Sphere",
+      "spheres": [
+        "Any"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Any",
+      "sphere_type": "Cosmos",
+      "group": "Any",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell the priest attempts to repair physical damage done to another being or creature.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 round",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell the priest attempts to repair physical damage done to another being or creature. In an ele- mental sense, part of the damage incurred by combat wounds or disease is, in fact, an imbalance created in the body\u0092s elemental proportions. Through this spell, the priest restores some of this balance. The amount of damage healed is 1d4 + 1 points, but there are restrictions. If the damage is from dis- ease or combat, the priest cannot completely heal the recipient with this spell. He only heals the char- acter to within three hit points of perfect health. For instance, if a warrior with 15 maximum hit points has 11 left, an elemental bonding spell can only heal 1 point of damage. Other magic can heal the re- maining damage. If, however, the wounded charac- ter took all damage solely from an elemental, the priest heals all damage with this spell. The material component for this spell is an amount of elemental material sufficient to cover the recipient\u0092s wounds. The priest must abide by his sphere of elemental worship when performing this spell.",
+      "has_full_description": true
+    },
+    {
+      "name": "Proof Against Undeath",
+      "class": "Cleric",
+      "level": 1,
+      "level_name": "1st",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell is cast on a dead creature to prevent it from being raised as a skeleton or zombie with an animate dead spell.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "4",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "This spell is cast on a dead creature to prevent it from being raised as a skeleton or zombie with an animate dead spell. The creature cannot have been dead for a number of days greater than the caster\u0092s level; otherwise it has no effect. The size, level, or Hit Dice of the dead creature makes no difference. Detect magic will reveal the magical enchantment on the body, and it can be removed with a dispel magic spell. This spell has no effect on living crea- tures or those already animated as skeletons or zom- bies. Corpses being magically enchanted into some other, more powerful form of undead are granted a and class from his previous life); if it makes this save even once, the corpse can never be raised as any form of undead. The material components for this spell can vary; either metal coins must be placed on the recipient\u0092s eyes, the petals of flowers must be sprinkled beneath him, or dust from his homeland must be sprinkled on him. 118",
+      "has_full_description": true
+    },
+    {
+      "name": "Clear Water",
+      "class": "Cleric",
+      "level": 2,
+      "level_name": "2nd",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the priest can bring Athasian wa- ter closer to its true elemental form.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "2",
+        "area_of_effect": "1 gallon/level",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the priest can bring Athasian wa- ter closer to its true elemental form. Impurities and imperfections are removed, making it more effective at quenching thirst and nourishing plantlife. When drunk, a creature requires only half as much cleared water as normal water. An active hu- man character, for instance, needs only 1/2 gallon of cleared water per day to avoid dehydration. When used to grow plants, cleared water can double the yield of fruit- or grain-bearing plants. This applies to trees of life and magical fruit trees, but only if cleared water is used to nurture the trees for every day of their growing life. The reverse of this spell, muddy water, has exactly the opposite effect. Characters must drink twice as much and plants yield half as much. The effects of muddy water are not readily apparent\u0097characters may think they are taking their fill of water but find themselves suffering from dehydration anyway; farmers may not realize until crops are in and it\u0092s too late. The material component of this spell is a single drop of distilled water, or, for the reverse, a rotted seed.",
+      "has_full_description": true
+    },
+    {
+      "name": "Winds of Change",
+      "class": "Cleric",
+      "level": 2,
+      "level_name": "2nd",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell alters the judgement of one victim at ran- dom intervals, depending on the direction of the winds.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "1 day/level",
+        "casting_time": "2",
+        "area_of_effect": "One creature",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "This spell alters the judgement of one victim at ran- dom intervals, depending on the direction of the winds. The spell can divert a character from his goal for an extended time without physically harming him. If the wind changes between east and west, the character\u0092s distinction between good and evil alters. Wind that varies between north and south alters his attitude towards law and chaos. In absolutely calm conditions, he becomes true neutral. The character behaves normally from moment to moment and suf- fers no obvious harm such as starvation or confu- sion, but he cannot pursue a given goal for long without changing his mind. The general direction of the wind usually changes every two hours, and often more frequently. The DM chooses the wind direction either randomly or based on whatever behavior change seems most dra- matic or entertaining. Magically altered wind direc- tion can also change the character\u0092s attitudes; when the spell effects end, the wind returns to its original direction and speed. Speed of wind has no effect on this spell. If the victim is a player character, the player should play his altered alignment accordingly, even if it flies in the face of his original goals. If the victim is a non-player character, the DM coordinates the confused behavior similarly. The material component of this spell is a set of wooden dicing sticks.",
+      "has_full_description": true
+    },
+    {
+      "name": "Conjure Lesser Elemental",
+      "class": "Cleric",
+      "level": 3,
+      "level_name": "3rd",
+      "category": "Sphere",
+      "spheres": [
+        "Various"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Various",
+      "sphere_type": "Cosmos",
+      "group": "Various",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell a prie st m ay fr e ely s u m m o n a lesser elemental from his own elemental sphere.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "1 turn +1 round per level of the caster",
+        "casting_time": "3 rounds",
+        "area_of_effect": "Special",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell a prie st m ay fr e ely s u m m o n a lesser elemental from his own elemental sphere. The lesser elemental does anything in its power to aid the caster. A priest cannot summon an elemental from another sphere (e.g., a water priest cannot summon a fire elemental). Once cast, there is a 50% chance for one to three HD elementals to appear; a 25% chance for one or two HD elementals; and a 25% chance for one HD elemental. The lesser elementals can be sent back by the caster, one at a time or all at once, at any time. They automatically return to their home plane after the duration of the spell. Conjured lesser elementals must be controlled by the priest or they simply assume a defensive posture until returned to their plane. Lesser elementals do not attack the priest when uncontrolled. Lesser ele- mentals can be controlled up to 30 yards away per level of the caster. Lesser water elementals are de- stroyed if they are ever more than 30 yards from a large body of water. Lesser elementals are described in the Monstrous Compendium,DARKSUN\u0099Appendix,Terrors of the Desert. The spell requires the caster\u0092s holy symbol and a handful of material representative of the elemental being\u0092s home plane, as follows: Air: breath of the caster. Earth: dirt, dust, or other earth. Fire: any burning object. Water: liquid water, sweat, saliva, etc.",
+      "has_full_description": true
+    },
+    {
+      "name": "Protection from Weather",
+      "class": "Cleric",
+      "level": 4,
+      "level_name": "4th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible When this spell is cast, it creates a magical barrier around the recipient at a distance of one foot.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 hour/level",
+        "casting_time": "7",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible When this spell is cast, it creates a magical barrier around the recipient at a distance of one foot. The barrier moves with the recipient, who completely ig- nores natural (not magical) weather effects. Driving rain, wind, or driven sand do not impede progress. Incredible heat does not affect water intake or dehy- dration. Natural lightning cannot affect him. Normal light and darkness are not considered weather effects for this spell. The after-effects of weather\u0097flood waters, muddy ground, or drifted 120 sand, for instance\u0097impede progress normally. The recipient receives a saving throw bonus of +6 to magically created weather effects such as lightning bolt, wind wall, cone of cold, chain light- ning, incendiary cloud, call lightning, and sunray, and a normal saving throw against magical weather spells that are normally listed as having none, such as wall of fog, fog cloud, gust of wind, ice storm, solid fog, death fog, control temperature, 10\u0092 radi- us, control weather, weather summoning, and con- trol winds. The recipient can save vs. spells against a dust devil, success indicating it cannot attack him. As a side effect, spells such as whispering wind and wind walk cannot be cast or received by the recipient of this spell. Thereverseofthisspell,intensificationof weather, subjects the victim to effects more severe than the actual weather would inflict. Driving wind or rain drastically slows the victim. Natural light- ning does double damage. A victim in the heat re- quires double the normal ration of water to avoid dehydration. The victim loses any possible save against magical weather spells, and those causing damage add one hit point per die inflicted. The vic- tim gets a save to avoid the effects of this spell. The material components for this spell are a small paper umbrella (or, for its reverse, a minute light- ning rod).",
+      "has_full_description": true
+    },
+    {
+      "name": "Good Weather",
+      "class": "Cleric",
+      "level": 5,
+      "level_name": "5th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, a priest can create an area of moderate weather.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 hour/level",
+        "casting_time": "8",
+        "area_of_effect": "10\u0092 radius/level",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, a priest can create an area of moderate weather. The area affected is a sphere cen- tered on the recipient with a radius equal to 10 feet per level of the caster, but the sphere does not extend beneath the ground. The sphere moves with the re- cipient. The temperature and level of wind are mod- erated toward a more comfortable level for the recipient. Temperature is adjusted by as much as 20 degrees, and wind speed by as much as 10 miles per hour. Note that \u0093comfort\u0094 is subjective, varying from race to race. For instance, what a thri-kreen finds tolerable is sweltering for a halfling. Preferred Preferred Race Temp (F) Wind (mph) Human 80 Dwarf 85 0 20 Elf Half-elf 9 0 Half-giant 70 Halfling 70 M u l 85 Thri-kreen 120 For example, if the spell were cast on a human while the temperature outside the radius is 100 de- grees and the wind speed is 5 miles per hour, the good weather spell would adjust the temperature to 80 degrees and the wind speed to 0 within the area of effect. On the same day, if the spell were instead cast on a thri-kreen, the temperature would be raised to 120 degrees and the wind speed to 15 miles per hour. Every creature within the sphere who is made more comfortable by the spell receive a +2 bonus to all morale rolls. They can also extend their march- ing time by up to half the spell\u0092s duration in hours every day (provided the spell\u0092s duration covers the entire length of the march). The reverse of this spell, bad weather, has exactly the opposite effect, moving the outside temperature and wind speed away from the comfortable range. In the above example, the human would be in a sphere where the temperature was elevated to 120 degrees and the wind speed to 15 miles per hour. Wind speeds in excess of 20 miles per hour cut visi- bility to half. Creatures made less comfortable by the reversed spell receive a -2 penalty to all morale checks and have their marching speed cut to half for the duration of the spell. A successful saving throw vs. spell negates this effect. The material component for this spell is a piece of cloth from a casual garment (or, for its reverse, a",
+      "has_full_description": true
+    },
+    {
+      "name": "Ironskin",
+      "class": "Cleric",
+      "level": 5,
+      "level_name": "5th",
+      "category": "Sphere",
+      "spheres": [
+        "Earth"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Earth",
+      "sphere_type": "Elemental",
+      "group": "Earth",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell is similar to the wizards\u0092 stoneskin in that the affected creature gains virtual immunity to any attack by cut, blow, or projectile.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1",
+        "area_of_effect": "1 creature",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell is similar to the wizards\u0092 stoneskin in that the affected creature gains virtual immunity to any attack by cut, blow, or projectile. Physical at- tacks by weapons (even enchanted ones), natural animal weapons (such as fangs and claws), and hurled projectiles (giant boulders) cannot penetrate ironskin. Magical attacks from such spells as fire- ball, magic missile, lightning bolt, and so forth have normal effects. The spell blocks 1d6 attacks, plus one for every two levels of the caster. For example, an ironskin from a 13th-level priest would protect against seven to 12 attacks. However, unlike stoneskin, only physical attacks that would other- wise have scored a hit on the creature count against that total. Three magic missiles can hit and do dam- age, or a fighter can attack with a sword and fail his attack roll without bringing down the total. The material component for this spell is a small iron statue worth at least 5 gp.",
+      "has_full_description": true
+    },
+    {
+      "name": "Sands of Time",
+      "class": "Cleric",
+      "level": 5,
+      "level_name": "5th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible By means of this spell, a priest can reverse the ef- fects of aging and erosion on any nonliving, material object.",
+      "stats": {
+        "range": "10 yards",
+        "components": "V, S, M",
+        "duration": "1 round",
+        "casting_time": "8",
+        "area_of_effect": "Up to 10 cubic feet/level",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible By means of this spell, a priest can reverse the ef- fects of aging and erosion on any nonliving, material object. The amount of aging that can be so reversed depends upon the level of the caster. Consult the table given with the wizard spell of the same name. The table also indicates the average effects of time and the elements on various materials (items protect- ed from the elements might take longer to erode, but use these times for all restoration). Papyrus and wooden objects fade over time, making it difficult, but not impossible, to read or identify surface fea- tures. Fragile objects must survive an item saving throw vs. fall every time they are used; brittle items must survive vs. a crushing blow. Crumbled items are unusable but still identifiable as papyrus or wood; dust is completely unidentifiable and unusable. Stone and metal items wear away over time, and their shapes smooth out until the item is completely worn away. Paint indicates that artificial coloration is gone or unrecognizeable; Etching means carved let- ters or pictures are worn away; Relief indicates that deeply carved letters or images are severely eroded; Form indicates that time has eroded away all but the basic form of the original stone or metal. The frac- tions ½ and ¾ tell when the item has lost that amount of its original mass. Dust means the original item is completely gone, eroded away to nothing. A 15th-level priest could, for example, turn even a pile of dust back into the new, clean piece of papy- rus it once was, or turn the crumbled remains of a staff back to its original form, or even restore a painted map on the wall of a temple constructed of soft stone. This spell cannot restore damage done to an object by anything other than natural aging or erosion. Use this table as a guide for other objects that don\u0092t exactly fit into these categories. The reverse of this spell, accelerate erosion, allows the priest to speed up erosion on any nonliving ma- terial object. In the example above, the 15th-level priest could turn a clean piece of papyrus to dust, or turn a new staff of wood into crumbled pieces, or erase a painted map from a wall of soft stone. The material components for this spell are a tiny hourglass (during the spell, the sands run upward)",
+      "has_full_description": true
+    },
+    {
+      "name": "Tree Growth",
+      "class": "Cleric",
+      "level": 5,
+      "level_name": "5th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Through this spell, a priest can cause a normal tree to grow from a seed to full size in only one round.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 round",
+        "casting_time": "8",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Through this spell, a priest can cause a normal tree to grow from a seed to full size in only one round. The tree itself is not magical; only its acceler- ated growth is a magical effect. The priest must place the seed where he wishes the tree to grow; if this is not already on a soil or earth surface, the tree will seek out soil no more than 1 foot below, even through rock or metal. If the priest wishes to simply drop the seed where he is, he may do so; if he wishes to toss the seed to some specific location within 12 feet, he must make a successful Dexterity check\u0097 failure means he missed the exact location, but by no more than 3 feet. During its rapid growth, the tree tries to attain its full size and height, smashing through barriers with a Strength score of 25. Wood- en structures splinter; rock walls, ceilings, and foun- 122 dations split and crumble; even metal barriers bend or split against the massive growth of the tree. Should a structure collapse because of the tree\u0092s growth, creatures may have to make saves vs. spell or take damage, at the DM\u0092s option. Though rapid, the growth of the tree can easily be avoided by most characters and creatures. The material component for this spell is the seed itself, which must be undamaged but need not have any magical enchantment prior to the casting of this spell.",
+      "has_full_description": true
+    },
+    {
+      "name": "Silt Tides",
+      "class": "Cleric",
+      "level": 6,
+      "level_name": "6th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell a priest can create an area of ab- normally low tides in the Sea of Silt.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "4 hours/level",
+        "casting_time": "9",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell a priest can create an area of ab- normally low tides in the Sea of Silt. The area of silt affected is a circle with a radius of 10 yards per level of the caster. Within the circle, the silt drops 10 feet below its normal level, which is usually enough to expose the maze of rock walkways common to the coastal areas of the Sea. The spell\u0092s area of effect moves with the caster, so he can travel the rock walk- ways while exposed to the air. Strong winds and the like affect the silt normally. The reverse of this spell, high silt tides, causes the silt to rise 10 feet higher within the circular area of effect. The silt can overwhelm vessels or wading creatures who are not tall enough to wade through ten additional feet of depth. If cast outside the Sea of Silt, this spell has no effect. The material component for this spell is a small, oval lump of lead that has been cast by moon- light.",
+      "has_full_description": true
+    },
+    {
+      "name": "Unliving Identity",
+      "class": "Cleric",
+      "level": 6,
+      "level_name": "6th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible A priest employs this spell to give temporary per- sonality and identity back to mindless undead, namely skeletons and zombies.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 day/level",
+        "casting_time": "9",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible A priest employs this spell to give temporary per- sonality and identity back to mindless undead, namely skeletons and zombies. The undead\u0092s pre- vious consciousness and identity are restored, in- cluding memories, preferences, personality, and alignment. The creature is still undead, but now has the ambitions and thoughts it had as a living being. There is a 1% chance per year that the creature has been dead (not necessarily undead) that it goes im- mediately mad, unable to accept its undeath and the changes to its world over that time\u0097a mad un- dead immediately flees, its identity forever lost. In instances where the history of a particular un- dead is known, the DM can apply what he knows to the new free-willed skeleton or zombie. However, in cases where the undead\u0092s history is unknown, select its former class, alignment, and level according to what best suits the adventure, or decide randomly. Note: The undead does not retain any of its class or level bonuses; it is still simply a skeleton or zombie. Remember, none of this information will be readi- ly apparent for a skeleton, though characters may be able to guess at class from the tattered clothing still worn by a zombie. The reverse of this spell, unliving mindlessness, permanently returns any free-willed skeleton or zom- bie to its former mindless state, or temporarily makes other undead mindless. The undead creature retains its combat and life-draining abilities, but has 124 no sense of who it is, was, or what its previous plans were. For the duration of the spell the undead wan- ders aimlessly, slaying and draining life until de- stroyed. This spell does not work on liches, and it affects a vampire only until the vampire feeds again. The material component for this spell is any arti- cle significant to the undead\u0092s former life, such as a piece of clothing or equipment, a favorite weapon, a letter he had written, etc.",
+      "has_full_description": true
+    },
+    {
+      "name": "Conjure Greater Elemental",
+      "class": "Cleric",
+      "level": 7,
+      "level_name": "7th",
+      "category": "Sphere",
+      "spheres": [
+        "Various"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Various",
+      "sphere_type": "Cosmos",
+      "group": "Various",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible This spell allows a priest to summon a single greater elemental from his sphere of major access.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S",
+        "duration": "1 turn/level",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible This spell allows a priest to summon a single greater elemental from his sphere of major access. Determine the Hit Dice of the elemental with per- centile dice: 01-65, HD; 66-90, HD; 91-00, HD. Greater elementals are described in the Mon- strousCompendium,DARKSUN\u0099Appendix,",
+      "has_full_description": true
+    },
+    {
+      "name": "Silt Cyclone",
+      "class": "Cleric",
+      "level": 7,
+      "level_name": "7th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "By casting this spell on the Sea of Silt, the priest creates a powerful whirlwind of silt.",
+      "stats": {
+        "range": "120 yards",
+        "components": "V, S, M",
+        "duration": "2 rounds/level",
+        "casting_time": "1 round",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "By casting this spell on the Sea of Silt, the priest creates a powerful whirlwind of silt. The cyclone, 10 feet wide at its base and 20 feet wide at its top, rises from the silt\u0092s surface to a height of 100 feet, spin- ning violently and picking up tons of dust. The cast- er can move the cyclone up to 30 feet per round, but it cannot go beyond 120 yards from him. The cyclone spins so quickly that its center be- comes extremely hot, shooting off balls of searing dust as the whirlwind spins faster and faster. Any creature within 90 yards of the whirlwind must save vs. magic every round or be hit with a 2d12 ball of super-heated dust. Any creature that actually touches the cyclone suffers an attack (THAC0 5) that inflicts 10d6 points of damage. A creature that takes damage from this attack is also thrown 3d6 yards away, suffering another 1d6 points of damage. The cyclone can be dissipated by an air elemental or other powerful being from the elemental plane of air on command, by dispel magic, or by forcing its base away from the Sea of Silt. The cyclone can be moved by a powerful magical wind (gust of wind is insufficient); control weather, weather summoning, or wild weather spells can move it 10 yards for every 10 miles per hour of wind sustained against it for an entire round. The material components for this spell are silt from the Sea of Silt and a child\u0092s toy top. This spell cannot be cast away from the Sea of Silt. 125",
+      "has_full_description": true
+    },
+    {
+      "name": "Alter Climate",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "The alter climate spell lets a priest subtly affect the pattern of weather over a large area for a long period of time.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "40 square miles",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "The alter climate spell lets a priest subtly affect the pattern of weather over a large area for a long period of time. Before casting the spell, the priest must travel in the 40 square miles to be affected, spending at least four hours each day for a mini- mum of 30 days studying the local weather and ex- periencing the land\u0092s bounty and hardships. Once cast, the spell\u0092s duration is equal to five times the number of days the priest spent studying the area. If the spell is cast to improve the weather, normally scant rainfall is supplemented mildly, and the severity of winds and storms are reduced for the duration of the spell. Existing croplands in the area of effect cer- tainly provide an abundant harvest, and most likely a surplus the locals can sell. Other existing plants are also fruitful, but alter climate does not create new plant life. If cast in conjunction with a prolific vegeta- tion spell, any barren land (stony barrens, sandy wastes, etc.) grows grass and scrubs (much like scrub plain terrain) after 10 days and for the duration of the spell. The accelerated rainfall levels are very gradual and are spread over the duration of the spell\u0097there is no flash flooding or excessive erosion. If the caster instead worsens the weather, rainfall is cut to drought levels and the severity of sand and wind storms increases. Crops in the affected area automatically fail, leaving the fields dried and nearly ruined. Other vegetation may also be destroyed, de- pending on the terrain. Areas of scrub plains be- come sandy wastes after 30 days, and the land does not naturally recover its scrub covering if the spell lasts more than 300 days. Areas of forest become sandy wastes after 600 days, and the land does not naturally recover its trees or other plant life if the spell lasts more than 1,500 days. Magical vegetation is unaffected. In either case, the spell\u0092s effect on the weather is not immediately apparent. A casual observer may never realize what is happening until after half a year or more has passed. The material components for this spell are speci- mens of every type of weather common to the area\u0097 a cup of rainwater, a handful of windblown sand, and a piece of a tree or rock split by lightning. These must be collected by the priest during his pre-",
+      "has_full_description": true
+    },
+    {
+      "name": "Create Oasis",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Air",
+        "Earth",
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental",
+        "Elemental",
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell creates a lush oasis within the confines of a ring of standing stones of the priest\u0092s creation.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell creates a lush oasis within the confines of a ring of standing stones of the priest\u0092s creation. The maximum radius of the oasis is 30 yards per caster level beyond 20th; a priest may create a smaller oasis if desired. The preparation time is the time required to erect the circle of stones. Each stone must be at and no more than 4 feet wide or least 12 feet tall thick; rough-hewn and oblong; and set into the ground to stand on end. One must be placed every 10 yards around the circumference of the proposed oasis. The table below shows how many stones must be erected for oases of various sizes. Radius Circumf Creatures Level (yds) (yds) Stones Supported 21 30 189 19 8 22 60 376 38 31 23 90 566 57 71 24 120 754 76 126 95 197 25 150 943 26 180 1130 113 283 27 210 1320 132 385 240 1508 151 503 28 29 270 1697 170 636 30 300 1885 189 Cutting and placing a single stone requires 48 worker-hours, provided stones are readily available in the area and the workers have appropriate tools (chisels, spikes, hammers, rollers). If tools or ready stones aren\u0092t available, this time may increase or, at the DM\u0092s discretion, the preparation may be im- possible. Also, particularly skilled or capable work- ers (such as dwarves, half-giants, or slaves trained in quarries) may cut the time by as much as half. The priest can erect the stones himself by physical or magical labor, or he may enlist the help of any num- ber of other creatures who share his alignment (if any laborers are not of the priest\u0092s alignment, the spell will fail when cast). After the last stone is placed, the priest must cast the spell from the exact center of the ring. Interruptions during the place- ment of stones do not negate the spell, provided all the stones are in place at the time of casting. Once cast, the circle inside the stones is instantly transformed into a plant-filled, water-rich oasis. The trees and bushes are laden with nourishing, delicious fruits, and small game birds and animals appear, sup- ported by springs and pools of fresh, cool water. The oasis can also sustain one human-sized creature for every 36 square yards, as shown on the table. Each night, lost animals, fruits, and water are automatically",
+      "has_full_description": true
+    },
+    {
+      "name": "Forever Minions",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "a priest can guarantee that a num- With this spell ber of his followers will automatically animate as zombies when they are killed.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "a priest can guarantee that a num- With this spell ber of his followers will automatically animate as zombies when they are killed. The enchantment stays with the followers until they are slain. During preparation, both the priest and the fol- lowers to be enchanted must spend at least eight hours per day in seclusion, in the dark, readying the spell. If a follower misses a day of preparation, the spell cannot work for him. If such a follower is present during the casting of the spell, he is instead immediately slain and does not rise as an undead. The number of followers that can be so enchant- ed is measured in Hit Dice; HD per level of the caster is the maximum per casting of the spell. One round after those followers have fallen they reani- mate as zombies, just as in the spell animate dead. Whether or not they are in the priest\u0092s presence, the zombies immediately seek him out and obey his in- structions. During casting, the priest can specify an increased time (up to a maximum of one day) be- tween death and reanimation. Followers who are not slain in the service of the priest do not immediately reanimate. For instance, a follower who secretly works against the priest or who dies on personal business does not reanimate. Recipients of the spell can already be zombies or skeletons. In the latter case, they reanimate as skele- tons. Forever minions cannot be cast more than once on a single creature. The material component for this spell is a wax im- print of every follower\u0091s right hand (claw, tentacle, or whatever).",
+      "has_full_description": true
+    },
+    {
+      "name": "Hasten Crops",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible By using a hasten crops spell, a priest can lessen the time necessary to grow grain crops from seed to harvest within a given area.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "6 hours",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible By using a hasten crops spell, a priest can lessen the time necessary to grow grain crops from seed to harvest within a given area. The area of effect is one square mile per level of the caster beyond 21st, but only applies to one grain crop planted in that area; the type of grain must be stated before the spell is cast. During the preparation time for the spell, the priest must spend three hours per day praying over the seeds to be used for the crop, and at least three hours a day travelling and blessing the fields to be planted. This process must continue for at least 15 days. The seeds still have to be planted by the local farmers before the spell can be cast. On Athas, typical grain crops require a full 120 days to reach harvest, though some crops may take as few as 90 or as many as 150 days. Upon casting, hasten crops reduces the normal time it takes to grow the grain crop from seed to harvest by the days spent in preparation. Minimum growing time is sev- en days. The spell grants no magical properties or protections to the crop as it is growing\u0097natural or manmade disasters can still wipe it out. Athas has no major changes in seasonal tempera- ture and rainfall that govern growing seasons. How- ever, when a particular crop must be grown at a specific time of the year, this spell must be cast toward the beginning of that time. During the six-hour cast- ing time, the priest must have the cooperation of at least 100 local farmers and other folk to engage in a planting festival. Portions of the seed crop are burned, a bountiful feast is prepared and eaten, and the locals dance in honor of all the elemental planes that make their agriculture possible. The reverse of this spell, blight, causes existing grain crops to wither and die. The area of effect is the same, and the priest must still indicate which particular grain crop he wishes to affect. Other crops and plants are unaffected. This spell and its reverse cancel each other within the same area of effect. The material components for this spell are grain seeds taken from some other bumper crop carried in baskets made by the local children. The baskets and grain are burnt in the festival\u0092s central bonfire. For",
+      "has_full_description": true
+    },
+    {
+      "name": "Reverse Winds",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell a priest can change wind direction.",
+      "stats": {
+        "range": "600 yards",
+        "components": "V, S, M",
+        "duration": "10 turns/level",
+        "casting_time": "1 turn",
+        "area_of_effect": "Hemisphere 600 yards in diameter",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell a priest can change wind direction. Because it does not alter the velocity of the winds, this spell is most effective during wind or sand 128 storms. There are actually two forms of this spell\u0097 immediate change and erratic change. Withimmediatechange,thepriestsimply chooses the new direction the wind should take. Once cast, the wind ceases completely for one round, then resumes with equal speed in the new direction. Immediate change can move smoke, clouds, fog, and spells with similar effects. Page 127 of the DMG lists wind effects. If the priest desires erratic change, the wind\u0092s di- rection varies wildly, changing drastically several times per round for the duration of the spell. All non-magical missile fire within the area of effect suf- fers a -5 penalty to hit. (For BATTLESYSTEM\u0099 games, this means a -2 on every missile AD rolled.) Flying creatures drop by three grades in their maneuverability class (A becomes D, B be- comes E). If reduced below E, the flying creature crashes and suffers falling damage (1d6 per 10 feet fallen, maximum 20d6). Erratic change can disperse smoke, clouds, fog, and spells with these effects. In either case, the spell\u0092s area of effect is a hemi- sphere centered on a point selected by the caster, extending 600 yards in every direction along the ground and 600 yards above it. The material component for this spell is the breath of a flying creature.",
+      "has_full_description": true
+    },
+    {
+      "name": "Wild Weather",
+      "class": "Cleric",
+      "level": 8,
+      "level_name": "8th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell resembles weather, summoning, except that the priest can create bad weather that need not be appropriate to the local area.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 day/level",
+        "casting_time": "8",
+        "area_of_effect": "1 square mile/level",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "This spell resembles weather, summoning, except that the priest can create bad weather that need not be appropriate to the local area. Terrible wind or lightning storms, torrential downpours, incredible heat or cold, hailstones, even snowfalls are possible. The weather condition created slows and damages all creatures within the spell\u0092s area of effect (includ- ing the caster). Creatures caught in wild weather move at one-third their normal movement rate. Creatures caught in the open take 1 point of dam- age per turn until they find cover\u0097even going to ground and covering oneself is sufficient cover, but in that case movement is halted. If the weather created might be considered harm- ful to the land or its plants and animals, then a spir- it of the land may intervene, at the DM\u0092s option. The spirit must believe that damage would be un- naturally severe (weather, after all, is a natural phenonenon); spells aimed against other trespassers to its lands rarely interest it. The spirit can save against the spell to negate its effects, saving on a 5 or higher. The material component for this spell is a large glass bottle with air collected at a location where the weather created is common. The priest must wander through the area to be affected, occasionally un- corking the bottle to release some of the air for the entire preparation time for the spell.",
+      "has_full_description": true
+    },
+    {
+      "name": "Air of Permanence",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Through this spell a priest can slow the effects of aging on any nonliving item.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 turn",
+        "area_of_effect": "30 cubic feet of air",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Through this spell a priest can slow the effects of aging on any nonliving item. The item must be 129 sealed in an airtight container. It is the air that is enchanted, not the item within. A skilled artisan must construct a container with a volume up to 15 cubic feet; it costs at least 1,000 cp. During the preparation time, the priest must spend six hours per day enchanting the container and drawing sigils and runes on its inner surfaces. The enchantment makes the container airtight against natural decay, though tampering ends the spell. Once items are placed inside the container and the spell is cast, time effectively stops inside. The items do not age or decay in any way. If the con- tainer is broken, the items are unharmed and re- sume aging at the normal rate, as if nothing had ever happened. When casting, the priest may also place a cause blindness, cause deafness, cause disease, or bestow curse spell on the container. Tampering with the container unleashes the spell on the tampering char- acter(s). Once the container is broken and the air of permanence lost, this additional spell is lost, as well. The material component for this spell is a bottle of air taken from the remains of the lungs of a crea- ture that has been dead at least 100 years.",
+      "has_full_description": true
+    },
+    {
+      "name": "Disruption",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the priest disrupt the magical link between templars and their sorcerer-kings, cutting off their source of spells.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "7 days",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the priest disrupt the magical link between templars and their sorcerer-kings, cutting off their source of spells. That link is a complicated affair, based on magic, psionics, and physical law; it is possible to block it by setting up interference or \u0093static\u0094 in the air, effectively creating an umbrella under which the link cannot exist. The priest must choose one sorcerer-king and study his activities during the preparation time\u0097 only templars who worship that sorcerer-king are af- fected. The priest must learn of the sorcerer-king\u0092s activities, his organization of templars, and some- thing about his long-term goals. Therefore, the priest must spend the preparation time near the sorcerer-king, either in his city-state or in nearby fields. The spell creates a series of connected circles, each 5 miles in diameter, one per level of the caster above 20th (each corresponds roughly to a single hex on the Tyr Region map in the DARK SUN\u0099 Boxed Set). The arrangement of the circles is com- pletely up to the caster, but the first must be cen- tered over his location at the time of casting. He could center the first over himself and then stretch the rest in a straight line away in any direction, or he might blanket an area with several connected circles. Any templar under a circle cannot receive addi- tional spells. Spells he had when he entered can still be cast. Since the spell has no tangible effect, an affected templar may not be aware of it until he re- ceives no spells, and even then may not be certain why that is. The spell blocks the ability to receive spells, but doesn\u0092t block a sorcerer-king from send- ing; if a sorcerer-king is within the area of effect, his templars outside of it still receive their spells. Interference with a sorcerer-king and his templars certainly draws their wrath. If the spell is cast within a city, chaos reigns for the duration of the spell as many vital services grind to a halt. Such powerful magic can be traced (psionically and magically), so the caster should have an escape plan. The material component for this spell is one of the sorcerer-king\u0092s obsidian balls. The priest can obtain it himself or hire others to get it. 130",
+      "has_full_description": true
+    },
+    {
+      "name": "Mountainous Barrier",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Earth"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Earth",
+      "sphere_type": "Elemental",
+      "group": "Earth",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the priest can call up a ring of enormous mountains.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 day",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, the priest can call up a ring of enormous mountains. The priest must spend the entire day of preparation time in careful meditation in the vicinity of existing mountains, within the dis- tance shown. Radius Priest Level Distance 23 5 miles 100 yards 24 7 miles 300 yards 25 10 miles 500 yards 26 15 miles 800 yards 27 20 miles 1 mile 28 25 miles 1.5 miles 29 30 miles 2 miles 30 35 miles 2.5 miles Upon casting, a ring of mountains one mile wide and one mile high appears around the caster, thrust- ing up from the ground. The radius shown is the maximum; the priest can call for a smaller radius if desired. The inner radius is listed, that from the caster to the point where the mountains begin. Any- thing on the ground where the mountains erupt must make a saving throw vs. crushing blow (or vs. paralyzation for creatures). Items that fail are de- stroyed; creatures take 10d6 damage. Creatures that fly gain a +5 bonus on their saves. Mountains will not rise to destroy a community of more than 20 individuals\u0097the ring of mountains forms a gap in- stead. While the spell is in effect, the priest can lower any or all the mountains and raise them again; in all ways, he controls them perfectly. After the spell\u0092s duration is up, the mountains re- turn to the earth as suddenly as they came. The ground appears undisturbed, although man-made structures remain in ruins. The material component for this spell is rock from a recent landslide.",
+      "has_full_description": true
+    },
+    {
+      "name": "Pocket Dimension",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "131 The caster can fill a pocket dimension with mate- rialsorcreaturesandcarryitaround.Once opened, the portal disgorges its contents into the Prime Material plane.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "131 The caster can fill a pocket dimension with mate- rialsorcreaturesandcarryitaround.Once opened, the portal disgorges its contents into the Prime Material plane. During the entire preparation period the priest must travel extensively (at least two hours per day) in either the Astral or the Ethereal planes (his choice), because the pocket dimension temporarily exists there. Upon casting, a \u0093portal\u0094 opens to the pock- et dimension from the Prime Material plane. The portal is an invisible square, 40 feet on a side, stand- ing just at ground level. Anything that passes through the square enters the pocket dimension\u0097it cannot return until the portal is reversed (see be- low). Anything living can walk through the portal. Inanimate objects must be carried or pushed through. The portal has only one direction\u0097a char- acter who gets one arm halfway through cannot pull it out! The portal remains open for up to an entire day, accommodating everything that enters during that day. Then it closes to become a clear glass disk, roughly the size of a coin. The glass disk weighs vir- tually nothing. While the priest has it, everything that passed into the pocket dimension stays there. Time does not pass in the pocket dimension. The disk is specially protected, and does not radiate magic under the scrutiny of detect magic. Nothing can interfere with the contents of the pocket dimen- sion; planar creatures cannot enter, and astral and ethereal beings cannot gain access. When the glass disk is snapped in two, the portal reopens, and everything that went into it re-emerges in the same order and at the same speed as it entered. The first thing that entered the pocket dimension is the first to exit. The glass disk has no particular resist- ance to damage, and may break accidentally. The material component for this spell is the hide of any planar creature.",
+      "has_full_description": true
+    },
+    {
+      "name": "Prolific Vegetation",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible When this spell is cast, the priest causes shrubs and grasses to grow over a wide area of previously barren terrain.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "Special",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible When this spell is cast, the priest causes shrubs and grasses to grow over a wide area of previously barren terrain. During the preparation time, the priest must spend eight hours per day for 30 days fashioning a staff from a tree of life, a material com- ponent that may be difficult to obtain. The priest must carve the staff perfectly smooth with an obsidi- an dagger, and cannot undertake any other task during the eight-hour period. The spell\u0092s area of effect is a circle with a maxi- mum radius that varies with the caster\u0092s level. The priest may affect a smaller radius if desired. The ter- rain must be virtually barren of plant life; if not, the spell will fail. To cast the spell, the priest thrusts the obsidian dagger into the ground at the center of the circle, then moves with the staff to the circle\u0092s edge. The priest then walks around the area of effect, dragging the staff along the ground. The staff magi- cally keeps the priest on a perfectly circular path, eventually returning to where he started. The priest must walk (not run, fly, or levitate), though he may use magical means to speed the walk. If the time to complete the circle requires the priest to stop to eat, sleep, and so on, there is no penalty, provided the priest immediately resumes walking; but other inter- ruptions lasting more than a single round negate the walking and it must be started again. If the dagger at the center of the circle has been disturbed, the spell fails, so a priest often places a guard over it. When the circle is completed, the spell is cast. The tables show the distance to be walked based on the Max. Rough Time to Level Radius Circumf. Walk* 2 4 90 yards 566 yards 5 rounds 25 180 yards 1131 yards 1 turn 26 540 yards 2 miles 3 turns 2 7 1.25 miles 8 miles 2 hours 28 6 miles 38 miles 9 hours 29 12 miles 75 miles 18 hours** 30 25 miles 157 miles 38 hours** * for a human in clear terrain and weather ** requires multiple marching days Upon casting, the area inside the circle instantly grows thick with grass and small shrubs, much like scrub plains. The vegetation does not emerge from solid stone, but it arises from any soil, no matter",
+      "has_full_description": true
+    },
+    {
+      "name": "Storm Legion",
+      "class": "Cleric",
+      "level": 9,
+      "level_name": "9th",
+      "category": "Sphere",
+      "spheres": [
+        "Water"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Water",
+      "sphere_type": "Elemental",
+      "group": "Water",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell a priest can magically transport a large army via a natural storm system.",
+      "stats": {
+        "range": "300 yards",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "5 turns",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell a priest can magically transport a large army via a natural storm system. The storm itself must be of natural, nonmagical origin\u0097 either a sand, wind, or lightning storm. During the preparation time, the priest must care- fully measure the winds and the storms of the region, spending at least four hours per day in observation of those conditions. The spell cannot be cast until a nat- ural storm gathers over the subject army. The number of Hit Dice that can be affected by the storm legion spell is determined as follows: Priest Level Hit Dice 90 23 24 180 25 300 500 26 2 7 900 28 1,500 2,400 29 3 0 3,600 All creatures, living or undead, can be trans- ported by this spell. They must gather around the priest when the spell is cast, in military formations. Upon casting, the storm\u0092s winds and blowing sands dissolve the soldiers within the area of effect. In a matter of a few rounds, their forms are com- pletely gone, their essence removed to the clouds above. All material possessions, magical and other- wise, are dissolved with the soldiers. The caster is similarly dissolved, but he alone re- tains consciousness. During their journey, the caster has control over the storm\u0092s direction. A storm can usually travel between 10 and 40 miles per hour. Once over the desired target, the spell ends and the caster and army literally rain out of the skies. Descending as drops of blood, bone, and tissue, the fragments reassemble themselves in ten rounds into the individuals they once were. During this time individuals are completely helpless and vulnerable to attack. Any physical attack made on the incom- plete form of a storm soldier destroys it\u0097it will never reform. The caster reassembles similarly, and is just as vulnerable to attack. Once the ten rounds pass, the subjects are in exactly the relative positions they had when taken up into the storm, with the same equipment as before. If the spell is dispelled while the storm is still in motion, all those carried within are slain. Once cast, the storm cannot be altered by other weather affect- ing magic. The material component for this spell is the standard or insignia of an army that was detested during a storm. 3 3",
+      "has_full_description": true
+    },
+    {
+      "name": "Cleanse",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the priest \u0093reset\u0094 another charac- ter\u0092s alignment after it has somehow changed.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 day",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the priest \u0093reset\u0094 another charac- ter\u0092s alignment after it has somehow changed. The priest invokes the favor of powerful beings within the desired alignment to accept the character who has strayed back into the ranks. Usually a priest is sought out by another character (or that character\u0092s friends) whose alignment has somehow changed. The priest must be of the character\u0092s original alignment. During the preparation time, the repentant char- acter must try to avoid his present alignment and aspire to his original alignment\u0097most often through inaction, but good role-playing should be a bonus for a player character. Meanwhile, the priest contacts a powerful being of the appropriate align- ment. Powerful beings aligned to good/evil or law/ chaos exist in the outer planes. Powerful beings of a neutral alignment reside mainly in the inner, ele- mental planes. Particularly powerful creatures, such as advanced beings, spirits of the land, or other Athasian beings, may also be suitable, at the DM\u0092s discretion. The priest contacts the being either magically, psionically, or physically three times during the preparation period, once every 15 days after prepa- ration has begun. The contact is brief but probing\u0097the priest must plead his case with the powerful being. Since priest and being are of the same alignment, the contact is never hostile, though it may not be successful. Based on the sincerity of 134 the character desiring change, the priest\u0092s belief in the character, and the player\u0092s role-playing, the DM decides if the meeting is successful. If not, the priest must make contact again after 15 days. After three successful meetings, the spell may be cast. After casting, both character and priest place themselves at great risk. If the priest has acted in any way contrary to his alignment, or if the repent- ant character has not done all he can to \u0093change his ways\u0094 during the preparation time, the spell goes drastically wrong. The priest immediately changes alignment to match that of the repentant character, and that character immediately loses half of his accumulated experience to date. Once this has occurred, neither character may employ a cleanse spell ever again. If the DM is convinced that both priest and repentant character have acted properly, the spell works and the character regains his original alignment. This spell relies on the role-playing of the charac- ters and the DM\u0092s interpretation of events and mo- tivations. The DM plays the part of the powerful",
+      "has_full_description": true
+    },
+    {
+      "name": "Defiling Stasis",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Effectiveness"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Effectiveness",
+      "sphere_type": "Cosmos",
+      "group": "Effectiveness",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell pushes defiling damage far away from the caster for a period of time.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 day/level",
+        "casting_time": "1 turn",
+        "area_of_effect": "Hemisphere, 100-yard radius",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell pushes defiling damage far away from the caster for a period of time. The damage still oc- curs, but at a point more remote from the defiler himself. It can be used to protect an area against defiling damage, or by a defiler to push his damage out of sight. The wizard must contact the spirit or spirits of the land within the radius he wishes to affect. Since it is unusual for a user of wizardly magic to contact a 92 spirit, the process takes quite a bit of time\u0097every waking moment for the entire preparation time. There is no actual speech contact established with the spirits, only a level of understanding that the wizard wishes to protect the area from defiling dam- age. When cast, a hemisphere centered on the caster becomes temporarily immune to defiling damage. All such damage called for within the hemisphere is redirected to the closest points immediately outside of it. Trees of life within the hemisphere cannot be drawn upon for defiling magic\u0097that energy, too, is redirected outside. The hemisphere is 100 yards in radius. The caster need not remain inside the hemi- of defiler magic within its boundaries. There is no force field or visible barrier at the edge of the hemisphere. However, once defiling magic is cast within it, the area immediately outside forms a large circle of ash that can be identified by knowledgeable characters. The material component for this spell is a small glass bubble with no air inside it.",
+      "has_full_description": true
+    },
+    {
+      "name": "Insect Host",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Air"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Air",
+      "sphere_type": "Elemental",
+      "group": "Air",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "When this spell is cast, cloud upon cloud of fly- ing, biting insects swarm to the priest to serve him.",
+      "stats": {
+        "range": "300 yards",
+        "components": "V, S, M",
+        "duration": "1 day",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "When this spell is cast, cloud upon cloud of fly- ing, biting insects swarm to the priest to serve him. Unlike insect plague, these insects are magically cre- ated, so the spell can be cast where there are no nat- ural insects. Each insect is extremely small, barely the size of a pea, but, by the thousands or even mil- lions, they cause horrendous destruction. During preparation, the priest clearly pictures the insects to be conjured and the kind of destruction they will inflict. This requires secluded concentra- tion for the entire period. When cast, the priest calls one cloud per level above 15th. Each cloud is roughly a sphere with a radius of five yards and contains many thousands of individual insects. Each cloud has MV 24 and is completely under the priest\u0092s control. Each can per- form a different task, provided it remains within range of the caster. Creatures caught within a cloud can see no more than five feet away. Spellcasting is impossible. Each creature sustains 5 hp of damage per round in the cloud, regardless of Armor Class, and invisibility is no protection. All creatures with HD or less auto- matically run away from the cloud, scattering. All those less than HD check morale to avoid doing the same. The priest cannot affect only selected in- dividuals within a cloud. A cloud descending on crops devours its volume per turn, wiping out whole fields in a few hours. For- ests are likewise ruined. In a city or village, the townspeople panic while the insects destroy all un- protected foodstuffs and all wooden and tarp con- struction. Several clouds can easily surround a group, or they can block a road. The insect host can be dissipated by dispel magic. It can also be blown back with a powerful, magical wind, dispersed for a time by an air elemental, or temporarily held off with smoke, though the latter will only work for a few rounds. Area effect magic such as fireball can destroy large numbers of the magical insects, but individual attacks have very lit- tle effect. The material component for this spell is a blown glass model of a locust or other insect, filled with gem dust (100 gp minimum).",
+      "has_full_description": true
+    },
+    {
+      "name": "Planar Vassal",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the priest capture an outer planar creature of opposite alignment and force it into tem- porary servitude.",
+      "stats": {
+        "range": "0",
+        "components": "V, S",
+        "duration": "7 days",
+        "casting_time": "1 turn",
+        "area_of_effect": "Creature summoned",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the priest capture an outer planar creature of opposite alignment and force it into tem- porary servitude. The priest selects the type of crea- ture desired before the preparation time begins. Its alignment must be directly opposite the caster\u0092s, as follows: lawful is the opposite of chaotic, good the opposite of evil, and neutral has no opposite. For example, a lawful good priest must select a chaotic evil being. True neutral priests cannot cast this spell. During preparation, the priest must cast a gate spell to call the creature to the Prime Material plane. Because the creature called for may or may not step through the gate\u0097and even if it does, it may immediately attack the priest\u0097the preparation is hazardous. When the creature of opposite align- ment arrives, the priest must personally subdue it, without help from others. Once the priest inflicts damage equal to half the creature\u0092s hit point total by any means, he can cast the planar vassal spell. Upon casting, the planar creature immediately becomes a discontented vassal of the priest. He grumbles and complains about duties, but performs them, albeit slowly at times. The vassal obeys the letter of all commands but tries to violate their spirit when feasible. The planar vassal has no obligation to protect the priest unless so ordered. Planar crea- tures with the power to call others of their kind can be ordered to do so, but those new creatures are in no way controlled by the priest. Once the seven days have passed, the planar creature most likely (75% chance) attacks the priest; otherwise it simply re- turns to its home plane. Other planar creatures may notice their associ- ate\u0092s absence and come to investigate. Also, once the creature is free again, it plots its revenge\u0097 -wise priests see to it that their planar vassals are them- selves slain carrying out their duties. But those that survive are usually very long-lived and never forget an enemy. Note: Outer planar creatures are described in the",
+      "has_full_description": true
+    },
+    {
+      "name": "Prolific Forestation",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell the priest causes a grove of trees to magically appear.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "Special",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell the priest causes a grove of trees to magically appear. During preparation the priest de- votes eight hours per day for 30 days to the fashion- ing of a staff from a tree of life, a material priest carves the staff perfectly smooth with a dia- mond dagger, and cannot undertake any other task during the eight-hour period. The spell\u0092s area of effect is a circle with a maxi- mum radius that varies by the caster\u0092s level. The priest may affect a smaller radius if desired. The ter- rain must have no other trees; if it does, the spell fails. To cast the spell, the priest thrusts the dia- mond dagger into the ground at the center of the circle, then moves with the staff to the circle\u0092s edge. The priest then walks around the area of effect, 136 dragging the staff along the ground. The staff magi- cally ensures that the priest walks a perfectly circular path, eventually returning to where he started. The priest must walk (not run, fly, or levitate), though he may use magical means to speed that walk. Inter- ruptions lasting more than a single round negate the walking, and it must be started again. If the dagger at the center of the circle has been disturbed, the spell fails, so a priest often places a guard over it. When the circle is completed, the spell is cast. The table shows the distance to be walked based on the area of the spell. Trees Caster Max. Rough Time to Radius Walk Level Circumf. in Grove* 188 yards 2 rounds 140 27 30 yards 28 60 yards 377 yards 4 rounds 560 29 120 yards 754 yards 7 rounds 2,250 30 240 yards 1507 yards 13 rounds 9,000 * approximately; can vary as much as 20% The forest consists of mature trees 1-4 feet in di- ameter, spaced 3-6 yards apart. The forest canopy, thick with foliage, towers 30 to 120 feet. This spell creates no brush or undergrowth for the forest; its floor is the same terrain type as before the spell. The spacing of the trees hinders the movement of huge or gargantuan creatures; smaller creatures move unimpeded. Unlike the prolific vegetation spell, the trees cre- ated have magical protection against natural de- struction for one year per caster level. Natural fires or lightning do not affect them; lack of water or oth-",
+      "has_full_description": true
+    },
+    {
+      "name": "Rift",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Cosmos"
+      ],
+      "sphere_types": [
+        "Cosmos"
+      ],
+      "school": null,
+      "sphere": "Cosmos",
+      "sphere_type": "Cosmos",
+      "group": "Cosmos",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the priest magically brings the Negative Material plane closer to the Prime Mate- rial plane, creating a rift between the two, centered upon himself.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "3 days",
+        "casting_time": "10 turns",
+        "area_of_effect": "Sphere 360 yards around caster",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, the priest magically brings the Negative Material plane closer to the Prime Mate- rial plane, creating a rift between the two, centered upon himself. The priest first spends the lengthy four hours per day, reading scrolls and books about the planes. Upon casting, all undead in the area of effect gain nine times their original hit points as \u0093phantom\u0094 points for the duration of the spell. For instance, a simple 5-hp zombie gains an additional 45 phantom hit points for three days. In combat, the phantom points are taken off first, then the actual hit points, until the undead creature is slain. The area of the rift moves with the caster, possibly placing some undead out of the sphere or encom- passing others as he moves. Phantom points are gained immediately upon entering the sphere, and then only once per creature per casting. The caster has no control over which undead receive the benefit of the phantom hit points; all undead in the sphere are so affected The material component for this spell is an obsid- ian goblet containing the ground bones of a dead necromancer. 137",
+      "has_full_description": true
+    },
+    {
+      "name": "Silt Bridge",
+      "class": "Cleric",
+      "level": 10,
+      "level_name": "10th",
+      "category": "Sphere",
+      "spheres": [
+        "Earth"
+      ],
+      "sphere_types": [
+        "Elemental"
+      ],
+      "school": null,
+      "sphere": "Earth",
+      "sphere_type": "Elemental",
+      "group": "Earth",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this powerful spell, the priest can temporari- ly turn a vast area of the Sea of Silt into solid ground.",
+      "stats": {
+        "range": "To u ch",
+        "components": "V, S, M",
+        "duration": "7 days/level",
+        "casting_time": "5 turns",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this powerful spell, the priest can temporari- ly turn a vast area of the Sea of Silt into solid ground. This spell cannot be cast elsewhere. During the preparation time, the priest must spend at least six hours per day flying over the silt to be altered, sprinkling it with bone dust. Unlike most psionic enchantments, interruptions during a day\u0092s activities can be tolerated, provided the priest does spend six hours during each day in preparation. Once cast, the mixture of bone and silt hardens to form a solid surface. The area solidified is a rectan- gle 100 yards across, and its length is one mile per caster level above 20th. Multiple castings can create longer bridges. The hardened area can support any amount of weight, since it is solid from the surface down to the bottom of the Sea of Silt. If it is gouged or attacked, it acts exactly like bone. When the spell duration ends, the bone softens over a period of just three rounds back into its original silt\u0097those standing on it likely disappear beneath the surface. The material component for this spell is a large amount of bone dust. The caster must assemble at least 50 pounds of bone dust per day of preparation, or 2,250 pounds altogether. Generally, a humanoid creature has 25 pounds of bones. Larger creatures have 25 pounds per Hit Die. The caster need not gather or grind these bones himself, nor does prepa- ration time include this.",
+      "has_full_description": true
+    },
+    {
+      "name": "Wakefulness",
+      "class": "Wizard",
+      "level": 2,
+      "level_name": "2nd",
+      "category": "School",
+      "school": "Enchantment",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Enchantment",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the recipient is able to postpone sleep.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "8 hours",
+        "casting_time": "2",
+        "area_of_effect": "Onecreature",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the recipient is able to postpone sleep. For the duration of the spell, the recipient feels wide awake and energetic, but immediately be- comes exhausted when the spell\u0092s effects wear off; he must then sleep for eight hours or suffer a -2 pen- alty to all attack rolls and saving throws until he does. Multiple wakefulness spells cast on one recipi- ent cause him to remain awake for eight hours per spell, but he must get eight hours of sleep per spell after they have worn off to eliminate the attack and save penalty. Recipients who don\u0092t sleep cannot re- cover spells cast. They can continue to march or ad- recipient cannot naturally doze venture normally. A off while under the influence of this spell. This spell exactly counters the effects of a sleep spell on one creature. When sleep is cast on a recipi- ent of this spell, he is entitled to a saving throw with a +3 bonus. The material component for this spell is a tiny glass bell.",
+      "has_full_description": true
+    },
+    {
+      "name": "Spider Strand",
+      "class": "Wizard",
+      "level": 4,
+      "level_name": "4th",
+      "category": "School",
+      "school": "Evocation",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Evocation",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the caster causes a single strand of strong spider web to shoot forth from his hand.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "1 round/level",
+        "casting_time": "4",
+        "area_of_effect": "Special",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the caster causes a single strand of strong spider web to shoot forth from his hand. The web becomes part of the caster for the duration of the spell or until he wishes it to detach itself from him; he need not hold on to the strand with the cast- ing hand, leaving it free for casting other spells, but he cannot hold anything with that hand. The strand itself is roughly half an inch in diameter and is very strong and sticky. The length of the strand is one yard per level of the caster. The strand will hold up to 2,500 pounds without breaking. Any creature wishing to break the strand must roll a half bend bars roll (since the strand is tougher than steel). If the strand is shot at an inanimate object, such as a wall or ceiling, the wizard automatically hits. The strand sticks to its target and can only be torn loose by putting more than 2,500 pounds of tension on it or by a successful half bend bars roll. If the strand is shot at a creature, the target receives a sav- ing throw versus spell to avoid it. If hit, the creature becomes wrapped up by the excess length. For in- bugbear standing 10 yards away, struck stance, a with a strand from a 15th-level wizard, is wrapped in five yards of the strand. Yards to Creature Size Immobilize Yards to Impede 1 Tiny Smaller 2 Man-sized 3 Large 5 Huge 10 Gargantuan \u0097 An immobilized creature cannot move, attack, or cast spells; a gargantuan creature cannot be immo- bilized. An impeded creature moves at half rate and attacks only half as often, with a -2 penalty to the attack roll. Every yard must be broken individually, each re- quiring a half bend bars roll. Only one creature can be so entangled per spell. The reverse of this spell, weaken webs, allows the person touched to move freely through webs either naturally or magically created (even those made from a spider strand spell). The material component for this spell is the webbing gland from a spider that was at least as large as the caster\u0092s hand (or, for its reverse, a pair of tiny shears).",
+      "has_full_description": true
+    },
+    {
+      "name": "Improved Haste",
+      "class": "Wizard",
+      "level": 6,
+      "level_name": "6th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the wizard bestow tremendous speed on any one creature.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 round/level",
+        "casting_time": "1 round",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the wizard bestow tremendous speed on any one creature. The quickened creature func- tions at double its normal movement and attack rates, basically moving and attacking normally, but twice in the round. The quickened creature rolls initiative for each round normally; his first basic action always hap- pens at initiative \u00930\u0094 in the round, and he then goes again on his rolled initiative number. The recipient al- so receives a +4 bonus to his Dexterity score (to a maximum of 25) for the duration of the spell, which can affect his reaction adjustment, missile attack ad- justment, and defensive adjustment. Casting the spell takes one entire round, during which both the recipi- ent and the caster can do nothing else (or just the cast- er when he is casting the spell on himself), then the spell lasts for rounds equal to the caster\u0092s level. Unlike the normal haste spell, this spell has no effect on the recipient\u0092s age. This spell negates the effects of a slow spell. It is not cumulative with itself or with other similar magic. The material components for this spell are a lump of grease and a spark from a flint and steel. 8",
+      "has_full_description": true
+    },
+    {
+      "name": "Improved Slow",
+      "class": "Wizard",
+      "level": 6,
+      "level_name": "6th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell causes the affected creatures to move and attack at 1/9 their normal rate.",
+      "stats": {
+        "range": "90 yards +10 yards/level",
+        "components": "V, S, M",
+        "duration": "1 round/level",
+        "casting_time": "6",
+        "area_of_effect": "Thirty 10\u0092 cubes.",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "This spell causes the affected creatures to move and attack at 1/9 their normal rate. In combat, af- fected creatures only attack every ninth round, and they cannot cause damage from normal melee at- tacks. However, they do attack with a -8 penalty for nonstandard melee attacks, such as touch en- ergy drain and paralysis\u0097such attacks, if success- ful, have their stated effect without penalty. Creatures under this spell have a +8 penalty to their AC as well. The caster can vary the area of effect as desired, arranging the thirty 10\u0092 cubes (30,000 cubic feet total) in any continuous shape, provided no section extends beyond the range of the spell. All creatures entirely within the area of effect may be slowed, but each is entitled to a saving throw versus spell to negate the spell. This spell negates the effects of a haste or improved haste spell. The material component for this spell is a tiny golden statue (minimum 10 gp value).",
+      "has_full_description": true
+    },
+    {
+      "name": "Conjure Greater Elemental",
+      "class": "Wizard",
+      "level": 7,
+      "level_name": "7th",
+      "category": "School",
+      "school": "Conjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Conjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible This spell allows the caster to summon a single greater elemental from, in the case of priests, their sphere of major access, or in the case of wizards, from any plane.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S",
+        "duration": "1 turn/level",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible This spell allows the caster to summon a single greater elemental from, in the case of priests, their sphere of major access, or in the case of wizards, from any plane. The Hit Dice of the elemental are determined randomly. Roll Hit Dice 10 01-65 14 66-90 91-00 This spell is otherwise identical to the fifth-level priest spell, conjure elemental. Greater elementals are described in the Monstrous Compendium, DARK SUN\u0099 Appendix, Terrors of the Desert. Sands of Time Level Time Reversed Effects on Papyrus Wood 30 days Faded Fragile 10 1 year Faded 11 2 years Brittle Crumbled Fragile 12 5 years Brittle 13 10 years Dust 14 20 years Crumbled 50 years Dust 16 100 years 200 years 17 18 500 years 19 1,000 years 2,000 years 2 0 21 5,000 years 22 10,000 years 23 20,000 years 24 50,000 years 100,000 years 2 5 2 6 200,000 years 2 7 500,000 years 1,000,000 years 2 8 29 2,000,000 years 3 0 5,000,000 years 85",
+      "has_full_description": true
+    },
+    {
+      "name": "Sands of Time",
+      "class": "Wizard",
+      "level": 7,
+      "level_name": "7th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, a wizard can reverse the effects of aging and erosion on any nonliving, material object.",
+      "stats": {
+        "range": "10 yards",
+        "components": "V, S, M",
+        "duration": "1 round",
+        "casting_time": "8",
+        "area_of_effect": "Up to 10 cubic feet/level",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, a wizard can reverse the effects of aging and erosion on any nonliving, material object. The amount of aging that can be so reversed de- pends upon the level of the caster. Table Soft Stone Hard Stone Metal Paint Etching Relief Paint Paint Form ½ Etching ¾ Etching Relief Dust Relief Form Form ½ ½ ¾ ¾ Dust Dust The table also indicates the average effects of time and the elements on various materials (items pro- tected from the elements might take longer to erode, but use these times for all restoration). Papyrus and wooden objects fade over time, making it difficult, but not impossible to read or identify surface fea- tures. Fragile objects must survive an item saving throw versus fall every time they are used; brittle items must survive versus a crushing blow. Crum- bled items are unusable but still identifiable as papyrus or wood; dust is completely unidentifiable and unusable. Stone and metal items wear away over time, and their shapes smooth out until the item is completely worn away. Paint indicates that artificial coloration is gone or unrecognizeable; etching means carved let- ters or pictures are worn away; relief indicates that deeply carved letters or images are severely eroded; form indicates that time has eroded away all but the basic form of the original stone or metal. The frac- tions 1/2 and 3/4 tell when the item has lost that amount of its original mass. Dust means the original item is completely gone, eroded away to nothing. A 18th level wizard could, for example, turn even a pile of dust back into the new, clean piece of papy- rus it once was, or turn the crumbled remains of a staff back to its original form, or even restore a painted map on the wall of a temple constructed of soft stone. This spell cannot restore damage done to an object by anything other than natural aging or erosion. Use the table as a guide for other objects that don\u0092t exactly fit into these categories. The reverse of this spell, accelerate erosion, allows the wizard to speed up erosion on any nonliving ma- terial object. In the example above, the 18th-level wizard could turn a clean piece of papyrus to dust or turn a new staff of wood into crumbled pieces or erase a painted map from a wall of soft stone. The material components for this spell are a tiny",
+      "has_full_description": true
+    },
+    {
+      "name": "Semipermanency",
+      "class": "Wizard",
+      "level": 7,
+      "level_name": "7th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell affects the duration of certain other spells, making the duration significantly longer.",
+      "stats": {
+        "range": "Special",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 round",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell affects the duration of certain other spells, making the duration significantly longer. To the casual observer, the effects may seem perma- nent, but in fact the duration is limited to some number of years, based on the caster\u0092s level; roll 1d20 and subtract the result from the caster\u0092s level to yield the duration of the spell in years. If the result is 0 or less, roll 1d12 instead to find the spell\u0092s dura- tion in months. The DM should roll these duration dice and keep the results secret from the caster. Casting this spell has no effect on the caster\u0092s Con- stitution score. The personal spells upon which a semipermanen- cy spell is known to be effective are the same as those listed for the more powerful permanency spell, as follows: comprehend languages detect evil detect invisibility detect magic infravision protection from can trips protection from evil protection from normal missiles read magic tongues unseen servant The wizard casts the desired spell upon himself (only) and then follows with the semipermanency spell. This application of semipermanency can be dispelled only by a wizard of greater level than the spellcaster was when he cast the spell. This spell can also be used to lengthen the dura- tion of the following object/creature or area-effect spells: enlarge fear gust of wind invisibility magic mouth prismatic sphere stinking cloud wall of fire wall of force web Finally, these spells can be cast upon Objects or areas only and rendered semipermanent: alarm audible glamer dancing lights solid fog wall of fire distance distortion teleport In applications other than those directed on the caster, this spell can be dispelled normally to negate its effects. The DM may allow other selected spells to be made semipermanent. The selected spell must be researched anew, costing as much and taking as long as its original research. The DM must decide whether a specific spell can be made semiperma- nent. This spell cannot be used in the process of manufacturing magical items. The material components are a drop of dwarf\u0092s blood and a tiny metal anvil (50 gp minimum). 87",
+      "has_full_description": true
+    },
+    {
+      "name": "Protection from Time",
+      "class": "Wizard",
+      "level": 8,
+      "level_name": "8th",
+      "category": "School",
+      "school": "Abjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Abjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "When this spell is cast, it creates a magical barrier around the recipient at a distance of one inch.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 week",
+        "casting_time": "1 round",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "When this spell is cast, it creates a magical barrier around the recipient at a distance of one inch. The barrier moves with the recipient and protects him from the adverse effects of time. This spell can be cast on any living creature, but multiple spells are not cumulative. The recipient does not age during the spell\u0092s duration, though this won\u0092t have a no- ticeable effect on his lifespan unless many such spells are cast in series; the recipient should keep track of how many protection from time spells have been cast on him so the DM can add one week to his total natural lifespan for each. A significant number of such spells can postpone aging effects for the recipient. When confronted with a magical ag- ing effect (such as a wish spell or a hit by some pow- erful undead creatures), the recipient gets a saving throw versus spell to avoid the effect (or an addition- al save if one is already allowed). Whether or not the save succeeds, the protection from time spell is dis- pelled immediately. The spell is not automatically dispelled upon the character\u0092s death\u0097it continues to protect the body. If the so-called \u0093neg 10 rule\u0094 (\u0091\u0091Hovering on Death\u0092s Door,\u0092\u0092 DMG, page 75) is being used, the recipient does not automatically lose one hit point each round after falling to 0 or below. Also, for pur- poses of magical resurrection through raise dead or reincarnation spells, time since death for the recipi- ent\u0092s dead body does not start accumulating until after the protection from time spell has ended. This spell does not cause time to stop within the barrier around the recipient; he moves through time at the same rate as other characters. The character must still eat, drink, and rest as usual. This spell does not affect the duration of other spells. The material component is a golden hourglass filled to capacity with diamond dust (minimum 75 gp value).",
+      "has_full_description": true
+    },
+    {
+      "name": "Vampiric Youthfulness",
+      "class": "Wizard",
+      "level": 9,
+      "level_name": "9th",
+      "category": "School",
+      "school": "Necromancy",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Necromancy",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the caster makes himself younger by leeching the life energy out of another creature.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S",
+        "duration": "Permanent",
+        "casting_time": "9",
+        "area_of_effect": "Special",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "With this spell, the caster makes himself younger by leeching the life energy out of another creature. The victim must have Hit Dice or levels at least equal to the caster\u0092s level, and he must be at full hit points at the time the spell is cast; undead, extra- planar beings (such as elementals), and other non- corporeal creatures cannot be affected by this spell. A charmed creature will not willingly submit to this spell, though a creature under the effects of a domi- nation spell will; even a willing victim makes a saving throw to negate this spell. The caster and the victim must be touching for the entire casting time of the spell; any interruption negates it. Once cast, the victim ages 10 years immediately. If this would take the victim beyond his normal life- span, he dies; otherwise, the victim remains uncon- scious for 24 hours. The victim may suffer aging ef- fects immediately upon regaining consciousness. The caster becomes one year younger. Present dam- age is not healed, nor are curses or diseases re- moved.Thecasterretainsallmemoriesand experience points. Performing this spell on an unwilling victim is de- finitely an evil act and cannot be undertaken by a good character, even against an evil victim. How- ever, there may be circumstances when a good char- acter could use this spell, such as when the victim is willing and has plenty of years to spare. Psionic Enchantments",
+      "has_full_description": true
+    },
+    {
+      "name": "Abrasion",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Evocation",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Evocation",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, a wizard can cause the ground to vibrate violently, turning the gravel and sand into deadly abrasives.",
+      "stats": {
+        "range": "90 yards",
+        "components": "V, S, M",
+        "duration": "120 days",
+        "casting_time": "10 turns",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, a wizard can cause the ground to vibrate violently, turning the gravel and sand into deadly abrasives. During the preparation time, the caster must enchant and mix the spell components, spending at least eight hours per day in isolation. The spell can be cast in the following terrains: rocky badlands, stony barrens, sandy wastes, salt flats, and boulder fields. Once cast, the wizard shapes the area of effect, which totals ten 100 yard by 100 yard squares, plus five additional squares per level of the caster above 20th (a 25th level wizard could, therefore, lay them end to end, making a bar- rier 100 yards wide and 3,500 yards, or just over 2 miles long). The area of effect can be shaped, in any way desired, out of these building blocks. Any vege- tation there will remain unaffected. Any creature that puts his full weight against the affected area of ground will suffer damage. On the first round of contact, it will inflict 1 point of dam- age. On the second, it will inflict 1 point of damage per Hit Die. On the third and subsequent rounds, it will inflict 1d3 points of damage per Hit Die. Es- pecially tough hide or footwear may postpone dam- age for one or, at most, two rounds. By the nature of the damage, after suffering half of their total hit points in damage a creature will be unable to free himself (at the DM\u0092s option). The material components for this spell are sands caught in a driving wind, and fragments of bone from creatures blasted clean in sandstorms. These must be mixed during the preparation time.",
+      "has_full_description": true
+    },
+    {
+      "name": "Advanced Domination",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Charm",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Charm",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the wizard control the actions of any person of the player character races (human, dwarf, elf, half-elf, half-giant, halfling, mul, or thri- kreen).",
+      "stats": {
+        "range": "10 yards/level",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "1 person",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the wizard control the actions of any person of the player character races (human, dwarf, elf, half-elf, half-giant, halfling, mul, or thri- kreen). During the preparation time, the wizard must be in constant contact with an item once owned by the intended victim, an item that is some- how emotionally prized by that character. For in- stance, a letter from a loved one, the character\u0092s first metal weapon, a family heirloom, etc. , would suffice. (Emotional attachment to the item is up to the DM). The time spent procuring the item does not count toward the preparation time; the wizard can undertake any activity during that time, provid- ed he carries the item on his person. Once cast, the victim gets no saving throw. Pro- tection from evil in no way hinders this spell. The caster can then control the actions of the vic- tim within the limits of the subject\u0092s body, through telepathic contact. The subject cannot resist this control. This spell lasts until one of the following occurs: an immediate relative (sibling, parent, or child) of the subject retrieves the prized item and destroys it; a period of time passes equal to the length of time the subject cherished the emotionally prized item; the caster chooses to end the spell. Keeping a sub- ject under advanced domination counts as one",
+      "has_full_description": true
+    },
+    {
+      "name": "Defiler Metamorphosis",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Defilers who have earned sufficient experience points to advance to the next stage of their dragon metamorphosis must successfully cast this spell.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "Special",
+        "area_of_effect": "The caster",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Defilers who have earned sufficient experience points to advance to the next stage of their dragon metamorphosis must successfully cast this spell. Once cast, the defiler mutates his physical form 9 0 drastically, each time becoming less human and more dragon. The defiler may begin his preparation time at any point as he approaches his next level, building struc- tures, gathering components, studying, etc. But the spell cannot be cast before he has earned all neces- sary experience points. Though the experience points have been earned, the defiler gains no bene- fits of his new level until after the defiler metamor- phosis spell is cast. The exact material components, preparation time, and casting time differ, depending on what level the defiler is about to achieve, grouped by level into low, middle, high, and final metamorphosis. Low (21st, 22nd, and 23rd levels): When ap- proaching these levels, the defiler is merely begin- ning his metamorphosis toward dragon form. The year, during which time the caster must have access to ancient documents, tablets, and scrolls that have never been studied by another defiler. Such materi- als must be discovered by the defiler or his minions and must be studied for at least eight hours every day for the entire year. Acquisition of such docu- ments will usually be a quest in and of itself; once used, these documents cannot be used for this spell again. The material components must include vast riches (at least 10,000 gp worth of jewels, gems, coins, or artistic treasures), a vast structure where the transformation might take place, and no fewer than 1,000 Hit Dice worth of living creatures for the life-leeching process. The riches vanish and the living creatures are slain one heartbeat after the de- filer begins casting. The structure, which must cost more than 50,000 gp to build, is not destroyed and may be used again to cast this spell when attaining all three of the low levels. The spell is cast from the deep interior of the structure, where the caster will actuallytransform\u0097nootherbeingsmaybe present at the instant of casting. The casting time is a full 24 hours; any interruption results in spell failure. Middle (24th, 25th, and 26th levels): At the mid- dle levels, the process is similar. The preparation time extends to two years per casting, during which time the caster must befriend and visit a powerful creature from an elemental plane. The caster must\n\nMaterial Component: ; the slain body of a good crea-",
+      "has_full_description": true
+    },
+    {
+      "name": "Defiling Regeneration",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Necromancy",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Necromancy",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, a defiler can empower a force of creatures to magically regenerate lost hit points at the expense of the vegetation around them.",
+      "stats": {
+        "range": "100 yards",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, a defiler can empower a force of creatures to magically regenerate lost hit points at the expense of the vegetation around them. During the preparation time, the defiler must prepare each of the creatures he plans to empower with regenerative abilities. He must decorate their faces and hands with nonpermanent tattoos and their armors with special symbols of evil magic. The caster must have access to the creatures for the en- tire preparation period. Upon casting, the defiler can empower creatures with Hit Dice equal to five times his level with a form of regeneration. Only living, corporeal crea- tures can be affected. The creatures regenerate 2 hp per round, including the round in which they are first wounded, for the duration of the spell. Even those slain regain consciousness when they regener- ate up to 1 hp. The spell lasts for a number of days equal to the caster\u0092s level. When the spell expires, the tattoos and symbols vanish. The magical energy driving this regeneration is taken directly from the land, just like defiling magic. During regeneration, the ground where the crea- tures were wounded becomes spotted with ash. A typical combat site leaves a few ashen footprints be- hind. The site of a major battle may be completely destroyed, turned to ash as the creatures regenerate lost hit points. Any character of good alignment under the effect of this spell must attempt to have the magic dis- pelled before he takes damage\u0097he must avoid com- bat damage at all costs. Failure to do so, or a willingness to accept the spell as an asset, is cause for an alignment change. The material components for this spell are inks and dyes made from the blood of regenerating crea- tures. Only defilers can cast this spell.",
+      "has_full_description": true
+    },
+    {
+      "name": "Dome of Invulnerability",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Abjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Abjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell creates an enormous mobile magical sphere around the caster.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 day",
+        "casting_time": "1 turn",
+        "area_of_effect": "Variable",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell creates an enormous mobile magical sphere around the caster. The sphere itself acts ex- actly like a globe of invulnerability, preventing any 1st-, 2nd-, 3rd-, or 4th-level spell effects from pene- trating. This includes innate spell-like abilities and effects from devices. Any spell can be cast out of the magical sphere, and these pass from the caster to the subject without effect upon the globe. During the preparation time, the caster must fashion a perfect crystal ball, which takes every hour of the three days. Upon casting, the dome appears in a hemisphere over the caster\u0092s head, to a radius of 10 yards per level beyond the 20th. Everyone within the dome receives its benefits, whether friend- ly or antagonistic toward the caster. The dome does not extend below the ground\u0097magic cast from be- low the dome is not affected. The dome moves with the caster, always centered on his position. However, if the caster flies off the ground, the dome collapses instantly. Also, dispel magic cast by a higher-level caster eliminates the dome. The material component for this spell is the crys- tal ball, which takes no less than 500 cp worth of materials to make.",
+      "has_full_description": true
+    },
+    {
+      "name": "Enchanted Armaments",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Enchantment",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Enchantment",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "9 With this spell, a wizard can temporarily enchant a large number of weapons against a specific foe.",
+      "stats": {
+        "range": "30 yards",
+        "components": "V, S, M",
+        "duration": "Spe cial",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "9 With this spell, a wizard can temporarily enchant a large number of weapons against a specific foe. Duringthepreparationtime,thewizardmust spend at least one hour with each weapon to be en- chanted, scratching a special symbol onto its blade or handle. The weapons can be of any variety and made from any materials, but they must all be within range at the time of casting. The wizard must choose a single named foe, being specific as to race and origins (such as \u0093the elves of the Jura Dai\u0094 or \u0093the gith mercenaries of Rithgar\u0092s horde\u0094). The castercannotchoose\u0093allelves\u0094or\u0093allof Rithgar\u0092s horde\u0094 as named foes for this spell. The weapons all gain a magical +2 enchantment for the duration of the spell against the named foe only. This bonus applies to all attack and damage rolls and allows the weapons to inflict damage on crea- tures normally affected only by magical attacks. In BATTLESYSTEM\u0099 game terms, the attacking unit should roll the next higher AD (AD4 becomes AD6, etc.). The weapons receive no benefit or pen- alty against other creatures. The weapons remain enchanted until one of the following occurs: the named foe is completely de- stroyed; half of those wielding the weapons are killed or otherwise taken out of action; 30 days have passed since casting. Once the spell\u0092s duration has run out, all the enchanted weapons turn to dust im- mediately. The material components of this spell are a pow- dered braxat\u0092s horn (rumored to be magical, but it really isn\u0092t) and the weapons themselves.",
+      "has_full_description": true
+    },
+    {
+      "name": "Enslave Elemental",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Conjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Conjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell a wizard can both summon and then enslave an elemental.",
+      "stats": {
+        "range": "120 yards",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "5 turns",
+        "area_of_effect": "One elemental",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "With this spell a wizard can both summon and then enslave an elemental. The caster can enslave an earth, air, fire, or water elemental as desired. The strength of the elemental summoned depends upon the caster\u0092s more than Hit Dice, whereas at 26th level and above the caster can enslave a HD greater elemental (fr o m the Mo n s t r o u s Co mpe ndiu m DARK SUN\u0099 Appendix, Terrors of the Desert). Before an elemental can be enslaved, the caster must personally witness destruction wrought by that 9 4 c r e atu r e . The wiz a rd m ay c o nju re the elemental, himself, or simply witness it in the service of another. In either case, the wizard must gather a bit of mate- rial evidence from that destructive force for himself\u0097 a sliver of charred wood burnt by a fire ele- mental, the teeth of a creature drowned by a water elemental, etc. Once procured, the wizard must be- gin the preparation time for the spell, during which he must fashion the material into an amulet\u0097this takes at least six uninterrupted hours per day for the entire 30 days. Once completed, the wizard must don the amulet and cast the spell before the next double moon (within 1d100 days). Upo n c a sting, the ele m e ntal a r riv e s , u nde r the complete control of the wizard. He need not concen- trate to maintain control and the elemental per- forms every bidding. If the elemental ever strays beyond the range of the spell, it continues to per- form its last orders forever. If the amulet is removed from around the wizard\u0092s neck, the elemental at- tacks him immediately. If the wizard is ever killed or the amulet destroyed, the elemental is freed and re- turns to its plane. The amulet has no magical pro- tection and saves versus crushing blows as the material from which it is made. In addition to the amulet, the wizard must have the material component called for in the conjure ele- mental spell: burning incense for an air elemental, soft clay for earth, sulphur or phosphorus for fire, water and sand for a water elemental.",
+      "has_full_description": true
+    },
+    {
+      "name": "Immediate Animation",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Necromancy",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Necromancy",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "95 With this spell, a wizard can animate a large num- ber of dead creatures into zombies, provided those creatures died in combat within one hour before the casting of the spell.",
+      "stats": {
+        "range": "120 yards",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "95 With this spell, a wizard can animate a large num- ber of dead creatures into zombies, provided those creatures died in combat within one hour before the casting of the spell. All dead creatures must be in range at the time of casting. The number of Hit Dice animated is 400 per level beyond the 20th (400 at 21st level, 800 at 22nd, etc.) Creatures so animated lose all magical and psionic abilities, but retain all physical characteristics. Creatures become zombies of equal Hit Dice to their living counterparts (i.e., a Hit Die thri-kreen becomes a Hit Die zombie thri-kreen). Once slain as zombies, the corpses are considered too damaged to be animated a second time. ever, every day spent in preparation prior to casting increases the number of creatures he can animate: Hit Dice equal to the caster\u0092s level per day of prepa- r atio n . Du ring pr epa r atio n tim e , the c a ste r m u st spend all 24 hours locked away in a dark place with butacandle,pouringoverancientnecromantic tomes. The material components for this spell are gath- ered weapons, from the fallen warriors, that have their enemies\u0092 blood on them. It is a common prac- tice on Athas to loot the bodies of their weapons, if possible, so this component may not be readily available among the slain warriors.",
+      "has_full_description": true
+    },
+    {
+      "name": "Just Soveriegn",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Illusion",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Illusion",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, a wizard can pacify a subject pop- ulation or unit of soldiers, making them believe their leader is far kinder than his previous actions would suggest.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 day",
+        "area_of_effect": "1 mile radius",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, a wizard can pacify a subject pop- ulation or unit of soldiers, making them believe their leader is far kinder than his previous actions would suggest. This spell only functions against a group of creatures who already feel that the subject of the spell is their leader, regardless of what they feel about him. A torturous warrior-king might have this spell cast upon him, but someone without sub- jects gains no benefit from its magic. The number of people so pacified is Hit Dice per level of the caster above 20th. Once cast, the entire group must be evaluated to obtain an average group is made up of 1st-level warriors, then their save is 17. If there are fifty 1st-level warriors and fifteen 10th-level warriors, the average is (50 × 17) + (15 × 11)/65 = 15.62 or 16. The group then saves as a whole, either all passing or all failing. All of the subjects must be within the area of effect at the time of casting. During the preparation time, the caster must spend time in the presence of the subject (or in isola- tion if he plans to cast it upon himself). The length of time spent in preparation is optional, but the du- 9 6 ration of the spell is equal to three times the prepa- ration time. Once successfully cast, the leader\u0092s subjects will selectively forget incidents of torture or abuse, long forced labors, and other unpleasant events. They will see their leader as a good creature, worthy of respect, hard work, and reverence. In specific game terms, the leader receives an automatic +5 bonus to all NPC reactions when those NPCs are part of the affected subjects. They will gladly do the lead- er\u0092s bidding and can usually be counted on to dou- ble their efforts, be it construction, farming, etc. A military unit will never rout or fall back when in the leader\u0092s presence. The reverse of this spell, evil despot, forces the subjects of a leader to believe he is very cruel and unjust, regardless of his past performance. With this spell, the subject of the spell is allowed a saving throw\u0097failure means the subjects within the area of effect immediately find him repulsive for the dura- tion of the spell. The leader suffers a -5 penalty to NPC reactions among the affected population. Workers stop working, they may tear down the",
+      "has_full_description": true
+    },
+    {
+      "name": "Life Extension",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Necromancy",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Necromancy",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the caster can extend maximum age.",
+      "stats": {
+        "range": "0",
+        "components": "V, S",
+        "duration": "Permanent",
+        "casting_time": "10",
+        "area_of_effect": "Spe cial",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the caster can extend maximum age. Every character has a maximum age created from the Age tables in the DARK SUN\u0099 Boxed Set (or from the Player\u0092s Handbook), but only the DM knows what that value is; a player may have some idea of when his character is approaching its maximum game age, but only the DM knows exact- ly what that is. For instance, a player can calculate that an Athasian human character will live to at least 82 years of age (the base maximum of 80 plus the minimum roll of 2d20), but some time in the next 38 years, the character will die of old age. This spell increases a character\u0092s maximum age by one king\u0092s age: 77 years. The character usually does not suffer normal aging effects during this time, but this can vary according to circumstances, activities, and magical or psionic effects. The material components for this spell are exten- sive. The recipient must surround himself with the trappings of his youth. His personal trappings might include clothing or equipment used as a youth, letters previously received or sent, soil from 9 7 his homeland, tears shed by his mother, etc. Collec- tion of these components may be very difficult, in- volving a long journey to the caster\u0092s homeland, or they may prove impossible if the caster is an orphan or has no traceable roots.",
+      "has_full_description": true
+    },
+    {
+      "name": "Magical Minions",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Conjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Conjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the wizard create a force of identical creatures who, in essence, become physical exten- sions of himself.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "1 turns",
+        "area_of_effect": "Undead creature touched",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "This spell lets the wizard create a force of identical creatures who, in essence, become physical exten- sions of himself. The wizard can observe through their senses and use his powers through them, no matter where they are. During the preparation time, the wizard must as- semble the potential minions. Any creature can serve as a minion, provided it is of the same align- ment as the caster and has a minimum of Intelli- gence. The wizard can enchant a number of identical minions up to one third of his level, round- ing down. For a good wizard. the minions must be willing subjects. Evil wizards can secure their min- ions through domination or other means. Minions and wizard must be locked away for the entire length of the preparation time, bonding personally, magically, and psionically. Upon casting, the minions become tools of the wizard for the rest of their lives. If destroyed and raised, the raised form is no longer a minion of the wizard. The minions retain their physical form and attributes, including hit points, THAC0, Armor Class attacks, etc. They also retain any spell-like abilities they once had. They retain their raw intelli- gence and their original ability to make decisions\u0097 the minion\u0092s free will is not lost, so he can undertake long-term functions without direct supervision. However, the minions lose all magical and psionic powers. The wizard controls all such powers in the new union of beings. All material possessions are distributed by the controlling wizard\u0097unless an item is given to the minion by the wizard, or unless the wizard gives the minion specific instructions to obtain and use it, the minion ignores it. The wizard has complete overriding control of his magical minions. Through concentration, he can know everything that the minion knows\u0097its loca- tion, situation, and emotional state. The wizard can see through the minion\u0092s eyes and use its other sens- es. His instructions to the minion will be carefully fulfilled. When the wizard is not concentrating, he knows nothing of his minions, but they can contact him empathically if they wish. The wizard can cast magical spells and use psi- onic powers through his minions, no matter what the physical distance between them. Minions are es- pecially deadly opponents since it is the wizard who must employ the various components, not the min- ion. Once the wizard casts a spell through a particu-",
+      "has_full_description": true
+    },
+    {
+      "name": "Magical Plague",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the wizard creates a spreading magical virus that disrupts one chosen school of magic.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Circle, radius 10 yards/level",
+        "saving_throw": "Special"
+      },
+      "full_detail": true,
+      "description": "With this spell, the wizard creates a spreading magical virus that disrupts one chosen school of magic. The casting wizard is never affected by his own plague. The preparation time must be spent studying the school of magic to be plagued. The wizard must spend at least eight hours per day studying. If the wizard is already a specialist in the school to be plagued, the preparation time is cut to 30 days. Upon casting, all other wizards within the area of effect must make a successful saving throw or be- come infected with the magical disease. The area is a circle with radius of 10 yards per level of the caster. Even a wizard who saves successfully becomes a car- rier and may infect other wizards at a later date. Only wizards can become infected or carriers\u0097 other character classes are unaffected. Infected wizards have great difficulty casting spells within the school chosen. If the wizard at- tempts to cast such a spell, there is a base percent- age chance equal to his level that it succeeds. Otherwise the spell fails, but it still counts against the wizard\u0092s total spells for the day. A wizard spe- cialist in that school of magic receives double the normal chance for success. Whether infected or merely a carrier, a given wizard is affected by this spell for a number of days equal to the caster\u0092s level. Infected wizards and carriers can pass the plague to other wizards they contact. Any other wizard who comes within 10 yards of an infected or carrier wiz- ard must save vs. spell or become infected, himself, with a -4 penalty if the wizards actually touch. Those who save become carriers. If a wizard suc- cessfully saves against this plague once, he need never save against it again. Wizards with the plague take on an ashen, sunk- en appearance, and they tend to tire more easily than usual. Carriers exhibit no symptoms. Diagno- sis is only possible through divination magic, though an infected wizard certainly knows something is wrong. Carriers are unlikely to realize their condi- tion. Using magical plague in a campaign: The DM should not track the movements of large numbers of NPC wizards with the plague. Only important NPCs and PCs should be tracked and appropriate disease. Like any physical plague, centers of population are more at risk. The magical plague will likely spread through a city or village rapidly, so it runs its",
+      "has_full_description": true
+    },
+    {
+      "name": "Masquerade",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Enchantment",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Enchantment",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the caster can make the most powerful individuals in a community believe that the spell recipient is their leader.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "1 day per caster level",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the caster can make the most powerful individuals in a community believe that the spell recipient is their leader. Preparation involves studying the community to be affected by living among them. The number of individuals convinced is a function of their Hit Dice or levels, the caster\u0092s level, and the preparation time: For every three days of preparation time, the caster can convince five Hit Dice or levels per caster level. The individuals affected are chosen out of the community in descending order of Hit Dice or levels (highest are convinced first, then second highest, etc., until the total Hit Dice or levels have been ac- counted for). Whether or not the rest of the commu- nity believes the spell recipient is their leader depends on the situation. If all the most powerful people in a small village say he\u0092s the leader, the en- tire village might go along with it. However, if a very few powerful people in a large city proclaim the re- cipient as their new leader, the rest of the population might ignore them or incite civil violence. Often, the rightful leader is affected by the spell, helping to le- gitimize the deception. The spell is inherently fraught with dangers. The reverse of the spell, impostor, has the oppo- site effect, convincing the most powerful people in a community that their leader is a fraud. Again, the situation dictates events, but those affected are ab- solutely convinced they are right. The material component for this spell is a small golden mask fashioned in the likeness of the rightful leader of the community (500 cp minimum value) or, for its reverse, a golden statuette with two faces (1,000 cp minimum value).",
+      "has_full_description": true
+    },
+    {
+      "name": "Mass Fanaticism",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Enchantment",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Enchantment",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, the caster magically bolsters the combat morale of a large group of creatures.",
+      "stats": {
+        "range": "300 yards",
+        "components": "V, S, M",
+        "duration": "Variable",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, the caster magically bolsters the combat morale of a large group of creatures. The wizard must know, in advance, exactly what group of creatures he will affect before preparation. During preparation for the spell, the wizard first spends a minimum of 15 days living among the creatures, (e.g., travelling with elven raiders, work- ing with slave tribe farmers, hunting with thri-kreen, etc.). Next, he procures (earns, is given, steals) a single item symbolic of the entire group (e.g., the fineries from a recent plunder, the first grains from the harvest, the chieftain\u0092s chatkcha, etc.). The preparation is complete after he gains this symbolic object. Upon casting, all individuals in the chosen group become fearless in battle. In game terms, their NPC base moral number is raised to 18. Note that this spell in no way charms them into perform- ing acts of combat that they would not normally. There is no limit to the number of individual crea- tures that can come under the influence of this spell, provided they are of one cohesive group (one tribe, one army, one village) and the symbolic object ap- plies to each individual. The effect lasts for one full day, plus one more day for every two days the caster spent in preparation beyond the necessary 15. In BATTLESYSTEM\u0099 game terms, the caster can affect an entire army for combat. The reverse, mass cowardice, requires the same ing, the group falls to a base morale number of 4 for all combat situations. The material components for this spell are the symbolic object and a tiny bar of iron, or, for the reverse, the object and the feathers of a small, flight- less bird (usually found only in the Forest Ridge, and even quite rare there).",
+      "has_full_description": true
+    },
+    {
+      "name": "Mountain Fortress",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Conjuration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Conjuration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the wizard conjures a heavily pro- tected mountain fortress where there was nothing but empty land before.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Variable",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, the wizard conjures a heavily pro- tected mountain fortress where there was nothing but empty land before. This spell can only be cast on an area of desolate plains\u0097sand wastes, salt flats, even boulder fields; the spell cannot be used to destroy buildings or creatures. During the preparation time, the caster must bury the gem material component at least 90 feet below the surface exactly where the spell is to be cast. The burial means can be magical, psionic, or physical. For the entire ten-day period, the wizard must remain at that location without interruption. The spell can be cast as long as one year after the counts against the caster\u0092s total 10th-level spells in preparation. After a year, the gem disappears and preparation must begin again. Upon casting, a roughly circular area, 90 yards in diameter around the caster, rises slowly to an eleva- tion of 30 yards +10 yards per level above 20th. The resulting cylinder has sheer, hard stone cliffs. The fortress appears on top of the new mountain, complete with stone walls and barricades and multi- ple buildings surrounding a central, four-story tow- er. If the caster is 23rd-level or higher, the ground 30 yards surrounding the cylinder is also magically dug with trenches and pits and strewn with caltrops. If the caster is 26th-level or higher, the entire fortress complex is covered with heavy netting and pikes to ward off attacks from the air. The fortress remains until one of the following conditions is met: the caster leaves the fortress; a force of no less than Hit Dice of creatures antag- onistic to the caster manages to take the central tow- er by force; 100 days have passed since casting. Conditions in the fortress are spartan. When the fortress is created there is enough water and food to last 100 HD creatures for 100 days. Additional food can be brought to the fortress, of course. The exact layout of the fortress and its fortifica- tions is up to the caster, instantaneously translated from his imagination to physical form on casting. The means of entry is up to the caster. Regardless of design, the fortress can protect up to 1,000 man- sized creatures. A newly-conjured fortress has no in- habitants. The material component for this spell is a gem worth at least 1,000 cp, mined within ten miles of the casting site.",
+      "has_full_description": true
+    },
+    {
+      "name": "Pact",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Summoning",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Summoning",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell lets the caster call on an outer planar creature of the same alignment.",
+      "stats": {
+        "range": "300 yards",
+        "components": "V, S, M",
+        "duration": "Variable",
+        "casting_time": "1 turn",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell lets the caster call on an outer planar creature of the same alignment. The act of casting the spell gives the outer planar creature magical en- ergy to use on its home plane, which fulfills the wiz- ard\u0092s portion of the pact. The planar creature is then obligated to serve the wizard on the Prime Ma- terial plane to fulfill its portion of the pact. Before preparation begins, the wizard must select the type of creature desired, and its alignment must be iden- tical to the caster\u0091s. During preparation, the caster contacts the de- sired creature using contact other plane. The con- tact must be made once per day for every 1,000 experience points of the outer planar creature. The wizard makes an insanity check with each casting, though there is a - 1% per day cumulative modifier as better contact is established (minimum 1% chance of insanity per casting). A wizard who goes insane during preparation must start over when and if he regains sanity. The wizard ignores the knowl- edge and veracity rolls when using contact other plane in this way; no information is gained. Since the wizard shouldn\u0092t know how many experience points various creatures are worth, he casts the spell every day until the DM tells him he\u0092s done. When cast, the outer planar creature appears at the wizard\u0092s location, ready to follow commands within limits. First, the creature only aids the wizard when furthering the cause of their alignment; for ex- ample, a chaotic evil creature will only obey chaotic evil orders while on the prime. Second, the creature will not take actions that endanger it (in its opinion). Third, the creature\u0092s attitudes toward order and chaos may affect how it honors the pact. Creature\u0092s Alignment Chance to Break Pact Lawful 0 % Ne u t r al 5 % 2 5 % Cha o tic Check every day to see if the creature breaks the pact. If it does, it may attack the wizard, remain on the Prime Material plane to pursue its own mis- sions, or simply return home. If the creature never breaks the pact, it remains in the wizard\u0092s service for 101 days. If for any reason the caster is forced to change alignment while the pact is still in force, the creature immediately takes steps to slay the wizard. Note: Outer planar creatures are described in theMonstrousCompendium,OuterPlanes Appendix.",
+      "has_full_description": true
+    },
+    {
+      "name": "Preserver Metamorphosis",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "A preserver who earns sufficient experience points to advance to the next stage of avangion metamor- phosis must first successfully cast this spell to com- plete the change.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "Spe cial",
+        "area_of_effect": "Ca ste r",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "A preserver who earns sufficient experience points to advance to the next stage of avangion metamor- phosis must first successfully cast this spell to com- plete the change. The preserver changes physical form drastically upon the spell\u0092s completion, each time bridging approximately one-tenth the gap be- tween human and avangion form. The preserver may begin preparation at any point on the way to the next next level, building structures, gathering components, studying, etc. However, the spell cannot be cast before all necessary experience points are earned. Though the experience points have been earned, th e preserver gains no benefits of the new level until after the preserver metamorpho- sis spell is cast. The exact material components, preparation time, and casting time are different, depending on what level the preserver is about to achieve, grouped by level into low, middle, high, and final metamor- phosis. Low (21st, 22nd, and 23rd level): A preserver feels a calling within when he has earned 75% of the experience needed for the next level. The preserver leaves the company of his fellows and seeks isola- tion. The preparation time for the spell constitutes the entire period necessary for the preserver to earn the final 25% of those experience points, adventur- ing completely alone. If the preserver earns any ex- perience points with the aid of another character, all experience points are lost down to the minimum re- quired for the current level. Failure to gain experi- ence in a solitary fashion, in the DM\u0092s judgment, means the spell may fail when cast. For low-level metamorphosis, the preserver must spend the isola- tion period gathering physical remains of the ene- mies of life, usually those of high level defilers\u0097their bodily remains, destructive belongings or artifacts, ash from their spellcasting, etc. These items are evi- dence of devotion to life and the land. The spell must then be cast at night, beneath the light of both Athasian moons. The casting time is six hours. Any interruption results in spell failure. The preserver may have other characters present during casting. Middle (24th, 25th, and 26th level): At interme- diate levels, the preserver again hears a call for isola- tion when 75% of each level\u0092s experience points have been earned. During this preparation time, the preserver must attain absolute isolation; any contact with intelligent beings who aren\u0092t foes to be defeated negates the spell preparation, and the wiz- ard reverts to the 75% base line of the isolation peri-",
+      "has_full_description": true
+    },
+    {
+      "name": "Prolific Forestation",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible With this spell, a preserver causes a grove of trees to magically appear.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Spe cial",
+        "casting_time": "Spe cial",
+        "area_of_effect": "Spe cial",
+        "saving_throw": "No n e"
+      },
+      "full_detail": true,
+      "description": "Reversible With this spell, a preserver causes a grove of trees to magically appear. During the preparation time, the wizard must devote eight hours per day for 30 days to the fashioning of a staff from a tree of life, a The wizard must carve the staff perfectly smooth with a diamond dagger, and he cannot undertake any other task during the eight-hour period. The spell\u0092s area of effect is a circle with a maxi- mum radius that varies according to the caster\u0092s dius if desired. The terrain must have no other trees; if it does, the spell fails. To cast the spell, the wizard thrusts the diamond dagger into the ground at the center of the circle, then moves with the staff to the circle\u0092s edge. The wizard then walks around the area of effect, dragging the staff along the ground. The staff magically ensures that the wizard walks a perfectly circular path, eventually returning to where he started. The wizard must walk (not run, fly, or levitate) but may use magical means to speed that walk. Interruptions lasting more than a single round negate the walking and it must be started again. If the dagger at the center of the circle has been disturbed, the spell fails, so a wizard often places a guard over it. When the circle is completed, the spell is cast. The table shows the distance that must be walked, based on the area of the spell. Caster Max Rough Time Trees in Level Radius Circumf to Walk Grove* 21 10 yards 63 yards 1 round 15 22 20 yards 125 yards 1 round 62 23 30 yards 188 yards 2 rounds 140 24 45 yards 282 yards 3 rounds 315 25 60 ya rds 377 ya rds 4 r o u nds 560 26 70 yards 565 yards 5 rounds 1,260 27 120 yards 754 yards 7 rounds 2,250 28 180 yards 1131 yards 10 rounds 5,040 trees 29 240 yards 1507 yards 13 rounds 9,000 trees 30 480 yards 3016 yards 26 rounds 36,000 trees * approximately; can vary as much as 20% The forest consists of mature trees, one to four feet in diameter, spaced three to six yards apart. The thick forest canopy towers 90 to 120 feet. This spell creates no brush or undergrowth for the forest; its floor is the same terrain type as before the spell was\n\nMaterial Component: that may be difficult to obtain.",
+      "has_full_description": true
+    },
+    {
+      "name": "Prolific Vegetation",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "Reversible This spell causes shrubs and grasses to grow over a wide area of previously barren terrain.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "Special",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "Reversible This spell causes shrubs and grasses to grow over a wide area of previously barren terrain. During preparation, the wizard must devote eight hours per day for 30 days to the fashioning of a staff from a tree of life, a material component that may be diffi- cult to obtain. The wizard carves the staff perfectly smooth with an obsidian dagger, and he cannot un- dertake any other task during the eight-hour period. The spell\u0092s area of effect is a circle with a maxi- mum radius that varies according to the caster\u0092s may choose to affect a smaller ra- dius if he desires. The terrain must be virtually bar- ren of plant life; if not, the spell fails. To cast the spell, the wizard thrusts the obsidian dagger into the ground at the center of the circle, then moves with the staff to the circle\u0092s edge. The wizard then walks around the area of effect, dragging the staff along the ground. The staff magically ensures that the wizard walks a perfectly circular path, eventually re- turning to where he started. The wizard must walk not run, fly, or levitate) but may use magical means ( to speed the walk. If the time to complete the circle requires the wiz- ard to stop to sleep, there is no penalty, provided the wizard then awakens to continue the walking jour- ney, but other interruptions lasting more than a sin- gle round negate the walking and it must be started again. If the dagger at the center of the circle has 107 been disturbed, the spell fails, so a wizard often places a guard over it. When the circle is completed, the spell is cast. The table shows the distance that must be walked, based on the area of the spell. Caster Max Rough Time to Walk* Level Radius Circumf 21 90 yards 566 yards 5 rounds 22 180 yards 1131 yards 1 turn 1 mile 2 turns 23 300 yards 24 540 yards 2 miles 3 turns 800 yards 3 miles 5 turns 25 7 turns 26 1,250 yards 4.5 miles 27 1.25 miles 8 miles 2 h ours 38 miles 9 h ours 28 6 miles 29 12 miles 75 miles 18 hours** 30 25 miles 157 miles 38 hours** * time is for a human in clear terrain and weather conditions ** requires multiple marching days Upon casting, the area inside the circle instantly",
+      "has_full_description": true
+    },
+    {
+      "name": "Pure Breed",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Divination",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Divination",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, a wizard can change any half- breed character (half-elf, half-giant, or mul) into a pure breed of either part.",
+      "stats": {
+        "range": "Touch",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "10 turns",
+        "area_of_effect": "Creature touched",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "With this spell, a wizard can change any half- breed character (half-elf, half-giant, or mul) into a pure breed of either part. The caster can change a half-elf into either a human or an elf, a half-giant into either a human or a giant, or a mul into either a human or a dwarf. During the preparation time, the caster and subject must be in constant proximity and can have no more than one visitor at a time and no more than one per 30-day period. If the subject is unwilling, the caster must somehow restrain him during the preparation, and even then he is allowed a saving throw to negate the effects. Once cast, the subject is most likely switched to a pure breed of his choice. There is a 10% chance (-1% per caster level beyond 20th) that the char- acter will be transformed into the other pure breed. Either way, the character must make a successful system shock roll to survive the process. Survivors subtract the Racial Ability Adjustments (Table 2, page 3 of the Rules Book) for their previous half- breed race and add those for their new pure breed race. The character automatically learns a new 108 tongue appropriate to his new race, if necessary. If his character classes conflict with the racial class and level limits (Table 3, page 4 of the Rules Book), the character\u0092s level in that class must be either low- ered to the maximum given or the class is lost if the class is not allowed. Powers and hit points must be reduced accordingly. All other abilities for the new race are enforced; those for the old are lost. New height and weight measurements should be rolled. Finally, the character\u0092s age should be checked against the new race\u0092s aging effects table; modifiers for middle, old, and venerable age should be checked. If the character is effectively younger in his new race, he should negate previous ability score modifiers. If the character is beyond the maximum age range in his new race, he is extremely frail and likely to perish within the year. The character\u0092s psi- onics are unchanged. There can be no giant player characters. If a half- giant becomes a giant, that character becomes an NPC immediately. For example, a 28-year-old half-elf bard with Str 14, Dex 15, Con 11, Int 13, Wis 13, and Cha 10 is transformed to a pure breed elf. He subtracts his",
+      "has_full_description": true
+    },
+    {
+      "name": "Raise Nation",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Necromancy",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Necromancy",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, a wizard can animate the skele- tons of any long-dead civilization.",
+      "stats": {
+        "range": "90 yards",
+        "components": "V, S, M",
+        "duration": "Permanent",
+        "casting_time": "10 turns",
+        "area_of_effect": "Special",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, a wizard can animate the skele- tons of any long-dead civilization. Before the prepa- ration time can begin, the wizard must locate an appropriate site of ruins. There need not be com- plete skeletons around the ruins (the skeletons will assemble from powdered fragments if that\u0092s all that remains of them), but there can be no creatures liv- ing at the site and it must have been abandoned for at least 100 years. During the preparation time, the wizard must spend all his waking hours searching the ruins, learning everything he can about them, readying the site for his necromancy. Once cast, a number of skeletons will animate ac- cording to the general size of the ruins site. The DM will know the extent of the ruins, and he should use these guidelines modified for any special circum- stances he envisions. Size Number of Skeletons 10-40 Outpost Village 40-400 City 200-2,000 Great City 1,000-4,000 The skeletons are completely under the command of the caster, but are no smarter than any other skel- etons. They have no knowledge of their past lives or civilization\u0097they are merely animated to serve the wizard. The skeletons remain so until they are all destroyed. The skeletons never venture further than 75 miles from their ruins. Once cast on a set of ruins, this spell can never be 1 0 successfully cast there again by any wizard. There is a 10% chance that this is the case for any given ru- ins site, and there is no way for the caster to know if such a spell has been cast without some sort of divi- nation magic. The material components for this spell are any number of items originally from the ruins site that have been well preserved by time; these items must total at least 1,000 cp in present day value.",
+      "has_full_description": true
+    },
+    {
+      "name": "Recruitment",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Summoning",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Summoning",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the wizard summons all living creatures around him who have ever drawn blood in anger.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "20 days",
+        "casting_time": "1 turn",
+        "area_of_effect": "Variable",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "With this spell, the wizard summons all living creatures around him who have ever drawn blood in anger. During preparation, the caster must take the ground bones of fallen warriors and sprinkle them where the spell is to be cast, out to the radius given below. Level Radius 21 60 yards 22 30 yards 120 yards 23 24 180 yards 25 240 yards 26 360 yards 27 480 yards 28 300 yards 27 1 mile 30 2 miles Upon casting, all creatures within the circle that have ever drawn blood in anger as hunters or war- riors, must save or immediately come under the ef- fects of the spell. They immediately gather their 9 weapons and come to the caster, awaiting his every military instruction for the duration of the spell. The affected creatures usually cannot form mili- tary formations unless an entire formation is caught within the area of effect. The creatures cannot per- form any actions other than combat. They cannot be forced to build things or carry things other than their own personal equipment. They do not fight among themselves, regardless of previous disposi- tions, and they serve the caster without fail. The material component for this spell is at least 100 pounds of ground bones of fallen warriors, which must be apportioned during preparation. A humanoid creature has about 25 pounds of bone; larger creatures have 25 pounds per Hit Die.",
+      "has_full_description": true
+    },
+    {
+      "name": "Reverse Loyalties",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Charm",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Charm",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "This spell acts like a mass charm person spell, though its eff effects on each individual are more re- stricted.",
+      "stats": {
+        "range": "60 yards",
+        "components": "V, S, M",
+        "duration": "21 days",
+        "casting_time": "1 turn",
+        "area_of_effect": "25 HD/level",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "This spell acts like a mass charm person spell, though its eff effects on each individual are more re- stricted. The subject group must consist of bipedal human, demihuman, or humanoid of man-size or smaller, such as humans, dwarves, elves, half-elves, halflings, and muls; all of whom hold loyalties to one leader. During preparation, the wizard locks himself away and studies the history and background of the target group\u0092s original leader. Though the spell is cast on the followers themselves, the wizard re- searches their leader\u0092s background. Upon casting, the spell effect expands in a circle from the point of casting until creatures equal to the possible subject creatures left. The maximum dis- tance is 300 yards. Unlike the charm person spell, the spell recipients regard the caster as the object of their loyalties. They accept logical military orders from the caster. For instance, they will break formations and turn on their former leader. They do nothing obviously fatal to themselves. Their loyalties have been magically switched, but are not magically maintained\u0097if the caster takes actions that make him less worthy of these newfound loyalties, the subjects of the spell may desert. Even if the caster performs well as their new leader, the spell recipients can save according to their Intelligence, just as for a charm person spell (note that creatures with Intelligence of 12 or less get no chance to save before the spell naturally ends). When individuals within the subject group make their saves, they desert but cannot convince others still under the spell to desert. Each subject has full memory of actions taken under this spell. The material component for this spell is a fully dried anakore\u0092s heart.",
+      "has_full_description": true
+    },
+    {
+      "name": "Rift",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell, the wizard magically brings the Negative Material plane closer to the Prime Mate- rial plane, creating a rift between the two centered upon himself.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "1 night",
+        "casting_time": "10 turns",
+        "area_of_effect": "Sphere 360 yards around caster",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell, the wizard magically brings the Negative Material plane closer to the Prime Mate- rial plane, creating a rift between the two centered upon himself. The wizard must first study undis- turbed for at least four hours per day for four months, reading scrolls and books about the planes. Upon casting, all undead within the area of effect gain nine times their original hit points as \u0093phan- tom\u0094 points for the duration of the spell. For in- stance, a 5 hp zombie gains an additional 45 phantom hit points for the entire night. In combat, the phantom points are taken off first, then the ac- tual hit points are lost until the undead creature is slain. The area of the rift moves with the caster, possibly placing some undead out of the sphere or encom- passing others as he moves. Phantom hit points are gained immediately upon entering the sphere, and then only once per creature per casting. The caster has no control over which undead receive the benefit of the phantom hit points; all undead in the sphere are so affected. The material component for this spell is an obsid- ian goblet containing ground bones from a dead necromancer.",
+      "has_full_description": true
+    },
+    {
+      "name": "Rolling Road",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Alteration",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Alteration",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "With this spell the caster creates a short stretch of smooth road that extends in front of him wherever he travels.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "1 turn",
+        "area_of_effect": "Variable",
+        "saving_throw": "None"
+      },
+      "full_detail": true,
+      "description": "With this spell the caster creates a short stretch of smooth road that extends in front of him wherever he travels. During preparation, the caster must take the ma- terial components, dust from previous roads he has travelled, and mix them for at least four hours every day. After casting the spell, the wizard must con- tinue to sprinkle this mixed dust in front of him as he travels. The road itself is always 30 yards wide and ex- tends 10 yards in front of the caster. It extends be- hind him for 30 yards for each level above 20th. The road crosses any land, including sand, forest, and mountain. In the case of the former two, the road appears in front of the caster, pushing obstacles like trees and rocks aside. For mountains, obstacles are likewise removed, but the road is just as steep as the 111 original terrain, and could still be impassable. The magical road does not create its own firm ground, and cannot be used to cross areas of silt. The road leaves no trace once the caster has passed by. The road does offer some protection to those on it\u0097natural weather effects do not hinder travel on the road, and those on it do not require food or wa- ter while on the road. The spell\u0092s duration is measured in distance, five miles per level of the caster above 20th. The spell does not grant the caster knowledge of direction. The material component for this spell is at least one pound of dust from three roads the wizard has previously travelled. Undead\u0092s Lineage (Divination) With this spell a wizard can divine the history of a single undead creature, thereby gaining tremendous power over that creature. During preparation, the caster must spend at least eight hours per day study- ing necromancy and tomes about undeath. (The caster must procure such materials before beginning preparation.) Ad ventures that focus on the undead may work as part of the preparation time, if the DM desires. The wizard must touch the undead to cast the spell. Once cast, the undead must make a success- ful saving throw vs. spell with a -3 penalty, or the caster immediately knows all personal history of the creature. This includes, but is not limited to: family history and occupation during life; method of death; method of undeath; and history since attain- ing undeath.",
+      "has_full_description": true
+    },
+    {
+      "name": "Wall of Ash",
+      "class": "Wizard",
+      "level": 10,
+      "level_name": "10th",
+      "category": "School",
+      "school": "Evocation",
+      "sphere": null,
+      "sphere_type": null,
+      "group": "Evocation",
+      "source": "Dragon Kings",
+      "athasian_status": "New (Dark Sun)",
+      "summary": "112 This spell creates a barrier of ash that is deadly to living creatures.",
+      "stats": {
+        "range": "0",
+        "components": "V, S, M",
+        "duration": "Special",
+        "casting_time": "2 turns",
+        "area_of_effect": "Special",
+        "saving_throw": "Neg."
+      },
+      "full_detail": true,
+      "description": "112 This spell creates a barrier of ash that is deadly to living creatures. Touching it can cause great dam- age, and crossing it causes instant death. During the preparation time, the wizard must dig or have dug a small trench, one foot wide and one foot deep, in the shape he wants the wall when it is cast. If not personally involved, the wizard must per- sonally oversee the digging of the trench for at least four hours per day during preparation. The wall can be of any shape, and as long as 30 yards per caster level above 20th. The ash appears in the trench and is piled one foot above the ground. Contact with the ash causes 1d10 points of damage per segment, meaning potentially 10d10 points for an entire round. Crossing completely over the ash causes any living creature to die, its life completely absorbed by the deadly ash. The creature must make a successful saving throw vs. death magic with -10 penalty to survive. Jumping or flying makes no difference. Even living creatures attempting to cross through the astral or ethereal planes must save or die. Dimension door can be used to cross safely, but teleport cannot. Magic, psionics, missile weap- ons, and other non-living things can cross the ash wall without penalty. Undead creatures can cross without penalty. Ash golems suffer no saving throw penalty when cross- ing. The caster and allies are just as subject to dam- age and death as enemies are. This spell\u0092s material component is a sack of ash collected from the remains of a defiler of the same level of the caster. 1st Level Fire Trap Flame Blade Animal Friendship Goodberry Bless Heat Metal Combine Hold Person Command Know Alignment Create Water Messenger Cure Light Wounds Obscurement Deep Breath (in DK) Produce Flame Detect Evil Resist Fire/Resist Detect Magic Silence, 15\u0092 Detect Poison Slow Poison Detect Snares & Pits Snake Charm Elemental Bonding (in DK) Speak With Endure Heat/Endure Cold Spiritual Hammer Entangle Trip Faerie Fire Warp Wood Invisibility to Animals Winds of Change Invisibility to Undead Withdraw Light Wyvern Watch Locate Animals or Plants Magical Stone 3rd Level Merciful Shadows (in DSRB) Pass Without Trace Air Lens (in Proof Against Undeath (in DK) Animate Dead Protection From Evil Call Lightning Purify Food & Drink Conjure Lesser Remove Fear Elemental Sanctuary Continual Light Shillelagh Create Food Cure Blindness 2nd Level",
+      "has_full_description": true
+    }
+  ]
+}
