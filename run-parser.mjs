@@ -49,7 +49,7 @@ const NAME_ONLY_RE = /^[A-Z][A-Za-z ,'\-]{1,60}$/;
 const SCHOOL_ONLY_RE = /^\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
 // Browser print-to-PDF artifacts: "7/4/26, 10:26 AM Full text of ...", file:/// URLs, "166/3963" page counters.
 const JUNK_LINE_RE = /file:\/\/\/|^\d{1,2}\/\d{1,2}\/\d{2,4},\s|Full text of "|^\d+\/\d+$/;
-const SECTION_LEVEL_RE = /^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth|\d{1,2}(?:st|nd|rd|th))-Level\s+(?:Spells?|Psionic)/i;
+const SECTION_LEVEL_RE = /^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth|\d{1,2}(?:st|nd|rd|th))-Level\s+(?:(?:Priest|Wizard|Mage|Cleric|Druid|Defiler|Preserver)\s+)?(?:Spells?|Psionic)/i;
 const PSIONIC_SECTION_RE = /^Psionic\s+Enchantments?/i;
 const FIELD_LINE_RE = /^(?<Field>Range|Components?|Duration|CastingTime|Casting\s+Time|AreaofEffect|Area\s+of\s+Effect|SavingThrow|Saving\s+Throw|PreparationTime|Preparation\s+Time)\s*:\s*(?<Value>.+)$/i;
 // Global marker for splitting multiple fields that share one physical line,
@@ -225,6 +225,12 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
   let blockLines    = [];
   let fields        = {};
   let inBlock       = false;
+  // Snapshots taken when a spell header is found. commitSpell() runs only when
+  // the NEXT header appears — by then a section heading may already have
+  // advanced currentLevel/isPsionic, which mislabeled the last spell of every
+  // section (e.g. PHB Wizard Mark tagged Level 2).
+  let blockLevel    = 1;
+  let blockPsionic  = false;
 
   const spells = [];
 
@@ -233,7 +239,7 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
     spells.push({
       name:        currentName,
       school:      currentSchool ?? '',
-      level:       currentLevel,
+      level:       blockLevel,
       castingTime: fields['CastingTime']     ?? '',
       range:       fields['Range']           ?? '',
       components:  fields['Components']      ?? '',
@@ -243,7 +249,7 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
       preparationTime: fields['PreparationTime'] ?? '',
       description: buildDescription(blockLines, fields),
       page:        currentPage,
-      source:      isPsionic ? `${sourceName} (Psionic)` : sourceName,
+      source:      blockPsionic ? `${sourceName} (Psionic)` : sourceName,
     });
   }
 
@@ -276,6 +282,8 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
       blockLines    = [text];
       fields        = {};
       inBlock       = true;
+      blockLevel    = currentLevel;
+      blockPsionic  = isPsionic;
       continue;
     }
 
@@ -290,6 +298,8 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
         blockLines    = [text];
         fields        = {};
         inBlock       = true;
+        blockLevel    = currentLevel;
+        blockPsionic  = isPsionic;
         li++;  // consume the "(School)" line
         continue;
       }
