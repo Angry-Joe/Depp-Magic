@@ -9,18 +9,28 @@
  *   • Field parsing: Range, Components, Duration, Casting Time, etc.
  *   • Psionic Enchantments section flagging
  *
- * Usage:  node run-parser.mjs [path/to/*.pdf ...]
+ * Generalised beyond Dragon Kings (bunsen-updates):
+ *   • Two-line spell headers: "Spell Name" / "(School)" on the next line (PHB style)
+ *   • Multiple stat fields on one line: "Range: 10 yds. Components: V, S, M"
+ *   • Junk-line filter: browser print-to-PDF artifacts (timestamps, file:/// URLs)
+ *   • Column-layout auto-detection (single vs. two-column pages)
+ *   • Page range via --start=N / --end=N (defaults: full document; DK default file
+ *     keeps its 83–162 spell-section range)
+ *   • Source label derived from the input filename
+ *
+ * Usage:  node run-parser.mjs [--start=N] [--end=N] [path/to/*.pdf ...]
  *         (defaults to 04-DragonKings.pdf in the same directory)
  */
 
 import { readFile, writeFile } from 'fs/promises';
+import { mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join, basename } from 'path';
 import { createRequire } from 'module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// ── Load pdfjs-dist ──────────────────────────────────────────────────────────
+// ── Load pdfjs-dist ────────────────────────────────────────────────────────────
 
 let pdfjsLib;
 try {
@@ -29,12 +39,38 @@ try {
   pdfjsLib = await import(join(__dirname, 'node_modules/pdfjs-dist/build/pdf.mjs'));
 }
 
-// ── Regexes (mirrors C# DKSpellExtractor) ───────────────────────────────────
+// ── Regexes (mirrors C# DKSpellExtractor) ───────────────────────────────────────
 
 const SPELL_HEADER_RE = /^(?<Name>[A-Z][A-Za-z ,'\-\.]+?)\s*\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
+// Two-line header support (PHB style): name alone, then "(School)" on the next line.
+const NAME_ONLY_RE = /^[A-Z][A-Za-z ,'\-]{1,60}$/;
+const SCHOOL_ONLY_RE = /^\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
+// Browser print-to-PDF artifacts: "7/4/26, 10:26 AM Full text of ...", file:/// URLs, "166/3963" page counters.
+const JUNK_LINE_RE = /file:\/\/\/|^\d{1,2}\/\d{1,2}\/\d{2,4},\s|Full text of "|^\d+\/\d+$/;
 const SECTION_LEVEL_RE = /^(?<Ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Eleventh|Twelfth|Thirteenth)-Level\s+(?:Spells?|Psionic)/i;
 const PSIONIC_SECTION_RE = /^Psionic\s+Enchantments?/i;
 const FIELD_LINE_RE = /^(?<Field>Range|Components?|Duration|CastingTime|Casting\s+Time|AreaofEffect|Area\s+of\s+Effect|SavingThrow|Saving\s+Throw|PreparationTime|Preparation\s+Time)\s*:\s*(?<Value>.+)$/i;
+// Global marker for splitting multiple fields that share one physical line,
+// e.g. "Range: 5 yds./level Components: V, S, M".
+const FIELD_MARKER_RE = /(Range|Components?|Duration|Casting\s*Time|Area\s*of\s*Effect|Saving\s*Throw|Preparation\s*Time)\s*:/gi;
+
+/**
+ * Extract every "Field: value" pair from a line. Returns null when the line
+ * is not a stat line (first marker must sit at the start of the line so that
+ * prose mentioning "range:" mid-sentence is not misread).
+ */
+function extractFields(line) {
+  const markers = [...line.matchAll(FIELD_MARKER_RE)];
+  if (!markers.length || markers[0].index > 2) return null;
+  const out = [];
+  for (let i = 0; i < markers.length; i++) {
+    const key   = normaliseFieldKey(markers[i][1]);
+    const start = markers[i].index + markers[i][0].length;
+    const end   = i + 1 < markers.length ? markers[i + 1].index : line.length;
+    out.push([key, line.slice(start, end).trim()]);
+  }
+  return out;
+}
 
 const ORDINAL_TO_LEVEL = {
   first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6,
@@ -80,12 +116,23 @@ async function extractPageLines(page) {
   const xs  = items.map(i => i.transform[4]);
   const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
 
+  // Layout detection: in a true two-column page, text items stay inside
+  // their column — almost nothing spans the central gutter. In a
+  // single-column page, most body lines cross the page midline.
+  const pageMid  = (page.view[0] + page.view[2]) / 2;  // view = [x0, y0, x1, y1]
+  const crossing = items.filter(i => {
+    const x0 = i.transform[4];
+    const x1 = x0 + (i.width ?? 0);
+    return x0 < pageMid - 10 && x1 > pageMid + 10;
+  }).length;
+  const twoColumn = crossing / items.length < 0.05;
+
   // Group by (column, rounded-y), then join items left→right.
   const groups = {};
   for (const item of items) {
     const x   = item.transform[4];
     const y   = item.transform[5];
-    const col = x < midX ? 'L' : 'R';
+    const col = twoColumn && x >= midX ? 'R' : 'L';
     const ry  = Math.round(y / 3) * 3;
     const key = `${col}:${ry}`;
     if (!groups[key]) groups[key] = { col, y: ry, items: [] };
@@ -103,10 +150,10 @@ async function extractPageLines(page) {
       const text = g.items.sort((a, b) => a.x - b.x).map(i => i.str).join('');
       return collapseLetterSpacing(text).trim();
     })
-    .filter(l => l.length > 0);
+    .filter(l => l.length > 0 && !JUNK_LINE_RE.test(l));
 }
 
-// ── Field key normalisation ──────────────────────────────────────────────────
+// ── Field key normalisation ────────────────────────────────────────────────────
 
 function normaliseFieldKey(raw) {
   switch (raw.toLowerCase().replace(/\s+/g, '')) {
@@ -122,7 +169,7 @@ function normaliseFieldKey(raw) {
   }
 }
 
-// ── Description builder ──────────────────────────────────────────────────────
+// ── Description builder ────────────────────────────────────────────────────────
 
 function buildDescription(blockLines, fields) {
   let fieldCount = 0;
@@ -130,7 +177,9 @@ function buildDescription(blockLines, fields) {
   const descLines = [];
 
   for (const line of blockLines.slice(1)) {  // skip header line
-    if (FIELD_LINE_RE.test(line)) { fieldCount++; continue; }
+    const flds = extractFields(line);
+    if (flds) { fieldCount += flds.length; continue; }
+    if (SCHOOL_ONLY_RE.test(line) || /^Reversible$/i.test(line)) continue;
     if (fieldCount >= 2) fieldsDone = true;
     if (fieldsDone && line.length > 0) descLines.push(line);
   }
@@ -138,9 +187,9 @@ function buildDescription(blockLines, fields) {
   return descLines.length > 0 ? descLines.join(' ').trim() : 'See source for description.';
 }
 
-// ── Main extraction ──────────────────────────────────────────────────────────
+// ── Main extraction ──────────────────────────────────────────────────────────────
 
-async function extractSpells(pdfPath, startPage = 1, endPage = 9999) {
+async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName = 'Unknown') {
   const data = await readFile(pdfPath);
   const pdf  = await pdfjsLib.getDocument({
     data: new Uint8Array(data.buffer),
@@ -184,11 +233,12 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999) {
       preparationTime: fields['PreparationTime'] ?? '',
       description: buildDescription(blockLines, fields),
       page:        currentPage,
-      source:      isPsionic ? 'Dragon Kings (Psionic)' : 'Dragon Kings',
+      source:      isPsionic ? `${sourceName} (Psionic)` : sourceName,
     });
   }
 
-  for (const { text, page } of allLines) {
+  for (let li = 0; li < allLines.length; li++) {
+    const { text, page } = allLines[li];
     // Section level heading
     const secM = text.match(SECTION_LEVEL_RE);
     if (secM) {
@@ -219,13 +269,30 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999) {
       continue;
     }
 
+    // Two-line spell header (PHB style): "Spell Name" then "(School)" next line.
+    if (NAME_ONLY_RE.test(text) && li + 1 < allLines.length) {
+      const schoolM = allLines[li + 1].text.match(SCHOOL_ONLY_RE);
+      if (schoolM && isValidSchool(schoolM.groups.School)) {
+        commitSpell();
+        currentName   = text.trim();
+        currentSchool = schoolM.groups.School.trim();
+        currentPage   = page;
+        blockLines    = [text];
+        fields        = {};
+        inBlock       = true;
+        li++;  // consume the "(School)" line
+        continue;
+      }
+    }
+
     if (!inBlock) continue;
 
-    // Field lines — also apply letter-spacing collapse to the value.
-    const fldM = text.match(FIELD_LINE_RE);
-    if (fldM) {
-      const key = normaliseFieldKey(fldM.groups.Field);
-      if (!fields[key]) fields[key] = collapseLetterSpacing(fldM.groups.Value.trim());
+    // Field lines — supports several "Field: value" pairs sharing one line;
+    // letter-spacing collapse applied to each value.
+    const flds = extractFields(text);
+    if (flds) {
+      for (const [key, val] of flds)
+        if (!fields[key]) fields[key] = collapseLetterSpacing(val);
     }
 
     blockLines.push(text);
@@ -235,11 +302,21 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999) {
   return spells;
 }
 
-// ── Run against supplied PDFs ────────────────────────────────────────────────
+// ── Run against supplied PDFs ──────────────────────────────────────────────────
 
-const pdfPaths = process.argv.slice(2).length
-  ? process.argv.slice(2)
-  : [join(__dirname, '04-DragonKings.pdf')];
+const cliArgs  = process.argv.slice(2);
+let cliStart = null, cliEnd = null;
+const pdfPaths = [];
+for (const a of cliArgs) {
+  if (a.startsWith('--start=')) cliStart = Number(a.slice(8));
+  else if (a.startsWith('--end=')) cliEnd = Number(a.slice(6));
+  else pdfPaths.push(a);
+}
+
+// No PDFs supplied → default Dragon Kings file, whose spell section spans
+// PDF pages 83–162. User-supplied PDFs default to the full document.
+const usingDefaultPdf = pdfPaths.length === 0;
+if (usingDefaultPdf) pdfPaths.push(join(__dirname, '04-DragonKings.pdf'));
 
 const allResults = [];
 
@@ -249,10 +326,13 @@ for (const pdfPath of pdfPaths) {
   console.log(`Processing: ${fileName}`);
   console.log('═'.repeat(60));
 
+  const startPage  = cliStart ?? (usingDefaultPdf ? 83 : 1);
+  const endPage    = cliEnd   ?? (usingDefaultPdf ? 162 : 9999);
+  const sourceName = fileName.replace(/\.pdf$/i, '');
+
   let spells;
   try {
-    // Dragon Kings spells start at page 83 (PDF page), end ~112
-    spells = await extractSpells(pdfPath, 83, 162);
+    spells = await extractSpells(pdfPath, startPage, endPage, sourceName);
   } catch (e) {
     console.error(`  ERROR: ${e.message}`);
     continue;
@@ -284,14 +364,8 @@ for (const pdfPath of pdfPaths) {
   allResults.push({ file: fileName, spells });
 }
 
-// ── Write JSON output ────────────────────────────────────────────────────────
+// ── Write JSON output ──────────────────────────────────────────────────────────────
 
-const outPath = join(__dirname, 'output', 'parsed-spells.json');
-await writeFile(outPath.replace('parsed-spells', 'parsed-spells').replace('/output/', '/'),
-  JSON.stringify(allResults, null, 2));
-
-// Simpler path
-import { mkdirSync } from 'fs';
 mkdirSync(join(__dirname, 'output'), { recursive: true });
 await writeFile(join(__dirname, 'output', 'parsed-spells.json'),
   JSON.stringify(allResults, null, 2));
