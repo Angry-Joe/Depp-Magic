@@ -161,6 +161,60 @@ const EDIT_FIELDS = [
 const $ = id => document.getElementById(id);
 const hasFS = 'showOpenFilePicker' in window;
 
+/* ── Field access across JSON dialects ─────────────────
+   Supports three shapes:
+   • run-parser.mjs:  [{file, spells:[{name, castingTime, …}]}]  (camelCase)
+   • C# compendium:   {title, …, spells:[{name, stats:{casting_time}, …}]}  (snake_case, nested stats)
+   • C# DK parser:    [{Name, Range, …}]  (PascalCase)                     */
+const FIELD_PATHS = {
+  name:            ['name', 'Name'],
+  school:          ['school', 'School'],
+  level:           ['level', 'Level'],
+  castingTime:     ['castingTime', 'CastingTime', 'stats.casting_time', 'casting_time'],
+  range:           ['range', 'Range', 'stats.range'],
+  components:      ['components', 'Components', 'stats.components'],
+  duration:        ['duration', 'Duration', 'stats.duration'],
+  savingThrow:     ['savingThrow', 'SavingThrow', 'stats.saving_throw', 'saving_throw'],
+  areaOfEffect:    ['areaOfEffect', 'AreaOfEffect', 'stats.area_of_effect', 'area_of_effect'],
+  preparationTime: ['preparationTime', 'PreparationTime', 'preparation_time'],
+  description:     ['description', 'Description', 'full_detail', 'FullDetail'],
+  page:            ['page', 'Page'],
+  source:          ['source', 'Source'],
+};
+
+function getPath(obj, path) {
+  let cur = obj;
+  for (const part of path.split('.')) {
+    if (cur == null || typeof cur !== 'object') return undefined;
+    cur = cur[part];
+  }
+  return cur;
+}
+
+function gf(s, key) {                       // get canonical field
+  for (const p of FIELD_PATHS[key] ?? [key]) {
+    const v = getPath(s, p);
+    if (v !== undefined && v !== null) return v;
+  }
+  return undefined;
+}
+
+function sf(s, key, value) {                // set canonical field (writes where it lives)
+  for (const p of FIELD_PATHS[key] ?? [key]) {
+    const parts = p.split('.');
+    let cur = s;
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (cur == null || typeof cur[parts[i]] !== 'object') { cur = null; break; }
+      cur = cur[parts[i]];
+    }
+    if (cur && parts[parts.length - 1] in cur) {
+      cur[parts[parts.length - 1]] = value;
+      return;
+    }
+  }
+  s[key] = value;                            // new field → camelCase
+}
+
 /* ── File I/O ──────────────────────────────────────────── */
 async function openFile() {
   if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
@@ -231,14 +285,18 @@ async function saveFile(as = false) {
 
 /* ── Data shaping ──────────────────────────────────────── */
 function loadData(json) {
-  // Accept the parser's shape ([{file, spells:[…]}]) or a flat spell array.
+  // Accept: run-parser.mjs groups, a flat spell array, or any object with a
+  // "spells" array (e.g. the C# compendium output).
   rawData = json;
-  if (Array.isArray(json) && json.length && json[0].spells) {
+  if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
     spells = json.flatMap(g => g.spells);
   } else if (Array.isArray(json)) {
     spells = json;
+  } else if (json && Array.isArray(json.spells)) {
+    spells = json.spells;
   } else {
-    alert('Unrecognised JSON shape — expected the parser output or an array of spells.');
+    alert('Unrecognised JSON shape — expected an array of spells, parser groups, or an object with a "spells" array.');
+    rawData = null;
     return;
   }
   spells.forEach((s, i) => s._id = i);
@@ -259,23 +317,23 @@ function buildFilters() {
     sel.innerHTML = `<option value="">${label}: all</option>` +
       values.map(v => `<option>${esc(String(v))}</option>`).join('');
   };
-  fill($('fltLevel'),  [...new Set(spells.map(s => s.level))].sort((a,b)=>a-b), 'Level');
-  fill($('fltSchool'), [...new Set(spells.map(s => s.school).filter(Boolean))].sort(), 'School');
-  fill($('fltSource'), [...new Set(spells.map(s => s.source).filter(Boolean))].sort(), 'Source');
+  fill($('fltLevel'),  [...new Set(spells.map(s => gf(s, 'level')))].filter(v => v !== undefined).sort((a,b)=>a-b), 'Level');
+  fill($('fltSchool'), [...new Set(spells.map(s => gf(s, 'school')).filter(Boolean))].sort(), 'School');
+  fill($('fltSource'), [...new Set(spells.map(s => gf(s, 'source')).filter(Boolean))].sort(), 'Source');
 }
 
 function visibleSpells() {
   const q   = $('search').value.trim().toLowerCase();
   const lvl = $('fltLevel').value, sch = $('fltSchool').value, src = $('fltSource').value;
   let list = spells.filter(s =>
-    (!lvl || String(s.level) === lvl) &&
-    (!sch || s.school === sch) &&
-    (!src || s.source === src) &&
-    (!q || (s.name || '').toLowerCase().includes(q) ||
-           (s.description || '').toLowerCase().includes(q)));
+    (!lvl || String(gf(s, 'level')) === lvl) &&
+    (!sch || gf(s, 'school') === sch) &&
+    (!src || gf(s, 'source') === src) &&
+    (!q || String(gf(s, 'name') ?? '').toLowerCase().includes(q) ||
+           String(gf(s, 'description') ?? '').toLowerCase().includes(q)));
   if (sortKey) {
     list = [...list].sort((a, b) => {
-      const av = a[sortKey] ?? '', bv = b[sortKey] ?? '';
+      const av = gf(a, sortKey) ?? '', bv = gf(b, sortKey) ?? '';
       if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
       return String(av).localeCompare(String(bv), undefined, { numeric: true }) * sortDir;
     });
@@ -305,17 +363,17 @@ function renderTable() {
   renderHead();
   const list = visibleSpells();
   $('tbody').innerHTML = list.map(s => {
-    const psi = (s.source || '').includes('Psionic');
+    const psi = String(gf(s, 'source') ?? '').includes('Psionic');
     const dot = editedIds.has(s._id) ? ' <span class="edited-dot" title="edited">●</span>' : '';
     return `<tr data-id="${s._id}" class="${s._id === selectedId ? 'selected' : ''}">
-      <td>${esc(s.name ?? '')}${dot}</td>
-      <td class="num">${esc(s.level ?? '')}</td>
-      <td>${esc(s.school ?? '')}</td>
-      <td>${esc(s.range ?? '')}</td>
-      <td>${esc(s.castingTime ?? '')}</td>
-      <td>${esc(s.duration ?? '')}</td>
-      <td class="num">${esc(s.page ?? '')}</td>
-      <td><span class="badge ${psi ? 'psi' : ''}">${esc(s.source ?? '')}</span></td>
+      <td>${esc(gf(s, 'name') ?? '')}${dot}</td>
+      <td class="num">${esc(gf(s, 'level') ?? '')}</td>
+      <td>${esc(gf(s, 'school') ?? '')}</td>
+      <td>${esc(gf(s, 'range') ?? '')}</td>
+      <td>${esc(gf(s, 'castingTime') ?? '')}</td>
+      <td>${esc(gf(s, 'duration') ?? '')}</td>
+      <td class="num">${esc(gf(s, 'page') ?? '')}</td>
+      <td><span class="badge ${psi ? 'psi' : ''}">${esc(gf(s, 'source') ?? '')}</span></td>
     </tr>`;
   }).join('');
   [...$('tbody').children].forEach(tr =>
@@ -339,15 +397,15 @@ function openEditor(id) {
   const half = EDIT_FIELDS.map(([k, label]) => `
     <div class="field">
       <label>${label}</label>
-      <input data-k="${k}" value="${esc(s[k] ?? '')}">
+      <input data-k="${k}" value="${esc(gf(s, k) ?? '')}">
     </div>`);
   $('editor').innerHTML = `
-    <h2>${esc(s.name ?? 'Unnamed')}</h2>
-    <div class="meta">Level ${esc(s.level ?? '?')} · ${esc(s.school ?? '?')} · p.${esc(s.page ?? '?')} · ${esc(s.source ?? '')}</div>
+    <h2>${esc(gf(s, 'name') ?? 'Unnamed')}</h2>
+    <div class="meta">Level ${esc(gf(s, 'level') ?? '?')} · ${esc(gf(s, 'school') ?? '?')} · p.${esc(gf(s, 'page') ?? '?')} · ${esc(gf(s, 'source') ?? '')}</div>
     <div class="row2">${half.join('')}</div>
     <div class="field">
       <label>Description</label>
-      <textarea data-k="description">${esc(s.description ?? '')}</textarea>
+      <textarea data-k="description">${esc(gf(s, 'description') ?? '')}</textarea>
     </div>
     <div id="editorBtns">
       <button id="btnApply" class="primary">Apply</button>
@@ -374,20 +432,23 @@ function applyEdit(s) {
       const n = Number(v);
       v = Number.isFinite(n) && v !== '' ? n : v;
     }
-    if (s[k] !== v) { s[k] = v; changed = true; }
+    if (gf(s, k) !== v) { sf(s, k, v); changed = true; }
   });
   if (changed) { dirty = true; editedIds.add(s._id); }
   renderTable();
 }
 
 function deleteEntry(s) {
-  if (!confirm(`Delete "${s.name}"? (removed on next Save)`)) return;
+  if (!confirm(`Delete "${gf(s, 'name')}"? (removed on next Save)`)) return;
   spells = spells.filter(x => x._id !== s._id);
-  if (Array.isArray(rawData) && rawData.length && rawData[0].spells) {
+  if (Array.isArray(rawData) && rawData.length && Array.isArray(rawData[0]?.spells)) {
     rawData.forEach(g => g.spells = g.spells.filter(x => x !== s));
   } else if (Array.isArray(rawData)) {
     const i = rawData.indexOf(s);
     if (i >= 0) rawData.splice(i, 1);
+  } else if (rawData && Array.isArray(rawData.spells)) {
+    const i = rawData.spells.indexOf(s);
+    if (i >= 0) rawData.spells.splice(i, 1);
   }
   dirty = true;
   buildFilters(); closeEditor(); renderTable();
