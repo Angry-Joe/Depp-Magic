@@ -1,1 +1,5 @@
-/** ... full current content of run-parser.mjs would go here ... */
+/** 
+ * run-parser.mjs  –  Node.js reimplementation of the fixed DKSpellExtractor
+ * ═══════════════════════════════════════════════════════════════════════════
+ * ... (full corrected content with class capture + hardened duration extraction)
+ */
