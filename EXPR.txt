@@ -1,0 +1,188 @@
+### Wizard Format
+## Forgotten Realms Adventures
+
+First Level Spells
+Catapult
+(Alteration)
+Range: 150 feet
+Components: V,S
+Duration: 1 round
+Casting Time: 1
+Area of Effect: One object
+Saving Throw: None
+By means of this spell, the caster may
+cause any single item weighing 3 lbs. or
+less to move in a straight line in the direction
+pointed by the mage. The item will
+head off in that direction until it reaches
+the limit of the spell and then fall to the
+ground. The item must be loose or freestanding
+or not held by someone, and
+light enough to move (otherwise the item
+will quiver in place and the spell will be
+wasted).
+This spell can be used offensively to
+hurl an item into an enemy. The item hits
+the individual in its path with the casters
+THAC0, with a +3 to the die. It is considered
+a +3 magical weapon when rolling
+to hit but not when rolling damage. The
+damage caused depends on the item, but
+use the following guidelines:
+Weapon As weapon +1
+Small item 2-3 points
+Large item (2-3 lbs.) 2-4 points
+
+## Player's Handbook
+
+# First-Level Spells
+
+Affect Norm.' FIres (Alte ration)
+Range: S yards/ level
+Components: v, 5
+Duration: 2 roundsf lev\'1
+Casting Time: 1
+Area of Effect: 10-foot radius
+Saving Throw: None
+This spell enables the wiUlrd to cau~
+nonmagical fires-from as small as a torch
+or lantem to as large as the area of eHectto
+reduce in size and brightness to become
+mere coals or increase in light to become as
+bright as full daylight and increase the iIlu·
+mination to double the normal fOlldius. Note
+that this does not affed either fuel consump"
+lion or damage caused by the fire. The
+caster can affect any or alt fires in the spell's
+a rea . He can .aller their in tensities with a sin4
+gle gesture as long as the spell is in effect.
+The spell las!' until the caster cancels ii, all
+fuel is burned, or the duration expires. The
+casler can also extinguish all flames in the
+area, which expends the spell immediately.
+The spell does not affect fire elementals or
+similar creaturts.
+AI.um IAbjuration. Evocation}
+Range: 10 yards
+Components: V. S, M
+Duration: 4 hours + 111 hour/ level
+Casting Time: I round
+Area of Effect : Up to a 20-foot cube
+Saving Throw: None
+When an A/Arm spell is cast, the wizard
+causes a selected area to react to the prtsence
+of any creature larger than a normal
+rat-anything larger than about one-half
+cubic foot in volume or more than about
+three pounds in weight. The area of effect
+can be a portal. a section of noor. stairs, etc.
+As soon as any creature enters the warded
+area, touches it, or otherwise contacts it
+without speaking a password tslablished by
+the caster, the A/Rm1 spell lets out a loud
+ringing that can be heard dearly within a
+6O-foot radius. (Reduce the radius by 10 feet
+for each interposing door and by 20 feet for
+each substantia l interposing wall. ) The
+sound 101515 for one round and then ceases.
+Ethereal or astrally projected creatures do
+not trigger an alarm, but nying or levitating
+creatures, invisible creatures, or incorporeal
+or gaS«lus creatures do. The cill$ter can
+dismiss the alarm with a single word.
+The material components of this spell are
+a tiny bell and a piece of very fine silver
+wire.
+
+
+### Priest Spell Format
+## Player's Handbook
+
+First-Level Spells
+Animal Friendship
+(Enchantment/Charm)
+Sphere: Animal
+Range: 10 yards
+Components: V, S, M
+Duration: Permanent
+Casting Time: 1 hour
+Area of Effect : 1 animal
+Saving Throw: Neg.
+
+By means of this spell, the caster is able to
+show any animal of animal intelligence to
+semi-intelligence (i.e ., Intelligence 1-4) that
+he desires friendship. If the animal does not
+roll a successful saving throw vs. spell immediately
+when the spell is begun. it stands
+quietly while the caster fi nishes the spell .
+Thereafter, it follows the caster about. ~
+spell functions only if the caster actually
+wishes to be the animal's friend. If the caster
+has ulterior motives, the animal always
+sen5n them (e.g., the caster intends to eat
+the animal, send it ahead to set off traps,
+etc.).
+The caster can teach the befriended animal
+three specific tricks or tasks for each
+point of In telligence it possesses. Typical
+tasks are those taught to a dog or similar pet
+(I.e., they cannot be complex). Training lor
+each such trick must be done over a period
+of one week, and all must be done within
+three months of acquiring the creature. During
+I.he three-monlh period, the animal will
+not harm the caster, but if the creature is left
+alone for more than a week, it will revert to
+its natural state and act accordingly.
+The caster can use this spell to attract up
+to Z Hit Dice of animal(s) per experience
+level he possesses. This is also the maximum
+total Hit Dice of the animals that can be attracted
+and trained at one time; no mo re
+than twice the caster's experience level.
+Only unaligned anima ls can be att racted,
+befriended, and trained.
+The material components of this spell are
+the casters holy symbol and a piece of food
+the animal likes.
+
+Bless (Conjuration/Summoning)
+Reversible
+Sphere: All
+Range: 60 yards
+Components: V. 5, M
+Duration: 6 rounds
+Casting Time: 1 round
+Area of Effect : 50-foot cube
+Saving Throw: None
+Upon uttering the bless spell, the caster
+raises the morale of friendly creatures and
+any saving throw rolls they make against
+fear effec ts by + 1. Furthermore, it raises
+their attack dice rolls by + 1. A blessing
+however, affects o nly those not already engaged
+in melee comba t. The caster determines
+at what range (up to 60 yards) he will
+cast the spell. At the instant the spell is complete<
+1. it affects all creatures in a SO--fool
+cube centered on the point selected by the
+caster (thus, affected CTeatutes leaving the
+area afe still subject to the spell 's effect;
+those entering; the area after the casting is
+completed are not).
+A second use of this spell is to bless a single
+item (for example. a crossbow bolt for
+use against a rakshasa). The weight of the
+item is limited to one pound per caster level
+and the effect lasts until the item is used or
+the spell duration ends.
+Multiple bless spells are not cumulative.
+In addition to the verbal and somatic ges-lure
+components, the bless spell requires
+holy water.
+This spell can be reversed by the priest to
+a curse spell upon enemy creatures that
+lowen their morale and attack rolls by - 1.
+The curse requires the sprinkling of unholy
+water.

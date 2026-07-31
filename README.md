@@ -1,68 +1,105 @@
 # Depp-Magic
 
-Converter tool to read PDFs and parse out content for Dungeons and Dragons 2nd Edition.
+Converter tool to read PDFs and parse out content for Dungeons & Dragons 2nd Edition.
 
-## Usage
+## Parse a file
 
 ```
-DeepMagic.App <pdf-file-or-directory> [output.json]
+node run-parser.mjs file.pdf
 ```
 
-- A **directory** is scanned recursively for `*.pdf`. Every file is parsed for
-  Wizard and Cleric (priest) spell blocks; results are merged, deduplicated,
-  and written as a single compendium JSON.
-- A **single PDF** is parsed the same way.
-- Default output: `output/spells.json`. Per-file results are cached in
-  `output/cache/` so an interrupted run resumes where it left off (delete the
-  cache to force a full re-parse).
+That writes `output/parsed-spells.json`. Then open `spell-editor.html` in a
+browser and load that file to review and correct the results.
+
+## Version 2
+
+Version 2 drops the original .NET implementation (`DeepMagic.App` and the
+`src/` solution) in favour of the Node parser, which is now the whole tool.
+There is nothing to build — just `npm install` and run the command above.
+
+Two pieces:
+
+- **`run-parser.mjs`** — extracts spell blocks from a PDF's text layer into JSON.
+- **`spell-editor.html`** — a standalone, no-build browser page for reviewing and
+  correcting that JSON before you use it. Open the file directly and load a
+  parser output; edits are saved back out as JSON.
+
+## Install
+
+```
+npm install
+```
+
+The only dependency is `pdfjs-dist`.
+
+## Full usage
+
+```
+node run-parser.mjs [--start=N] [--end=N] [--out=path.json] file.pdf [more.pdf ...]
+```
+
+| Flag | Meaning | Default |
+|---|---|---|
+| `--start=N` | First page to scan | `1` |
+| `--end=N` | Last page to scan | last page |
+| `--out=path` | Output JSON path | `output/parsed-spells.json` |
+
+Multiple PDFs may be passed in one run; results are grouped per file. The page
+range, when given, applies to every file in the run — so narrowing to a spell
+chapter is best done one book at a time.
 
 Example:
 
 ```
-dotnet run --project src/DeepMagic.App -- "L:\DNDFinal\D&D\AD&D 2nd Edition\Dark Sun" output/spells.json
+node run-parser.mjs --start=83 --end=162 --out=output/DragonKings.json 04-DragonKings.pdf
 ```
+
+Each run prints a summary: total extracted, the Wizard / Priest / Psionic split,
+counts by spell level, and — when psionic powers are found — a per-discipline
+breakdown of High Sciences, Sciences, and Devotions.
 
 ## Output
 
-The compendium JSON matches the SavageSun `spells.json` schema: top-level
-metadata (`sources`, `spheres`, `sphere_groups`, `schools`, `counts`,
-`cleric_by_sphere`, `wizard_by_school`, `by_source`) plus a flat `spells`
-array with snake_case keys (`name`, `class`, `level`, `stats`, `description`, …).
+A JSON array of `{ file, spells }` groups. Spell records carry `name`, `school`,
+`class`, `sphere`, `level`, the stat fields (`castingTime`, `range`,
+`components`, `duration`, `savingThrow`, `areaOfEffect`, `preparationTime`),
+`description`, `page`, `source`, `reversible`, and a `verified` flag for the
+editor to track review state.
 
-Class detection is evidence-based:
+True psionic powers use a different shape: `discipline`, `tier`, `powerScore`,
+`initialCost`, `maintenanceCost`, `prerequisites`.
 
-1. A `Sphere:` field (or an inline `(Pr n)` tag) marks a **Cleric** spell.
-2. A recognised wizard school with no sphere marks a **Wizard** spell.
-3. Chapter headings ("Priest Spells" / "Wizard Spells") are only a fallback,
-   since OCR-damaged scans frequently lose headings.
+Class detection is evidence-based rather than heading-based, since OCR-damaged
+scans frequently lose headings: a `Sphere:` field marks a **Priest** spell,
+and anything else with a recognised school is a **Wizard** spell.
 
-## Parser design (src/DeepMagic.Services/DarkSunCompendiumParser.cs)
+## Parser design
 
 The parser is built to survive the defects of scanned TSR PDFs:
 
-- **Letter-spaced OCR text** — `S p h e r e : C o s m o s` is collapsed; field
-  labels are matched on a de-spaced copy of each line so `Co mpo n e n t s V, M`
-  still parses.
-- **Column segmentation** — each visual line is split wherever a large
-  horizontal gap occurs, so narrow stat blocks don't merge with body text that
-  flows beside them (the Defilers and Preservers layout).
-- **Label/value splits** — when `Range:` and `20 yards` land in separate
-  segments, a short look-ahead pairs them back up while skipping interleaved
-  prose fragments.
-- **Header validation** — a spell header must be followed by stat fields;
-  stat-value vocabulary ("Touch", "Permanent", "Air"), sphere lists
-  ("Elemental, Plant"), and "Reversible" lines are rejected as names.
-- **Psionics filter** — blocks containing Power Score / PSP lines are psionic
-  powers, not spells, and are dropped.
+- **Column auto-detection** — pages are classified single- or two-column by how
+  many text runs cross the page midline; two-column pages are read left column
+  fully, then right, so stat blocks don't interleave with adjacent body text.
+- **Letter-spaced OCR text** — `C o m p o n e n t s :` is collapsed back to
+  `Components:` before field matching.
+- **Two-line headers** — PHB-style `Spell Name` followed by `(School)` on the
+  next line is recognised alongside the single-line `Name (School)` form.
+- **Shared stat lines** — `Range: 10 yds. Components: V, S, M` on one physical
+  line is split into separate fields; the first value for a field wins, so
+  later prose mentioning a label can't clobber a real stat.
+- **Header validation** — the school must be a known 2e school or sphere word,
+  which rejects cross-reference tables and stray parenthesised text as names.
+- **Junk-line filter** — browser print-to-PDF artifacts (timestamps,
+  `file:///` URLs, `166/3963` page counters) are dropped.
+- **Pipe repair** — extraction commonly misreads the digit `1` as `|`; stat
+  values are repaired (`|rd.` → `1 rd.`).
 
 ## Known limitations
 
-- Some PDFs have no text layer PdfPig can decode (e.g. *Wizards Spell
-  Compendium Volume 1*); these are logged and skipped.
-- OCR quality caps output quality: badly scanned books (e.g. the reduced
-  Player's Handbook) yield mangled spell names, and a few well-known spells
-  are unrecoverable from the available scans.
+- Some PDFs have no decodable text layer; these produce no output.
+- OCR quality caps output quality — badly scanned books yield mangled spell
+  names, and a few well-known spells are unrecoverable from available scans.
 - Spell *list tables* (e.g. the letter-spaced sphere tables in the Dark Sun
   boxed sets) are not parsed — only full spell stat blocks are captured.
-- Battlesystem miniatures-rules PDFs are skipped by design; their spell
-  summaries are not real 2e spell stat blocks.
+- Extraction is best-effort; run the output through `spell-editor.html` before
+  treating it as final.

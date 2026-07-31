@@ -1,5 +1,13 @@
 {
+  "name": "depp-magic",
+  "version": "2.0.0",
+  "private": true,
+  "description": "AD&D 2e spell-block extractor for scanned TSR PDFs",
+  "type": "module",
+  "scripts": {
+    "parse": "node run-parser.mjs"
+  },
   "dependencies": {
-    "pdf-parse": "^2.4.5"
+    "pdfjs-dist": "^6.1.200"
   }
 }

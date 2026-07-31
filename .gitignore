@@ -1,26 +1,15 @@
-## .NET build artifacts
-bin/
-obj/
-*.user
-*.suo
-.vs/
-*.nupkg
-*.snupkg
-
-## Test results
-TestResults/
-coverage/
-*.trx
+## Node
+node_modules/
 
 ## Generated output (runtime artefacts, not source)
 output/
+parsed-spells.json
+
+## Source PDFs — large binaries, keep them out of history.
+## (cache/*.json review output is still tracked.)
+*.pdf
 
 ## IDE
 .idea/
 .vscode/
-*.DotSettings.user
-
-## Node.js (used for PDF extraction when .NET runtime is unavailable)
-node_modules/
-package-lock.json
-parsed-spells.json
+.vs/
