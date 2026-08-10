@@ -12,8 +12,9 @@
  *   • Multiple stat fields on one line: "Range: 10 yds. Components: V, S, M"
  *   • Junk-line filter: browser print-to-PDF artifacts (timestamps, file:/// URLs)
  *   • Class detection by evidence: a "Sphere:" field marks a Cleric spell
- *   • Psionics: Dark Sun "Psionic Enchantments" plus true psionic powers
- *     (discipline / tier / PSP costs, as in "The Will and the Way")
+ *   • Psionics: true psionic powers only (discipline / tier / PSP costs,
+ *     as in "The Will and the Way").  Dark Sun "Psionic Enchantments" are
+ *     10th-level *spells* and are NOT treated as psionic powers.
  *   • Source label derived from the input filename
  *
  * Usage:  node run-parser.mjs [--start=N] [--end=N] [--out=path.json] file.pdf [more.pdf ...]
@@ -203,11 +204,45 @@ function parseComponents(raw) {
 
 function buildSpheres(sphereRaw) {
   if (!sphereRaw) return [];
-  return String(sphereRaw)
-    .split(/[,;]/)
-    .map(s => s.replace(/\([^)]*\)/g, '').trim())
-    .filter(Boolean)
-    .map(name => ({ name, access: 'Major' }));
+  const raw = String(sphereRaw).trim();
+  // Bare "ALL" or "Elemental (All)" → keep as a single Elemental (All) entry
+  if (/^all$/i.test(raw) || /^elemental\s*\(\s*all\s*\)$/i.test(raw)) {
+    return [{ name: 'Elemental (All)', access: 'Major' }];
+  }
+
+  // Split on commas/semicolons that are not inside parentheses
+  const parts = [];
+  let buf = '', depth = 0;
+  for (const ch of raw) {
+    if (ch === '(') depth++;
+    else if (ch === ')') depth = Math.max(0, depth - 1);
+    if ((ch === ',' || ch === ';') && depth === 0) {
+      if (buf.trim()) parts.push(buf.trim());
+      buf = '';
+    } else {
+      buf += ch;
+    }
+  }
+  if (buf.trim()) parts.push(buf.trim());
+
+  const results = [];
+  for (const part of parts) {
+    // Elemental (Earth) / Elemental (Air|Fire|Water) → capture paren contents
+    const m = part.match(/^elemental\s*\((.+)\)\s*$/i);
+    if (m) {
+      const inner = m[1].trim();
+      if (/^all$/i.test(inner)) {
+        results.push({ name: 'Elemental (All)', access: 'Major' });
+      } else {
+        for (const sub of inner.split(/[|,]/).map(s => s.trim()).filter(Boolean)) {
+          results.push({ name: sub, access: 'Major' });
+        }
+      }
+    } else {
+      results.push({ name: part.replace(/\s+/g, ' ').trim(), access: 'Major' });
+    }
+  }
+  return results;
 }
 
 function toSsrSpell(legacy, sourceName) {
@@ -470,15 +505,29 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
       const lvl = ordinalToLevel(secM.groups.Ordinal);
       if (lvl) currentLevel = lvl;
       if (secM.groups.Class) currentClass = secM.groups.Class;
+      // Leaving a normal level section clears true-psionic mode
+      isPsionic = false;
+      currentDiscipline = '';
+      currentTier = '';
       continue;
     }
 
-    if (PSIONIC_SECTION_RE.test(text)) { isPsionic = true; continue; }
+    // Dark Sun "Psionic Enchantments" = 10th-level SPELLS, not true psionics.
+    // Set level and keep processing as Wizard/Cleric spell blocks.
+    if (PSIONIC_SECTION_RE.test(text)) {
+      currentLevel = 10;
+      isPsionic = false;
+      currentDiscipline = '';
+      currentTier = '';
+      continue;
+    }
 
     const discM = text.match(PSIONIC_DISC_SECTION_RE);
     if (discM) {
+      // True psionic power sections (Clairsentient Sciences, etc.)
       currentDiscipline = PSIONIC_DISCIPLINE[discM.groups.Disc.toLowerCase()] ?? discM.groups.Disc;
       currentTier       = /devotion/i.test(discM.groups.Tier) ? 'Devotion' : 'Science';
+      isPsionic = true;
       continue;
     }
 

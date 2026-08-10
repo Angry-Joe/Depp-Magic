@@ -1,0 +1,27 @@
+{
+    "id": "psionic_clairvoyance_2e",
+    "name": "Clairvoyance",
+    "class": "Psionic",
+    "discipline": "Clairsentience",
+    "tier": "Science",
+    "level": null,
+    "powerScore": "Wis -4",
+    "initialCost": "5",
+    "maintenanceCost": "2/round",
+    "preparationTime": "0",
+    "mac": 7,
+    "pspCost": "5/2",
+    "pspCostSuccess": 5,
+    "pspCostFailure": 2,
+    "range": "Unlimited",
+    "areaOfEffect": "Special",
+    "prerequisites": "None",
+    "description": "…",
+    "page": 20,
+    "sourceBooks": [
+        "Dark Sun Campaign Setting (Revised)"
+    ],
+    "verified": false,
+    "originalSource": "DSCS-Rev-WayOfThePsionicist",
+    "ruleset": "revised"
+}
