@@ -41,6 +41,9 @@ try {
   pdfjsLib = await import(pathToFileURL(join(__dirname, 'node_modules/pdfjs-dist/build/pdf.mjs')).href);
 }
 
+// ── Schema version ───────────────────────────────────────────────────────────
+const SCHEMA_VERSION = '2.0.0';
+
 // ── Regexes ──────────────────────────────────────────────────────────────────
 
 const SPELL_HEADER_RE = /^(?<Name>[A-Z][A-Za-z0-9 ,'\-\.\/&]+?)\s*\((?<School>[A-Za-z/\s,]+?)\)\s*(?:Reversible\s*)?$/;
@@ -197,6 +200,12 @@ function slug(name) {
     .slice(0, 60);
 }
 
+function default5eClasses(cls) {
+  // Seed with the detected 2e class as a starting point; expand later for
+  // shared 5e lists (e.g. Cleric/Druid/Ranger/Bard overlaps).
+  return cls ? [cls] : [];
+}
+
 function parseComponents(raw) {
   if (!raw) return [];
   return String(raw).split(/[,/]/).map(s => s.trim()).filter(Boolean);
@@ -256,7 +265,8 @@ function toSsrSpell(legacy, sourceName) {
     return {
       id: `psionic_${slug(legacy.name)}_2e`,
       name: legacy.name,
-      class: 'Psionic',
+        class: 'Psionic',
+          "5e_classes": Array.isArray(legacy["5e_classes"]) ? legacy["5e_classes"] : [],
       discipline: legacy.discipline || null,
       tier: legacy.tier || null,
       level: null,
@@ -298,7 +308,8 @@ function toSsrSpell(legacy, sourceName) {
     srdIndex: null,
     level: legacy.level ?? 0,
     school: legacy.school || null,
-    class: cls,
+      class: cls,
+     "5e_classes": Array.isArray(legacy["5e_classes"]) ? legacy["5e_classes"] : default5eClasses(cls),
     spheres,
     castingTime: legacy.castingTime || '',
     range: legacy.range || '',

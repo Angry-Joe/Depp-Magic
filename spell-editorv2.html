@@ -70,9 +70,6 @@
  th .resizer:hover,th .resizer.active{background:var(--accent)}
  th.colmenu-th{cursor:default;text-align:center;padding:4px 2px}
  th.colmenu-th button{padding:2px 8px;font-size:12px;line-height:1.4}
- th.check-th,td.check-td{cursor:default;text-align:center;padding:4px 2px}
- th.check-th:hover{color:var(--muted)}
- .rowchk,#chkAll{accent-color:var(--accent);cursor:pointer;width:15px;height:15px}
  .col-menu{
  position:fixed;z-index:60;background:var(--panel2);border:1px solid var(--line);
  border-radius:6px;padding:8px 12px;display:flex;flex-direction:column;gap:6px;
@@ -87,8 +84,6 @@
  tbody tr{cursor:pointer}
  tbody tr:hover{background:var(--panel2)}
  tbody tr.selected{background:#3a2913;outline:1px solid var(--accent)}
- tbody tr.bulksel{background:#33260f}
- tbody tr.bulksel.selected{background:#3a2913}
  td.num{text-align:right;font-variant-numeric:tabular-nums}
  .badge{
  display:inline-block;padding:1px 7px;border-radius:10px;font-size:12px;
@@ -100,11 +95,10 @@
 
  /* ── Edit panel ──────────────────────────────────────── */
  #editor{
- width:460px;min-width:360px;border-left:1px solid var(--line);
+ width:440px;min-width:340px;border-left:1px solid var(--line);
  background:var(--panel);overflow-y:auto;padding:14px;display:none;flex:none
  }
  #editor.open{display:block}
- #editor.bulk{border-left:2px solid var(--accent2)}
  #editor h2{margin:0 0 4px;font-size:16px;color:var(--accent)}
  #editor h2 .badge{font-size:11px;font-weight:400}
  #editor .meta{color:var(--muted);font-size:12px;margin-bottom:12px}
@@ -128,21 +122,7 @@
  }
  .radio-group input[type=radio]{accent-color:var(--accent);cursor:pointer}
 
- /* ── Toggle buttons (booleans) ───────────────────────── */
- .toggle-btn{
- padding:6px 16px;font:inherit;font-size:13px;border-radius:6px;
- border:1px solid var(--line);background:#150e07;color:var(--muted);
- cursor:pointer;min-width:135px;text-align:left
- }
- .toggle-btn:hover{border-color:var(--accent)}
- .toggle-btn.on{background:var(--accent);color:#241704;border-color:var(--accent);font-weight:700}
- .toggle-btn.off{color:var(--muted)}
- .toggle-btn.mixed{font-style:italic;color:var(--muted)}
-
  /* ── Markdown editor / preview ───────────────────────── */
- .md-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
- .md-row .md-tabs{margin-bottom:0}
- .md-expand{padding:3px 12px;font-size:12px}
  .md-tabs{display:inline-flex;border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-bottom:5px}
  .md-tabs button{border:none;border-radius:0;background:var(--panel2);color:var(--muted);padding:3px 12px;font-size:12px}
  .md-tabs button + button{border-left:1px solid var(--line)}
@@ -176,30 +156,8 @@
  }
  .md-preview hr{border:none;border-top:1px solid var(--line);margin:10px 0}
  .md-preview a{color:var(--air)}
- .md-preview table{border-collapse:collapse;table-layout:auto;margin:8px 0;width:auto}
+ .md-preview table{border-collapse:collapse;table-layout:auto;margin:8px 0}
  .md-preview th,.md-preview td{border:1px solid var(--line);padding:3px 8px;white-space:normal}
- .md-preview thead th{background:var(--panel2);color:var(--accent);position:static}
-
- /* ── Description modal dialog ────────────────────────── */
- .modal{position:fixed;inset:0;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;z-index:100}
- .modal[hidden]{display:none}
- .modal-box{
- background:var(--panel);border:1px solid var(--line);border-radius:8px;
- width:min(880px,94vw);max-height:90vh;display:flex;flex-direction:column;
- padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6)
- }
- .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
- .modal-head span{color:var(--accent);font-size:15px;font-weight:600}
- .modal-x{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0 6px}
- .modal-x:hover{color:var(--accent)}
- #dlgBox{
- flex:1;min-height:360px;background:#150e07;color:var(--ink);
- border:1px solid var(--line);border-radius:5px;padding:10px 12px;
- font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:vertical
- }
- #dlgPreview{flex:1;min-height:360px;max-height:none}
- .modal-btns{display:flex;gap:8px;margin-top:12px;align-items:center}
- .modal-btns .spacer{flex:1}
 
  /* ── Empty state ─────────────────────────────────────── */
  #empty{
@@ -237,7 +195,7 @@
  <div id="empty">
  <p><strong>Open a parser output file (e.g. <kbd>output/DragonKings-AllSpells-parsed.json</kbd>) to get started.</strong></p>
  <p>Click column headers to sort, drag a column edge to resize, and use the <kbd>☰</kbd> button at the right of
- the header row to show/hide columns. Click a row to edit it, or tick the checkboxes to bulk-edit several at once.</p>
+ the header row to show/hide columns. Click a row to edit it.</p>
  <p><strong>+ Add Spell</strong> opens a draft form — the entry is only added to the dataset when you click
  <strong>Apply</strong>. Use <strong>Import…</strong> to merge another JSON, and <strong>Close File</strong> when done.</p>
  <p><kbd>Ctrl+S</kbd> save &nbsp;·&nbsp; <kbd>Esc</kbd> close editor
@@ -254,29 +212,6 @@
 </main>
 <div id="colMenu" class="col-menu" hidden></div>
 
-<!-- ── Description editor dialog ─────────────────────────── -->
-<div id="descDialog" class="modal" hidden>
- <div class="modal-box">
- <div class="modal-head">
- <span id="dlgTitle">Edit Description</span>
- <button type="button" id="dlgX" class="modal-x" title="Close">✕</button>
- </div>
- <div class="md-tabs">
- <button type="button" id="dlgWrite" class="active">Write</button>
- <button type="button" id="dlgPreviewBtn">Preview</button>
- </div>
- <textarea id="dlgBox" spellcheck="true"></textarea>
- <div class="md-preview" id="dlgPreview" hidden></div>
- <div class="md-hint">Supports **bold**, *italic*, `code`, # headings, - lists, &gt; quotes, tables (| a | b |), [links](https://…)</div>
- <div class="modal-btns">
- <button type="button" id="dlgApply" class="primary">Apply</button>
- <button type="button" id="dlgRevert">Revert</button>
- <span class="spacer"></span>
- <button type="button" id="dlgClose">Close</button>
- </div>
- </div>
-</div>
-
 <script>
 'use strict';
 
@@ -292,12 +227,6 @@ let pendingNew = null;   // draft entry — NOT in the dataset until Apply
 let justResized = false; // suppress sort-click right after a column drag
 const editedIds = new Set();
 let nextId = 0; // monotonic for newly-added entries
-
-/* Bulk-edit state */
-const bulkSelected = new Set(); // _id of records ticked for bulk editing
-const bulkTouched = new Set();  // field keys the user changed in the bulk form
-let editorMode = 'edit';        // 'edit' | 'new' | 'bulk'
-let dlgOriginal = '';           // description snapshot when the dialog opened
 
 /* Column preferences (widths + hidden columns), persisted per tab */
 const LS_COLS = 'depp-spell-editor.cols.v1';
@@ -349,19 +278,20 @@ const TABS = {
  ],
  /* Edit-form layout, top to bottom (per Joe's spec) */
  editLayout: [
- { row: [ { k: 'class', label: 'Class', type: 'select', options: ['Wizard', 'Priest'] }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
+ { k: 'class', label: 'Class', type: 'select', options: ['Wizard', 'Priest'] },
  { k: 'name', label: 'Name' },
  { k: 'school', label: 'School' },
  { k: 'sphere', label: 'Sphere (Priest only)', priestOnly: true },
- { k: 'reversible', label: 'Reversible', type: 'toggle' },
- { row: [ { k: 'range', label: 'Range' }, { k: 'components', label: 'Components' } ] },
- { k: 'preparationTime', label: 'Preparation Time' },
+ { k: 'reversible', label: 'Reversible', type: 'radio' },
+ { k: 'range', label: 'Range' },
+ { k: 'components', label: 'Components' },
  { k: 'duration', label: 'Duration' },
  { k: 'castingTime', label: 'Casting Time' },
  { k: 'areaOfEffect', label: 'Area of Effect' },
  { k: 'savingThrow', label: 'Saving Throw' },
- { row: [ { k: 'source', label: 'Source' }, { k: 'page', label: 'Page' } ], cols: '1fr 110px' },
- { k: 'verified', label: 'Verified', type: 'toggle' },
+ { row: [ { k: 'level', label: 'Level' }, { k: 'page', label: 'Page' } ] },
+ { row: [ { k: 'source', label: 'Source' }, { k: 'preparationTime', label: 'Preparation Time' } ] },
+ { k: 'verified', label: 'Verified', type: 'radio' },
  ],
  meta: s => `Level ${esc(gf(s,'level') ?? '?')} · ${esc(gf(s,'school') ?? '?')} · p.${esc(gf(s,'page') ?? '?')} · ${esc(gf(s,'source') ?? '')}`,
  },
@@ -395,8 +325,8 @@ const TABS = {
  { k: 'preparationTime', label: 'Preparation Time' },
  { k: 'areaOfEffect', label: 'Area of Effect' },
  { k: 'prerequisites', label: 'Prerequisites' },
- { row: [ { k: 'page', label: 'Page' }, { k: 'source', label: 'Source' } ], cols: '110px 1fr' },
- { k: 'verified', label: 'Verified', type: 'toggle' },
+ { row: [ { k: 'page', label: 'Page' }, { k: 'source', label: 'Source' } ] },
+ { k: 'verified', label: 'Verified', type: 'radio' },
  ],
  meta: s => `${esc(gf(s,'discipline') ?? '?')} · ${esc(gf(s,'tier') ?? '?')} · p.${esc(gf(s,'page') ?? '?')} · ${esc(gf(s,'source') ?? '')}`,
  },
@@ -681,8 +611,6 @@ function closeFile() {
  editedIds.clear();
  selectedId = null;
  pendingNew = null;
- bulkSelected.clear();
- bulkTouched.clear();
  sortKey = null; sortDir = 1;
  nextId = 0;
  closeEditor();
@@ -720,7 +648,6 @@ function loadData(json) {
  }
  });
  dirty = false; editedIds.clear(); selectedId = null; pendingNew = null;
- bulkSelected.clear(); bulkTouched.clear();
  sortKey = null; sortDir = 1;
  activeTab = spells.some(s => TABS.spells.match(s)) ? 'spells' : 'psionics';
  closeEditor();
@@ -773,11 +700,9 @@ function makeBlank() {
 /** '+ Add Spell': open a DRAFT in the editor. Nothing touches the
  dataset until the user clicks Apply (see commitNew). */
 function addSpell() {
- bulkSelected.clear();
- bulkTouched.clear();
  pendingNew = makeBlank();
  selectedId = null;
- renderEditor(pendingNew, 'new');
+ renderEditor(pendingNew, true);
  if (rawData) renderTable(); // clear row highlight
  setTimeout(() => {
  const nameInput = $('editor').querySelector('input[data-k="name"]');
@@ -814,7 +739,6 @@ function setTab(t) {
  if (t === activeTab || !TABS[t]) return;
  activeTab = t;
  selectedId = null; sortKey = null; sortDir = 1;
- bulkSelected.clear(); bulkTouched.clear();
  $('search').value = '';
  closeEditor();
  renderTabs();
@@ -858,8 +782,8 @@ function esc(s) {
 }
 
 /* ── Minimal Markdown renderer (headings, bold/italic, code,
- lists, blockquotes, links, hr, GFM tables). Input is escaped
- first, so raw HTML in descriptions is displayed, not run. ── */
+ lists, blockquotes, links, hr). Input is escaped first, so
+ raw HTML in descriptions is displayed, not executed. ──── */
 function mdToHtml(md) {
  const lines = String(md ?? '').split(/\r?\n/);
  let html = '', inUl = false, inOl = false, inCode = false;
@@ -876,17 +800,7 @@ function mdToHtml(md) {
  if (inUl) { html += '</ul>'; inUl = false; }
  if (inOl) { html += '</ol>'; inOl = false; }
  };
- // A table separator row: |---|:--:|---:| style (must contain a dash)
- const isTableSep = l => l.includes('-') &&
- /^\s*\|?\s*:?-{1,}:?\s*(\|\s*:?-{1,}:?\s*)*\|?\s*$/.test(l);
- const splitCells = l => {
- let t = l.trim();
- if (t.startsWith('|')) t = t.slice(1);
- if (t.endsWith('|')) t = t.slice(0, -1);
- return t.split('|').map(c => c.trim());
- };
- for (let i = 0; i < lines.length; i++) {
- const line = lines[i];
+ for (const line of lines) {
  if (/^\s*```/.test(line)) {
  flushP(); closeLists();
  if (inCode) { html += '</code></pre>'; inCode = false; }
@@ -894,33 +808,6 @@ function mdToHtml(md) {
  continue;
  }
  if (inCode) { html += esc(line) + '\n'; continue; }
-
- // GFM table: a row with a pipe followed by a separator row
- if (line.includes('|') && line.trim() !== '' &&
- i + 1 < lines.length && isTableSep(lines[i + 1])) {
- flushP(); closeLists();
- const headers = splitCells(line);
- const aligns = splitCells(lines[i + 1]).map(c => {
- const l = c.startsWith(':'), r = c.endsWith(':');
- return (l && r) ? 'center' : r ? 'right' : l ? 'left' : '';
- });
- const body = [];
- let j = i + 2;
- while (j < lines.length && lines[j].includes('|') &&
- lines[j].trim() !== '' && !/^\s*```/.test(lines[j])) {
- body.push(splitCells(lines[j])); j++;
- }
- html += '<table><thead><tr>' +
- headers.map((h, x) => `<th${aligns[x] ? ` style="text-align:${aligns[x]}"` : ''}>` + inline(h) + '</th>').join('') +
- '</tr></thead><tbody>' +
- body.map(cells => '<tr>' +
- headers.map((_, x) => `<td${aligns[x] ? ` style="text-align:${aligns[x]}"` : ''}>` + inline(cells[x] ?? '') + '</td>').join('') +
- '</tr>').join('') +
- '</tbody></table>';
- i = j - 1;
- continue;
- }
-
  if (/^\s*$/.test(line)) { flushP(); closeLists(); continue; }
  const h = line.match(/^(#{1,6})\s+(.*)$/);
  if (h) { flushP(); closeLists(); const n = h[1].length; html += `<h${n}>` + inline(h[2]) + `</h${n}>`; continue; }
@@ -958,7 +845,7 @@ function visibleCols() {
 }
 
 function syncTableWidth() {
- let total = 36 + 34; // column-menu stub + checkbox column
+ let total = 36; // column-menu stub
  document.querySelectorAll('#colgroup col[data-key]').forEach(c => {
  total += parseInt(c.style.width, 10) || 110;
  });
@@ -1027,12 +914,9 @@ document.addEventListener('click', e => {
 function renderHead() {
  const cols = visibleCols();
  $('colgroup').innerHTML =
- '<col style="width:34px">' +
  cols.map(c => `<col data-key="${c.key}" style="width:${colWidth(c.key)}px">`).join('') +
  '<col style="width:36px">';
- $('headRow').innerHTML =
- `<th class="check-th" title="Select all shown"><input type="checkbox" id="chkAll"></th>` +
- cols.map(c => {
+ $('headRow').innerHTML = cols.map(c => {
  const arrow = sortKey === c.key ? `<span class="arrow"> ${sortDir > 0 ? '▲' : '▼'}</span>` : '';
  return `<th data-key="${c.key}" title="${esc(c.label)}">${c.label}${arrow}<div class="resizer" data-key="${c.key}"></div></th>`;
  }).join('') +
@@ -1048,9 +932,6 @@ function renderHead() {
  });
  [...$('headRow').querySelectorAll('.resizer')].forEach(attachResizer);
  $('btnCols').onclick = toggleColMenu;
- const chkAll = $('chkAll');
- chkAll.onclick = e => e.stopPropagation();
- chkAll.onchange = () => onSelectAll(chkAll.checked);
 }
 
 function renderTable() {
@@ -1060,8 +941,6 @@ function renderTable() {
  $('tbody').innerHTML = list.map(s => {
  const psi = String(gf(s, 'source') ?? '').includes('Psionic');
  const dot = editedIds.has(s._id) ? ' <span class="edited-dot" title="edited">●</span>' : '';
- const selBulk = bulkSelected.has(s._id);
- const rowCls = [s._id === selectedId ? 'selected' : '', selBulk ? 'bulksel' : ''].filter(Boolean).join(' ');
  const cells = cols.map(col => {
  let val = gf(s, col.key);
  if (val === undefined || val === null) val = '';
@@ -1073,28 +952,10 @@ function renderTable() {
  }
  return `<td${cls}${tip}>${esc(val)}${col.key === 'name' ? dot : ''}</td>`;
  });
- return `<tr data-id="${s._id}" class="${rowCls}">` +
- `<td class="check-td"><input type="checkbox" class="rowchk"${selBulk ? ' checked' : ''}></td>` +
- `${cells.join('')}<td></td></tr>`;
+ return `<tr data-id="${s._id}" class="${s._id === selectedId ? 'selected' : ''}">${cells.join('')}<td></td></tr>`;
  }).join('');
- [...$('tbody').children].forEach(tr => {
- const id = Number(tr.dataset.id);
- const chk = tr.querySelector('.rowchk');
- chk.addEventListener('click', e => e.stopPropagation());
- chk.addEventListener('change', () => toggleBulk(id, chk.checked));
- tr.addEventListener('click', e => {
- if (e.target.closest('.check-td')) return;
- rowClickOpen(id);
- });
- });
- // reflect select-all state for the visible rows
- const ids = list.map(s => s._id);
- const selCount = ids.filter(i => bulkSelected.has(i)).length;
- const chkAll = $('chkAll');
- if (chkAll) {
- chkAll.checked = selCount > 0 && selCount === ids.length;
- chkAll.indeterminate = selCount > 0 && selCount < ids.length;
- }
+ [...$('tbody').children].forEach(tr =>
+ tr.onclick = () => openEditor(Number(tr.dataset.id)));
  refreshStatus(list.length);
 }
 
@@ -1103,71 +964,13 @@ function refreshStatus(visCount) {
  if (!spells.length && !rawData) { st.textContent = 'No file loaded'; st.classList.remove('dirty'); return; }
  const vis = visCount ?? visibleSpells().length;
  const tabTotal = spells.filter(tab().match).length;
- const bulkNote = bulkSelected.size ? ` · ${bulkSelected.size} selected` : '';
- st.textContent = `${fileName || '(unsaved)'} — ${vis}/${tabTotal} ${tab().label.toLowerCase()} shown${bulkNote}` + (dirty ? ' ● unsaved' : '');
+ st.textContent = `${fileName || '(unsaved)'} — ${vis}/${tabTotal} ${tab().label.toLowerCase()} shown` + (dirty ? ' ● unsaved' : '');
  st.classList.toggle('dirty', dirty);
-}
-
-/* ── Bulk selection ────────────────────────────────────── */
-function rowClickOpen(id) {
- // Plain row click edits a single record and clears any bulk selection.
- if (bulkSelected.size) { bulkSelected.clear(); bulkTouched.clear(); }
- openEditor(id);
-}
-
-function toggleBulk(id, on) {
- const wasBulk = editorMode === 'bulk';
- if (on) bulkSelected.add(id); else bulkSelected.delete(id);
- const n = bulkSelected.size;
- if (n >= 2) {
- if (wasBulk) { updateBulkCount(); renderTable(); }
- else openBulkEditor();
- } else if (n === 1) {
- openEditor([...bulkSelected][0]);
- } else {
- closeEditor();
- }
-}
-
-function onSelectAll(checked) {
- const wasBulk = editorMode === 'bulk';
- const vis = visibleSpells();
- if (checked) vis.forEach(s => bulkSelected.add(s._id));
- else vis.forEach(s => bulkSelected.delete(s._id));
- const n = bulkSelected.size;
- if (n >= 2) {
- if (wasBulk) { updateBulkCount(); renderTable(); }
- else openBulkEditor();
- } else if (n === 1) {
- openEditor([...bulkSelected][0]);
- } else {
- closeEditor();
- }
-}
-
-function updateBulkCount() {
- const n = bulkSelected.size;
- const a = $('btnApply'); if (a) a.textContent = `Apply to ${n}`;
- const b = $('editor').querySelector('h2 .badge');
- if (b) b.textContent = `${n} records — changes apply to all`;
-}
-
-/** Open the blank bulk-edit form for the currently selected records. */
-function openBulkEditor() {
- pendingNew = null;
- selectedId = null;
- bulkTouched.clear();
- renderEditor({}, 'bulk');
- renderTable();
- $('editor').scrollTop = 0;
 }
 
 /* ── Edit panel ────────────────────────────────────────── */
 function fieldHtml(f, s) {
- if (f.row) {
- const style = f.cols ? ` style="grid-template-columns:${f.cols}"` : '';
- return `<div class="row-compact"${style}>${f.row.map(x => fieldHtml(x, s)).join('')}</div>`;
- }
+ if (f.row) return `<div class="row-compact">${f.row.map(x => fieldHtml(x, s)).join('')}</div>`;
  const v = gf(s, f.k) ?? '';
  if (f.type === 'select') {
  const cur = String(v ?? '');
@@ -1177,9 +980,6 @@ function fieldHtml(f, s) {
  <select data-k="${f.k}"${f.k === 'class' ? ' id="selClass"' : ''}>${blank}${
  opts.map(o => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')
  }</select></div>`;
- }
- if (f.type === 'toggle') {
- return toggleHtml(f, s);
  }
  if (f.type === 'radio') {
  const b = !!v;
@@ -1193,61 +993,33 @@ function fieldHtml(f, s) {
  return `<div class="field"${idAttr}><label>${f.label}</label><input data-k="${f.k}" value="${esc(v)}"></div>`;
 }
 
-const TOGGLE_LABEL = { on: 'Yes', off: 'No', mixed: '— No change' };
-function toggleHtml(f, s) {
- const st = editorMode === 'bulk' ? 'mixed' : (gf(s, f.k) ? 'on' : 'off');
- return `<div class="field"><label>${f.label}</label>
- <button type="button" class="toggle-btn ${st}" data-k="${f.k}" data-state="${st}" aria-pressed="${st === 'on'}">${TOGGLE_LABEL[st]}</button></div>`;
-}
-function setToggle(btn, st) {
- btn.dataset.state = st;
- btn.setAttribute('aria-pressed', st === 'on');
- btn.textContent = TOGGLE_LABEL[st];
- btn.classList.remove('on', 'off', 'mixed');
- btn.classList.add(st);
-}
-
-/** Render the edit form. mode: 'edit' | 'new' | 'bulk'. */
-function renderEditor(s, mode) {
- editorMode = mode;
- const isNew = mode === 'new';
- const isBulk = mode === 'bulk';
+/** Render the edit form for a committed entry OR a draft (isNew). */
+function renderEditor(s, isNew) {
  const kind = activeTab === 'psionics' ? 'psionic power' : 'spell';
- const n = bulkSelected.size;
-
- const title = isBulk ? 'Bulk edit' : (gf(s, 'name') || (isNew ? `(new ${kind})` : '(unnamed)'));
- const badge = isBulk ? ` <span class="badge">${n} records — changes apply to all</span>`
- : (isNew ? ' <span class="badge">draft — added on Apply</span>' : '');
- const metaHtml = isBulk
- ? `Edit any field and click <strong>Apply</strong> to set it on all ${n} selected ${tab().label.toLowerCase()}. Fields you don't touch are left unchanged.`
- : tab().meta(s);
-
+ const title = gf(s, 'name') || (isNew ? `(new ${kind})` : '(unnamed)');
+ const newBadge = isNew ? ' <span class="badge">draft — added on Apply</span>' : '';
  $('editor').innerHTML = `
- <h2 id="edTitle">${esc(title)}${badge}</h2>
- <div class="meta">${metaHtml}</div>
+ <h2 id="edTitle">${esc(title)}${newBadge}</h2>
+ <div class="meta">${tab().meta(s)}</div>
  ${tab().editLayout.map(f => fieldHtml(f, s)).join('')}
  <div class="field">
  <label>Description (Markdown)</label>
- <div class="md-row">
  <div class="md-tabs">
  <button type="button" id="mdWrite" class="active">Write</button>
  <button type="button" id="mdPreviewBtn">Preview</button>
  </div>
- <button type="button" id="mdExpand" class="md-expand" title="Open a larger editor">⤢ Expand editor</button>
- </div>
  <textarea data-k="description" id="descBox">${esc(gf(s, 'description') ?? '')}</textarea>
  <div class="md-preview" id="descPreview" hidden></div>
- <div class="md-hint">Supports **bold**, *italic*, \`code\`, # headings, - lists, &gt; quotes, tables, [links](https://…)</div>
+ <div class="md-hint">Supports **bold**, *italic*, \`code\`, # headings, - lists, &gt; quotes, [links](https://…)</div>
  </div>
  <div id="editorBtns">
- <button id="btnApply" class="primary">${isBulk ? `Apply to ${n}` : 'Apply'}</button>
+ <button id="btnApply" class="primary">Apply</button>
  <button id="btnRevert">Revert</button>
  <span class="spacer"></span>
- ${isBulk ? '' : `<button id="btnDelete" class="danger">${isNew ? 'Discard Draft' : 'Delete Entry'}</button>`}
+ <button id="btnDelete" class="danger">${isNew ? 'Discard Draft' : 'Delete Entry'}</button>
  <button id="btnEdClose">Close</button>
  </div>`;
  $('editor').classList.add('open');
- $('editor').classList.toggle('bulk', isBulk);
 
  // Sphere is Priest-only: show/hide with the Class selector
  const selClass = $('selClass');
@@ -1259,25 +1031,6 @@ function renderEditor(s, mode) {
  };
  if (selClass) selClass.addEventListener('change', syncSphere);
  syncSphere();
-
- // Toggle buttons (booleans)
- $('editor').querySelectorAll('.toggle-btn').forEach(btn => {
- btn.addEventListener('click', () => {
- const next = btn.dataset.state === 'on' ? 'off' : 'on'; // mixed → on on first click
- setToggle(btn, next);
- if (isBulk) bulkTouched.add(btn.dataset.k);
- });
- });
-
- // In bulk mode, track which fields the user actually changed
- if (isBulk) {
- $('editor').querySelectorAll('[data-k]').forEach(el => {
- if (el.classList.contains('toggle-btn')) return; // handled above
- const mark = () => bulkTouched.add(el.dataset.k);
- el.addEventListener('input', mark);
- el.addEventListener('change', mark);
- });
- }
 
  // Markdown write/preview toggle
  $('mdWrite').onclick = () => {
@@ -1293,16 +1046,14 @@ function renderEditor(s, mode) {
  $('mdPreviewBtn').classList.add('active');
  $('mdWrite').classList.remove('active');
  };
- $('mdExpand').onclick = openDescDialog;
 
  // Buttons
- $('btnApply').onclick = () => isBulk ? applyBulk() : (isNew ? commitNew(s) : applyEdit(s));
+ $('btnApply').onclick = () => isNew ? commitNew(s) : applyEdit(s);
  $('btnRevert').onclick = () => {
- if (isBulk) { bulkTouched.clear(); openBulkEditor(); }
- else if (isNew) { pendingNew = makeBlank(); renderEditor(pendingNew, 'new'); }
+ if (isNew) { pendingNew = makeBlank(); renderEditor(pendingNew, true); }
  else openEditor(s._id);
  };
- if (!isBulk) $('btnDelete').onclick = () => {
+ $('btnDelete').onclick = () => {
  if (isNew) { pendingNew = null; closeEditor(); }
  else deleteEntry(s);
  };
@@ -1316,20 +1067,9 @@ function openEditor(id) {
  if (!s) return;
  pendingNew = null;
  selectedId = id;
- renderEditor(s, 'edit');
+ renderEditor(s, false);
  renderTable();
  $('editor').scrollTop = 0;
-}
-
-/** Read one form control into a JS value (handles toggles/radios/checkboxes). */
-function readControlValue(el) {
- if (el.classList.contains('toggle-btn')) {
- const st = el.dataset.state;
- return st === 'on' ? true : st === 'off' ? false : undefined; // mixed → skip
- }
- if (el.type === 'radio') return el.checked ? (el.value === 'yes') : undefined;
- if (el.type === 'checkbox') return el.checked;
- return el.value;
 }
 
 /** Read all form controls into the entry. Returns true if anything changed. */
@@ -1337,8 +1077,15 @@ function collectEdits(s) {
  let changed = false;
  $('editor').querySelectorAll('[data-k]').forEach(el => {
  const k = el.dataset.k;
- let v = readControlValue(el);
- if (v === undefined) return; // unchecked radio / mixed toggle
+ let v;
+ if (el.type === 'radio') {
+ if (!el.checked) return;
+ v = el.value === 'yes';
+ } else if (el.type === 'checkbox') {
+ v = el.checked;
+ } else {
+ v = el.value;
+ }
  if (k === 'level' || k === 'page') {
  const n = Number(v);
  v = Number.isFinite(n) && v !== '' ? n : v;
@@ -1360,35 +1107,6 @@ function applyEdit(s) {
  refreshStatus();
 }
 
-/** Apply the touched fields from the bulk form to every selected record. */
-function applyBulk() {
- const recs = spells.filter(s => bulkSelected.has(s._id));
- if (!recs.length) { alert('No records selected.'); return; }
- if (!bulkTouched.size) { alert('Change a field first — nothing to apply yet.'); return; }
- bulkTouched.forEach(k => {
- const el = $('editor').querySelector(`[data-k="${k}"]`);
- if (!el) return;
- let v = readControlValue(el);
- if (v === undefined) return;
- if (k === 'level' || k === 'page') {
- const n = Number(v);
- v = Number.isFinite(n) && v !== '' ? n : v;
- }
- if (typeof v === 'string' && PIPE_FIX_KEYS.includes(k)) v = fixPipes(v);
- recs.forEach(s => { sf(s, k, v); editedIds.add(s._id); });
- });
- dirty = true;
- const count = recs.length, fields = bulkTouched.size;
- bulkTouched.clear();
- buildFilters();
- renderTabs();
- renderTable();
- refreshStatus();
- renderEditor({}, 'bulk'); // reset the form, keep the selection
- const st = $('status');
- if (st) { st.textContent = `Applied ${fields} field(s) to ${count} record(s)` + (dirty ? ' ● unsaved' : ''); st.classList.add('dirty'); }
-}
-
 function deleteEntry(s) {
  if (!confirm(`Delete "${gf(s, 'name') || '(unnamed)'}"? (removed on next Save)`)) return;
  spells = spells.filter(x => x._id !== s._id);
@@ -1401,7 +1119,6 @@ function deleteEntry(s) {
  const i = rawData.spells.indexOf(s);
  if (i >= 0) rawData.spells.splice(i, 1);
  }
- bulkSelected.delete(s._id);
  dirty = true;
  buildFilters(); closeEditor(); renderTabs(); renderTable();
 }
@@ -1409,10 +1126,7 @@ function deleteEntry(s) {
 function closeEditor() {
  selectedId = null;
  pendingNew = null;
- editorMode = 'edit';
- bulkSelected.clear();
- bulkTouched.clear();
- $('editor').classList.remove('open', 'bulk');
+ $('editor').classList.remove('open');
  $('editor').innerHTML = '';
  if (rawData) renderTable();
 }
@@ -1427,42 +1141,6 @@ function step(delta) {
  document.querySelector(`tr[data-id="${next._id}"]`)?.scrollIntoView({ block: 'nearest' });
  }
 }
-
-/* ── Description dialog ─────────────────────────────────── */
-function openDescDialog() {
- const box = $('descBox');
- if (!box) return;
- dlgOriginal = box.value;
- $('dlgBox').value = box.value;
- dlgSetWrite();
- $('descDialog').hidden = false;
- setTimeout(() => $('dlgBox').focus(), 20);
-}
-function dlgSetWrite() {
- $('dlgBox').hidden = false;
- $('dlgPreview').hidden = true;
- $('dlgWrite').classList.add('active');
- $('dlgPreviewBtn').classList.remove('active');
-}
-function dlgSetPreview() {
- $('dlgPreview').innerHTML = mdToHtml($('dlgBox').value) || '<p style="color:var(--muted)">Nothing to preview.</p>';
- $('dlgBox').hidden = true;
- $('dlgPreview').hidden = false;
- $('dlgPreviewBtn').classList.add('active');
- $('dlgWrite').classList.remove('active');
-}
-function dlgApply() {
- const box = $('descBox');
- if (box) {
- box.value = $('dlgBox').value;
- if (editorMode === 'bulk') bulkTouched.add('description');
- // keep the inline preview in sync if it's the visible pane
- if ($('descPreview') && !$('descPreview').hidden) {
- $('descPreview').innerHTML = mdToHtml(box.value) || '<p style="color:var(--muted)">Nothing to preview.</p>';
- }
- }
-}
-function dlgClose() { $('descDialog').hidden = true; }
 
 /* ── Wiring ────────────────────────────────────────────── */
 $('btnOpen').onclick = openFile;
@@ -1480,24 +1158,11 @@ $('btnClear').onclick = () => {
 };
 $('search').addEventListener('input', renderTable);
 
-// Description dialog buttons
-$('dlgWrite').onclick = dlgSetWrite;
-$('dlgPreviewBtn').onclick = dlgSetPreview;
-$('dlgApply').onclick = dlgApply;
-$('dlgRevert').onclick = () => { $('dlgBox').value = dlgOriginal; if (!$('dlgPreview').hidden) dlgSetPreview(); };
-$('dlgClose').onclick = dlgClose;
-$('dlgX').onclick = dlgClose;
-$('descDialog').addEventListener('click', e => { if (e.target.id === 'descDialog') dlgClose(); });
-
 document.addEventListener('keydown', e => {
- if (!$('descDialog').hidden) {
- if (e.key === 'Escape') { e.preventDefault(); dlgClose(); }
- return; // don't let other shortcuts fire while the dialog is open
- }
  if (e.key === 'Escape') {
- const m = $('colMenu');
- if (!m.hidden) { m.hidden = true; return; }
- closeEditor();
+   const m = $('colMenu');
+   if (!m.hidden) { m.hidden = true; return; }
+   closeEditor();
  }
  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); if (rawData) saveFile(false); }
  if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowDown') { e.preventDefault(); step(1); }
