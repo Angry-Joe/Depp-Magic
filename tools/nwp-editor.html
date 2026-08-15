@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Depp-Magic NWP Editor</title>
+<style>
+:root{
+  --bg:#1c140d;--panel:#251a10;--panel2:#2f2114;--ink:#f2e4cf;--muted:#c7a97e;
+  --accent:#e0a53c;--accent2:#c9622b;--line:#4a3620;--chip:#3a2915;
+  --ok:#6a9e6a;--danger:#c45c4a;
+  --mono:'Cascadia Code','Cascadia Mono','Fira Code','JetBrains Mono','Consolas','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;
+  background:var(--bg);color:var(--ink);height:100vh;display:flex;flex-direction:column
+}
+
+/* ── Toolbar ─────────────────────────────────────────── */
+header{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:10px 14px;background:linear-gradient(180deg,#2a1c0f,#1c140d);
+  border-bottom:2px solid var(--line)
+}
+header h1{font-size:16px;margin:0 8px 0 0;color:var(--accent);white-space:nowrap;letter-spacing:.3px}
+button{
+  background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:6px;
+  padding:6px 12px;cursor:pointer;font:inherit;font-size:13px
+}
+button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+button:disabled{opacity:.4;cursor:default}
+button.primary{background:var(--accent);color:#241704;border-color:var(--accent);font-weight:700}
+button.danger{color:var(--danger);border-color:var(--danger)}
+input[type=text],select{
+  background:#150e07;color:var(--ink);border:1px solid var(--line);
+  border-radius:6px;padding:6px 10px;font:inherit;font-size:13px
+}
+input[type=text]:focus,select:focus,textarea:focus{outline:1px solid var(--accent)}
+#search{width:200px}
+#status{margin-left:auto;color:var(--muted);white-space:nowrap;font-size:12.5px}
+#status.dirty{color:var(--accent);font-weight:600}
+#filters{display:inline-flex;gap:10px;flex-wrap:wrap}
+
+/* ── Layout ──────────────────────────────────────────── */
+main{display:flex;flex:1;min-height:0}
+#tableWrap{flex:1;overflow:auto}
+table{border-collapse:collapse;table-layout:fixed}
+thead th{
+  position:sticky;top:0;background:var(--panel);text-align:left;
+  padding:8px 10px;border-bottom:2px solid var(--line);cursor:pointer;
+  -webkit-user-select:none;user-select:none;white-space:nowrap;color:var(--muted);font-size:12.5px;
+  overflow:hidden;text-overflow:ellipsis;z-index:2
+}
+thead th:hover{color:var(--accent)}
+thead th .arrow{color:var(--accent);font-size:11px}
+th .resizer{
+  position:absolute;top:0;right:0;width:7px;height:100%;
+  cursor:col-resize;user-select:none
+}
+th .resizer:hover,th .resizer.active{background:var(--accent)}
+th.colmenu-th{cursor:default;text-align:center;padding:4px 2px}
+th.colmenu-th button{padding:2px 8px;font-size:12px;line-height:1.4}
+th.check-th,td.check-td{cursor:default;text-align:center;padding:4px 2px}
+th.check-th:hover{color:var(--muted)}
+.rowchk,#chkAll{accent-color:var(--accent);cursor:pointer;width:15px;height:15px}
+.col-menu{
+  position:fixed;z-index:60;background:var(--panel2);border:1px solid var(--line);
+  border-radius:6px;padding:8px 12px;display:flex;flex-direction:column;gap:6px;
+  box-shadow:0 4px 14px rgba(0,0,0,.55);max-height:60vh;overflow:auto
+}
+.col-menu[hidden]{display:none}
+.col-menu label{font-size:13px;display:flex;gap:8px;align-items:center;cursor:pointer;white-space:nowrap;color:var(--ink)}
+tbody td{
+  padding:6px 10px;border-bottom:1px solid #33240f;font-size:13px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--panel2)}
+tbody tr.selected{background:#3a2913;outline:1px solid var(--accent)}
+tbody tr.bulksel{background:#33260f}
+tbody tr.bulksel.selected{background:#3a2913}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.badge{
+  display:inline-block;padding:1px 7px;border-radius:10px;font-size:12px;
+  background:var(--chip);border:1px solid var(--line);color:var(--muted);
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom
+}
+/* Group color accents */
+.badge.warrior{color:#d0632c;border-color:#d0632c}
+.badge.priest{color:#6a9e6a;border-color:#6a9e6a}
+.badge.rogue{color:#b483c9;border-color:#b483c9}
+.badge.wizard{color:#7fa8c9;border-color:#7fa8c9}
+.badge.general{color:var(--muted);border-color:var(--muted)}
+.edited-dot{color:var(--accent)}
+
+/* ── Edit panel ──────────────────────────────────────── */
+#editor{
+  width:460px;min-width:360px;border-left:1px solid var(--line);
+  background:var(--panel);overflow-y:auto;padding:14px;display:none;flex:none
+}
+#editor.open{display:block}
+#editor.bulk{border-left:2px solid var(--accent2)}
+#editor h2{margin:0 0 4px;font-size:16px;color:var(--accent)}
+#editor h2 .badge{font-size:11px;font-weight:400}
+#editor .meta{color:var(--muted);font-size:12px;margin-bottom:12px}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:11px;color:var(--muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.field input,.field textarea,.field select{
+  width:100%;background:#150e07;color:var(--ink);
+  border:1px solid var(--line);border-radius:5px;padding:6px 9px;
+  font-family:var(--mono);font-size:13px;line-height:1.45
+}
+.field textarea{min-height:180px;resize:vertical}
+.row-compact{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px}
+#editorBtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+#editorBtns .spacer{flex:1}
+
+/* ── Toggle buttons ───────────────────────────────────── */
+.toggle-btn{
+  padding:6px 16px;font:inherit;font-size:13px;border-radius:6px;
+  border:1px solid var(--line);background:#150e07;color:var(--muted);
+  cursor:pointer;min-width:135px;text-align:left
+}
+.toggle-btn:hover{border-color:var(--accent)}
+.toggle-btn.on{background:var(--accent);color:#241704;border-color:var(--accent);font-weight:700}
+.toggle-btn.off{color:var(--muted)}
+.toggle-btn.mixed{font-style:italic;color:var(--muted)}
+
+/* ── Markdown editor / preview ───────────────────────── */
+.md-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.md-expand{padding:3px 12px;font-size:12px}
+.md-tabs{display:inline-flex;border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-bottom:5px}
+.md-tabs button{border:none;border-radius:0;background:var(--panel2);color:var(--muted);padding:3px 12px;font-size:12px}
+.md-tabs button + button{border-left:1px solid var(--line)}
+.md-tabs button.active{background:var(--accent);color:#241704;font-weight:700}
+.md-hint{font-size:11px;color:var(--muted);margin-top:3px}
+.md-preview{
+  background:#150e07;border:1px solid var(--line);border-radius:5px;
+  padding:8px 12px;min-height:180px;max-height:420px;overflow:auto;
+  font-size:13.5px;line-height:1.55
+}
+.md-preview h1,.md-preview h2,.md-preview h3,.md-preview h4,.md-preview h5,.md-preview h6{
+  color:var(--accent);margin:10px 0 6px;line-height:1.25
+}
+.md-preview h1{font-size:18px}.md-preview h2{font-size:16px}.md-preview h3{font-size:14.5px}
+.md-preview h4,.md-preview h5,.md-preview h6{font-size:13.5px}
+.md-preview p{margin:6px 0}
+.md-preview ul,.md-preview ol{margin:6px 0;padding-left:22px}
+.md-preview li{margin:2px 0}
+.md-preview code{
+  font-family:var(--mono);font-size:12px;background:var(--chip);
+  border:1px solid var(--line);border-radius:3px;padding:0 4px
+}
+.md-preview pre{
+  background:var(--chip);border:1px solid var(--line);border-radius:5px;
+  padding:8px 10px;overflow:auto;margin:8px 0
+}
+.md-preview pre code{background:none;border:none;padding:0;font-size:12px}
+.md-preview blockquote{
+  margin:8px 0;padding:4px 12px;border-left:3px solid var(--accent);
+  background:var(--panel2);color:var(--muted)
+}
+.md-preview hr{border:none;border-top:1px solid var(--line);margin:10px 0}
+.md-preview a{color:#7fa8c9}
+.md-preview table{border-collapse:collapse;table-layout:auto;margin:8px 0;width:auto}
+.md-preview th,.md-preview td{border:1px solid var(--line);padding:3px 8px;white-space:normal}
+.md-preview thead th{background:var(--panel2);color:var(--accent);position:static}
+
+/* ── Description modal dialog ────────────────────────── */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal[hidden]{display:none}
+.modal-box{
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  width:min(880px,94vw);max-height:90vh;display:flex;flex-direction:column;
+  padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6)
+}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.modal-head span{color:var(--accent);font-size:15px;font-weight:600}
+.modal-x{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0 6px}
+.modal-x:hover{color:var(--accent)}
+#dlgBox{
+  flex:1;min-height:360px;background:#150e07;color:var(--ink);
+  border:1px solid var(--line);border-radius:5px;padding:10px 12px;
+  font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:vertical
+}
+#dlgPreview{flex:1;min-height:360px;max-height:none}
+.modal-btns{display:flex;gap:8px;margin-top:12px;align-items:center}
+.modal-btns .spacer{flex:1}
+
+/* ── Empty state ─────────────────────────────────────── */
+#empty{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:var(--muted);gap:12px
+}
+#empty p{max-width:520px;text-align:center;line-height:1.5}
+kbd{
+  background:var(--chip);border:1px solid var(--line);border-radius:4px;
+  padding:1px 6px;font-size:12px;font-family:var(--mono)
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📖 NWP Editor</h1>
+  <button id="btnOpen" class="primary">Open JSON…</button>
+  <button id="btnImport" disabled title="Merge another JSON file into the current dataset">Import…</button>
+  <button id="btnAdd" title="Draft a new entry — it is only added to the dataset when you click Apply">+ Add</button>
+  <button id="btnSave" disabled>Save</button>
+  <button id="btnSaveAs" disabled>Save As…</button>
+  <button id="btnCloseFile" disabled class="danger" title="Close file and clear dataset">Close File</button>
+  <input type="text" id="search" placeholder="Search name / description…" disabled>
+  <span id="filters"></span>
+  <button id="btnClear" disabled>Clear filters</button>
+  <span id="status">No file loaded</span>
+</header>
+
+<main>
+  <div id="empty">
+    <p><strong>Open a JSON file produced by <kbd>run-nwp-parser.mjs</kbd> to get started.</strong></p>
+    <p>Accepts the envelope object <kbd>{ proficiencies: [...] }</kbd> or a plain array. Click column headers to sort,
+    drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to edit it, or tick the
+    checkboxes to bulk-edit several at once.</p>
+    <p><strong>+ Add</strong> opens a draft form — the entry is only added when you click <strong>Apply</strong>.
+    Use <strong>Import…</strong> to merge another JSON into the current dataset.</p>
+    <p><kbd>Ctrl+S</kbd> save &nbsp;·&nbsp; <kbd>Esc</kbd> close editor
+    &nbsp;·&nbsp; <kbd>Ctrl+↑</kbd>/<kbd>Ctrl+↓</kbd> previous/next entry</p>
+  </div>
+  <div id="tableWrap" style="display:none">
+    <table id="dataTable">
+      <colgroup id="colgroup"></colgroup>
+      <thead><tr id="headRow"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <aside id="editor"></aside>
+</main>
+<div id="colMenu" class="col-menu" hidden></div>
+
+<!-- ── Description editor dialog ─────────────────────────── -->
+<div id="descDialog" class="modal" hidden>
+  <div class="modal-box">
+    <div class="modal-head">
+      <span id="dlgTitle">Edit Description</span>
+      <button type="button" id="dlgX" class="modal-x" title="Close">✕</button>
+    </div>
+    <div class="md-tabs">
+      <button type="button" id="dlgWrite" class="active">Write</button>
+      <button type="button" id="dlgPreviewBtn">Preview</button>
+    </div>
+    <textarea id="dlgBox" spellcheck="true"></textarea>
+    <div class="md-preview" id="dlgPreview" hidden></div>
+    <div class="md-hint">Supports **bold**, *italic*, `code`, # headings, - lists, &gt; quotes, tables (| a | b |), [links](https://…)</div>
+    <div class="modal-btns">
+      <button type="button" id="dlgApply" class="primary">Apply</button>
+      <button type="button" id="dlgRevert">Revert</button>
+      <span class="spacer"></span>
+      <button type="button" id="dlgClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ── Schema ────────────────────────────────────────────── */
+const SCHEMA_VERSION = '2.0.0';
+
+/* ── Column definitions ────────────────────────────────── */
+const COLS = [
+  { key: 'name',              label: 'Name' },
+  { key: 'group',             label: 'Group' },
+  { key: 'slots',             label: 'Slots',   num: true },
+  { key: 'relevantAbility',   label: 'Ability' },
+  { key: 'checkModifier',     label: 'Mod',     num: true },
+  { key: 'prerequisites',     label: 'Prerequisites' },
+  { key: 'classRestrictions', label: 'Class Restrictions' },
+  { key: 'raceRestrictions',  label: 'Race Restrictions' },
+  { key: 'page',              label: 'Page',    num: true },
+  { key: 'source',            label: 'Source' },
+  { key: 'verified',          label: '✓' },
+];
+
+const FILTERS = [
+  { key: 'group',           label: 'Group' },
+  { key: 'relevantAbility', label: 'Ability' },
+  { key: 'slots',           label: 'Slots',  numeric: true },
+  { key: 'source',          label: 'Source' },
+];
+
+const EDIT_LAYOUT = [
+  { k: 'name', label: 'Name' },
+  { row: [
+    { k: 'group', label: 'Group', type: 'select',
+      options: ['General', 'Warrior', 'Priest', 'Rogue', 'Wizard'] },
+    { k: 'slots', label: 'Slots' },
+  ], cols: '1fr 80px' },
+  { row: [
+    { k: 'relevantAbility', label: 'Relevant Ability', type: 'select',
+      options: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma', 'Special', 'N/A', 'None'] },
+    { k: 'checkModifier', label: 'Check Modifier' },
+  ], cols: '1fr 110px' },
+  { k: 'prerequisites',     label: 'Prerequisites (comma-separated)' },
+  { k: 'classRestrictions', label: 'Class Restrictions (comma-separated)' },
+  { k: 'raceRestrictions',  label: 'Race Restrictions (comma-separated)' },
+  { row: [{ k: 'source', label: 'Source' }, { k: 'page', label: 'Page' }], cols: '1fr 110px' },
+  { k: 'verified', label: 'Verified', type: 'toggle' },
+];
+
+/* ── State ─────────────────────────────────────────────── */
+let rawData   = null;
+let profs     = [];
+let fileHandle = null;
+let fileName  = '';
+let dirty     = false;
+let sortKey   = null, sortDir = 1;
+let selectedId = null;
+let pendingNew = null;
+let justResized = false;
+const editedIds = new Set();
+let nextId = 0;
+
+const bulkSelected = new Set();
+const bulkTouched  = new Set();
+let editorMode = 'edit'; // 'edit' | 'new' | 'bulk'
+let dlgOriginal = '';
+
+/* ── Column preferences (persisted via localStorage) ────── */
+const LS_COLS = 'depp-nwp-editor.cols.v1';
+let colPrefs = { widths: {}, hidden: [] };
+try {
+  const saved = JSON.parse(localStorage.getItem(LS_COLS));
+  if (saved && typeof saved === 'object') colPrefs = Object.assign(colPrefs, saved);
+} catch { /* ignore */ }
+function savePrefs() { try { localStorage.setItem(LS_COLS, JSON.stringify(colPrefs)); } catch {} }
+function prefs() {
+  if (!colPrefs.widths)               colPrefs.widths  = {};
+  if (!Array.isArray(colPrefs.hidden)) colPrefs.hidden = [];
+  return colPrefs;
+}
+const DEFAULT_WIDTHS = {
+  name: 220, group: 80, slots: 48, relevantAbility: 120, checkModifier: 52,
+  prerequisites: 160, classRestrictions: 140, raceRestrictions: 140,
+  page: 56, source: 180, verified: 44,
+};
+function colWidth(k) { return prefs().widths[k] ?? DEFAULT_WIDTHS[k] ?? 110; }
+
+const $ = id => document.getElementById(id);
+const hasFS = 'showOpenFilePicker' in window;
+
+/* These keys store arrays in JSON but display as comma-sep strings in UI */
+const ARRAY_KEYS = ['prerequisites', 'classRestrictions', 'raceRestrictions'];
+/* These keys should be coerced to numbers on apply */
+const NUM_KEYS   = ['slots', 'page', 'checkModifier'];
+
+/* ── Field access (get / set) ────────────────────────────── */
+function gf(p, key) {
+  if (ARRAY_KEYS.includes(key)) {
+    const v = p[key];
+    return Array.isArray(v) ? v.join(', ') : (v ?? '');
+  }
+  if (key === 'source') {
+    if (Array.isArray(p.sourceBooks) && p.sourceBooks.length) return p.sourceBooks[0];
+    return p.source ?? p.originalSource ?? '';
+  }
+  // Return raw value; null/undefined will be caught by callers
+  return p[key] ?? undefined;
+}
+
+function sf(p, key, value) {
+  if (ARRAY_KEYS.includes(key)) {
+    p[key] = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
+    return;
+  }
+  if (key === 'source') {
+    const rest = Array.isArray(p.sourceBooks) ? p.sourceBooks.slice(1) : [];
+    p.sourceBooks = value ? [String(value), ...rest] : rest;
+    if (!p.originalSource) p.originalSource = value;
+    return;
+  }
+  if (key === 'checkModifier') {
+    p.checkModifier = (value === '' || value == null)
+      ? 0
+      : Number.isFinite(Number(value)) ? Number(value) : value;
+    return;
+  }
+  p[key] = value;
+}
+
+/* ── Dataset helpers ─────────────────────────────────────── */
+function addToDataset(p) {
+  const arr = Array.isArray(rawData) ? rawData
+    : (rawData && Array.isArray(rawData.proficiencies) ? rawData.proficiencies : null);
+  if (arr && arr !== profs) arr.push(p);
+  profs.push(p);
+}
+
+function ensureDataset() {
+  if (rawData) return;
+  profs = [];
+  rawData = {
+    schemaVersion: SCHEMA_VERSION,
+    generator:     'nwp-editor',
+    generatedAt:   new Date().toISOString(),
+    recordCount:   0,
+    proficiencies: profs,
+  };
+  fileName = fileName || 'new-nwp.json';
+  $('empty').style.display = 'none';
+  $('tableWrap').style.display = '';
+  ['search','btnClear','btnSave','btnSaveAs','btnImport','btnAdd','btnCloseFile']
+    .forEach(id => $(id).disabled = false);
+}
+
+/* ── File I/O ────────────────────────────────────────────── */
+async function openFile() {
+  if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
+  let text;
+  if (hasFS) {
+    try {
+      [fileHandle] = await window.showOpenFilePicker({
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+      });
+    } catch { return; }
+    const f = await fileHandle.getFile();
+    fileName = f.name;
+    text     = await f.text();
+  } else {
+    text = await pickViaInput();
+    if (text === null) return;
+  }
+  try { loadData(JSON.parse(text)); }
+  catch (e) { alert('Could not parse JSON: ' + e.message); }
+}
+
+async function importFile() {
+  if (!rawData) { alert('Open a file first, or use + Add to start a new dataset.'); return; }
+  let text;
+  if (hasFS) {
+    try {
+      const [h] = await window.showOpenFilePicker({
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+      });
+      text = await (await h.getFile()).text();
+    } catch { return; }
+  } else {
+    text = await pickViaInput(true);
+    if (text === null) return;
+  }
+  let json;
+  try { json = JSON.parse(text); }
+  catch (e) { alert('Could not parse JSON: ' + e.message); return; }
+
+  let incoming = [];
+  if (Array.isArray(json))                        incoming = json;
+  else if (json && Array.isArray(json.proficiencies)) incoming = json.proficiencies;
+  else { alert('Unrecognised JSON shape for import.'); return; }
+
+  for (const p of incoming) { p._id = nextId++; addToDataset(p); }
+  dirty = true;
+  buildFilters(); renderTable(); refreshStatus();
+  alert(`Imported ${incoming.length} record(s).`);
+}
+
+function pickViaInput(keepFileName = false) {
+  return new Promise(resolve => {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = '.json,application/json';
+    inp.onchange = async () => {
+      if (!inp.files.length) return resolve(null);
+      if (!keepFileName) fileName = inp.files[0].name;
+      resolve(await inp.files[0].text());
+    };
+    inp.click();
+  });
+}
+
+function serialise() {
+  profs.forEach(p => { delete p._id; delete p._isNew; });
+  if (rawData && !Array.isArray(rawData) && Array.isArray(rawData.proficiencies)) {
+    rawData.schemaVersion = rawData.schemaVersion || SCHEMA_VERSION;
+    rawData.recordCount   = rawData.proficiencies.length;
+  }
+  const out = JSON.stringify(rawData, null, 2);
+  profs.forEach((p, i) => p._id = i);
+  nextId = profs.length;
+  return out;
+}
+
+async function saveFile(as = false) {
+  if (!rawData) return;
+  const out = serialise();
+  if (hasFS) {
+    try {
+      if (as || !fileHandle) {
+        fileHandle = await window.showSaveFilePicker({
+          suggestedName: fileName || 'parsed-nwp.json',
+          types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+        });
+        fileName = fileHandle.name;
+      }
+      const w = await fileHandle.createWritable();
+      await w.write(out); await w.close();
+    } catch (e) {
+      if (e.name !== 'AbortError') alert('Save failed: ' + e.message);
+      return;
+    }
+  } else {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([out], { type: 'application/json' }));
+    a.download = fileName || 'parsed-nwp.json';
+    a.click(); URL.revokeObjectURL(a.href);
+  }
+  dirty = false; editedIds.clear();
+  refreshStatus(); renderTable();
+}
+
+function closeFile() {
+  if (!rawData && !profs.length) return;
+  if (dirty && !confirm('You have unsaved changes.\n\nOK = discard and close\nCancel = keep working')) return;
+  rawData = null; profs = []; fileHandle = null; fileName = '';
+  dirty = false; editedIds.clear(); selectedId = null; pendingNew = null;
+  bulkSelected.clear(); bulkTouched.clear();
+  sortKey = null; sortDir = 1; nextId = 0;
+  closeEditor();
+  $('empty').style.display = '';
+  $('tableWrap').style.display = 'none';
+  $('filters').innerHTML = '';
+  ['search','btnClear','btnSave','btnSaveAs','btnImport','btnCloseFile']
+    .forEach(id => $(id).disabled = true);
+  $('btnAdd').disabled = false;
+  $('search').value = '';
+  refreshStatus();
+}
+
+/* ── Data loading ─────────────────────────────────────────── */
+function loadData(json) {
+  rawData = json;
+  if (Array.isArray(json)) {
+    profs = json;
+  } else if (json && Array.isArray(json.proficiencies)) {
+    profs = json.proficiencies;
+  } else {
+    alert('Unrecognised JSON shape — expected { proficiencies: [...] } or a plain array.');
+    rawData = null; return;
+  }
+  profs.forEach((p, i) => p._id = i);
+  nextId = profs.length;
+  dirty = false; editedIds.clear(); selectedId = null; pendingNew = null;
+  bulkSelected.clear(); bulkTouched.clear();
+  sortKey = null; sortDir = 1;
+  closeEditor(); buildFilters();
+  $('empty').style.display = 'none';
+  $('tableWrap').style.display = '';
+  ['search','btnClear','btnSave','btnSaveAs','btnImport','btnAdd','btnCloseFile']
+    .forEach(id => $(id).disabled = false);
+  $('search').value = '';
+  renderTable(); refreshStatus();
+}
+
+/* ── Blank record ─────────────────────────────────────────── */
+function makeBlank() {
+  return {
+    id:               `nwp_new_${Date.now()}_2e`,
+    name:             '',
+    slots:            1,
+    relevantAbility:  'Intelligence',
+    checkModifier:    0,
+    group:            'General',
+    description:      '',
+    prerequisites:    [],
+    classRestrictions:[],
+    raceRestrictions: [],
+    page:             null,
+    sourceBooks:      [],
+    verified:         false,
+    originalSource:   '',
+    ruleset:          '2e',
+    _isNew:           true,
+  };
+}
+
+function addProf() {
+  bulkSelected.clear(); bulkTouched.clear();
+  pendingNew = makeBlank();
+  selectedId = null;
+  renderEditor(pendingNew, 'new');
+  if (rawData) renderTable();
+  setTimeout(() => {
+    const el = $('editor').querySelector('input[data-k="name"]');
+    if (el) { el.focus(); el.select(); }
+  }, 30);
+}
+
+function commitNew(p) {
+  collectEdits(p);
+  ensureDataset();
+  delete p._isNew;
+  p._id = nextId++;
+  addToDataset(p);
+  dirty = true;
+  editedIds.add(p._id);
+  pendingNew = null;
+  buildFilters();
+  openEditor(p._id);
+  refreshStatus();
+}
+
+/* ── Filters & visible set ────────────────────────────────── */
+function buildFilters() {
+  $('filters').innerHTML = FILTERS.map(f => {
+    let vals = [...new Set(profs.map(p => {
+      const v = gf(p, f.key);
+      return (v !== undefined && v !== null && v !== '') ? String(v) : null;
+    }).filter(Boolean))];
+    vals.sort(f.numeric ? (a, b) => Number(a) - Number(b) : undefined);
+    return `<select data-key="${f.key}"><option value="">${f.label}: all</option>` +
+      vals.map(v => `<option>${esc(v)}</option>`).join('') + `</select>`;
+  }).join('');
+  [...$('filters').querySelectorAll('select')].forEach(sel =>
+    sel.addEventListener('input', renderTable));
+}
+
+function visibleProfs() {
+  const q    = $('search').value.trim().toLowerCase();
+  const sels = [...$('filters').querySelectorAll('select')];
+  let list = profs.filter(p =>
+    sels.every(sel => !sel.value || String(gf(p, sel.dataset.key) ?? '') === sel.value) &&
+    (!q || String(gf(p, 'name') ?? '').toLowerCase().includes(q) ||
+     String(p.description ?? '').toLowerCase().includes(q))
+  );
+  if (sortKey) {
+    list = [...list].sort((a, b) => {
+      const av = gf(a, sortKey) ?? '', bv = gf(b, sortKey) ?? '';
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * sortDir;
+      return String(av).localeCompare(String(bv), undefined, { numeric: true }) * sortDir;
+    });
+  }
+  return list;
+}
+
+/* ── HTML helpers ────────────────────────────────────────── */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g,
+    c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function groupClass(grp) {
+  return ({ warrior:'warrior', priest:'priest', rogue:'rogue', wizard:'wizard', general:'general' }
+  )[String(grp ?? '').toLowerCase()] ?? '';
+}
+
+function modStr(mod) {
+  if (mod === undefined || mod === null || mod === '') return '?';
+  const n = Number(mod);
+  return n > 0 ? `+${n}` : String(n);
+}
+
+/* Minimal Markdown → HTML renderer */
+function mdToHtml(md) {
+  const lines = String(md ?? '').split(/\r?\n/);
+  let html = '', inUl = false, inOl = false, inCode = false, para = [];
+  const inline = s => esc(s)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/(^|[\s(])_([^_]+)_(?=$|[\s).,;:!?])/g, '$1<em>$2</em>')
+    .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  const flushP   = () => { if (para.length) { html += '<p>' + inline(para.join(' ')) + '</p>'; para = []; } };
+  const closeL   = () => { if (inUl){html+='</ul>';inUl=false;} if(inOl){html+='</ol>';inOl=false;} };
+  const isSep    = l => l.includes('-') && /^\s*\|?\s*:?-{1,}:?\s*(\|\s*:?-{1,}:?\s*)*\|?\s*$/.test(l);
+  const cells    = l => { let t=l.trim(); if(t[0]==='|')t=t.slice(1); if(t.slice(-1)==='|')t=t.slice(0,-1); return t.split('|').map(c=>c.trim()); };
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (/^\s*```/.test(line)) { flushP(); closeL(); if(inCode){html+='</code></pre>';inCode=false;}else{html+='<pre><code>';inCode=true;} continue; }
+    if (inCode) { html += esc(line) + '\n'; continue; }
+    if (line.includes('|') && line.trim() && i+1 < lines.length && isSep(lines[i+1])) {
+      flushP(); closeL();
+      const hdrs = cells(line);
+      const alns = cells(lines[i+1]).map(c=>{const l=c[0]===':',r=c.slice(-1)===':';return l&&r?'center':r?'right':l?'left':'';});
+      const rows = []; let j = i+2;
+      while (j < lines.length && lines[j].includes('|') && lines[j].trim() && !/^\s*```/.test(lines[j])) { rows.push(cells(lines[j])); j++; }
+      html += '<table><thead><tr>' +
+        hdrs.map((h,x)=>`<th${alns[x]?` style="text-align:${alns[x]}"`:''}>` + inline(h) + '</th>').join('') +
+        '</tr></thead><tbody>' +
+        rows.map(r=>'<tr>'+hdrs.map((_,x)=>`<td${alns[x]?` style="text-align:${alns[x]}"`:''}>` + inline(r[x]??'') + '</td>').join('')+'</tr>').join('') +
+        '</tbody></table>';
+      i = j-1; continue;
+    }
+    if (/^\s*$/.test(line)) { flushP(); closeL(); continue; }
+    const h = line.match(/^(#{1,6})\s+(.*)$/);
+    if (h) { flushP(); closeL(); html += `<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`; continue; }
+    if (/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) { flushP(); closeL(); html += '<hr>'; continue; }
+    const ul = line.match(/^\s*[-*+]\s+(.*)$/);
+    if (ul) { flushP(); if(inOl){html+='</ol>';inOl=false;} if(!inUl){html+='<ul>';inUl=true;} html += '<li>'+inline(ul[1])+'</li>'; continue; }
+    const ol = line.match(/^\s*\d+[.)]\s+(.*)$/);
+    if (ol) { flushP(); if(inUl){html+='</ul>';inUl=false;} if(!inOl){html+='<ol>';inOl=true;} html += '<li>'+inline(ol[1])+'</li>'; continue; }
+    const bq = line.match(/^\s*>\s?(.*)$/);
+    if (bq) { flushP(); closeL(); html += '<blockquote>'+inline(bq[1])+'</blockquote>'; continue; }
+    para.push(line.trim());
+  }
+  flushP(); closeL();
+  if (inCode) html += '</code></pre>';
+  return html;
+}
+
+/* ── Column resize + show/hide ────────────────────────────── */
+function visibleCols() {
+  const hidden = new Set(prefs().hidden);
+  const v = COLS.filter(c => !hidden.has(c.key));
+  return v.length ? v : [COLS[0]];
+}
+
+function syncTableWidth() {
+  let total = 36 + 34;
+  document.querySelectorAll('#colgroup col[data-key]').forEach(c => {
+    total += parseInt(c.style.width, 10) || 110;
+  });
+  $('dataTable').style.width = total + 'px';
+}
+
+function attachResizer(r) {
+  r.addEventListener('mousedown', e => {
+    e.preventDefault(); e.stopPropagation();
+    const key = r.dataset.key;
+    const col = document.querySelector(`#colgroup col[data-key="${key}"]`);
+    if (!col) return;
+    const startX = e.clientX, startW = col.getBoundingClientRect().width || colWidth(key);
+    r.classList.add('active');
+    document.body.style.cursor = 'col-resize';
+    const move = ev => {
+      const w = Math.max(40, Math.round(startW + ev.clientX - startX));
+      prefs().widths[key] = w; col.style.width = w + 'px'; syncTableWidth();
+    };
+    const up = () => {
+      document.removeEventListener('mousemove', move);
+      document.removeEventListener('mouseup', up);
+      document.body.style.cursor = '';
+      r.classList.remove('active');
+      savePrefs(); justResized = true; setTimeout(() => { justResized = false; }, 60);
+    };
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+  });
+}
+
+function toggleColMenu(e) {
+  e.stopPropagation();
+  const menu = $('colMenu');
+  if (!menu.hidden) { menu.hidden = true; return; }
+  menu.innerHTML = COLS.map(c => {
+    const hidden = prefs().hidden.includes(c.key);
+    return `<label><input type="checkbox" data-key="${c.key}"${hidden ? '' : ' checked'}> ${esc(c.label === '✓' ? 'Verified' : c.label)}</label>`;
+  }).join('');
+  menu.hidden = false;
+  const rect = (e.currentTarget || e.target).getBoundingClientRect();
+  menu.style.top  = (rect.bottom + 4) + 'px';
+  menu.style.left = Math.max(8, rect.right - menu.offsetWidth) + 'px';
+  menu.querySelectorAll('input').forEach(cb => cb.addEventListener('change', () => {
+    const k = cb.dataset.key;
+    const hid = new Set(prefs().hidden);
+    if (cb.checked) hid.delete(k); else hid.add(k);
+    if (hid.size >= COLS.length) { cb.checked = true; hid.delete(k); }
+    prefs().hidden = [...hid]; savePrefs(); renderTable();
+  }));
+}
+document.addEventListener('click', e => {
+  const m = $('colMenu');
+  if (!m.hidden && !m.contains(e.target)) m.hidden = true;
+});
+
+/* ── Table rendering ──────────────────────────────────────── */
+function renderHead() {
+  const cols = visibleCols();
+  $('colgroup').innerHTML =
+    '<col style="width:34px">' +
+    cols.map(c => `<col data-key="${c.key}" style="width:${colWidth(c.key)}px">`).join('') +
+    '<col style="width:36px">';
+  $('headRow').innerHTML =
+    `<th class="check-th" title="Select all shown"><input type="checkbox" id="chkAll"></th>` +
+    cols.map(c => {
+      const arrow = sortKey === c.key ? `<span class="arrow"> ${sortDir > 0 ? '▲' : '▼'}</span>` : '';
+      return `<th data-key="${c.key}" title="${esc(c.label)}">${c.label}${arrow}<div class="resizer" data-key="${c.key}"></div></th>`;
+    }).join('') +
+    `<th class="colmenu-th"><button id="btnCols" title="Show/hide columns">☰</button></th>`;
+  syncTableWidth();
+  [...$('headRow').querySelectorAll('th[data-key]')].forEach(th => {
+    th.onclick = e => {
+      if (justResized || e.target.classList.contains('resizer')) return;
+      const k = th.dataset.key;
+      if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+      renderTable();
+    };
+  });
+  [...$('headRow').querySelectorAll('.resizer')].forEach(attachResizer);
+  $('btnCols').onclick = toggleColMenu;
+  const chkAll = $('chkAll');
+  chkAll.onclick  = e => e.stopPropagation();
+  chkAll.onchange = () => onSelectAll(chkAll.checked);
+}
+
+function renderTable() {
+  renderHead();
+  const list = visibleProfs();
+  const cols = visibleCols();
+  $('tbody').innerHTML = list.map(p => {
+    const dot     = editedIds.has(p._id) ? ' <span class="edited-dot" title="edited">●</span>' : '';
+    const selBulk = bulkSelected.has(p._id);
+    const rowCls  = [p._id === selectedId ? 'selected' : '', selBulk ? 'bulksel' : ''].filter(Boolean).join(' ');
+    const cells   = cols.map(col => {
+      let val = gf(p, col.key);
+      if (val === undefined || val === null) val = '';
+      if (typeof val === 'boolean') val = val ? '✓' : '';
+      const numCls = col.num ? ' class="num"' : '';
+      const tip    = ` title="${esc(String(val))}"`;
+      if (col.key === 'group') {
+        const gc = groupClass(val);
+        return `<td${tip}><span class="badge ${gc}">${esc(String(val))}</span></td>`;
+      }
+      if (col.key === 'source') {
+        return `<td${tip}><span class="badge">${esc(String(val))}</span></td>`;
+      }
+      return `<td${numCls}${tip}>${esc(String(val))}${col.key === 'name' ? dot : ''}</td>`;
+    });
+    return `<tr data-id="${p._id}" class="${rowCls}">` +
+      `<td class="check-td"><input type="checkbox" class="rowchk"${selBulk ? ' checked' : ''}></td>` +
+      `${cells.join('')}<td></td></tr>`;
+  }).join('');
+
+  [...$('tbody').children].forEach(tr => {
+    const id  = Number(tr.dataset.id);
+    const chk = tr.querySelector('.rowchk');
+    chk.addEventListener('click',  e => e.stopPropagation());
+    chk.addEventListener('change', () => toggleBulk(id, chk.checked));
+    tr.addEventListener('click', e => { if (e.target.closest('.check-td')) return; rowClickOpen(id); });
+  });
+
+  const ids      = list.map(p => p._id);
+  const selCount = ids.filter(i => bulkSelected.has(i)).length;
+  const chkAll   = $('chkAll');
+  if (chkAll) {
+    chkAll.checked       = selCount > 0 && selCount === ids.length;
+    chkAll.indeterminate = selCount > 0 && selCount < ids.length;
+  }
+  refreshStatus(list.length);
+}
+
+function refreshStatus(visCount) {
+  const st = $('status');
+  if (!profs.length && !rawData) { st.textContent = 'No file loaded'; st.classList.remove('dirty'); return; }
+  const vis      = visCount ?? visibleProfs().length;
+  const bulkNote = bulkSelected.size ? ` · ${bulkSelected.size} selected` : '';
+  st.textContent = `${fileName || '(unsaved)'} — ${vis}/${profs.length} proficiencies shown${bulkNote}` +
+    (dirty ? ' ● unsaved' : '');
+  st.classList.toggle('dirty', dirty);
+}
+
+/* ── Bulk selection ────────────────────────────────────────── */
+function rowClickOpen(id) {
+  if (bulkSelected.size) { bulkSelected.clear(); bulkTouched.clear(); }
+  openEditor(id);
+}
+
+function toggleBulk(id, on) {
+  const wasBulk = editorMode === 'bulk';
+  if (on) bulkSelected.add(id); else bulkSelected.delete(id);
+  const n = bulkSelected.size;
+  if      (n >= 2) { if (wasBulk) { updateBulkCount(); renderTable(); } else openBulkEditor(); }
+  else if (n === 1) openEditor([...bulkSelected][0]);
+  else              closeEditor();
+}
+
+function onSelectAll(checked) {
+  const wasBulk = editorMode === 'bulk';
+  const vis = visibleProfs();
+  if (checked) vis.forEach(p => bulkSelected.add(p._id));
+  else         vis.forEach(p => bulkSelected.delete(p._id));
+  const n = bulkSelected.size;
+  if      (n >= 2) { if (wasBulk) { updateBulkCount(); renderTable(); } else openBulkEditor(); }
+  else if (n === 1) openEditor([...bulkSelected][0]);
+  else              closeEditor();
+}
+
+function updateBulkCount() {
+  const n = bulkSelected.size;
+  const a = $('btnApply'); if (a) a.textContent = `Apply to ${n}`;
+  const b = $('editor').querySelector('h2 .badge');
+  if (b) b.textContent = `${n} records — changes apply to all`;
+}
+
+function openBulkEditor() {
+  pendingNew = null; selectedId = null; bulkTouched.clear();
+  renderEditor({}, 'bulk');
+  renderTable();
+  $('editor').scrollTop = 0;
+}
+
+/* ── Edit panel ────────────────────────────────────────────── */
+function fieldHtml(f, p) {
+  if (f.row) {
+    const style = f.cols ? ` style="grid-template-columns:${f.cols}"` : '';
+    return `<div class="row-compact"${style}>${f.row.map(x => fieldHtml(x, p)).join('')}</div>`;
+  }
+  const v = gf(p, f.k) ?? '';
+  if (f.type === 'select') {
+    const cur  = String(v ?? '');
+    const opts = [...new Set([...(f.options || []), ...(cur && !f.options?.includes(cur) ? [cur] : [])])];
+    const blank = cur === '' ? '<option value="" selected></option>' : '';
+    return `<div class="field"><label>${f.label}</label>
+      <select data-k="${f.k}">${blank}${
+        opts.map(o => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')
+      }</select></div>`;
+  }
+  if (f.type === 'toggle') return toggleHtml(f, p);
+  return `<div class="field"><label>${f.label}</label><input data-k="${f.k}" value="${esc(String(v))}"></div>`;
+}
+
+const TOGGLE_LABEL = { on: 'Yes', off: 'No', mixed: '— No change' };
+function toggleHtml(f, p) {
+  const st = editorMode === 'bulk' ? 'mixed' : (gf(p, f.k) ? 'on' : 'off');
+  return `<div class="field"><label>${f.label}</label>
+    <button type="button" class="toggle-btn ${st}" data-k="${f.k}" data-state="${st}" aria-pressed="${st === 'on'}">${TOGGLE_LABEL[st]}</button></div>`;
+}
+function setToggle(btn, st) {
+  btn.dataset.state = st;
+  btn.setAttribute('aria-pressed', st === 'on');
+  btn.textContent = TOGGLE_LABEL[st];
+  btn.classList.remove('on','off','mixed');
+  btn.classList.add(st);
+}
+
+function profMeta(p) {
+  const grp = gf(p, 'group') ?? '?';
+  const abl = gf(p, 'relevantAbility') ?? '?';
+  const mod = gf(p, 'checkModifier');
+  const pg  = gf(p, 'page') ?? '?';
+  const src = gf(p, 'source') ?? '';
+  return `${esc(String(grp))} · ${esc(String(abl))} ${modStr(mod)} · p.${esc(String(pg))} · ${esc(String(src))}`;
+}
+
+function renderEditor(p, mode) {
+  editorMode = mode;
+  const isNew  = mode === 'new';
+  const isBulk = mode === 'bulk';
+  const n = bulkSelected.size;
+
+  const title = isBulk ? 'Bulk edit'
+    : (gf(p, 'name') || (isNew ? '(new proficiency)' : '(unnamed)'));
+  const badge = isBulk
+    ? ` <span class="badge">${n} records — changes apply to all</span>`
+    : (isNew ? ' <span class="badge">draft — added on Apply</span>' : '');
+  const metaHtml = isBulk
+    ? `Edit any field and click <strong>Apply</strong> to set it on all ${n} selected proficiencies. Fields you don't touch are left unchanged.`
+    : profMeta(p);
+
+  $('editor').innerHTML = `
+    <h2 id="edTitle">${esc(String(title))}${badge}</h2>
+    <div class="meta">${metaHtml}</div>
+    ${EDIT_LAYOUT.map(f => fieldHtml(f, p)).join('')}
+    <div class="field">
+      <label>Description (Markdown)</label>
+      <div class="md-row">
+        <div class="md-tabs">
+          <button type="button" id="mdWrite" class="active">Write</button>
+          <button type="button" id="mdPreviewBtn">Preview</button>
+        </div>
+        <button type="button" id="mdExpand" class="md-expand" title="Open larger editor">⤢ Expand editor</button>
+      </div>
+      <textarea data-k="description" id="descBox">${esc(String(p.description ?? ''))}</textarea>
+      <div class="md-preview" id="descPreview" hidden></div>
+      <div class="md-hint">Supports **bold**, *italic*, \`code\`, # headings, - lists, &gt; quotes, tables, [links](https://…)</div>
+    </div>
+    <div id="editorBtns">
+      <button id="btnApply" class="primary">${isBulk ? `Apply to ${n}` : 'Apply'}</button>
+      <button id="btnRevert">Revert</button>
+      <span class="spacer"></span>
+      ${isBulk ? '' : `<button id="btnDelete" class="danger">${isNew ? 'Discard Draft' : 'Delete Entry'}</button>`}
+      <button id="btnEdClose">Close</button>
+    </div>`;
+  $('editor').classList.add('open');
+  $('editor').classList.toggle('bulk', isBulk);
+
+  /* Toggle buttons */
+  $('editor').querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.state === 'on' ? 'off' : 'on';
+      setToggle(btn, next);
+      if (isBulk) bulkTouched.add(btn.dataset.k);
+    });
+  });
+
+  /* Bulk: track touched fields */
+  if (isBulk) {
+    $('editor').querySelectorAll('[data-k]').forEach(el => {
+      if (el.classList.contains('toggle-btn')) return;
+      const mark = () => bulkTouched.add(el.dataset.k);
+      el.addEventListener('input',  mark);
+      el.addEventListener('change', mark);
+    });
+  }
+
+  /* Markdown write/preview toggle */
+  $('mdWrite').onclick = () => {
+    $('descBox').hidden = false; $('descPreview').hidden = true;
+    $('mdWrite').classList.add('active'); $('mdPreviewBtn').classList.remove('active');
+  };
+  $('mdPreviewBtn').onclick = () => {
+    $('descPreview').innerHTML = mdToHtml($('descBox').value) || '<p style="color:var(--muted)">Nothing to preview.</p>';
+    $('descBox').hidden = true; $('descPreview').hidden = false;
+    $('mdPreviewBtn').classList.add('active'); $('mdWrite').classList.remove('active');
+  };
+  $('mdExpand').onclick = openDescDialog;
+
+  $('btnApply').onclick = () => isBulk ? applyBulk() : (isNew ? commitNew(p) : applyEdit(p));
+  $('btnRevert').onclick = () => {
+    if (isBulk)  { bulkTouched.clear(); openBulkEditor(); }
+    else if (isNew) { pendingNew = makeBlank(); renderEditor(pendingNew, 'new'); }
+    else openEditor(p._id);
+  };
+  if (!isBulk) {
+    $('btnDelete').onclick = () => {
+      if (isNew) { pendingNew = null; closeEditor(); }
+      else deleteEntry(p);
+    };
+  }
+  $('btnEdClose').onclick = () => { if (isNew) pendingNew = null; closeEditor(); };
+  $('editor').scrollTop = 0;
+}
+
+function openEditor(id) {
+  const p = profs.find(x => x._id === id);
+  if (!p) return;
+  pendingNew = null;
+  selectedId = id;
+  renderEditor(p, 'edit');
+  renderTable();
+  $('editor').scrollTop = 0;
+}
+
+function readControlValue(el) {
+  if (el.classList.contains('toggle-btn')) {
+    const st = el.dataset.state;
+    return st === 'on' ? true : st === 'off' ? false : undefined;
+  }
+  if (el.type === 'checkbox') return el.checked;
+  return el.value;
+}
+
+function collectEdits(p) {
+  let changed = false;
+  $('editor').querySelectorAll('[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    let v = readControlValue(el);
+    if (v === undefined) return;
+    if (NUM_KEYS.includes(k)) {
+      const num = Number(v);
+      v = Number.isFinite(num) && v !== '' ? num : v;
+    }
+    const cur    = gf(p, k);
+    const curCmp = ARRAY_KEYS.includes(k) ? String(cur ?? '') : cur;
+    const vCmp   = ARRAY_KEYS.includes(k) ? String(v  ?? '') : v;
+    if (curCmp !== vCmp) { sf(p, k, v); changed = true; }
+  });
+  return changed;
+}
+
+function applyEdit(p) {
+  const changed = collectEdits(p);
+  if (changed) { dirty = true; editedIds.add(p._id); }
+  const title = $('edTitle');
+  if (title) title.textContent = gf(p, 'name') || '(unnamed)';
+  buildFilters(); renderTable(); refreshStatus();
+}
+
+function applyBulk() {
+  const recs = profs.filter(p => bulkSelected.has(p._id));
+  if (!recs.length) { alert('No records selected.'); return; }
+  if (!bulkTouched.size) { alert('Change a field first — nothing to apply yet.'); return; }
+  bulkTouched.forEach(k => {
+    const el = $('editor').querySelector(`[data-k="${CSS.escape(k)}"]`);
+    if (!el) return;
+    let v = readControlValue(el);
+    if (v === undefined) return;
+    if (NUM_KEYS.includes(k)) {
+      const num = Number(v);
+      v = Number.isFinite(num) && v !== '' ? num : v;
+    }
+    recs.forEach(p => { sf(p, k, v); editedIds.add(p._id); });
+  });
+  dirty = true;
+  const count = recs.length, fields = bulkTouched.size;
+  bulkTouched.clear();
+  buildFilters(); renderTable(); renderEditor({}, 'bulk');
+  const st = $('status');
+  if (st) {
+    st.textContent = `Applied ${fields} field(s) to ${count} record(s)` + (dirty ? ' ● unsaved' : '');
+    st.classList.add('dirty');
+  }
+}
+
+function deleteEntry(p) {
+  if (!confirm(`Delete "${gf(p, 'name') || '(unnamed)'}"? (removed on next Save)`)) return;
+  profs = profs.filter(x => x._id !== p._id);
+  if (Array.isArray(rawData)) {
+    const i = rawData.indexOf(p); if (i >= 0) rawData.splice(i, 1);
+  } else if (rawData && Array.isArray(rawData.proficiencies)) {
+    const i = rawData.proficiencies.indexOf(p); if (i >= 0) rawData.proficiencies.splice(i, 1);
+  }
+  bulkSelected.delete(p._id);
+  dirty = true;
+  buildFilters(); closeEditor(); renderTable();
+}
+
+function closeEditor() {
+  selectedId = null; pendingNew = null; editorMode = 'edit';
+  bulkSelected.clear(); bulkTouched.clear();
+  $('editor').classList.remove('open', 'bulk');
+  $('editor').innerHTML = '';
+  if (rawData) renderTable();
+}
+
+function step(delta) {
+  if (selectedId === null) return;
+  const list = visibleProfs();
+  const i    = list.findIndex(p => p._id === selectedId);
+  const next = list[i + delta];
+  if (next) {
+    openEditor(next._id);
+    document.querySelector(`tr[data-id="${next._id}"]`)?.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+/* ── Description dialog ──────────────────────────────────── */
+function openDescDialog() {
+  const box = $('descBox');
+  if (!box) return;
+  dlgOriginal = box.value;
+  $('dlgBox').value = box.value;
+  dlgSetWrite();
+  $('descDialog').hidden = false;
+  setTimeout(() => $('dlgBox').focus(), 20);
+}
+function dlgSetWrite() {
+  $('dlgBox').hidden = false; $('dlgPreview').hidden = true;
+  $('dlgWrite').classList.add('active'); $('dlgPreviewBtn').classList.remove('active');
+}
+function dlgSetPreview() {
+  $('dlgPreview').innerHTML = mdToHtml($('dlgBox').value) || '<p style="color:var(--muted)">Nothing to preview.</p>';
+  $('dlgBox').hidden = true; $('dlgPreview').hidden = false;
+  $('dlgPreviewBtn').classList.add('active'); $('dlgWrite').classList.remove('active');
+}
+function dlgApply() {
+  const box = $('descBox');
+  if (!box) return;
+  box.value = $('dlgBox').value;
+  if (editorMode === 'bulk') bulkTouched.add('description');
+  if ($('descPreview') && !$('descPreview').hidden)
+    $('descPreview').innerHTML = mdToHtml(box.value) || '<p style="color:var(--muted)">Nothing to preview.</p>';
+}
+function dlgClose() { $('descDialog').hidden = true; }
+
+/* ── Wiring ──────────────────────────────────────────────── */
+$('btnOpen').onclick    = openFile;
+$('btnImport').onclick  = importFile;
+$('btnAdd').onclick     = addProf;
+$('btnSave').onclick    = () => saveFile(false);
+$('btnSaveAs').onclick  = () => saveFile(true);
+$('btnCloseFile').onclick = closeFile;
+$('btnClear').onclick   = () => {
+  $('search').value = '';
+  $('filters').querySelectorAll('select').forEach(sel => sel.value = '');
+  renderTable();
+};
+$('search').addEventListener('input', renderTable);
+
+$('dlgWrite').onclick      = dlgSetWrite;
+$('dlgPreviewBtn').onclick = dlgSetPreview;
+$('dlgApply').onclick      = dlgApply;
+$('dlgRevert').onclick     = () => { $('dlgBox').value = dlgOriginal; if (!$('dlgPreview').hidden) dlgSetPreview(); };
+$('dlgClose').onclick      = dlgClose;
+$('dlgX').onclick          = dlgClose;
+$('descDialog').addEventListener('click', e => { if (e.target.id === 'descDialog') dlgClose(); });
+
+document.addEventListener('keydown', e => {
+  if (!$('descDialog').hidden) {
+    if (e.key === 'Escape') { e.preventDefault(); dlgClose(); } return;
+  }
+  if (e.key === 'Escape') {
+    const m = $('colMenu');
+    if (!m.hidden) { m.hidden = true; return; }
+    closeEditor();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); if (rawData) saveFile(false); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowDown') { e.preventDefault(); step(1); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowUp')   { e.preventDefault(); step(-1); }
+});
+window.addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
+</script>
+</body>
+</html>

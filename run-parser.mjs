@@ -1,8 +1,8 @@
 /**
  * run-parser.mjs  –  AD&D 2e spell-block extractor for scanned TSR PDFs
  * ═══════════════════════════════════════════════════════════════════════════
- * Reads the text layer of one or more PDFs and emits a JSON array of spell
- * records. Built to survive the defects of scanned/print-to-PDF sources:
+ * Reads the text layer of one or more PDFs and emits SSR schema records.
+ * Built to survive the defects of scanned/print-to-PDF sources:
  *   • Two-column layout (left column first, then right), auto-detected per page
  *   • Section-level heading → current level number
  *   • Spell header: "SpellName (School)" Title Case
@@ -22,7 +22,9 @@
  *         --out=path    write all results to this single file (overrides per-source default)
  *         Default out:  output/<source-title>-parsed.json  (one file per PDF)
  *
- * Output is always a flat array of Savage Sun Rising (SSR) schema records.
+ * Output (schema v2): a metadata-wrapped object
+ *   { schemaVersion, generator, generatedAt, source|sources, recordCount, spells: [ …SSR records… ] }
+ * See spell-schema.v2.json for the record shape.
  */
 
 import { readFile, writeFile } from 'fs/promises';
@@ -58,8 +60,10 @@ const PSIONIC_DISC_SECTION_RE =
   /^(?<Disc>Clairsentient|Psychokinetic|Psychometabolic|Psychoportive|Telepathic|Metapsionic)\s+(?<Tier>Sciences?|Devotions?)\s*$/i;
 const POWER_SCORE_RE  = /^Power\s*Score\s*:/i;
 const INITIAL_COST_RE = /^Initial\s*Cost\s*:/i;
+// Revised Dark Sun psionics also print MAC and a "PSP Cost: X/Y" line; captured
+// best-effort here so they flow through to the v2 fields when present.
 const PSIONIC_FIELD_RE =
-  /^(?<Field>Power\s*Score|Initial\s*Cost|Maintenance\s*Cost|Range|Preparation\s*Time|Area\s*of\s*Effect|Prerequisites?)\s*:\s*(?<Value>.*)$/i;
+  /^(?<Field>Power\s*Score|Initial\s*Cost|Maintenance\s*Cost|MAC|PSP\s*Cost|Range|Preparation\s*Time|Area\s*of\s*Effect|Prerequisites?)\s*:\s*(?<Value>.*)$/i;
 const HIGH_SCIENCE_RE = /\(\s*High\s+Sciences?\s*\)/i;
 
 const PSIONIC_DISCIPLINE = {
@@ -76,6 +80,8 @@ function normalisePsionicKey(raw) {
     case    'powerscore':      return 'PowerScore';
     case    'initialcost':     return 'InitialCost';
     case    'maintenancecost': return 'MaintenanceCost';
+    case    'mac':             return 'Mac';
+    case    'pspcost':         return 'PspCost';
     case    'range':           return 'Range';
     case    'preparationtime': return 'PreparationTime';
     case    'areaofeffect':    return 'AreaOfEffect';
@@ -200,10 +206,48 @@ function slug(name) {
     .slice(0, 60);
 }
 
+// ── v2 schema helpers ─────────────────────────────────────────────────────────
+
+/** Seed 5e_classes with the detected 2e class; expand later for shared lists. */
 function default5eClasses(cls) {
-  // Seed with the detected 2e class as a starting point; expand later for
-  // shared 5e lists (e.g. Cleric/Druid/Ranger/Bard overlaps).
   return cls ? [cls] : [];
+}
+
+/** "Wis -3" / "Wis-3" / "Con +1" / "Wis" → { stat, mod } (both string|null). */
+function splitPowerScore(raw) {
+  if (raw == null || String(raw).trim() === '') return { stat: null, mod: null };
+  const m = String(raw).trim().match(/^([A-Za-z]{2,4})\s*([-+]?\d+)?$/);
+  if (m) return { stat: m[1], mod: m[2] ?? null };
+  return { stat: String(raw).trim(), mod: null };  // non-standard → keep as stat
+}
+
+/** "5/2" → {pspCost:"5/2",success:5,failure:2}; "3" → {…,success:3,failure:null}. */
+function parsePspCost(raw) {
+  if (raw == null || String(raw).trim() === '' || String(raw).trim() === '—') return { pspCost: null, success: null, failure: null };
+  const s = String(raw).trim();
+  const ints = s.match(/\d+/g);                                   // handles 9+/5+, 4/hour/2, 6+/day/3+
+  if (!ints) return { pspCost: s, success: null, failure: null }; // e.g. "varies"
+  if (ints.length >= 2) return { pspCost: s, success: Number(ints[0]), failure: Number(ints[ints.length - 1]) };
+  return { pspCost: s, success: Number(ints[0]), failure: null };
+}
+
+/** Revised Dark Sun psionics vs original 2e, inferred from the source stem. */
+function detectRuleset(src) {
+  return /\brev(?:ised)?\b|-rev/i.test(String(src || '')) ? 'revised' : '2e';
+}
+
+/** Prerequisites string → array of strings. "" → []. */
+function parsePrerequisites(raw) {
+  if (Array.isArray(raw)) return raw;
+  if (raw == null || String(raw).trim() === '') return [];
+  return String(raw).split(/[,;]|\band\b/i).map(x => x.trim()).filter(Boolean);
+}
+
+/** MAC value → integer or null. */
+function parseMac(raw) {
+  if (raw == null || String(raw).trim() === '') return null;
+  const m = String(raw).trim().match(/-?\d+/);
+  return m ? Number(m[0]) : null;
 }
 
 function parseComponents(raw) {
@@ -262,26 +306,34 @@ function toSsrSpell(legacy, sourceName) {
   const isPsi = legacy.class === 'Psionic' || String(legacy.source || '').includes('Psionic');
 
   if (isPsi) {
+    const { stat, mod } = splitPowerScore(legacy.powerScore);
+    const psp = parsePspCost(legacy.pspCost);
     return {
       id: `psionic_${slug(legacy.name)}_2e`,
       name: legacy.name,
-        class: 'Psionic',
-          "5e_classes": Array.isArray(legacy["5e_classes"]) ? legacy["5e_classes"] : [],
+      class: 'Psionic',
+      '5e_classes': Array.isArray(legacy['5e_classes']) ? legacy['5e_classes'] : [],
       discipline: legacy.discipline || null,
       tier: legacy.tier || null,
       level: null,
-      powerScore: legacy.powerScore || '',
+      powerScoreStat: stat,
+      powerScoreMod: mod,
       initialCost: legacy.initialCost || '',
       maintenanceCost: legacy.maintenanceCost || '',
+      mac: parseMac(legacy.mac),
+      pspCost: psp.pspCost,
+      pspCostSuccess: psp.success,
+      pspCostFailure: psp.failure,
       range: legacy.range || '',
       preparationTime: legacy.preparationTime || '',
       areaOfEffect: legacy.areaOfEffect || '',
-      prerequisites: legacy.prerequisites || '',
+      prerequisites: parsePrerequisites(legacy.prerequisites),
       description: legacy.description || '',
       page: legacy.page ?? null,
       sourceBooks: [book + (String(legacy.source || '').includes('Psionic') ? ' (Psionic)' : '')],
       verified: false,
       originalSource: legacy.source || sourceName,
+      ruleset: detectRuleset(legacy.source || sourceName),
     };
   }
 
@@ -308,8 +360,8 @@ function toSsrSpell(legacy, sourceName) {
     srdIndex: null,
     level: legacy.level ?? 0,
     school: legacy.school || null,
-      class: cls,
-     "5e_classes": Array.isArray(legacy["5e_classes"]) ? legacy["5e_classes"] : default5eClasses(cls),
+    class: cls,
+    '5e_classes': Array.isArray(legacy['5e_classes']) ? legacy['5e_classes'] : default5eClasses(cls),
     spheres,
     castingTime: legacy.castingTime || '',
     range: legacy.range || '',
@@ -475,6 +527,8 @@ async function extractSpells(pdfPath, startPage = 1, endPage = 9999, sourceName 
         powerScore:      fields['PowerScore']      ?? '',
         initialCost:     fields['InitialCost']     ?? '',
         maintenanceCost: fields['MaintenanceCost'] ?? '',
+        mac:             fields['Mac']             ?? '',
+        pspCost:         fields['PspCost']         ?? '',
         range:           fixPipes(fields['Range']  ?? ''),
         preparationTime: fields['PreparationTime'] ?? '',
         areaOfEffect:    fields['AreaOfEffect']    ?? '',
@@ -659,6 +713,20 @@ function printPsionicSummary(psionics) {
   }
 }
 
+// ── Output wrapper (schema v2) ────────────────────────────────────────────────
+
+/** Wrap the record array in the v2 metadata envelope. */
+function wrapPayload(spells, meta) {
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    generator: 'run-parser.mjs',
+    generatedAt: new Date().toISOString(),
+    ...meta,
+    recordCount: spells.length,
+    spells,
+  };
+}
+
 // ── CLI ──────────────────────────────────────────────────────────────────────
 
 const cliArgs  = process.argv.slice(2);
@@ -734,17 +802,24 @@ for (const pdfPath of pdfPaths) {
     const safeTitle = sourceName.replace(/[^A-Za-z0-9._-]+/g, '_');
     const outPath = join(__dirname, 'output', `${safeTitle}-parsed.json`);
     mkdirSync(dirname(outPath), { recursive: true });
-    await writeFile(outPath, JSON.stringify(ssrSpells, null, 2));
-    console.log(`\n  Wrote ${ssrSpells.length} SSR records → ${outPath}`);
+    const payload = wrapPayload(ssrSpells, {
+      source: humanSource(sourceName),
+      sourceFile: fileName,
+    });
+    await writeFile(outPath, JSON.stringify(payload, null, 2));
+    console.log(`\n  Wrote ${ssrSpells.length} SSR v${SCHEMA_VERSION} records → ${outPath}`);
   }
 }
 
 if (cliOut) {
   const outPath = resolve(cliOut);
   mkdirSync(dirname(outPath), { recursive: true });
-  await writeFile(outPath, JSON.stringify(combinedSsr, null, 2));
+  const payload = wrapPayload(combinedSsr, {
+    sources: pdfPaths.map(p => humanSource(basename(p).replace(/\.pdf$/i, ''))),
+  });
+  await writeFile(outPath, JSON.stringify(payload, null, 2));
   console.log(`\n${'═'.repeat(60)}`);
-  console.log(`Output written → ${outPath}  (${combinedSsr.length} SSR records)`);
+  console.log(`Output written → ${outPath}  (${combinedSsr.length} SSR v${SCHEMA_VERSION} records)`);
 } else {
   console.log(`\n${'═'.repeat(60)}`);
   console.log('Done. SSR schema files are in the output/ folder.');
