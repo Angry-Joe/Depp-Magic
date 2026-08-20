@@ -1,4 +1,4 @@
-This spell causes a 4-inch-diameter sphere to appear in the caster's hand. Within the limits described below, the sphere can appear in a variety of colors; each color indicates a different special power. The caster can hurl the sphere at an opponent up to 30 yards away, providing there are no barriers between the caster and the target. If the target is no more than 10 yards away, the caster's to hit roll is made with a +3 bonus. If the target is 10-20 yards away, the caster's roll is made with a +2 bonus. If the target is 20-30 yards away, the caster's roll is made with a +1 bonus.
+This spell causes a 4-inch-diameter sphere to appear in the caster's hand. Within the limits described below, the sphere can appear in a variety of colors; each color indicates a different special power. The caster can hurwingetl the sphere at an opponent up to 30 yards away, providing there are no barriers between the caster and the target. If the target is no more than 10 yards away, the caster's to hit roll is made with a +3 bonus. If the target is 10-20 yards away, the caster's roll is made with a +2 bonus. If the target is 20-30 yards away, the caster's roll is made with a +1 bonus.
 
 If the chromatic orb misses its target, it dissipates without effect. If the target creature makes a successful saving throw, the chromatic orb is also ineffective. Otherwise, the color of the orb determines the amount of damage inflicted and its special power, as summarized on Table 16; details about the special powers are listed below. The caster can create a single orb of any color listed for his level or lower; for instance, a 3rd-level wizard can create an orange, red, or white orb.
 
@@ -33,3 +33,5 @@ _Death_ from the orb causes the victim to die. If the victim successfully saves.
 | 7th             | Blue                   | 2-16                 | Paralysis         |
 | 10th            | Violet                 | slow                 | Petrification     |
 | 12th            | Black                  | paralysis            | Death             |
+
+| D20 roll | 
