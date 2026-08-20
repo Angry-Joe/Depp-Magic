@@ -58129,5 +58129,37 @@
     "verified": true,
     "page": 104,
     "originalSource": "Dragon Kings"
+  },
+  {
+    "id": "spell_new_1787253313453_2e",
+    "name": "Orb of Power (Leary Edit)",
+    "class": "Wizard",
+    "5e_classes": [
+      "Wizard"
+    ],
+    "level": 2,
+    "school": "Alteration",
+    "spheres": [],
+    "sphere": "",
+    "components": [
+      "V",
+      "S",
+      "M"
+    ],
+    "castingTime": "1 turn",
+    "range": "Touch",
+    "duration": "Permanent",
+    "savingThrow": "Special",
+    "areaOfEffect": "Special",
+    "preparationTime": "",
+    "description": "### Note\n_This is a custom take on this spell, which was written ambiguously. It happens to help with a particular problem of defilers who sometimes need to be discreet, or any wizard going places where life energy is sparse._\n---\n\nThis spell allows the caster to endow obsidian orbs with the potential to store energy. It can store up\nenough energy to power the wizard’s average number of spells (the number of spells the wizard would receive for the day if he were a normal wizard of the same level). Up to six orbs may be so endowed at a time. The spell doesn’t imbue the orbs with energy or power, it simply makes them capable of storing such energy. The orbs endowed by this spell are usually not large enough to be used by dragons in their spellcasting. Once power has been placed in the orb and used, the orb must be made receptive again through use of this spell. It is the prerequisite to using obsidian in any other spells.\n\nObsidian orbs shaped by those with lens-crafting skill are the most desirable for use in spellcasting. Those of lesser quality must make a saving throw as glass vs. crushing blow or be destroyed by the spell. Ceruleans’ blue lenses are also endowed through use of this spell; only two blue lenses may be made at any one time.\n\nThe material components of the spell are the orb or lens to be imbued with potential and a pinch of fine powder.",
+    "sourceBooks": [
+      "Defilers and Preservers: Wizards of Athas"
+    ],
+    "source": "",
+    "reversible": false,
+    "verified": true,
+    "page": 69,
+    "originalSource": "Defilers and Preservers: Wizards of Athas"
   }
 ]
