@@ -4,6 +4,7 @@ node_modules/
 ## Generated output (runtime artefacts, not source)
 output/
 parsed-spells.json
+cache/
 
 ## Source PDFs — large binaries, keep them out of history.
 ## (cache/*.json review output is still tracked.)
