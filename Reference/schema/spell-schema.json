@@ -1,0 +1,51 @@
+{
+    "id": "spell_wakefulness_2e",
+    "name": "Wakefulness",
+    "srdIndex": null,
+    "level": 2,
+    "school": "Enchantment/Charm",
+    "class": "Wizard",
+    "spheres": [
+        {
+            "name": "Earth",
+            "access": "Major"
+        }
+    ],
+    "castingTime": "1",
+    "range": "Touch",
+    "components": [
+        "V",
+        "S",
+        "M"
+    ],
+    "duration": "1 hour/level",
+    "concentration": false,
+    "ritual": false,
+    "description": "Full spell text…",
+    "higherLevel": null,
+    "athasianVariant": {
+        "modifiedEffect": null,
+        "materialComponentAthas": null,
+        "defilerCost": 0,
+        "planeSource": null
+    },
+    "flavorLore": "",
+    "artworkPrompt": "",
+    "tags": [
+        "#new-dark-sun",
+        "#earth"
+    ],
+    "relatedEntries": [],
+    "sourceBooks": [
+        "Dragon Kings"
+    ],
+    "verified": false,
+    "reversible": false,
+    "areaOfEffect": "One creature",
+    "savingThrow": "None",
+    "athasianStatus": "New (Dark Sun)",
+    "summary": "First ~160 chars of description…",
+    "page": 12,
+    "preparationTime": "",
+    "originalSource": "DragonKings-AllSpells"
+}

@@ -1,0 +1,49 @@
+{"core":{
+    "lightradius":0,
+    "icon":"",
+    "name":"",
+    "type":"__[weapon,armor,spell,other]",
+    "weight": 0,
+    "size":"__[small,medium,large]",
+    "price":{"gold":0,"silver":0,"copper":0},
+    "charges": 0,
+    "rounds_per_charge":0,
+    "__Ycurrent_rounds_performed":0,
+    "__Yin_use": false,
+    "__Tdescription": "",
+    "identified":"__[false,true]"
+},
+"events": {
+    "__Tonpickup" : "",
+    "__Tonequip": "",
+    "__Tonunequip": "",
+    "__Tonuse": "",
+    "__Tonround": "",
+    "__Tonfinish": "",
+    "__Tondrop": ""
+},
+"conditional":{
+    "core.type=weapon":{
+        "__Idmg": "",
+        "weapon_type": "__[melee,magic,misile]",
+        "damage_type": "__[slice,hack,stab]",
+        "__Ito_hit": "",
+        "range": "__[short,medium,long]",
+        "slot": "__[lefthand,righthand,twohand]",
+        "save_against":"__[ppd,rod,pp,breath,spell,none]",
+        "events": {
+            "__Tonstrike": ""
+        }
+    },
+    "core.type=spell":{
+        "spell_level": 1,
+        "spell_school": "__[Abjuration,Alteration,Conjuration,Enchantment,Divination,Illusion,Invocation,Necromancy]",
+        "spell_type": "__[priest spells,wizard spells]"
+        },
+    "core.type=armor":{
+        "ac":0,
+        "material": "__[shield,cloth,leather,mail,plate]",
+        "slot": "__[head,chest,legs,feet,wrists,hands,finger,neck,lefthand]"
+    }
+}
+}
