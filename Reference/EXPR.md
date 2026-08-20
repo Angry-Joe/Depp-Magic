@@ -1,164 +1,35 @@
-### Strength
+This spell causes a 4-inch-diameter sphere to appear in the caster's hand. Within the limits described below, the sphere can appear in a variety of colors; each color indicates a different special power. The caster can hurl the sphere at an opponent up to 30 yards away, providing there are no barriers between the caster and the target. If the target is no more than 10 yards away, the caster's to hit roll is made with a +3 bonus. If the target is 10-20 yards away, the caster's roll is made with a +2 bonus. If the target is 20-30 yards away, the caster's roll is made with a +1 bonus.
 
-| Score | Hit Adj. | Dmg Adj. | Max Press | Weight Allow | Open Doors | Open Locked | Bend Bars |
-|-------|----------|----------|-----------|--------------|------------|-------------|-----------|
-| 1     | -5       | -4       | 3         | 1            | 1          | 0           | 0%        |
-| 2     | -3       | -2       | 5         | 1            | 1          | 0           | 0%        |
-| 3     | -3       | -1       | 10        | 5            | 2          | 0           | 0%        |
-| 4     | -2       | -1       | 25        | 10           | 3          | 0           | 0%        |
-| 5     | -2       | -1       | 25        | 10           | 3          | 0           | 0%        |
-| 6     | -1       | 0        | 55        | 20           | 4          | 0           | 0%        |
-| 7     | -1       | 0        | 55        | 20           | 4          | 0           | 0%        |
-| 8     | 0        | 0        | 90        | 35           | 5          | 0           | 1%        |
-| 9     | 0        | 0        | 90        | 35           | 5          | 0           | 1%        |
-| 10    | 0        | 0        | 115       | 40           | 6          | 0           | 2%        |
-| 11    | 0        | 0        | 115       | 40           | 6          | 0           | 2%        |
-| 12    | 0        | 0        | 140       | 45           | 7          | 0           | 4%        |
-| 13    | 0        | 0        | 140       | 45           | 7          | 0           | 4%        |
-| 14    | 0        | 0        | 170       | 55           | 8          | 0           | 7%        |
-| 15    | 0        | 0        | 170       | 55           | 8          | 0           | 7%        |
-| 16    | 0        | +1       | 195       | 70           | 9          | 0           | 10%       |
-| 17    | +1       | +1       | 220       | 85           | 10         | 0           | 13%       |
-| 18    | +1       | +2       | 255       | 110          | 11         | 0           | 16%       |
-| 18/50 | +1       | +3       | 280       | 135          | 12         | 0           | 20%       |
-| 18/75 | +2       | +3       | 305       | 160          | 13         | 0           | 25%       |
-| 18/90 | +2       | +4       | 330       | 185          | 14         | 0           | 30%       |
-| 18/99 | +2       | +5       | 380       | 235          | 15         | 3           | 35%       |
-| 18/00 | +3       | +6       | 480       | 335          | 16         | 6           | 40%       |
-| 19    | +3       | +7       | 640       | 485          | 16         | 8           | 50%       |
-| 20    | +3       | +8       | 700       | 535          | 17         | 10          | 60%       |
-| 21    | +4       | +9       | 810       | 635          | 17         | 12          | 70%       |
-| 22    | +4       | +10      | 970       | 785          | 18         | 14          | 80%       |
-| 23    | +5       | +11      | 1130      | 935          | 18         | 16          | 90%       |
-| 24    | +6       | +12      | 1440      | 1235         | 19         | 17          | 95%       |
-| 25    | +7       | +14      | 1750      | 1535         | 19         | 18          | 99%       |
+If the chromatic orb misses its target, it dissipates without effect. If the target creature makes a successful saving throw, the chromatic orb is also ineffective. Otherwise, the color of the orb determines the amount of damage inflicted and its special power, as summarized on Table 16; details about the special powers are listed below. The caster can create a single orb of any color listed for his level or lower; for instance, a 3rd-level wizard can create an orange, red, or white orb.
 
-### Dexterity
+The material component for this spell is a gem of the appropriate hue or any diamond. The gem must have a value of at least 50 gp.
 
-| Score | Reaction Adj. | Missile Adj. | Defensive Adj. |
-|-------|---------------|--------------|----------------|
-| 1     | -6            | -6           | +5             |
-| 2     | -4            | -4           | +5             |
-| 3     | -3            | -3           | +4             |
-| 4     | -2            | -2           | +3             |
-| 5     | -1            | -1           | +2             |
-| 6     | 0             | 0            | +1             |
-| 7–14  | 0             | 0            | 0              |
-| 15    | 0             | 0            | -1             |
-| 16    | +1            | +1           | -2             |
-| 17    | +2            | +2           | -3             |
-| 18    | +2            | +2           | -4             |
-| 19    | +3            | +3           | -4             |
-| 20    | +3            | +3           | -4             |
-| 21    | +4            | +4           | -5             |
-| 22    | +4            | +4           | -5             |
-| 23    | +4            | +4           | -5             |
-| 24    | +4            | +5           | -6             |
-| 25    | +5            | +5           | -6             |
+_Light_ from the orb causes the victim to become surrounded by light to a radius of 20 feet, as if affected by a light spell. The effect lasts for 1 round, during which time the victim makes his attack rolls and saving throws at a -4 penalty, and his AC is penalized by 4.
 
-### Constitution
+_Heat_ from the orb is intense enough to melt 1 cubic yard of ice. The victim suffers a loss of 1 point of Strength and 1  point of Dexterity (or for victims without these attributes, - 1 to hit and a penalty of 1 to AC) for 1  round.
 
-| Score | HP Adj. | System Shock | Resurrection Survival | Poison Save | Regeneration |
-|-------|---------|--------------|-----------------------|-------------|--------------|
-| 1     | -3      | 25%          | 30%                   | -2          | —            |
-| 2     | -2      | 30%          | 35%                   | -1          | —            |
-| 3     | -2      | 35%          | 40%                   | 0           | —            |
-| 4     | -1      | 40%          | 45%                   | 0           | —            |
-| 5     | -1      | 45%          | 50%                   | 0           | —            |
-| 6     | -1      | 50%          | 55%                   | 0           | —            |
-| 7     | 0       | 55%          | 60%                   | 0           | —            |
-| 8     | 0       | 60%          | 65%                   | 0           | —            |
-| 9     | 0       | 65%          | 70%                   | 0           | —            |
-| 10    | 0       | 70%          | 75%                   | 0           | —            |
-| 11    | 0       | 75%          | 80%                   | 0           | —            |
-| 12    | 0       | 80%          | 85%                   | 0           | —            |
-| 13    | 0       | 85%          | 90%                   | 0           | —            |
-| 14    | 0       | 90%          | 92%                   | 0           | —            |
-| 15    | +1      | 92%          | 94%                   | 0           | —            |
-| 16    | +2      | 94%          | 96%                   | 0           | —            |
-| 17    | +2      | 96%          | 98%                   | 0           | —            |
-| 18    | +2      | 98%          | 100%                  | 0           | —            |
-| 19    | +2      | 99%          | 100%                  | +1          | —            |
-| 20    | +2      | 99%          | 100%                  | +1          | 1/6 turns    |
-| 21    | +2      | 99%          | 100%                  | +2          | 1/5 turns    |
-| 22    | +2      | 99%          | 100%                  | +2          | 1/4 turns    |
-| 23    | +2      | 99%          | 100%                  | +3          | 1/3 turns    |
-| 24    | +2      | 99%          | 100%                  | +3          | 1/2 turns    |
-| 25    | +2      | 100%         | 100%                  | +4          | 1/1 turn     |
+_Fire_ from the orb ignites all combustible materials within 3 feet of the victim. Blindness from the orb causes the victim to become blind as per the spell. The effect lasts for 1 round/level of the caster.
 
-### Intelligence
+_Stinking cloud_ from the orb surrounds the victim in a 5-foot-radius noxious cloud. The victim must save vs. poison or will be reeling and unable to attack until he leaves the area of the vapors.
 
-| Score | # Languages | Max Spell Level | Chance to Learn Spell | Max Spells / Level | Illusion Immunity |
-|-------|-------------|-----------------|-----------------------|--------------------|-------------------|
-| 1     | 0           | —               | 0%                    | 0                  | —                 |
-| 2–7   | 1           | —               | 0%                    | 0                  | —                 |
-| 8     | 1           | 4th             | 35%                   | —                  | —                 |
-| 9     | 2           | 4th             | 40%                   | 6                  | —                 |
-| 10    | 2           | 5th             | 45%                   | 7                  | —                 |
-| 11    | 2           | 5th             | 50%                   | 7                  | —                 |
-| 12    | 3           | 6th             | 55%                   | 7                  | —                 |
-| 13    | 3           | 6th             | 60%                   | 9                  | —                 |
-| 14    | 4           | 7th             | 65%                   | 9                  | —                 |
-| 15    | 4           | 7th             | 70%                   | 11                 | —                 |
-| 16    | 5           | 8th             | 75%                   | 11                 | —                 |
-| 17    | 6           | 8th             | 80%                   | 14                 | —                 |
-| 18    | 7           | 9th             | 85%                   | 18                 | —                 |
-| 19    | 8           | 9th             | 95%                   | All                | 1st-level         |
-| 20    | 9           | 9th             | 96%                   | All                | 2nd-level         |
-| 21    | 10          | 9th             | 97%                   | All                | 3rd-level         |
-| 22    | 11          | 9th             | 98%                   | All                | 4th-level         |
-| 23    | 12          | 9th             | 99%                   | All                | 5th-level         |
-| 24    | 15          | 9th             | 100%                  | All                | 6th-level         |
-| 25    | 20          | 9th             | 100%                  | All                | 7th-level         |
+_Magnetism_ from the orb has an effect only if the victim is wearing armor made from iron. The iron armor becomes magically magnetized for 3-12 (3d4) rounds. Other iron objects within 3 feet of the caster will stick tight to the magnetized armor; only _**dispel magic**_ or a similar spell can release the stuck items. At the end of the spell's duration, the stuck items are released.
 
-### Wisdom
+_Paralysis_ from the orb causes the victim to become paralyzed for 6-20 (2d8 + 4) rounds; a successful saving throw vs. paralyzation halves the number of rounds.
 
-| Score | Magical Defense Adj. | Spell Failure |
-|-------|----------------------|---------------|
-| 1     | -6                   | 80%           |
-| 2     | -4                   | 60%           |
-| 3     | -3                   | 50%           |
-| 4     | -2                   | 45%           |
-| 5     | -1                   | 40%           |
-| 6     | -1                   | 35%           |
-| 7     | -1                   | 30%           |
-| 8     | 0                    | 25%           |
-| 9     | 0                    | 20%           |
-| 10    | 0                    | 15%           |
-| 11    | 0                    | 10%           |
-| 12    | 0                    | 5%            |
-| 13–14 | 0                    | 0%            |
-| 15    | +1                   | 0%            |
-| 16    | +2                   | 0%            |
-| 17    | +3                   | 0%            |
-| 18    | +4                   | 0%            |
-| 19–25 | +4                   | 0%            |
+_Petrification_ from the orb turns the victim to stone. If the victim successfully saves vs. petrification, he avoids turning to stone and instead is slowed (as per the spell) for 2-8 (2d4) rounds.
 
-### Charisma
+_Death_ from the orb causes the victim to die. If the victim successfully saves. vs death magic, he avoids death and instead is paralyzed for 2-5 (1d4 +1) rounds.
 
-| Score | Max Henchmen | Loyalty Base | Reaction Adj. |
-|-------|--------------|--------------|---------------|
-| 1     | 0            | -8           | -7            |
-| 2     | 1            | -7           | -6            |
-| 3     | 1            | -6           | -5            |
-| 4     | 1            | -5           | -4            |
-| 5     | 2            | -4           | -3            |
-| 6     | 2            | -3           | -2            |
-| 7     | 3            | -2           | -1            |
-| 8     | 3            | -1           | 0             |
-| 9     | 4            | 0            | 0             |
-| 10–11 | 4            | 0            | 0             |
-| 12    | 5            | 0            | 0             |
-| 13    | 5            | 0            | +1            |
-| 14    | 6            | +1           | +2            |
-| 15    | 7            | +3           | +3            |
-| 16    | 8            | +4           | +5            |
-| 17    | 10           | +6           | +6            |
-| 18    | 15           | +8           | +7            |
-| 19    | 20           | +10          | +8            |
-| 20    | 25           | +12          | +9            |
-| 21    | 30           | +14          | +10           |
-| 22    | 35           | +16          | +11           |
-| 23    | 40           | +18          | +12           |
-| 24    | 45           | +20          | +13           |
-| 25    | 50           | +20          | +14           |
+**Chromatic Orb**
+
+| Level of Caster | Color of Orb Generated | Hit Points of Damage | Special Power     |
+|-----------------|------------------------|----------------------|-------------------|
+| 1st             | White                  | 1-4                  | Light             |
+| 2nd             | Red                    | 1-6                  | Heat              |
+| 3rd             | Orange                 | 1-8                  | Fire              |
+| 4th             | Yellow                 | 1-10                 | Blindness         |
+| 5th             | Green                  | 1-12                 | Stinking Cloud    |
+| 6th             | Turquoise              | 2-8                  | Magnetism         |
+| 7th             | Blue                   | 2-16                 | Paralysis         |
+| 10th            | Violet                 | slow                 | Petrification     |
+| 12th            | Black                  | paralysis            | Death             |

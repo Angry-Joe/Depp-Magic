@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>proficiencies-2e.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="add-2e--dark-sun-proficiencies-normalized-with-descriptions">AD&amp;D 2e + Dark Sun Proficiencies (normalized, with descriptions)</h1>
+<p>Flat deduplicated list; each proficiency carries a 'group' array. Each class carries a 'group' array. Filter proficiencies where set(prof.group) intersects set(class.group). 'General' is in every class, so General proficiencies are always available.</p>
+<p>Descriptions extracted from the source rulebooks (personal-use corpus). <strong>Reference only, not integrated.</strong></p>
+<h2 id="proficiency-groups">Proficiency groups</h2>
+<p>General, Warrior, Wizard, Priest, Rogue, Psionicist</p>
+<h2 id="slot-progression-phb-table-34">Slot progression (PHB Table 34)</h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Weapon: initial / every N lvls / non-prof penalty</th>
+<th>Nonweapon: initial / every N lvls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warrior</td>
+<td>4 / 3 / -2</td>
+<td>3 / 3</td>
+</tr>
+<tr>
+<td>Wizard</td>
+<td>1 / 6 / -5</td>
+<td>4 / 3</td>
+</tr>
+<tr>
+<td>Priest</td>
+<td>2 / 4 / -3</td>
+<td>4 / 3</td>
+</tr>
+<tr>
+<td>Rogue</td>
+<td>2 / 4 / -3</td>
+<td>3 / 4</td>
+</tr>
+</tbody>
+</table>
+<p>Intelligence grants bonus nonweapon slots (PHB Table 4).</p>
+<h2 id="classes---proficiency-groups">Classes -&gt; proficiency groups</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Groups</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fighter</td>
+<td>Warrior, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Paladin</td>
+<td>Warrior, Priest, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Ranger</td>
+<td>Warrior, Wizard, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Cleric</td>
+<td>Priest, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Druid</td>
+<td>Priest, Warrior, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Mage</td>
+<td>Wizard, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Illusionist</td>
+<td>Wizard, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Thief</td>
+<td>Rogue, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bard</td>
+<td>Rogue, Warrior, Wizard, General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Defiler</td>
+<td>Wizard, General</td>
+<td>Dark Sun</td>
+</tr>
+<tr>
+<td>Gladiator</td>
+<td>Warrior, General</td>
+<td>Dark Sun</td>
+</tr>
+<tr>
+<td>Preserver</td>
+<td>Wizard, General</td>
+<td>Dark Sun</td>
+</tr>
+<tr>
+<td>Psionicist</td>
+<td>Psionicist, General</td>
+<td>Dark Sun</td>
+</tr>
+<tr>
+<td>Templar</td>
+<td>Priest, Rogue, General</td>
+<td>Dark Sun: DSRB</td>
+</tr>
+<tr>
+<td>Trader</td>
+<td>Rogue, Warrior, General</td>
+<td>Dark Sun</td>
+</tr>
+</tbody>
+</table>
+<h2 id="proficiencies-mechanics">Proficiencies (mechanics)</h2>
+<p>88 unique entries.</p>
+<table>
+<thead>
+<tr>
+<th>Proficiency</th>
+<th>Slots</th>
+<th>Ability</th>
+<th>Check Mod</th>
+<th>Groups</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agriculture</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Ancient History</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-1</td>
+<td>Priest, Rogue, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Animal Handling</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Animal Lore</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Animal Training</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Appraising</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Arena Acting</td>
+<td>1</td>
+<td>Charisma</td>
+<td>-1</td>
+<td>Warrior</td>
+<td>Dark Sun: Complete Gladiator's Handbook</td>
+</tr>
+<tr>
+<td>Armor Optimization</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-2</td>
+<td>Warrior</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Armorer</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Artistic Ability</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Astrology</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>Priest, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bargain</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>General</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Blacksmithing</td>
+<td>1</td>
+<td>Strength</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Blind-fighting</td>
+<td>2</td>
+<td>NA</td>
+<td>NA</td>
+<td>Rogue, Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bowyer/Fletcher</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Brewing</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bureaucracy</td>
+<td>1</td>
+<td>Charisma</td>
+<td>-2</td>
+<td>Priest</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Carpentry</td>
+<td>1</td>
+<td>Strength</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Charioteering</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>+2</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Cobbling</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Contact</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>General</td>
+<td>Dark Sun: DSCS-R/WotP</td>
+</tr>
+<tr>
+<td>Cooking</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Dancing</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Direction Sense</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>+1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Dirty Tricks</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>Warrior</td>
+<td>Dark Sun: Complete Gladiator's Handbook</td>
+</tr>
+<tr>
+<td>Disguise</td>
+<td>1</td>
+<td>Charisma</td>
+<td>-1</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Endurance</td>
+<td>2</td>
+<td>Constitution</td>
+<td>0</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>-3</td>
+<td>Priest, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Etiquette</td>
+<td>1</td>
+<td>Charisma</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Fire-building</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Fishing</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Forgery</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Gaming</td>
+<td>1</td>
+<td>Charisma</td>
+<td>0</td>
+<td>Rogue, Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Gem Cutting</td>
+<td>2</td>
+<td>Dexterity</td>
+<td>-2</td>
+<td>Rogue, Wizard, Psionicist</td>
+<td>PHB + Dark Sun: WotP (psionicist group)</td>
+</tr>
+<tr>
+<td>Harness Subconscious</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>Psionicist</td>
+<td>Dark Sun: WotP/DSCS-R</td>
+</tr>
+<tr>
+<td>Healing</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>Priest</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Heat Protection</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>General</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Heraldry</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Herbalism</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Priest, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Hunting</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Information Gathering</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>Special</td>
+<td>Rogue</td>
+<td>Dark Sun: DSCS-R</td>
+</tr>
+<tr>
+<td>Intimidation</td>
+<td>1</td>
+<td>Strength or Charisma</td>
+<td>Special</td>
+<td>General</td>
+<td>Dark Sun: Dune Trader</td>
+</tr>
+<tr>
+<td>Juggling</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Jumping</td>
+<td>1</td>
+<td>Strength</td>
+<td>0</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Languages, Ancient</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>Priest, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Languages, Modern</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Leatherworking</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Local History</td>
+<td>1</td>
+<td>Charisma</td>
+<td>0</td>
+<td>Priest, Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Massage</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>Warrior</td>
+<td>Dark Sun: Complete Gladiator's Handbook</td>
+</tr>
+<tr>
+<td>Meditative Focus</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>+1</td>
+<td>Psionicist</td>
+<td>Dark Sun: WotP/DSCS-R</td>
+</tr>
+<tr>
+<td>Mental Armor</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>General</td>
+<td>Dark Sun: DSCS-R/WotP</td>
+</tr>
+<tr>
+<td>Mining</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>-3</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Mountaineering</td>
+<td>1</td>
+<td>NA</td>
+<td>NA</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Musical Instrument</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Priest, Rogue, Psionicist</td>
+<td>PHB + Dark Sun: WotP (psionicist group)</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Priest, Warrior, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Pottery</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-2</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Psionic Detection</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>General</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Reading Lips</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Reading/Writing</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>+1</td>
+<td>Priest, Wizard, Psionicist</td>
+<td>PHB + Dark Sun: WotP (psionicist group)</td>
+</tr>
+<tr>
+<td>Rejuvenation</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>Psionicist</td>
+<td>Dark Sun: WotP/DSCS-R</td>
+</tr>
+<tr>
+<td>Religion</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>Priest, Wizard, Psionicist</td>
+<td>PHB + Dark Sun: WotP (psionicist group)</td>
+</tr>
+<tr>
+<td>Riding, Airborne</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Riding, Land-Based</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>+3</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Rope Use</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Running</td>
+<td>1</td>
+<td>Constitution</td>
+<td>-6</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Seamanship</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>+1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Seamstress/Tailor</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sensory Alteration</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Wizard</td>
+<td>Dark Sun: Dragon Kings</td>
+</tr>
+<tr>
+<td>Set Snares</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Rogue, Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sign Language</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>General</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Singing</td>
+<td>1</td>
+<td>Charisma</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Somatic Concealment</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>-1</td>
+<td>Wizard, Priest</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Spellcraft</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Priest, Wizard</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Stonemasonry</td>
+<td>1</td>
+<td>Strength</td>
+<td>-2</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Survival</td>
+<td>2</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Swimming</td>
+<td>1</td>
+<td>Strength</td>
+<td>0</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Tactics</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-1</td>
+<td>Warrior</td>
+<td>Dark Sun: DSCS-R/CGH</td>
+</tr>
+<tr>
+<td>Taunting</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>Warrior</td>
+<td>Dark Sun: Complete Gladiator's Handbook</td>
+</tr>
+<tr>
+<td>Tightrope Walking</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Tracking</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>0</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Tumbling</td>
+<td>1</td>
+<td>Dexterity</td>
+<td>0</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Ventriloquism</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-2</td>
+<td>Rogue</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Water Find</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>0</td>
+<td>General</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Weakness Identification</td>
+<td>2</td>
+<td>Wisdom</td>
+<td>-2</td>
+<td>Warrior</td>
+<td>Dark Sun: Complete Gladiator's Handbook</td>
+</tr>
+<tr>
+<td>Weapon Improvisation</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>Warrior</td>
+<td>Dark Sun: DSRB/DSCS-R</td>
+</tr>
+<tr>
+<td>Weaponsmithing</td>
+<td>3</td>
+<td>Intelligence</td>
+<td>-3</td>
+<td>Warrior</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Weather Sense</td>
+<td>1</td>
+<td>Wisdom</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Weaving</td>
+<td>1</td>
+<td>Intelligence</td>
+<td>-1</td>
+<td>General</td>
+<td>PHB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="descriptions">Descriptions</h2>
+<h3 id="agriculture">Agriculture</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>The character has a knowledge of the basics of farming. This includes planting, harvesting, storing crops, tending animals, butchering, and other typical farming chores.</p>
+<h3 id="ancient-history">Ancient History</h3>
+<p><em>1 slot(s) · Intelligence · check -1 · groups: Priest, Rogue, Wizard</em></p>
+<p>The character has learned the legends, lore, and history of some ancient time and place. The knowledge must be specific, just as a historian would specialize today in the English Middle Ages, the Italian Renaissance, or the Roman Republic before Caesar. (The DM either can have ancient periods in mind for his game or can allow the players to name and designate them.) Thus, a player character could know details about the Age of Thorac Dragonking or the Time of the Sea-Raiders or whatever</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>76/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>else was available. The knowledge acquired gives the character familiarity with the principal legends, historical events, characters, locations, battles, breakthroughs (scientific, cultural, and magical), unsolved mysteries, crafts, and oddities of the time. The character must roll a proficiency check to identify places or things he encounters from that age. For example, Rath knows quite a bit about the Coming of the Trolls, a particularly dark period of dwarven history. Moving through some deep caverns, he and his companions stumble across an ancient portal, sealed for untold ages. Studying the handiwork, he realizes (rolls a successful proficiency check) that it bears several seals similar to those he has seen on &quot;banned&quot; portals from the time of Angnar, doorways to the legendary realm of Trolhel.</p>
+<h3 id="animal-handling">Animal Handling</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: General</em></p>
+<p>Proficiency in this area enables a character to exercise a greaterthan-normal degree of control over pack animals and beasts of burden. A successful proficiency check indicates that the character has succeeded in calming an excited or agitated animal; in contrast, a character without this proficiency has only a 20% chance of succeeding in the attempt.</p>
+<h3 id="animal-lore">Animal Lore</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: Warrior</em></p>
+<p>This proficiency enables a character to observe the actions or habitat of an animal and interpret what is going on. Actions can show how dangerous the creature is, whether it is hungry, protecting its young, or defending a nearby den. Furthermore, careful observation of signs and behaviors can even indicate the location of a water hole, animal herd, predator, or impending danger, such as a forest fire. The DM will secretly roll a proficiency check. A successful check means the character understood the basic actions of the creature. If the check fails by 4 or less, no information is gained. If the check fails by 5 or more, the character misinterprets the actions of the animal. A character may also imitate the calls and cries of animals that he is reasonably familiar with, based on his background. This ability is limited by volume. The roar of a tyrannosaurus rex would be beyond the abilities of a normal character. A successful proficiency check means that only magical means can distinguish the character's call from that of the true animal. The cry is sufficient to fool animals, perhaps frightening them away or luring them closer. A failed check means the sound is incorrect in some slight way. A failed call may still fool some listeners, but creatures very familiar with the cry automatically detect a false call. All other creatures and characters are allowed a Wisdom check to detect the fake. Finally, animal lore increases the chance of successfully setting snares and traps (for hunting) since the character knows the general habits of the creature hunted.</p>
+<h3 id="animal-training">Animal Training</h3>
+<p><em>1 slot(s) · Wisdom · check 0 · groups: General</em></p>
+<p>Characters with this proficiency can train one type of creature (declared when the proficiency is chosen) to obey simple commands and perform tricks. A character can spend additional proficiencies to train other types of creatures or can improve his skill with an already chosen type. Creatures typically trained are dogs, horses, falcons, pigeons, elephants, ferrets, and parrots. A character can choose even more exotic creatures and monsters with animal intelligence (although these are difficult to control). A trainer can work with up to three creatures at one time. The trainer may choose to teach general tasks or specific tricks. A general task gives the creature the ability to react to a number of nonspecific commands to do its job. Examples of tasks include guard and attack, carry a rider, perform heavy labor, hunt, track, or fight alongside soldiers (such as a war horse or elephant). A specific trick teaches the trained creature to do one specific action. A horse may rear on command, a falcon may pluck a designated object, a dog may attack a specific person, or a rat may run through a particular maze. With enough time, a creature can be trained to do both general tasks and specific tricks. Training for a general task requires three months of uninterrupted work. Training for a specific trick requires 2d6 weeks. At the end of the training time, a proficiency check is made. If successful, the animal is trained. If the die roll fails, the beast is untrainable. An animal can be trained in 2d4 general tasks or specific tricks, or any combination of the two. An animal trainer can also try to tame wild animals (preparing them for training later on). Wild animals can be tamed only when they are very young. The taming requires one month of uninterrupted work with the creature. At the end of the month, a proficiency check is made. If successful, the beast is suitable for training. If the check fails, the creature retains enough of its wild behavior to make it untrainable. It can be kept, though it must be leashed or caged.</p>
+<h3 id="appraising">Appraising</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: Rogue</em></p>
+<p>This proficiency is highly useful for thieves, as it allows characters to estimate the value and authenticity of antiques, art objects, jewelry, cut gemstones, or other crafted items they find (although the DM can exclude those items too exotic or rare to be well known). The character must have the item in hand to examine. A successful proficiency check (rolled by the DM) enables the character to estimate the value of the item to the nearest 100 or 1,000 gp and to identify fakes. On a failed check, the character cannot estimate a price at all. On a roll of 20, the character wildly misreads the value of the item, always to the detriment of the character.</p>
+<h3 id="arena-acting">Arena Acting</h3>
+<p><em>1 slot(s) · Charisma · check -1 · groups: Warrior</em></p>
+<p>The Acting proficiency allows the gladiator to feign a weakness in the arena to trick his opponent. If the check is successful, he has shown a weakness he does not really possess. For example, he could convince an enemy that his left side is overexposed, or that his weapons are unfamiliar in his hands. More often than not, these tricks succeed. If the enemy attack against the gladiator's assumed weakness, the PC attacks his foe with a +3 bonus to attack and damage rolls. These reflect the surprise the target feels upon realizing he has been duped. Arena Acting can work only once against any given opponent. Thereafter, the enemy is far more cautious in his attacks.</p>
+<h3 id="armor-optimization">Armor Optimization</h3>
+<p><em>1 slot(s) · Dexterity · check -2 · groups: Warrior</em></p>
+<p>This proficiency allows a character to use his armor to best advantage against a particular opponent (much like the gladiator special ability). A successful proficiency check in the first round of any combat situation gives a -1 bonus to the character’s Armor Class until that combat comes to an end. A situation is a series of rounds in which a particular character engages in one bout of combat. Once the character allows two full rounds to pass without engaging in combat, the situation ends. A character must be wearing some type of armor or employing a shield in order to use the armor optimization proficiency. The bonus granted by the successful use of the armor optimization proficiency adds to the Armor Class provided by the armor or shield. The bonus for the proficiency also adds to that gained by a gladiator character’s special ability.</p>
+<h3 id="armorer">Armorer</h3>
+<p><em>2 slot(s) · Intelligence · check -2 · groups: Warrior</em></p>
+<p>This character can make all of the types of armor listed in the Player's Handbook, given the proper materials and facilities. When making armor, the proficiency check is rolled at the end of the normal construction time. The time required to make armor is equal to two weeks per level of AC below 10. For example, a shield would require two weeks of work, whereas a suit of full plate armor would require 18 weeks of work. If the proficiency check indicates failure but is within 4 of the amount needed for success, the armorer has created usable, but flawed, armor. Such armor functions as 1 AC worse than usual, although it looks like the armor it was intended to be. Only a character with armorer proficiency can detect the flaws, and this requires careful and detailed inspection.</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>77/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>If the flawed armor is struck in melee combat with a natural die roll of 19 or 20, it breaks. The character's AC immediately worsens by 4 additional classes (although never above 10), and the broken armor hampers the character's movement. Until the character can remove the broken armor (a process requiring 1d4 rounds), the character moves at _ of his normal rate and suffers a -4 penalty to all of his attack rolls. If an armorer is creating a suit of field plate or full plate armor, the character who will use the armor must be present at least once a week during the creation of the armor, since such types of armor require very exact fitting.</p>
+<h3 id="artistic-ability">Artistic Ability</h3>
+<p><em>1 slot(s) · Wisdom · check 0 · groups: General</em></p>
+<p>Player characters with artistic ability are naturally accomplished in various forms of the arts. They have an inherent understanding of color, form, space, flow, tone, pitch, and rhythm. Characters with artistic ability must select one art form (painting, sculpture, composition, etc.) to be proficient in. Thereafter they can attempt to create art works or musical compositions in their given field. Although it is not necessary to make a proficiency check, one can be made to determine the quality of the work. Ifa 1 is rolled on the check, the artist has created a work with some truly lasting value. If the check fails, the artist has created something aesthetically unpleasing or just plain bad. Artistic ability also confers a +1 bonus to all proficiency checks requiring artistic skill-music or dance--and to attempts to appraise objects of art.</p>
+<h3 id="astrology">Astrology</h3>
+<p><em>2 slot(s) · Intelligence · check 0 · groups: Priest, Wizard</em></p>
+<p>This proficiency gives the character some understanding of the supposed influences of the stars. Knowing the birth date and time of any person, the astrologer can study the stars and celestial events and then prepare a forecast of the future for that person. The astrologer's insight into the future is limited to the next 30 days, and his knowledge is vague at best. If a successful proficiency check is made, the astrologer can foresee some general event--a great battle, a friend lost, a new friendship made, etc. The DM decides the exact prediction (based on his intentions for the next few gaming sessions). Note that the prediction does not guarantee the result--it only indicates the potential result. If the proficiency check is failed, no information is gained unless a 20 is rolled, in which case the prediction is wildly inaccurate. Clearly this proficiency requires preparation and advance knowledge on the part of the DM. Because of this, it is permissible for the DM to avoid the question, although this shouldn't be done all the time. Players who want to make their DM's life easier (always a good idea) should consider using this proficiency at the end of a gaming session, giving the DM until the next session to come up with an answer. The DM can use this proficiency as a catalyst and guide for his adventures--something that will prompt the player characters to go to certain places or to try new things. Characters with the astrology proficiency gain a +1 bonus to all navigation proficiency checks, provided the stars can be seen.</p>
+<h3 id="bargain">Bargain</h3>
+<p><em>1 slot(s) · Wisdom · check -2 · groups: General</em></p>
+<p>A character who has the bargain proficiency can haggle over monetary, service, and barter transactions to gain a better deal, as follows:</p>
+<p>• In a monetary transaction, a successful check allows the character to purchase an item for 10% less or sell one for 10% more than the going rate.</p>
+<p>• In a simple barter transaction, a successful check improves the perceived value of the bargainer’s goods by 10%. in a protracted barter, a successful check allows the bargainer to roll 3d6 instead of 2d6 for that round of barter; a separate check initiates every round.</p>
+<p>•</p>
+<p>(Simple and protracted barter are fully explained in Chapter 3: Money and Equipment.) In a service transaction, a successful check provides the bargainer 10% more than the going rate for his services.</p>
+<p>The DM should require players to role-play the bargaining session to gain the benefits of this proficiency.</p>
+<h3 id="blacksmithing">Blacksmithing</h3>
+<p><em>1 slot(s) · Strength · check 0 · groups: General</em></p>
+<p>A character with blacksmithing proficiency is capable of making tools and implements from iron. Use of the proficiency requires a forge with a coal-fed fire and bellows, as well as a hammer and anvil. The character cannot make armor or most weapons, but can craft crowbars, grappling hooks, horseshoes, nails, hinges, plows, and most other iron objects.</p>
+<h3 id="blind-fighting">Blind-fighting</h3>
+<p><em>2 slot(s) · NA · check NA · groups: Rogue, Warrior</em></p>
+<p>A character with blind-fighting is skilled at fighting in conditions of poor or no light (but this proficiency does not allow spell use). In total darkness, the character suffers only a -2 penalty to his attack roll (as compared to a -4 penalty without this proficiency). Under starlight or moonlight, the character incurs only a -1 penalty. The character suffers no penalties to his AC because of darkness. Furthermore, the character retains special abilities that would normally be lost in darkness, although the effectiveness of these are reduced by one-half (proficiency checks are made at half the normal score, etc.). This proficiency is effective only against opponents or threats within melee distance of the character. Blind-fighting does not grant any special protection from missile fire or anything outside the immediate range of the character's melee weapon. Thus, AC penalties remain for missile fire. (By the time the character hears the whoosh of the arrow, for example, it is too late for him to react.) While moving in darkness, the character suffers only half the normal movement penalty of those without this proficiency. Furthermore, this skill aids the character when dealing with invisible creatures, reducing the attack penalty to -2. However, it does not enable the character to discover invisible creatures; he has only a general idea of their location and cannot target them exactly.</p>
+<h3 id="bowyerfletcher">Bowyer/Fletcher</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Warrior</em></p>
+<p>This character can make bows and arrows of the types given in Table 44. A weaponsmith is required to fashion arrowheads, but the bowyer/fletcher can perform all other necessary functions. The construction time for a long or short bow is one week, while composite bows require two weeks, and 1d6 arrows can be made in one day. When the construction time for the weapon is completed, the player makes a proficiency check. If the check is successful, the weapon is of fine quality and will last for many years of normal use without breaking. If the check fails, the weapon is still usable, but has a limited life span: An arrow breaks on the first shot; a bow breaks if the character using it rolls an unmodified 1 on his 1d20 attack roll. Option: If a character wishes to create a weapon of truly fine quality and the DM allows it, the player can opt to use the following alternative procedure for determining the success of his attempt. When the proficiency check is made, any failure means that the weapon is useless. However, a successful check means that the weapon enables the character to add Strength bonuses to attack and damage rolls. Additionally, if the</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>78/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>proficiency check is a natural 1, the range of the bow is increased 10 yards for all range classes or is of such fine work that it is suitable for enchantment.</p>
+<h3 id="brewing">Brewing</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>The character is trained in the art of brewing beers and other strong drink. The character can prepare brewing formulas, select quality ingredients, set up and manage a brewery, control fermentation, and age the finished product.</p>
+<h3 id="bureaucracy">Bureaucracy</h3>
+<p><em>1 slot(s) · Charisma · check -2 · groups: Priest</em></p>
+<p>The bureaucracy proficiency helps characters in situations involving officials, rules, and established routines. For example, a successful check shortens the time a character spends in a city lockup awaiting judgment. A successful check can also speed the process of gaining an audience with an important templar or other official. The bureaucracy proficiency helps a character understand political hierarchies and who to consult to get a job done. A successful check also allows a character to pay 10% less on a tax levied against him; two successful checks in a row allow him to avoid the tax completely. In addition to these examples, the bureaucracy proficiency functions in other ways (as allowed by the DM) to let a character understand and use (or abuse) bureaucratic systems with which he’s familiar.</p>
+<h3 id="carpentry">Carpentry</h3>
+<p><em>1 slot(s) · Strength · check 0 · groups: General</em></p>
+<p>The carpentry proficiency enables the character to do woodworking jobs: building houses, cabinetry, joinery, etc. Tools and materials must be available. The character can build basic items from experience, without the need for plans. Unusual and more complicated items (a catapult, for example) require plans prepared by an engineer. Truly unusual or highly complex items (wooden clockwork mechanisms, for example) require a proficiency check.</p>
+<h3 id="charioteering">Charioteering</h3>
+<p><em>1 slot(s) · Dexterity · check +2 · groups: Warrior</em></p>
+<p>A character with proficiency in this skill is able to safely guide a chariot, over any type of terrain that can normally be negotiated, at a rate 1/3 faster than the normal movement rate for a chariot driven by a character without this proficiency. Note that this proficiency does not impart the ability to move a chariot over terrain that it cannot traverse; even the best charioteer in the world cannot take such a vehicle into the mountains.</p>
+<h3 id="cobbling">Cobbling</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: General</em></p>
+<p>The character can fashion and repair shoes, boots, and sandals.</p>
+<h3 id="contact">Contact</h3>
+<p><em>1 slot(s) · Wisdom · check 0 · groups: General</em></p>
+<p>This proficiency gives characters access to the psionic attack forms necessary to open a closed mind. Contact allows characters to gain psionic attacks as they become available with level advancement (see Chapter 1). Psionicists automatically receive this proficiency; it doesn’t take up any of their available slots. As a psionicist increases in level, he automatically receives psionic attack forms as outlined on TABLE VII. Psionic attack forms don’t fill up a psionicist’s proficiency slots. Wild talents, however, must select contact and place it in an available nonweapon proficiency slot to gain its benefits. Once contact is slotted, a wild talent selects one psionic attack. He may select an additional attack by placing it in an available nonweapon slot after he has advanced the appropriate number of levels, according to his group’s progression rate. Wild talents may never have more than three of the five psionic attack forms. •</p>
+<h3 id="cooking">Cooking</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>Although all characters have rudimentary cooking skills, the character with this proficiency is an accomplished cook. A proficiency check is required only when attempting to prepare a truly magnificent meal worthy of a master chef.</p>
+<h3 id="dancing">Dancing</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: General</em></p>
+<p>The character knows many styles and varieties of dance, from folk dances to formal court balls.</p>
+<h3 id="direction-sense">Direction Sense</h3>
+<p><em>1 slot(s) · Wisdom · check +1 · groups: General</em></p>
+<p>A character with this proficiency has an innate sense of direction. By concentrating for 1d6 rounds, the character can try to determine the direction the party is headed. If the check fails but is less than 20, the character errs by 90 degrees. If a 20 is rolled, the direction chosen is exactly opposite the true heading. (The DM rolls the check.) Furthermore, when traveling in the wilderness, a character with direction sense has the chance of becoming lost reduced by 5%.</p>
+<h3 id="dirty-tricks">Dirty Tricks</h3>
+<p><em>1 slot(s) · Wisdom · check -2 · groups: Warrior</em></p>
+<p>The Dirty Tricks proficiency allows any fighter character (not just a gladiator) to learn how to fight dirty against an opponent. Although the exact methods may vary from character to character, the proficiency allows the PC to distract an opponent just long enough to get away with something otherwise not possible. The method of trickery must necessarily vary depending on terrain, the opponent, and numerous other factors. Even weather can have a serious effect on the tricks a gladiator can play. The Dirty Tricks proficiency gives a +1 bonus to one of several actions the PC can take in the combat round, provided the PC makes a successful proficiency check. A foe may make a Wisdom check at -2 to detect the trick. A successful Wisdom check negates the Dirty Trick for that round. The Dirty Tricks bonus may be applied to the user's attack, initiative, or damage results. The Dirty Trickster may also choose to apply the bonus as a penalty (-1) to an opponent's attack, initiative, or damage. The desired bonus must be announced before the proficiency is checked. A failed check indicates that the enemy is alert to such tricks, and will not fall prey to them later in the combat. Dirty Tricks generally work only once or twice against any given opponent, no matter what forms are used. They remember those who engage in such tricks against them, usually with negative overtones. Only those with Average or lower Intelligence will succumb to a Dirty Trick played twice unless it is exceptionally clever. Players are encouraged to think of the tricks themselves, rather than simply rolling the dice. Each Dirty Trick played by the PC against the same enemy gives the enemy a +2 on his Wisdom check, making the check for a second Trick at a 0 modifier, the third at a +2, and so on. Unless it can be reasonably expected that the foe would not remember the PC (DM's discretion), this bonus should always be kept in mind. A bonus also applies if the PC has a reputation for Dirty Tricks, when facing someone who would know of this reputation. Sample Dirty Tricks include throwing sand in a foe's eyes, playing dead to lure an enemy into striking distance, clouting him in sensitive areas, forcing him to spring arena-laid traps, and so forth.</p>
+<h3 id="disguise">Disguise</h3>
+<p><em>1 slot(s) · Charisma · check -1 · groups: Rogue</em></p>
+<p>The character with this skill is trained in the art of disguise. He can make himself look like any general type of person of about the same height, age, weight, and race. A successful proficiency check indicates that the disguise is successful, while a failed roll means the attempt was too obvious in some way. The character can also disguise himself as a member of another race or sex. In this case, a -7 penalty is applied to the proficiency check. The character may also attempt to disguise himself as a specific person, with a -10 penalty to the proficiency check. These modifiers are cumulative, thus, it is extremely difficult for a character to disguise himself as a specific person of another race or sex (a -17 penalty to the check).</p>
+<h3 id="endurance">Endurance</h3>
+<p><em>2 slot(s) · Constitution · check 0 · groups: Warrior</em></p>
+<p>A character with endurance proficiency is able to perform continual strenuous physical activity for twice as long as a normal character before becoming subject to the effects of fatigue and exhaustion. In those cases where extreme endurance is required, a successful proficiency check must be made. Note that this proficiency does not enable a character to extend the length of time that he can remain unaffected by a lack of food or water.</p>
+<h3 id="engineering">Engineering</h3>
+<p><em>2 slot(s) · Intelligence · check -3 · groups: Priest, Wizard</em></p>
+<p>The character is trained as a builder of both great and small things. Engineers can prepare plans for everything from simple machines (catapults, river locks, grist mills) to large buildings (fortresses, dams). A proficiency check is required only when designing something particularly complicated or unusual. An engineer must still find talented workmen to carry out his plan, but he is trained to supervise and manage their work. An engineer is also familiar with the principles of siegecraft and can detect flaws in the defenses of a castle or similar construction. He knows how to construct and use siege weapons and machines, such as catapults, rams, and screws.</p>
+<h3 id="etiquette">Etiquette</h3>
+<p><em>1 slot(s) · Charisma · check 0 · groups: General</em></p>
+<p>This proficiency gives the character a basic understanding of the proper forms of behavior and address required in many different situations, especially those involving nobility and persons of rank. Thus, the character will know the correct title to use when addressing a duke, the proper steps of ceremony to greet visiting diplomats, gestures to avoid in the presence of dwarves, etc. For extremely unusual occurrences, a proficiency check must be made for the character to know the proper etiquette for the situation (an imperial visit, for example, is a sufficiently rare event). However, having the character know what is correct and actually do what is correct are two different matters. The encounters must still be role-played by the character. Knowledge of etiquette does not give the character protection from a gaffe or faux pas; many people who know the correct thing still manage to do the exact opposite.</p>
+<h3 id="fire-building">Fire-building</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: General</em></p>
+<p>A character with fire-building proficiency does not normally need a tinderbox to start a fire. Given some dry wood and small pieces of tinder, he can start a fire in 2d20 minutes. Flint and steel are not required. Wet wood, high winds, or other adverse conditions increase the time to 3d20, and a successful proficiency check must be rolled to start a fire.</p>
+<h3 id="fishing">Fishing</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: General</em></p>
+<p>The character is skilled in the art of fishing, be it with hook and line, net, or spear. Each hour the character spends fishing, roll a proficiency check. If the roll is failed, no fish are caught that hour. Otherwise, a hook and line or a spear will land fish equal to the difference between the die roll and the character's Wisdom score. A net will</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>79/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>catch three times this amount. Of course, no fish can be caught where no fish are found. On the other hand, some areas teem with fish, such as a river or pool during spawning season. The DM may modify the results according to the situation.</p>
+<h3 id="forgery">Forgery</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Rogue</em></p>
+<p>This proficiency enables the character to create duplicates of documents and handwriting and to detect such forgeries created by others. To forge a document (military orders, local decrees, etc.) where the handwriting is not specific to a person, the character needs only to have seen a similar document before. To forge a name, an autograph of that person is needed, and a proficiency check with a -2 penalty must be successfully rolled. To forge a longer document written in the hand of some particular person, a large sample of his handwriting is needed, with a -3 penalty to the check. It is important to note that the forger always thinks he has been successful; the DM rolls the character's proficiency check in secret and the forger does not learn of a failure until it is too late. If the check succeeds, the work will pass examination by all except those intimately familiar with that handwriting or by those with the forgery proficiency who examine the document carefully. If the check is failed, the forgery is detectable to anyone familiar with the type of document or handwriting--if he examines the document closely. If the die roll is a 20, the forgery is immediately detectable to anyone who normally handles such documents without close examination. The forger will not realize this until too late. Furthermore, those with forgery proficiency may examine a document to learn if it is a forgery. On a successful proficiency roll, the authenticity of any document can be ascertained. If the die roll is failed but a 20 is not rolled, the answer is unknown. If a 20 is rolled, the character reaches the incorrect conclusion.</p>
+<h3 id="gaming">Gaming</h3>
+<p><em>1 slot(s) · Charisma · check 0 · groups: Rogue, Warrior</em></p>
+<p>The character knows most common games of chance and skill, including cards, dice, bones, draughts, and chess. When playing a game, the character may either play out the actual game (which may take too much time for some) or make a proficiency check, with success indicating victory. If two proficient characters play each other, the one with the highest successful die roll wins. A character with gaming proficiency can also attempt to cheat, thus gaining a +1 bonus to his ability score. If the proficiency check for the game is 17 to 20, however, the character has been caught cheating (even if he won the game).</p>
+<h3 id="gem-cutting">Gem Cutting</h3>
+<p><em>2 slot(s) · Dexterity · check -2 · groups: Rogue, Wizard, Psionicist</em></p>
+<p>A character with this proficiency can finish the rough gems that are discovered through mining at a rate of 1d10 stones per day. A gem cutter derives no benefit from the assistance of nonproficient characters. A gem cutter must work with a good light source and must have an assortment of chisels, small hammers, and specially hardened blades. Uncut gems, while still of value, are not nearly as valuable as the finished product. If the cutting is successful (as determined by a proficiency check), the gem cutter increases the value of a given stone to the range appropriate for its type. If a 1 is rolled, the work is exceptionally brilliant and the value of the gem falls into the range for the next most valuable gem (the DM has the relevant tables).</p>
+<h3 id="harness-subconscious">Harness Subconscious</h3>
+<p><em>2 slot(s) · Wisdom · check -1 · groups: Psionicist</em></p>
+<p>Through the use of this proficiency, a psionicist temporarily boosts his PSP total. To procure these extra PSPs, the psionicist’s PSP total must be at its maximum. Two full days (48 consecutive hours) must be spent gathering energy from subconscious reserves. At the end of this time, the psionicist makes a proficiency check. Success increases his PSP total by 20%, rounded up. The extra PSPs remain available for 72 hours or until they are used up, whichever comes first. At the end of 72 hours, the psionicist loses as many PSPs as he gained from his current total (though the total won’t drop below 0). During the 72 hours of boosted energy, the psionicist can’t recover PSPs if his current total equals or exceeds his usual maximum. Once all of the bonus PSPs have been used, PSPs can be recovered normally up to the usual maximum. •</p>
+<h3 id="healing">Healing</h3>
+<p><em>2 slot(s) · Wisdom · check -2 · groups: Priest</em></p>
+<p>A character proficient in healing knows how to use natural medicines and basic principles of first aid and doctoring. If the character tends another within one round of wounding (and makes a successful proficiency check), his ministrations restore 1d3 hit points (but no more hit points can be restored than were lost in the previous round). Only one healing attempt can be made on a character per day. If a wounded character remains under the care of someone with healing proficiency, that character can recover lost hit points at the rate of 1 per day even when traveling or engaging in nonstrenuous activity. If the wounded character gets complete rest, he can recover 2 hit points per day while under such care. Only characters with both healing and herbalism proficiencies can help others recover at the rate of 3 hit points per day of rest. This care does not require a proficiency check, only the regular attention of the proficient character. Up to six patients can be cared for at any time. A character with healing proficiency can also attempt to aid a poisoned individual, provided the poison entered through a wound. If the poisoned character can be tended to immediately (the round after the character is poisoned) and the care continues for the next five rounds, the victim gains a +2 bonus to his saving throw (delay his saving throw until the last round of tending). No proficiency check is required, but the poisoned character must be tended to immediately (normally by sacrificing any other action by the proficient character) and cannot do anything himself. If the care and rest are interrupted, the poisoned character must immediately roll a normal saving throw for the poison. This result is unalterable by normal means (i.e., more healing doesn't help). Only characters with both healing and herbalism proficiencies can attempt the same treatment for poisons the victim has swallowed or touched (the character uses his healing to diagnose the poison and his herbalist knowledge to prepare a purgative). A character with healing proficiency can also attempt to diagnose and treat diseases. When dealing with normal diseases, a successful proficiency check automatically reduces the disease to its mildest form and shortest duration. Those who also have herbalism knowledge gain an additional +2 bonus to this check. A proficient character can also attempt to deal with magical diseases, whether caused by spells or creatures. In this case, a successful proficiency check diagnoses the cause of the disease. However, since the disease is magical in nature, it can be treated only by magical means.</p>
+<h3 id="heat-protection">Heat Protection</h3>
+<p><em>1 slot(s) · Intelligence · check -2 · groups: General</em></p>
+<p>A character who has the heat protectron proficiency has learned to pace himself and use clothing to optimize endurance against the rigors of Athas’s heat. With a successful check, the character need only consume half the normal amount of water per day to avoid dehydration. In combat, the heat protection proficiency allows a character wearing metal armor to battle better and longer. A successful check each round allows him to avoid the THAC0 penalty for that round. In addition, when he reaches his Constitution score limit to rounds of combat, a successful check allows him to fight for five more rounds. This check can be made at the end of every subsequent five-round period, but once it fails the character collapses from exhaustion. Dehydration is explained in Chapter 8: DM Material. The effects of using metal armor in combat appear in Chapter 3: Money and Equipment.</p>
+<h3 id="heraldry">Heraldry</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>The knowledge of heraldry enables the character to identify the different crests and symbols that denote different persons and groups. Heraldry comes in many forms and is used for many different purposes. It can be used to identify noblemen, families, guilds, sects, legions, political factions, and castes. The symbols may appear on flags, shields, helmets, badges, embroidery, standards, clothing, coins, and more. The symbols used may include geometric patterns, calligraphed lines of script, fantastic</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>80/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>beasts, religious symbols, and magical seals (made for the express purpose of identification). Heraldry can vary from the highly formalized rules and regulations of late medieval Europe to the knowledge of different shield patterns and shapes used by African tribesmen. The character automatically knows the different heraldic symbols of his homeland and whom they are associated with. In addition, if the character makes a successful proficiency check, he can correctly identify the signs and symbols of other lands, provided he has at least a passing knowledge of the inhabitants of that land. His heraldry skill is of little use upon first entering a foreign land.</p>
+<h3 id="herbalism">Herbalism</h3>
+<p><em>2 slot(s) · Intelligence · check -2 · groups: Priest, Wizard</em></p>
+<p>Those with herbalist knowledge can identify plants and fungus and prepare nonmagical potions, poultices, powders, balms, salves, ointments, infusions, and plasters for medical and pseudo-medical purposes. They can also prepare natural plant poisons and purgatives. The DM must decide the exact strength of such poisons based on the poison rules in the DMG. A character with both herbalism and healing proficiencies gains bonuses when using his healing talent (see the Healing proficiency).</p>
+<h3 id="hunting">Hunting</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: Warrior</em></p>
+<p>When in wilderness settings, the character can attempt to stalk and bring down game. A proficiency check must be made with a -1 penalty to the ability score for every nonproficient hunter in the party. If the die roll is successful, the hunter (and those with him) have come within 101 to 200 yards (100+1d100) of an animal. The group can attempt to close the range, but a proficiency check must be made for each 20 yards closed. If the stalking is successful, the hunter automatically surprises the game. The type of animal stalked depends on the nature of the terrain and the whim of the DM.</p>
+<h3 id="information-gathering">Information Gathering</h3>
+<p><em>1 slot(s) · Intelligence · check Special · groups: Rogue</em></p>
+<p>This proficiency allows a character to rapidly gather information from underworld sources and from the word on the streets of the cities and villages. A character who has this proficiency can spend a day becoming aware of all the major rumors circulating on the streets of a particular area. No check is needed for this use of the proficiency, but the time must be accounted for. A successful check is needed to gather specific information about a person or place. The roll is modified by the character’s reaction adjustment (determined by his Charisma score). In addition, the character must spend 1d10 ceramic pieces to pay for small bribes, to buy drinks, and to otherwise loosen the lips of those in the know. If the character uses this proficiency outside familiar territory, the check receives a -3 penalty. If the character doesn’t spend the ceramic pieces, the check receives an additional -3 penalty.</p>
+<h3 id="intimidation">Intimidation</h3>
+<p><em>1 slot(s) · Strength or Charisma · check Special · groups: General</em></p>
+<p>(General proficiency, 1 slot, see the following text for the appropriate ability score and modifier) This is a talent for bending people to your will by scaring the living daylights out of them. NPCs who are intimidated are quite likely to do what theyre told out of fear. On the negative side, they are also very likely to harbor resentment against the character who intimidates them. The NPCs will keep their resentment hidden until the first chance to avenge their pride arises. Intimidation may be attempted with one of two abilities: Strength or Charisma. If Strength is used, the character threatens immediate, bodily harm. If Charisma is used, the intimidation consists of more subtle threats, which need not be physical. If successful, the NPC is convinced that the intimidator is ready and able to make his life miserable.</p>
+<p>Earning Money This is the safest means of obtaining start-up funds, but also the hardest and most timeconsuming. Money from legitimate jobs rolls in slowly and must be saved (a difficult task in the harsh environment of Athas), while money from adventuring is dangerous to obtain. Many Athasian trading houses operate lending houses. These houses are run for profit, of course, which is gained by charging interest. Interest charged to new traders varies from 10 to 20 percent per year, and varies according to how safe the money is (low interest for low-risk ventures, high interest for high-risk ventures). Loans to more-established houses are generally at 5 to 10 percent interest.</p>
+<p>Loans are normally due in full (with interest) in one year. For role-playing purposes, Athasian merchants do not speak in terms of percentage interest, but rather make such statements as I will loan you 1,000 silver, but in one year you must pay me 1,200 silver to replace it. (This would be a 20% interest loan, payable in one year.) It is perfectly permissible for player character traders to borrow money from trading houses to finance their trade missions (once they get established, they could even open such an enterprise on their own, charging comparable fees and using the money gained to expand their business). The obvious problem starting characters will encounter is that if a venture loses money, either no one will lend them money or the money lent will be at a much higher interest rate. Only with success can the characters expect a continual cash flow. Should they lose a lenders entire loan in a disastrous expedition, for example, the characters can expect vengeance in any number of forms. Consequences for default can be severe. Less violent houses, such as Wavir, simply seize the borrowers remaining assets and write the remainder off as a bad debt. On occasion they allow the borrower to work off the debt. Brutal and territorial houses, such as Tsalaxa, do not tolerate failure. At best, defaulters can expect to be stripped of all their possessions and forced into permanent indenture to pay off the debt. Defaulting on large amounts can result in attacks by a houses hired thugs, while death (in varying levels of unpleasantness, depending on the perceived offense) is the punishment for truly major defaulters. Some criminal cartels in larger cities act as loan sharks, lending money to those who cannot borrow through legitimate channels. Interest varies from 20 to 75 percent, often with many hidden costs, of which the borrower is informed when it is too late. Payment is demanded in full when the loan comes due. The consequences for failure are every bit as</p>
+<p>harsh (or worse) than those inflicted by Tsalaxa and like-minded houses.</p>
+<p>Partnerships The partnership method for beginning a trading concern keeps the characters relatively safe from major loss or retaliation, but it also requires the participation of an outside investor, who often demands a considerable say in how the enterprise is to be run. This is not always a bad thing, for investors are interested in safeguarding their money, and they are often very experienced in the world of business. Small trading companies, dynastic houses, wealthy nobles with too much money, disenfranchised traders seeking to turn their fortunes aroundall of these and more are potential investors. Those who contribute money to a trading venture expect profits in proportion to the amount they have given. Often, if a noble or other wealthy investor grants the entire cost of an expedition in exchange for adventurers expertise (sometimes staying safe at home while his new partners take the risk), he will allow the partners 25 to 50 percent of the profits. Should an expedition fail, the investor rarely has any recourse, for it was he who invested the money and trusted his partners. Sometimes, an evil or chaotic investor may blame player character incompetence for his failures and attempt to seek vengeance. But most Athasian investors chalk up lost money to experience, although they may advise their friends</p>
+<h3 id="juggling">Juggling</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Rogue</em></p>
+<p>The character can juggle, a talent useful for entertainments, diversions, and certain rare emergencies. When juggling normally (to entertain or distract), no proficiency check is required. A check is made when trying spectacular tricks (&quot;Watch me eat this apple in mid-air!&quot;). However, juggling also enables the character to attempt desperate moves. On a successful attack roll vs. AC 0 (not a proficiency check), the character can catch small items thrown to harm him (as opposed to items thrown for him to catch). Thus, the character could catch a dagger or a dart before it hits. If this attack roll fails, however, the character automatically suffers damage (sticking your hand in the path of a dagger is likely to hurt).</p>
+<h3 id="jumping">Jumping</h3>
+<p><em>1 slot(s) · Strength · check 0 · groups: Rogue</em></p>
+<p>The character can attempt exceptional leaps both vertically and horizontally. If the character has at least a 20-foot running start, he can leap (broad jump) 2d6+his level in feet. No character can broad jump more than six times his height, however. With the same start, he can leap vertically (high jump) 1d3 plus half his level in feet. No character can high jump more than 1-_ times his own height. From a standing start, a character with this proficiency can broad jump 1d6 plus half his level in feet and high jump only three feet. The character can also attempt vaults using a pole. A vault requires at least a 30-foot running start. If a pole is used, it must be four to 10 feet longer than the character's height. The vault spans a distance equal to 1-_ times the length of the pole. The character can clear heights equal to the height of the pole. He can also choose to land on his feet if the vault carries him over an obstacle no higher than _ the height of his pole. Thus, using a 12-foot pole, the character could either vault through a window 12 feet off the ground (tumbling into the room beyond), land on his feet in an opening six feet off the ground, or vault across a moat 18 feet wide. In all cases, the pole is dropped at the end of the vault.</p>
+<h3 id="languages-ancient">Languages, Ancient</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: Priest, Wizard</em></p>
+<p>The character has mastered a difficult and obscure tongue, now primarily found in the writings of pedantic sages and sorcerers. The main use of the language is to read tomes of ancient secrets written by long-dead mystics. This proficiency enables the character to either read and write or speak the language (his choice).</p>
+<h3 id="languages-modern">Languages, Modern</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>The character has learned to speak a language of the known world. To do so, there must be a teacher available. This could be another player character, an NPC hireling, or simply a local townsman.</p>
+<h3 id="leatherworking">Leatherworking</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>This proficiency enables a character to tan and treat leather and to make clothing and other leather objects. The character can make leather armor, as well as backpacks, saddlebags, saddles, and all sorts of harnesses.</p>
+<h3 id="local-history">Local History</h3>
+<p><em>1 slot(s) · Charisma · check 0 · groups: Priest, Rogue</em></p>
+<p>The character is a storehouse of facts about the history of a region the size of a large county or a small province. The character knows when the ruined tower on the hill was built and who built it (and what happened to him), what great heroes and villains fought and fell at the old battlefield, what great treasure is supposed to be kept in a local temple, how the mayor of the next town miraculously grew hair on his balding pate, and more. The DM will provide information about local sites and events as the character needs to know them. Furthermore, the character can try to retell these events as entertaining stories. Once the subject is chosen, he can either make a proficiency check and, if successful, add that tale to his repertoire, or actually tell the story to other characters. If the character succeeds in entertaining them, the player need not make a proficiency roll for the character, since he has succeeded. The character can tell these stories to entertain others, granting him a +2 bonus to his Charisma for the encounter. But telling stories to hostile beings is probably not going to do any good.</p>
+<h3 id="massage">Massage</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: Warrior</em></p>
+<p>The Massage proficiency can allow a gladiator to help partners maintain their form longer during matches. By applying this therapy between matches, the gladiator ensures that the muscles of the subject remain loose and relaxed, essential for good combat. Any gladiator who receives a Massage in between bouts gains +2 to Endurance checks during the next bout. Massage can be practiced only on others; the proficient gladiator cannot massage herself and receive the bonus. Tactics: The gladiator who takes the Tactics proficiency gains a +1 bonus on attack or initiative rolls (player's choice) in any given combat by taking a round to study his opponent's movements. A successful proficiency roll indicates that the gladiator has some idea of what his opponent plans in combat. When one of the combatants is eliminated, the gladiator must again step back a round to analyze the situation and make a new proficiency check if he is to keep the bonus he has gained. He may parry attacks in this round, but may not initiate any himself. This includes uses of his psionic wild talent, no matter what it may be. Nearly all his attention is focused on divining the intent of his enemies. Furthermore, if the gladiator wishes to devote another slot to this proficiency, he may choose to study one particular race in order to better understand its tendencies. In this case, the gladiator gains a +2 bonus to attack or initiative rolls when using this proficiency. Alternatively, the gladiator may choose to split the bonus, and take +1 on attacks and +1 to initiative. The gladiator may specialize in as many races as he likes, but can gain only a maximum bonus of +2 to any particular races' tendencies. This proficiency does not apply to groups of four or more opponents, unless the opponents' race is one the gladiator has studied extensively. In this case, the proficiency can apply to as many as five opponents, but never more than that. This proficiency does not apply to the gladiator's partners. The gladiator specializes in tactics, not in strategy.</p>
+<h3 id="meditative-focus">Meditative Focus</h3>
+<p><em>1 slot(s) · Wisdom · check +1 · groups: Psionicist</em></p>
+<p>This proficiency allows a psionicist to focus his mental energy into one discipline, causing all powers within that discipline to receive MTHAC0 roll bonuses; powers related to other disciplines receive MTHAC0 roll penalties. The psionicist must meditate for 12 consecutive hours. He recovers PSPs normally during this time. When the period ends, the character makes a proficiency check. Success means he has focused his energy into the chosen discipline. All MTHAC0 rolls for powers within that discipline receive a +2 bonus for the next 24 hours or until his PSP total is reduced to 0, whichever comes first. Other disciplines get a -1 penalty for the same period. •</p>
+<h3 id="mental-armor">Mental Armor</h3>
+<p><em>1 slot(s) · Wisdom · check -2 · groups: General</em></p>
+<p>This proficiency allows a character to improve his mental armor class (MAC). Each time this proficiency is placed in an available nonweapon slot, the character’s MAC improves. Nonpsionicists improve by +1 for each slot; psionicists improve by +2. The proficiency may only be slotted once per level advancement. •</p>
+<h3 id="mining">Mining</h3>
+<p><em>2 slot(s) · Wisdom · check -3 · groups: General</em></p>
+<p>A character with mining proficiency is needed to site and supervise the operations of any mine. First, the character can attempt to determine what types of ores or gems can be found in a given area. To do this, he must spend at least a week searching a four-square-mile area. The DM may rule that more area must be searched to find anything of value and may thus increase the amount of time required. At the end of the search, the character can say what is likely to be found in this area. After this, the</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>81/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>character can site the mine. On a successful proficiency check (made secretly by the DM), the character has found a good site to begin mining for any minerals that may be in the area. The check does not guarantee a successful mine, only that a particular site is the best choice in a given area. The DM must determine what minerals, if any, are to be found in the region of the mine. On a failed check, the character only thinks he has found a good site. Much effort is spent before the character is proved wrong, of course. Once the mine is in operation, a character with mining proficiency must remain on site to supervise all work. Although this is a steady job, most player characters will find it better to hire an NPC for this purpose.</p>
+<h3 id="mountaineering">Mountaineering</h3>
+<p><em>1 slot(s) · NA · check NA · groups: Warrior</em></p>
+<p>A character with this proficiency can make difficult and dangerous climbs up steep slopes and cliffs with the aid of spikes, ropes, etc. If a character with mountaineering proficiency leads a party, placing the pitons (spikes) and guiding the others, all in the party can gain the benefit of his knowledge. A mountaineer can guide a party up a cliff face it could not otherwise climb. A character with this proficiency gains a 10% bonus per proficiency slot spent to his chance to climb any surface. Note that mountaineering is not the same as the thief's climbing ability, since the latter does not require aids of any sort.</p>
+<h3 id="musical-instrument">Musical Instrument</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Priest, Rogue, Psionicist</em></p>
+<p>The character can play a specific musical instrument. An additional instrument can be added for every extra slot devoted to this proficiency. The character plays quite well, and no proficiency check is normally required. The DM may direct the character to make a proficiency check in what he feels are extraordinary circumstances.</p>
+<h3 id="navigation">Navigation</h3>
+<p><em>1 slot(s) · Intelligence · check -2 · groups: Priest, Warrior, Wizard</em></p>
+<p>The character has learned the arts of navigating by the stars, studying currents, and watching for telltale signs of land, reefs, and hidden danger. This is not particularly useful on land. At sea, a successful proficiency check by the navigator reduces the chance of getting lost by 20 percent.</p>
+<h3 id="pottery">Pottery</h3>
+<p><em>1 slot(s) · Dexterity · check -2 · groups: General</em></p>
+<p>A character with this proficiency can create any type of clay vessel or container commonly used in the campaign world. The character requires a wheel and a kiln, as well as a supply of clay and glaze. The character can generally create two smallor medium-sized items or one large-sized item per day. The pieces of pottery must then be fired in the kiln for an additional day. The raw materials involved cost 3 cp to make a small item, 5 cp to make a mediumsized item, and | sp to make a large item.</p>
+<h3 id="psionic-detection">Psionic Detection</h3>
+<p><em>1 slot(s) · Wisdom · check -2 · groups: General</em></p>
+<p>The psionic detection proficiency works much as the psionic sense devotion, but it is much weaker. With this proficiency, an Athasian character uses his latent psionic ability to detect the expenditure of psionic strength points (PSPs) around him. When employing this proficiency, a character must clear his mind and concentrate, taking at least one full round to prepare. A successful check allows the character to detect the expenditure of any PSPs within 50 yards of his location, regardless of intervening material objects. A character can maintain use of the proficiency for successive rounds, but during that time he can’t move or perform any other actions. The proficiency check, however, must succeed on the round the PSPs are expended or the character detects nothing. This proficiency can only inform a character that PSPs were expended within 50 yards, telling nothing more. The detector can’t determine the number of PSPs, their source, the powers drawn upon, or the purpose of the expenditure (whether to initiate a power or to maintain one). Psionic detection isn’t cumulative with other detection techniques. A player whose character has the psionic detection proficiency should remind the DM about that fact every so often. The DM might sometimes secretly roll the proficiency and inform the player of results.</p>
+<h3 id="reading-lips">Reading Lips</h3>
+<p><em>2 slot(s) · Intelligence · check -2 · groups: Rogue</em></p>
+<p>The character can understand the speech of those he can see but not hear. When this proficiency is chosen, the player must specify what language the character can lip read (it must be a language the character can already speak). To use the proficiency, the character must be within 30 feet of the speaker and be able to see him speak. A proficiency check is made. If the check fails, nothing is learned. If the check is successful, 70% of the conversation is understood. Since certain sounds are impossible to differentiate, the understanding of a lip-read conversation is never better than this.</p>
+<h3 id="readingwriting">Reading/Writing</h3>
+<p><em>1 slot(s) · Intelligence · check +1 · groups: Priest, Wizard, Psionicist</em></p>
+<p>The character can read and write a modern language he can speak, provided there is someone available to teach the character (another PC, a hireling, or an NPC). This proficiency does not enable the character to learn ancient languages (see</p>
+<h3 id="rejuvenation">Rejuvenation</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: Psionicist</em></p>
+<p>This proficiency allows a psionicist to recover PSPs more quickly than is usual by entering a rejuvenating trance. This state of deep concentration requires a successful proficiency check. For every hour a hero maintains this trance (and makes the check), he regains PSPs at twice the usual rate (one-quarter of his total instead of one-eighth). He can’t expend PSPs while in this trance, and his state is much like deep sleep. TABLE IX: NONWEAPON PROFICIENCIES General Group Slots Ability Contact †  Wisdom Mental armor † Wisdom</p>
+<p>Modifier* -2</p>
+<ul>
+<li>If a proficiency check is required, apply the modifier indicated to the corresponding ability and roll 1d20; results equal to or less than adjusted ability score indicate success. † New proficiency described in the following section. ‡ Bonus proficiency received by a psionicist upon creation; does not take up any available slots.</li>
+</ul>
+<p>Psionicist Group Slots Ability Dexterity Gem cutting Wisdom Harness subconscious† 2 Meditative focus† Wisdom Musical instrument Dexterity Reading/writing Intelligence Rejuvenation† Wisdom Wisdom Religion</p>
+<p>Modifier* -2 -1 +1 -1 +1 -1</p>
+<p>TABLE X: WILD TALENTS Roll 1d100 Wild Devotion Clairsentient Devotions 1-2 All-round vision Combat mind 4-5 Danger sense 6-7 Feel light Feel sound Hear light Know direction 11-12 Know location Poison sense 14-15 Radial navigation 16-17 See sound Spirit sense Psychokinetic Devotions 19-20</p>
+<h3 id="religion">Religion</h3>
+<p><em>1 slot(s) · Wisdom · check 0 · groups: Priest, Wizard, Psionicist</em></p>
+<p>Characters with religion proficiency know the common beliefs and cults of their homeland and the major faiths of neighboring regions. Ordinary information (type of religious symbol used, basic attitude of the faith, etc.) of any religion is automatically known by the character. Special information, such as how the clergy is organized or the significance of particular holy days, requires a proficiency check. Additional proficiencies spent on religion enable the character either to expand his general knowledge into more distant regions (using the guidelines above) or to gain precise information about a single faith. If the latter is chosen, the character is no longer required to make a proficiency check when answering questions about that religion. Such expert knowledge is highly useful to priest characters when dealing with their own and rival faiths.</p>
+<h3 id="riding-airborne">Riding, Airborne</h3>
+<p><em>2 slot(s) · Wisdom · check -2 · groups: General</em></p>
+<p>The character is trained in handling a flying mount. The particular creature must be chosen when the proficiency is chosen. Additional proficiency slots can be used to learn how to handle other types of mounts. Unlike land-based riding, a character must have this proficiency (or ride with someone who does) to handle a flying mount. In addition, a proficient character can do the following: ¢ Leap onto the saddle of the creature (when it is standing on the ground) and spur it airborne as a single action. This requires no proficiency check. ¢ Leap from the back of the mount and drop 10 feet to the ground or onto the back of another mount (land-based or flying). Those with only light encumbrance can drop to the ground without a proficiency check. In all other situations, a proficiency check is required. A failed roll means the character takes normal falling damage (for falling flat on his face) or misses his target (perhaps taking large amounts of damage as a result). A character who is dropping to the ground can attempt an immediate melee attack, if his proficiency check is made with a -4 penalty to the ability roll. Failure has the consequences given above. ¢ Spur his mount to greater speeds on a successful check, adding 1d4 to the movement rate of the mount. This speed can be maintained for four consecutive rounds. If the check fails, an attempt can be made again the next round. If two checks fail, no attempt can be made for a full turn. After the rounds of increased speed, its movement drops to 2/3 its normal rate and its Maneuverability Class (see Glossary) becomes one class worse. These conditions last until the mount lands and is allowed to rest for at least one hour.</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>82/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>¢ The rider can guide the mount with his knees and feet, keeping his hands free. A proficiency check is made only after the character suffers damage. If the check is failed, the character is knocked from the saddle. A second check is allowed to see if the character manages to catch himself (thus hanging from the side by one hand or in some equally perilous position). If this fails, the rider falls. Of course a rider can strap himself into the saddle, although this could be a disadvantage if his mount is slain and plummets toward the ground.</p>
+<h3 id="riding-land-based">Riding, Land-Based</h3>
+<p><em>1 slot(s) · Wisdom · check +3 · groups: General</em></p>
+<p>Those skilled in land riding are proficient in the art of riding and handling horses or other types of ground mounts. When the proficiency slot is filled, the character must declare which type of mount he is proficient in. Possibilities include griffons, unicorns, dire wolves, and virtually any creatures used as mounts by humans, demihumans, or humanoids. A character with riding proficiency can perform all of the following feats. Some of them are automatic, while others require a proficiency check for success. ¢ The character can vault onto a saddle whenever the horse or other mount is standing still, even when the character is wearing armor. This does not require a proficiency check. The character must make a check, however, if he wishes to get the mount moving during the same round in which he lands in its saddle. He must also make a proficiency check if he attempts to vault onto the saddle of a moving mount. Failure indicates that the character falls to the ground--presumably quite embarrassed. ¢ The character can urge the mount to jump tall obstacles or leap across gaps. No check is required if the obstacle is less than three feet tall or the gap is less than 12 feet wide. If the character wants to roll a proficiency check, the mount can be urged to leap obstacles up to seven feet high, or jump across gaps up to 30 feet wide. Success means that the mount has made the jump. Failure indicates that it balks, and the character must make another proficiency check to see whether he retains his seat or falls to the ground. ¢ The character can spur his steed on to great speeds, adding 6 feet per round to the animal's movement rate for up to four turns. This requires a proficiency check each turn to see if the mount can be pushed this hard. If the initial check fails, no further attempts may be made, but the mount can move normally. If the second or subsequent check fails, the mount immediately slows to a walk, and the character must dismount and lead the animal for a turn. In any event, after four turns of racing, the steed must be walked by its dismounted rider for one turn. ¢ The character can guide his mount with his knees, enabling him to use weapons that require two hands (such as bows and two-handed swords) while mounted. This feat does not require a proficiency check unless the character takes damage while so riding. In this case, a check is required and failure means that the character falls to the ground and sustains an additional 1d6 points of damage. ¢ The character can drop down and hang alongside the steed, using it as a shield against attack. The character cannot make an attack or wear armor while performing this feat. The character's Armor Class is lowered by 6 while this maneuver is performed. Any attacks that would have struck the character's normal Armor Class are considered to have struck the mount instead. No proficiency check is required. ¢ The character can leap from the back of his steed to the ground and make a melee attack against any character or creature within 10 feet. The player must roll a successful proficiency check with a -4 penalty to succeed. On a failed roll, the character fails to land on his feet, falls clumsily to the ground, and suffers 1d3 points of damage.</p>
+<h3 id="rope-use">Rope Use</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: General</em></p>
+<p>This proficiency enables a character to accomplish amazing feats with rope. A character with rope use proficiency is familiar with all sorts of knots and can tie knots that slip, hold tightly, slide slowly, or loosen with a quick tug. If the character's hands are bound and held with a knot, he can roll a proficiency check (with a -6 penalty) to escape the bonds. This character gains a +2 bonus to all attacks made with a lasso. The character also receives a +10% bonus to all climbing checks made while he is using a rope, including attempts to belay (secure the end of a climbing rope) companions.</p>
+<h3 id="running">Running</h3>
+<p><em>1 slot(s) · Constitution · check -6 · groups: Warrior</em></p>
+<p>The character can move at twice his normal movement rate for a day. At the end of the day he must sleep for eight hours. After the first day's movement, the character must roll a proficiency check for success. If the die roll succeeds, the character can continue his running movement the next day. If the die roll fails, the character cannot use his running ability the next day. If involved in a battle during a day he spent running, he suffers a -1 penalty to his attack rolls.</p>
+<h3 id="seamanship">Seamanship</h3>
+<p><em>1 slot(s) · Dexterity · check +1 · groups: General</em></p>
+<p>The character is familiar with boats and ships. He is qualified to work as a crewman, although he cannot actually navigate. Crews of trained seamen are necessary to manage any ship, and they improve the movement rates of inland boats by 50 percent.</p>
+<h3 id="seamstresstailor">Seamstress/Tailor</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: General</em></p>
+<p>The character can sew and design clothing. He can also do all kinds of embroidery and ornamental work. Although no proficiency check is required, the character must have at least needle and thread to work.</p>
+<h3 id="sensory-alteration">Sensory Alteration</h3>
+<p><em>2 slot(s) · Intelligence · check -2 · groups: Wizard</em></p>
+<p>Sensory Alteration, an optional proficiency available only to wizards, is based on Intelligence, takes a check modifier of -2, and requires two proficiency slots. Use it if sensory effects of casting are important in the campaign. Wizard characters who have this proficiency can increase or decrease the sensory effects of casting by lengthening the casting time of the spell. The casting time must be doubled to use the proficiency. On a successful check, the wizard makes the change. Increasing the effects triples the range at which they are normally detected-they become almost impossible to ignore, especially in an enclosed area like a room or cavern. Decreasing the effects reduces the range to one-quarter (rounded down). This proficiency applies to all sensory effects in play, including additional and grand effects. Tailoring Wizard's Style Each wizard in the campaign, whether preserver or defiler, has a standard set of sensory effects for spellcasting. This becomes a signature for those observant enough to sense it. Player character wizards: Let player characters choose their own sensory effects for casting. At lower levels they need only adopt a particular visual and aural effect. When they gain access to higherlevel spells, they will choose olfactory, tactile, taste, additional, and even grand effects for casting. Once chosen, the effects cannot change. &quot;Additional&quot; effects are optional, both when being chosen and, once chosen, in any given casting. NPC wizards: NPC wizards should have their own sensory effects for casting. Once determined, an NPC wizard's sensory effects cannot change. Make them up or choose them from these tables. Visual Sensory Effects Color (roll 1d10 or choose): 1 Red 2 Orange 3 Yellow 4 Green 5 Blue 6 Purple 7 Violet 8 Silver 9 Gold 10 Rainbow spectrum Optional effects (roll 1d10): 1 Images of bladed weapons 2 Images of wild birds or animals 3 Images of ghostly humanoids 4 Flames without heat 5 A distinct glowing rune 6 Lights radiate from wizard's eyes 7 Lights radiate from wizard's entire face 8 Lights swirl over wizard's head 9 Lights plume up over wizard toward sky 10 Lights radiate in a horizontal plane from hands Aural Sensory Effects Roll 1d20 or choose: 1 Chimes, high pitched 2 Chimes, low pitched 3 Faraway chanting 4 Faraway drums 5 Loud, intense heartbeat</p>
+<p>6 Horrible moaning 7 Ecstatic shouting 8 Distant thunder 9 Hunting horns 10 Metallic clanging 11 Sounds of mass battle 12 Low maniacal laughter 13 Raging torrent of water 14 Raging wind sounds 15 Low earthquake rumble 16 Sounds of erupting volcano 17 All sounds echo loudly 18 Noises sound slowed-down or speeded-up 19 Sounds shifted up or down one octave 20 Chorus of whispers; nonmagical sounds in vicinity are muted Olfactory/Taste Sensory Effects Roll 1d20 or choose: 1 Wildflowers 2 Local spices 3 Exotic perfumes 4 Pine needles 5 Perspiration</p>
+<h3 id="set-snares">Set Snares</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Rogue, Warrior</em></p>
+<p>The character can make simple snares and traps, primarily to catch small game. These can include rope snares and spring traps. A proficiency check must be rolled when the snare is first constructed and every time the snare is set. A failed proficiency check means the trap does not work for some reason. It may be that the workmanship was bad, the character left too much scent in the area, or he poorly concealed the finished work. The exact nature of the problem does not need to be known. The character can also attempt to set traps and snares for larger creatures: tiger pits and net snares, for example. A proficiency check must be rolled, this time with a -4 penalty to the ability score. In both cases, setting a successful snare does not ensure that it catches anything, only that the snare works if triggered. The DM must decide if the trap is triggered. Thief characters (and only thieves) with this proficiency can also attempt to rig manfile:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>83/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>traps. These can involve such things as crossbows, deadfalls, spiked springboards, etc. The procedure is the same as that for setting a large snare. The DM must determine the amount of damage caused by a man-trap. Setting a small snare or trap takes one hour of work. Setting a larger trap requires two to three people (only one need have the proficiency) and 2d4 hours of work. Setting a man-trap requires one or more people (depending on its nature) and 1d8 hours of work. To prepare any trap, the character must have appropriate materials on hand. Characters with animal lore proficiency gain a +2 bonus to their ability score when attempting to set a snare for the purposes of catching game. Their knowledge of animals and the woods serves them well for this purpose. They gain no benefit when attempting to trap monsters or intelligent beings.</p>
+<h3 id="sign-language">Sign Language</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: General</em></p>
+<p>Those who have mastered the use of sign language can communicate among themselves without words, provided they can see each other’s hands. Signing is a language unto itself: It conveys ideas that any other character who has the sign language proficiency can understand, regardless of his or her native language. To use sign language for an entire round, all parties involved must make a successful check. Characters who succeed can converse together for an entire minute; those who fail can’t listen. When a PC signs successfully with an NPC, the DM should speak freely with the player for one minute per round. Every round of conversation requires another check. A failed check means that the speaker didn’t perform his finger movements accurately, the listener wasn’t watching the speaker closely enough, or something else blocked communication. On Athas, many groups employ sign language for covert conversations. In some citystates, using sign language can be grounds for imprisonment. Though sign language throughout Athas is generally consistent, some secret societies employ special codes so that unwanted eyes can’t decipher specific conversations.</p>
+<h3 id="singing">Singing</h3>
+<p><em>1 slot(s) · Charisma · check 0 · groups: General</em></p>
+<p>The character is an accomplished singer and can use this ability to entertain others and perhaps earn a small living (note that bards can do this automatically). No proficiency check is required to sing. The character can also create choral works on a successful proficiency check.</p>
+<h3 id="somatic-concealment">Somatic Concealment</h3>
+<p><em>1 slot(s) · Dexterity · check -1 · groups: Wizard, Priest</em></p>
+<p>Though spellcasters can mumble verbal components and hide material components in their hands or robes, somatic components are harder to hide. The somatic component of any spell, magical or clerical, is apparent to any character watching the spellcaster. On Athas, where spellcasting is often illegal, the ability to hide the necessary gestures becomes important. If movements can be concealed, a spell can be unleashed without calling attention to the caster. A character using the somatic concealment proficiency must announce to the DM his intention to do so at the beginning of the round. Then, when the character casts his spell, the DM makes the check in secret. A successful check indicates that anyone who can see the wizard doesn’t recognize his gestures as being magical in nature. A failed check means that all who can view the casting wizard see his movements for what they really are.</p>
+<h3 id="spellcraft">Spellcraft</h3>
+<p><em>1 slot(s) · Intelligence · check -2 · groups: Priest, Wizard</em></p>
+<p>Although this proficiency does not grant the character any spellcasting powers, it does give him familiarity with the different forms and rites of spellcasting. If he observes and overhears someone who is casting a spell, or if he examines the material components used, he can attempt to identify the spell being cast. A proficiency check must be rolled to make a correct identification. Wizard specialists gain a +3 bonus to the check when attempting to identify magic of their own school. Note that since the spellcaster must be observed until the very instant of casting, the spellcraft proficiency does not grant an advantage against combat spells. The proficiency is quite useful, however, for identifying spells that would otherwise have no visible effect. Those talented in this proficiency also have a chance (equal to _ of their normal proficiency check) of recognizing magical or magically endowed constructs for what they are.</p>
+<h3 id="stonemasonry">Stonemasonry</h3>
+<p><em>1 slot(s) · Strength · check -2 · groups: General</em></p>
+<p>A stonemason is able to build structures from stone so that they last many years. He can do simple stone carvings, such as lettering, columns, and flourishes. The stone can be mortared, carefully fitted without mortar, or loosely fitted and chinked with rocks and earth. A stonemason equipped with his tools (hammers, chisels, wedges, block and tackle) can build a plain section of wall one foot thick, ten feet long, and five feet high in one day, provided the stone has already been cut. A stonemason can also supervise the work of unskilled laborers to quarry stone; one stonemason is needed for every five laborers. Dwarves are among the most accomplished stonemasons in the world; they receive a +2 bonus when using this skill.</p>
+<h3 id="survival">Survival</h3>
+<p><em>2 slot(s) · Intelligence · check 0 · groups: Warrior</em></p>
+<p>This proficiency must be applied to a specific environment--i.e., a specific type of terrain and weather factors. Typical environments include arctic, woodland, desert, steppe, mountain, or tropical. The character has basic survival knowledge for that terrain type. Additional proficiency slots can be used to add more types of terrain. A character skilled in survival has a basic knowledge of the hazards he might face in that land. He understands the effects of the weather and knows the proper steps to lessen the risk of exposure. He knows the methods to locate or gather drinkable water. He knows how to find basic, not necessarily appetizing, food where none is apparent, thus staving off starvation. Furthermore, a character with survival skill can instruct and aid others in the same situation. When using the proficiency to find food or water, the character must roll a proficiency check. If the check is failed, no more attempts can be made that day. The survival skill in no way releases the player characters from the hardships and horrors of being lost in the wilderness. At best it alleviates a small portion of the suffering. The food found is barely adequate, and water is discovered in minuscule amounts. It is still quite possible for a character with survival knowledge to die in the wilderness. Indeed, the little knowledge the character has may lead to overconfidence and doom!</p>
+<h3 id="swimming">Swimming</h3>
+<p><em>1 slot(s) · Strength · check 0 · groups: General</em></p>
+<p>A character with swimming proficiency knows how to swim and can move according to the rules given in the Swimming section (Chapter 14: Time and Movement). Those without this proficiency cannot swim. They can hold their breath and float, but they cannot move themselves about in the water.</p>
+<h3 id="tactics">Tactics</h3>
+<p><em>1 slot(s) · Intelligence · check -1 · groups: Warrior</em></p>
+<p>This proficiency gives a character who makes a successful check a +1 bonus on all attack or initiative rolls (player’s choice) for the duration of a specific combat situation. It requires that the character spend one round studying his opponent’s movements before making the check. A successful check made after that round indicates that the character has some idea of what his opponent is planning to do in the combat and can act accordingly (hence the bonus). If the combat situation changes in any way (an opponent is eliminated or a new opponent enters the field), the character must take another round to analyze the situation and make another check to maintain the bonus. During the round when the character is studying his opponents, he may not make any attacks of his own. This includes using a psionic power of any type. If a character devotes a second slot to this proficiency, he specializes in the study of one particular race in order to better understand its tendencies in combat. When using this proficiency against an opponent of that race, the character receives a +2 bonus on all attack or initiative rolls. This bonus can also be split, adding +1 to both types of rolls. A character can specialize in as many races as he wants, but the maximum bonus gained for any one of them is +2. This proficiency doesn’t give any bonuses against groups of four or more opponents unless they are all of a race in which a character has specialized. Even then, it can never be used against more than five opponents of that racial type. Furthermore, the bonus never applies to a character’s companions—just to the character himself.</p>
+<h3 id="taunting">Taunting</h3>
+<p><em>1 slot(s) · Wisdom · check 0 · groups: Warrior</em></p>
+<p>This proficiency enables the gladiator to taunt, goad, and in all ways be annoying and offensive to the enemy. If the gladiator makes the proficiency check and the opponent fails a saving throw vs. paralyzation, the foe becomes enraged. An enraged foe receives a -2 attack penalty, but +1 to damage. In addition, enemies are generally so blinded by rage that they fail to notice the small details essential to good combat, and therefore suffer a -1 to AC. NPCs with Wisdom of 14 or greater are immune to this effect, as are those 5 or more levels higher than the gladiator. They recognize the taunt for what it is, and may choose to disregard its effects if they wish. PCs are also immune, though they should play out their natural reactions to such acts. The DM should always take the personality of the taunted character, whether PC or NPC, into account.</p>
+<h3 id="tightrope-walking">Tightrope Walking</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: Rogue</em></p>
+<p>The character can attempt to walk narrow ropes or beams with greater than normal chances of success. He can negotiate any narrow surface not angled up or down greater than 45 degrees. Each round the character can walk 60 feet. One proficiency check is made every 60 feet (or part thereof), with failure indicating a fall. The check is made with a -10 penalty to the ability score if the surface is one inch or less in width (a rope), a -5 penalty if two inches to six inches wide, and unmodified if seven inches to 12 inches wide. Wider than one foot requires no check for proficient characters under normal circumstances. Every additional proficiency spent on tightrope walking reduces these penalties by 1. Use of a balancing rod reduces the penalties by 2. Winds or vibrations in the line increases the penalties by 2 to 6. The character can attempt to fight while on a tightrope, but he suffers a -5 penalty to his attack roll and must roll a successful proficiency check at the beginning of each round to avoid falling off. Since the character cannot maneuver, he gains no adjustments to his Armor Class for Dexterity. If he is struck while on the rope, he must roll an immediate proficiency check to retain his balance.</p>
+<h3 id="tracking">Tracking</h3>
+<p><em>2 slot(s) · Wisdom · check 0 · groups: Warrior</em></p>
+<p>Characters with tracking proficiency are able to follow the trail of creatures and characters across most types of terrain. Characters who are not rangers roll a proficiency check with a -6 penalty to their ability scores; rangers have no penalty to their ability scores. In addition, other modifiers are also applied to the attempt, according to</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>84/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>Table 39. Table 39: Tracking Modifiers Terrain Modifier Soft or muddy ground +4 Thick brush, vines, or reeds +3 Occasional signs of passage, dust +2 Normal ground, wood floor 0 Rocky ground or shallow water -10 Every two creatures in the group +1 Every 12 hours since trail was made -1 Every hour of rain, snow, or sleet -5 Poor lighting (moon or starlight) -6 Tracked party attempts to hide trail -5 The modifiers in Table 39 are cumulative--total the modifiers for all conditions that apply and combine that with the tracker's Wisdom score to get the modified chance to track. For example, if Thule's Wisdom score is 16 and he is trying to track through mud (+4), at night (-6), during a sleet storm (-5), his chance to track is 9 (16+4-6-5). (Thule is a ranger so he does not suffer the -6 penalty for non-rangers tracking.) For tracking to succeed, the creature tracked must leave some type of trail. Thus, it is virtually impossible to track flying or noncorporeal creatures. The DM may allow this in rare instances, but he should also assign substantial penalties to the attempt. To track a creature, the character must first find the trail. Indoors, the tracker must have seen the creature in the last 30 minutes and must begin tracking from the place last seen. Outdoors, the tracker must either have seen the creature, have eyewitness reports of its recent movement (&quot;Yup, we saw them orcs just high-tail it up that trail there not but yesterday.&quot;), or must have obvious evidence that the creature is in the area (such as a well-used game trail). If these conditions are met, a proficiency check is rolled. Success means a trail has been found. Failure means no trail has been found. Another attempt cannot be made until the above conditions are met again under different circumstances. Once the trail is found, additional proficiency checks are rolled for the following situations: ¢ The chance to track decreases (terrain, rain, creatures leaving the group, darkness, etc.). ¢ A second track crosses the first. ¢ The party resumes tracking after a halt (to rest, eat, fight, etc.). Once the tracker fails a proficiency check, another check can be rolled after spending at least one hour searching the area for new signs. If this check is failed, no further attempts can be made. If several trackers are following a trail, a +1 bonus is added to the ability score of the most adept tracker. Once he loses the trail, it is lost to all. If the modifiers lower the chance to track below 0 (for example, the modifiers are -11 and the character's Wisdom is 10), the trail is totally lost to that character and further tracking is impossible (even if the chance later improves). Other characters may be able to continue tracking, but that character cannot. A tracking character can also attempt to identify the type of creatures being followed and the approximate number by rolling a proficiency check. All the normal tracking modifiers apply. One identifying check can be rolled each time a check is rolled to follow the trail. A successful check identifies the creatures (provided the character has some knowledge of that type of creature) and gives a rough estimate of their numbers. Just how accurate this estimate is depends on the DM. When following a trail, the character (and those with him) must slow down, the speed depending on the character's modified chance to track as found from Table 39. Table 40: Movement While Tracking Chance to Track Movement Rate 1-6 _ normal 7-14 _ normal 14 or greater 3/4 normal In the earlier example, Thule has a modified tracking chance of 9, so he moves at _ his normal movement rate.</p>
+<h3 id="tumbling">Tumbling</h3>
+<p><em>1 slot(s) · Dexterity · check 0 · groups: Rogue</em></p>
+<p>The character is practiced in all manner of acrobatics--dives, rolls, somersaults, handstands, flips, etc. Tumbling can only be performed while burdened with light encumbrance or less. Aside from entertaining, the character with tumbling proficiency can improve his Armor Class by 4 against attacks directed solely at him in any round of combat, provided he has the initiative and foregoes all attacks that round.</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>85/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>When in unarmed combat he can improve his attack roll by 2. On a successful proficiency check, he suffers only one-half the normal damage from falls of 60 feet or less and none from falls of 10 feet or less. Falls from greater heights result in normal damage.</p>
+<h3 id="ventriloquism">Ventriloquism</h3>
+<p><em>1 slot(s) · Intelligence · check -2 · groups: Rogue</em></p>
+<p>The character has learned the secrets of &quot;throwing his voice.&quot; Although not actually making sound come from somewhere else (like the spell), the character can deceive others into believing this to be so. When using ventriloquism, the supposed source of the sound must be relatively close to the character. The nature of the speaking object and the intelligence of those watching can modify the character's chance of success. If the character makes an obviously inanimate object talk (a book, mug, etc.), a -5 penalty is applied to his ability score. If a believable source (a PC or NPC) is made to appear to speak, a +2 bonus is added to his ability score. The observer's intelligence modifies this as follows: Intelligence Modifier less than 3 +6 3-5 +4 6-8 +2 9-14 0 15-16 -1 17-18 -2 19+ -4 A successful proficiency check means the character has successfully deceived his audience. One check must be made for every sentence or response. The character is limited to sounds he could normally make (thus, the roar of a lion is somewhat beyond him). Since ventriloquism relies on deception, people's knowledge of speech, and assumptions about what should and shouldn't talk, it is effective only on intelligent creatures. Thus, it has no effect on animals and the like. Furthermore, the audience must be watching the character since part of the deception is visual (Hey, his lips don't move!&quot;). Using ventriloquism to get someone to look behind him does not work, since the voice is not actually behind him (this requires the ventriloquism spell). All but those with the gullibility of children realize what is truly happening. They may be amused--or they may not be.</p>
+<h3 id="water-find">Water Find</h3>
+<p><em>1 slot(s) · Intelligence · check 0 · groups: General</em></p>
+<p>Even the most barren desert yields water to those who know how to find it. Small animals burrow in the ground and store water there; some rare plants store water in cistern roots beneath the soil; and seemingly lifeless trees sometimes have moist heartwood. The water find proficiency can only be used once per day and takes an hour to perform. During this time, the character can only move half his normal movement rate. A successful check</p>
+<p>indicates he’s found sufficient water to sustain himself for one day. It doesn’t mean that he’s found enough water to rehydrate, but he won’t dehydrate further that day. The character can only find enough water for himself. If he shares his find with others, none of them gains any benefit.</p>
+<h3 id="weakness-identification">Weakness Identification</h3>
+<p><em>2 slot(s) · Wisdom · check -2 · groups: Warrior</em></p>
+<p>This proficiency, like Tactics, allows the gladiator to assess an opponent for signs of weakness. A successful proficiency check means that the gladiator has located the foe's weakness, whether it lies in fighting style or a fault in the opponent's armor. If the gladiator wants to take the usual penalties for a called shot (+1 to initiative, -4 to attack), he can cause double damage to the opponent for one round only. After such a wound, intelligent opponents adjust their fighting style so that the weakness is not as exposed. Creatures with low Intelligence or less simply try to minimize the danger by presenting a different side to the attacker. Thus, if two or more gladiators attack a weakened creature, there is a good chance they can continue exploiting its weakness throughout the battle as it shifts the damaged area from one side to another. The bonus conferred by this proficiency can be communicated to one's allies. However, if the creature under attack understands the language used to effect this communication, anyone attacking the creature does so with a -2 penalty. When used against a gladiator with the Arena Acting proficiency, the two sides involved must have a proficiency contest. Each character must make their respective Proficiency checks. The degree of success in this is measured by the difference between the target number and the actual die roll. The winner is the character with the higher degree of success. If the winner is using Weakness Identification, he spots the acting through some small flaw in the performance. Likewise, if the Arena Actor has the greater number, the one with Weakness Identification falls for it. Example: Bythal has an Arena Acting proficiency of 14. His opponent Haarna has a Weakness Identification proficiency of 13. Bythal’s roll is a 7, while Haarna’s is a 3. Since Haarna’s difference is greater at 10 (13-3=10) than Bythal's 7 (14-7=7), Haarna can easily see that Bythal is acting. He is not drawn in, and Bythal's bonus is negated. The interchange here can be complicated. Some gladiators take both Arena Acting and Weakness Identification. Arena Acting should be checked first, so that the enemy may be fooled from the first instant he spies his opponent. After the gladiator assumes his weakness, he can begin checking his enemy for the same thing. Both these rolls should be rolled where only the DM can see them, so that the player does not know if he was successful in his various attempts. 3I Weapon Proficiencies The gladiator need never worry about having to swing an unfamiliar weapon in a pinch; for a gladiator, there is no such thing as an unfamiliar weapon. If nothing designed specifically as a weapon is available, he can make one from his surroundings. Gladiators never suffer a nonproficiency penalty when picking up a weapon. Even when the gladiator has never seen a weapon of its like, he can easily fathom its purpose and the way it is used-just in time to eliminate his foes. Unlike most others, the gladiator is trained extensively in the understanding of weapons and awareness of his body's capabilities. Indeed, the gladiator's ability with weapons is such that he can specialize in more than one weapon at 1st level. Gladiators may specialize in as many weapons as their available weapon proficiencies allow. Whenever the gladiator gains enough proficiencies to qualify for another weapon specialization, he may take it. When trying to gain new weapon specialization, the gladiator must pay the full cost for his weapon specialization; that is, he must pay both the initial slot for proficiency in that weapon, as well as the additional slots required to specialize. New Weapons A gladiator is required to be the master of all weapons; without the ability to improvise new weapons at a moment's notice, a disarmed gladiator often finds herself at the dubious mercy of her opponent. Literally dozens of new weapons have been created by gladiators looking for a last ditch defense against certain death. Some of these improvised weapons have caught on and have been added to the list of weapons available to the gladiator. Nearly anything can serve as a weapon. From ropes to grappling hooks, plant fibers and giant's-hair; anything that can conceivably be used to harm someone has been used as a weapon in the arenas of Athas. Indeed, the sheer variety of these weapons is so stunning and so well received by the crowds that weaponsmiths have trouble keeping up with the constant demand for newer and more deadly weapons.</p>
+<h3 id="weapon-improvisation">Weapon Improvisation</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: Warrior</em></p>
+<p>On Athas, virtually anything can be (and has been) used as a weapon. A character who has this proficiency makes a check to spot a usable weapon in the surrounding vicinity. A successful check means the character has found a club that does 1d6+1 damage to human-sized and smaller creatures, or 1d3+1 to larger opponents. The DM may assign modifiers for the ease or difficulty of finding such a weapon: a market might warrant a +2 bonus, a barren grassland a -2 penalty, and a sandy desert might negate the proficiency.</p>
+<p>Using Existing Proficiencies Because Athas differs drastically from other AD&amp;D campaign worlds, some of the existing proficiencies from the Player’s Handbook don’t</p>
+<p>Agriculture: On Athas, the low humidity makes grain storage extremely easy, but raising crops far more difficult. This proficiency covers the best use of land and water for a given crop and how to keep that crop alive through the dry growing season.</p>
+<p>apply as written. For example, the</p>
+<p>Armorer: The lack of metal on Athas means armorers must concentrate on other materials, namely chitin, bone, and stiffened leathers. Metal is so rarely used to construct armor that</p>
+<p>navigation and seamship profisuch an undertaking is usually handled by a team of armorers and blacksmiths—and often</p>
+<p>ciencies are out of place on a world without oceans. The following clariunder extremely controlled circumstances (like in the guarded palace of a sorcerer-king).</p>
+<p>fications modify existing proficiencies in a DARK SUN campaign.</p>
+<p>Artistic Ability: This proficiency remains unchanged in its description, but its usefulness on Athas may be more far-reaching. Slaves who have artistic ability are sometimes brought out of the pits and placed in the homes of nobles where they might learn to read. If they fall out of favor, however, these literate slaves can’t be returned to the pits. They’re either executed or sent to the arena. Blacksmithing: As with the armorer proficiency, blacksmiths perform the same functions as described but have shifted their main material from metal to other durable substances. Fishing: Obviously, fishing is only useful in the places where pools of water support fish. Navigation: The methods of direction finding common to naval voyages prove equally useful for caravans crossing the trackless seas of sand. Religion: Large, organized religions have never developed on Athas, though sorcererkings make themselves out to be gods or godlike and have surrounded themselves in religrous mystique. On a local level, cities and villages have ancient lore about mysterious beings or demigods, but consistent mythic systems are never widespread. Seamanship: This proficiency is only studied by the mad, fools, the preternaturally ancient, and the people living around the Last Sea. Swimming: This proficiency is applicable only in rare situations (for example, in the decadent pools of nobles or small bodies of natural water in exotic locales). Weaponsmithing: Again, this proficiency is unchanged except for the materials used.</p>
+<p>Using the Survival Proficiency As described in the Player’s Handbook, each slot of survival proficiency must be applied to a specific type of terrain. Terrain types that can be selected by PCs originating in the Tyr Region include the following: sandy wastes, stony barrens, rocky badlands, salt flats, mountains, forests, and scrub plains. Terrain types from other parts of Athas include mud flats, swamps, and grasslands. The survival proficiency gives a character a chance to locate food and water in a particular terrain, but only in minuscule amounts. A successful check allows a character to find enough water to avoid losing any Constitution points from dehydration. The character won’t rehydrate, and he will continue to dehydrate on subsequent days that he doesn’t receive water. The same check allows a character to find enough food to sustain him for a day. The survival proficiency also helps a character avoid poisons. A successful check informs the character whether a plant or animal is poisonous, provided the food source is native to the proficiency’s terrain type.</p>
+<p>What Things Are Worth The equipment lists in the</p>
+<p>Player’s Handbook show how much items cost in a typical AD&amp;D game setting. On Athas, however, the rarity of metal increases the value of metal items, making the lists in the Player’s Handbook somewhat inaccurate. Coins themselves are worth more, so fewer are needed to purchase things that aren’t made of metal. However, metal-item costs are relatively the same as on other worlds. When Athasian characters make</p>
+<h3 id="weaponsmithing">Weaponsmithing</h3>
+<p><em>3 slot(s) · Intelligence · check -3 · groups: Warrior</em></p>
+<p>This highly specialized proficiency enables a character to perform the difficult and highly exacting work involved in making metal weapons, particularly those with blades. The character blends some of the skill of the blacksmith with an ability to create blades of strength and sharpness. A fully equipped smithy is necessary to use this proficiency. The time and cost to make various types of weapons are listed on Table 41. Table 41: Weapon Construction Construction Material Weapon Time Cost Arrowhead 10/day lcp Battle Axe 10 days 10 sp Hand Axe 5 days 5 sp Dagger 5 days 2 sp H. Crossbow 20 days 10 sp L. Crossbow 15 days 5 sp Fork, Trident 20 days 10 sp Spear, Lance 4 days 4 sp Short Sword 20 days 5 sp Long Sword 30 days 10 sp 2-hd Sword 45 days 2 gp</p>
+<h3 id="weather-sense">Weather Sense</h3>
+<p><em>1 slot(s) · Wisdom · check -1 · groups: General</em></p>
+<p>This proficiency enables the character to make intelligent guesses about upcoming weather conditions. A successful proficiency check means the character has correctly guessed the general weather conditions in the next six hours. A failed check means the character read the signs wrong and forecast the weather incorrectly. The DM should roll the check secretly. A proficiency check can be made once every six hours. However, for every six hours of observation, the character gains a +1 bonus to his ability score (as he watches the weather change, the character gets a better sense of what is coming). This modifier is cumulative, although sleep or other activity that occupies the attention of the character for a long period negates any accumulated bonus. Sometimes impending weather conditions are so obvious that no proficiency check is required. It is difficult not to notice the tornado funnel tearing across the plain or the mass of dark clouds on the horizon obviously headed the character's way. In these cases, the player should be able to deduce what is about to happen to his character anyway.</p>
+<h3 id="weaving">Weaving</h3>
+<p><em>1 slot(s) · Intelligence · check -1 · groups: General</em></p>
+<p>A character with weaving proficiency is able to create garments, tapestries, and draperies from wool or cotton. The character requires a spinning apparatus and a loom. A weaver can create two square yards of material per day.</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>86/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>Money and Equipment Although your character has some impressive abilities and skills, he really isn't going to be effective without the equipment necessary for adventuring. To get this equipment, he needs money. Not only does he need money to outfit himself, but your character also has to cover his living expenses. Although there are many different types of coins and currencies in the world, all prices and treasures in the AD&amp;D rules are given in standard coinage. Your DM may have specific names for different coins and may have different rates of exchange, but this is material particular to his campaign. He will tell you if there are differences from the coins listed here. The standard rate of exchange for each coin is given in Table 42. The basic coins are the copper piece (cp) and the silver piece (sp). These form the backbone of the monetary system and are the coins most frequently found in the hands of the common folk. Above these two coins is the much rarer gold piece (gp). This coin is seldom found in common use and mainly exists on paper as the standard money of account. This means it is used to measure the value of property and goods. Land values, ship cargoes, gemstones, and penalty bonds (royal court fines) are normally calculated in gold pieces, although payment of such vast sums normally takes other forms. In addition to these coins, there are other unusual metals used in exchange. Most of these come from failed currencies. As such, they are viewed with skepticism by many honest folk. Principal among these coins are the electrum (ep) and platinum pieces (pp). These coins are rarely circulated, and most are hidden away in ancient treasure hoards. However, remember that not all wealth is measured by coins. Wealth can take many forms--land, livestock, the right to collect taxes or customs, and jewelry are all measures of wealth. Coins have no guaranteed value. A gold piece can buy a lot in a small village but won't go very far in a large city. This makes other forms of wealth, land for instance, all the more valuable. Indeed, many a piece of jewelry is actually a way of carrying one's wealth. Silver armbands can be traded for goods, a golden brooch can buy a cow, etc. In your adventures, wealth and riches may take many different forms. Furthermore, in your DM's campaign, there may be special situations or considerations to bear in mind. The Kingdom of Gonfli may be at war with the neighboring Principality of Boosk. Patriotic Gonflians might refuse Boosk coins (probably because they think the coins are worthless). Practical Booskites might accept the Gonfli florin at half normal value (so they can melt them down and mint new Boosk drachmas). Of course, both groups would send your character to the local money changer (if there is one), who would cheerfully convert your foreign coins to the local tender. He will, of course, charge a small commission (10-30%) for this service. Table 42: Standard Exchange Rates Exchange Value Coin CP SP EP GP PP Copper Piece (CP) = 1 1/10 1/50 1/100 1/500 Silver Piece (SP) = 10 1 1/5 1/10 1/50 Electrum Piece (EP) = 50 5 1 = 1/10 Gold Piece (GP) = 100 =10 2 1 1/5 Platinum Piece (PP)= 500 50 10 5 if Situations such as these can affect the value of any coin. If your characters start flashing about a lot of gold, pumping it into the local economy, merchants will quickly raise prices. As another example, the local lord may commandeer most of the region's horses for his knights, making those left all that much more expensive. Starting Money All player characters begin with some amount of cash. This nest egg may be your character's life savings. It may be a gift from his parents to start him out in the world. It may be his booty from an army campaign. Perhaps he stumbled across a small treasure chest, whetting his appetite for greater and more dangerous prizes. How he came by his money is not important (although it may be fun to know). You are free to create any explanation you want. To learn your character's starting funds, roll the dice indicated for his group in Table 43. This is the number of gold pieces your character has to obtain equipment. If you are creating a character starting out at a level above Ist level, check with the DM to see if you can increase your character's funds beyond the amounts given here. Multi-class characters use the most advantageous die range of their classes. Table 43: Initial Character Funds Character Group _Die Range Warrior 5d4 x 10 gp Wizard (1d4+1) x 10 gp</p>
+<p>file:///C:/Users/JDL/Downloads/DnD Second edition, all 26 books_djvu.htm</p>
+<p>87/3963</p>
+<p>7/4/26, 10:26 AM</p>
+<p>Full text of &quot;Dungeons and Dragons, Second Edition, All 26 Books&quot;</p>
+<p>Rogue 2d6 x 10 gp Priest * 3d6 x 10 gp</p>
+
+</body>
+</html>

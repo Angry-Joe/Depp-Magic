@@ -1,0 +1,115 @@
+{
+"core":{
+"lightradius": 0,
+"location": {
+    "map": "",
+    "x": "",
+    "y": ""
+},
+"type": "__[player,npc]",
+"icon":"",
+"personal":{
+    "alignment":{"law":"__[chaotic,neutral,lawful]",
+                "social":"__[evil,good,neutral]"},
+    "name":{
+        "__Ufirst": "",
+        "__Ulast":""},
+    "race":"__[human,elf,dwarf,half-elf,halfling,monster,creature,gnome]",
+    "__Ixp":0,
+    "sex": "__[male,female]",
+    "__Tbackstory": ""
+},
+"combat":{
+    "__Ilevel-hitdice":1,
+    "__Ihitpoints":0,
+    "__Imax_hp":0,
+    "__Xatacks_per_round": "",
+    "__Xarmor_class": "",
+    "__Xweapons": {"__Idmg": "", "type": "__[melee,magic,misile]", "__Ito_hit": "","save_against":"__[ppd,rod,pp,breath,spell,none]"}
+},
+"class":
+    {"parent": "__[warrior,wizard,rogue,priest]",
+    "class":"__[fighter,bard,ranger,thief,druid,mage,illusionist,cleric,paladin]"},
+"abilities":{"__Iwis": "","__Idex": "", "__Icha": "", "__Istr": "","__Icon": "","__Iint": ""},
+"__Tinventory":{
+        "equiped":{
+            "leftfinger": {},
+            "rightfinger": {},
+            "head": {},
+            "chest": {},
+            "legs": {},
+            "feet": {},
+            "wrists":{},
+            "neck": {},
+            "gloves": {},
+            "lefthand": {},
+            "righthand": {}
+    },
+        "spells": [],
+        "spells_memorized": [],
+        "pack":[],
+        "money":{"gold":0,"silver":0,"copper":0}
+    }
+},
+"conditional":{
+    "core.type=npc": {
+        "orientation" : "__[friendly, neutral, aggressive]",
+        "loot": {
+            "gold": 10,
+            "silver": 99,
+            "copper": 99,
+            "items_possible": [],
+            "max_items":1,
+            "always_drops": []
+        },
+        "events": {
+            "__Toninteract": "",
+            "__Toninspect": ""
+        }
+    },
+    "__1core.class.parent=rogue":{
+        "armor_types": 3,
+        "shields": false,
+        "abilities":{
+            "hide in shadows": 5,
+            "pick pockets":15,
+            "open locks": 10,
+            "find-remove traps":5,
+            "move silently":10,
+            "detect noise":15,
+            "climb walls":60,
+            "read languages":0
+        }
+    },
+    "__2core.class.class=bard":{
+        "abilities": {
+            "climb walls": 50,
+            "detect noise": 20,
+            "pick pockets": 10,
+            "read languages": 5
+        },
+        "__Yshields": true
+    },
+    "core.class.parent=warrior":{
+        "armor_types": 4,
+        "shields": true
+    },
+    "core.class.parent=wizard":{
+        "armor_types": 1,
+        "shields": false
+    },
+    "core.class.class=paladin":{
+        "abilities": {
+            "sense evil intent(must end turn)": 100,
+            "cure disease(weekly)": 100,
+            "lay on hands (daily)": 100,
+            "Turn undead (level 3+)": 100
+        }
+
+    },
+    "core.class.parent=priest":{
+        "armor_types": 1,
+        "__Yshields": false
+    }
+}
+}

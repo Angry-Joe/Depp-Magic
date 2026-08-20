@@ -65,7 +65,7 @@
  thead th .arrow{color:var(--accent);font-size:11px}
  th .resizer{
  position:absolute;top:0;right:0;width:7px;height:100%;
- cursor:col-resize;user-select:none
+cursor:col-resize;-webkit-user-select:none;user-select:none
  }
  th .resizer:hover,th .resizer.active{background:var(--accent)}
  th.colmenu-th{cursor:default;text-align:center;padding:4px 2px}
@@ -100,9 +100,16 @@
 
  /* ── Edit panel ──────────────────────────────────────── */
  #editor{
- width:460px;min-width:360px;border-left:1px solid var(--line);
+ width:460px;min-width:300px;border-left:1px solid var(--line);
  background:var(--panel);overflow-y:auto;padding:14px;display:none;flex:none
  }
+ /* Drag handle on the panel's left edge */
+ #edSplit{
+ width:6px;flex:none;cursor:col-resize;background:var(--line);
+ -webkit-user-select:none;user-select:none
+ }
+ #edSplit[hidden]{display:none}
+ #edSplit:hover,#edSplit.active{background:var(--accent)}
  #editor.open{display:block}
  #editor.bulk{border-left:2px solid var(--accent2)}
  #editor h2{margin:0 0 4px;font-size:16px;color:var(--accent)}
@@ -119,6 +126,27 @@
  .row-compact{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px}
  #editorBtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
  #editorBtns .spacer{flex:1}
+
+ /* ── View panel (read-only) ──────────────────────────── */
+ .view-stats{
+ display:grid;grid-template-columns:auto 1fr;gap:5px 14px;
+ margin:0 0 14px;font-size:13.5px;line-height:1.5
+ }
+ .view-stats dt{
+ color:var(--muted);font-size:11px;text-transform:uppercase;
+ letter-spacing:.4px;white-space:nowrap;padding-top:3px
+ }
+ .view-stats dd{margin:0;color:var(--ink)}
+ .view-sec{
+ color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+ border-bottom:1px solid var(--line);padding-bottom:4px;margin:0 0 8px
+ }
+ /* Reuse the markdown styling, minus the boxed-input look */
+ .md-preview.view-desc{
+ background:none;border:none;border-radius:0;padding:0;
+ min-height:0;max-height:none;overflow:visible;font-size:13.5px;line-height:1.6
+ }
+ .view-desc.empty{color:var(--muted);font-style:italic}
 
  /* ── Radio groups (booleans) ─────────────────────────── */
  .radio-group{display:flex;gap:18px;padding:4px 2px}
@@ -185,19 +213,25 @@
  .modal[hidden]{display:none}
  .modal-box{
  background:var(--panel);border:1px solid var(--line);border-radius:8px;
- width:min(880px,94vw);max-height:90vh;display:flex;flex-direction:column;
- padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6)
+ width:min(880px,94vw);height:min(720px,88vh);max-height:92vh;
+ display:flex;flex-direction:column;
+ padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6);
+ /* Drag the bottom-right corner to resize the dialog */
+ resize:both;overflow:auto;min-width:420px;min-height:320px;max-width:98vw
  }
+ .modal-box::-webkit-resizer{background:var(--line)}
  .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
  .modal-head span{color:var(--accent);font-size:15px;font-weight:600}
  .modal-x{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0 6px}
  .modal-x:hover{color:var(--accent)}
+ /* min-height:0 so these flex down when the dialog is dragged smaller —
+ the dialog itself now carries the sizing, so the textarea grip is off */
  #dlgBox{
- flex:1;min-height:360px;background:#150e07;color:var(--ink);
+ flex:1;min-height:0;background:#150e07;color:var(--ink);
  border:1px solid var(--line);border-radius:5px;padding:10px 12px;
- font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:vertical
+ font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:none
  }
- #dlgPreview{flex:1;min-height:360px;max-height:none}
+ #dlgPreview{flex:1;min-height:0;max-height:none}
  .modal-btns{display:flex;gap:8px;margin-top:12px;align-items:center}
  .modal-btns .spacer{flex:1}
 
@@ -237,8 +271,8 @@
  <div id="empty">
  <p><strong>Open a schema-v2 file (e.g. <kbd>output/DragonKings-AllSpells-parsed.json</kbd>) to get started.</strong></p>
  <p>Loads the v2 wrapper object <kbd>{ schemaVersion, spells: [...] }</kbd> or a plain array. Click column headers to sort,
- drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to edit it, or tick the
- checkboxes to bulk-edit several at once.</p>
+ drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to read it, then
+ <strong>Edit</strong> to change it — or tick the checkboxes to bulk-edit several at once.</p>
  <p><strong>+ Add</strong> opens a draft form — the entry is only added when you click <strong>Apply</strong>.
  Use <strong>Import…</strong> to merge another JSON, and <strong>Close File</strong> when done.</p>
  <p><kbd>Ctrl+S</kbd> save &nbsp;·&nbsp; <kbd>Esc</kbd> close editor
@@ -251,6 +285,7 @@
  <tbody id="tbody"></tbody>
  </table>
  </div>
+ <div id="edSplit" hidden title="Drag to resize · double-click to reset"></div>
  <aside id="editor"></aside>
 </main>
 <div id="colMenu" class="col-menu" hidden></div>
@@ -300,7 +335,7 @@ let nextId = 0; // monotonic for newly-added entries
 /* Bulk-edit state */
 const bulkSelected = new Set();
 const bulkTouched = new Set();
-let editorMode = 'edit';        // 'edit' | 'new' | 'bulk'
+let editorMode = 'view';        // 'view' | 'edit' | 'new' | 'bulk'
 let dlgOriginal = '';
 
 /* Column preferences (widths + hidden columns), persisted per tab */
@@ -514,8 +549,13 @@ function gf(s, key) {
 
 function sf(s, key, value) {
  if (key === 'sphere' && (Array.isArray(s.spheres) || s.id || s._isNew)) {
+ /* Keep the existing entry (access level and any other props) for spheres the
+ record already had — only spheres that are genuinely new default to Major. */
+ const prior = new Map((Array.isArray(s.spheres) ? s.spheres : [])
+ .map(x => (typeof x === 'string' ? [x, { name: x, access: 'Major' }] : [x?.name, x]))
+ .filter(([n]) => n));
  s.spheres = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean)
- .map(name => ({ name, access: 'Major' }));
+ .map(name => prior.get(name) ?? { name, access: 'Major' });
  s.sphere = String(value || '');
  return;
  }
@@ -605,6 +645,7 @@ function ensureDataset() {
 
 /* ── File I/O ──────────────────────────────────────────── */
 async function openFile() {
+ if (!confirmLeaveEdit('open another file')) return;
  if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
  let text;
  if (hasFS) {
@@ -627,6 +668,7 @@ async function openFile() {
 /** Merge another JSON file into the current dataset (does not replace). */
 async function importFile() {
  if (!rawData) { alert('Open a file first, or use Open JSON to start a new dataset.'); return; }
+ if (!confirmLeaveEdit('import another file')) return;
  let text;
  if (hasFS) {
  try {
@@ -728,6 +770,7 @@ async function saveFile(as = false) {
 /** Prompt for unsaved changes, then clear everything. */
 function closeFile() {
  if (!rawData && !spells.length) return;
+ if (!confirmLeaveEdit('close the file')) return;
  if (dirty) {
  const ans = confirm('You have unsaved changes.\n\nOK = discard and close\nCancel = keep working');
  if (!ans) return;
@@ -784,7 +827,7 @@ function loadData(json) {
  activeTab = spells.some(s => TABS.spells.match(s)) ? 'spells' : 'psionics';
  closeEditor();
  renderTabs();
- buildFilters();
+ buildFilters(true);   // new dataset — start with no filters applied
  $('empty').style.display = 'none';
  $('tableWrap').style.display = '';
  ['search','tabSpells','tabPsionics','btnClear','btnSave','btnSaveAs','btnImport','btnAdd','btnCloseFile']
@@ -838,6 +881,7 @@ function makeBlank() {
 }
 
 function addSpell() {
+ if (!confirmLeaveEdit('start a new entry')) return;
  bulkSelected.clear();
  bulkTouched.clear();
  pendingNew = makeBlank();
@@ -861,7 +905,7 @@ function commitNew(s) {
  pendingNew = null;
  buildFilters();
  renderTabs();
- openEditor(s._id);
+ openEditor(s._id, 'edit');   // keep the form open after a new entry is committed
  refreshStatus();
 }
 
@@ -876,23 +920,64 @@ function renderTabs() {
 
 function setTab(t) {
  if (t === activeTab || !TABS[t]) return;
+ if (!confirmLeaveEdit('switch tabs')) return;
  activeTab = t;
  selectedId = null; sortKey = null; sortDir = 1;
  bulkSelected.clear(); bulkTouched.clear();
  $('search').value = '';
  closeEditor();
  renderTabs();
- buildFilters();
+ buildFilters(true);   // the other tab has its own fields — clear the choices
  renderTable();
 }
 
-function buildFilters() {
+/* The individual filterable values of a field. School and Sphere hold several
+   per spell — as an array, an array of {name, access}, or a "Combat, Healing"
+   string — and each one has to become its own option, not a combined label. */
+function facetValues(s, key) {
+ const atoms = [];
+ const push = v => {
+ if (v === undefined || v === null) return;
+ if (Array.isArray(v)) { v.forEach(push); return; }
+ if (typeof v === 'object') { push(v.name ?? v.value); return; }
+ if (typeof v === 'string') {
+ v.split(/[,;]/).map(x => x.trim()).filter(Boolean).forEach(x => atoms.push(x));
+ return;
+ }
+ atoms.push(v);   // numbers (level, page) pass through untouched
+ };
+ push(gf(s, key));
+ return atoms;
+}
+
+/* True if the record carries `value` among that field's values */
+function facetMatch(s, key, value) {
+ return facetValues(s, key).some(v => String(v) === value);
+}
+
+/* Applying an edit repaints the dropdowns, which must not disturb what the
+   table is showing — the active choices are carried across. Pass reset = true
+   only for a genuinely new view (other tab, other file). */
+function buildFilters(reset) {
  const pool = spells.filter(tab().match);
+ const prev = {};
+ if (!reset) {
+ $('filters').querySelectorAll('select').forEach(sel => {
+ if (sel.value) prev[sel.dataset.key] = sel.value;
+ });
+ }
  $('filters').innerHTML = tab().filters.map(f => {
- let vals = [...new Set(pool.map(s => gf(s, f.key)).filter(v => v !== undefined && v !== null && v !== ''))];
- vals.sort(f.numeric ? (a, b) => a - b : undefined);
+ const cur = prev[f.key];
+ let vals = [...new Set(pool.flatMap(s => facetValues(s, f.key)))];
+ /* An edit can remove the last record holding the filtered value. Keep the
+ option anyway, so the table stays filtered instead of springing open. */
+ if (cur !== undefined && !vals.some(v => String(v) === cur)) vals.push(cur);
+ vals.sort(f.numeric
+ ? (a, b) => a - b
+ : (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
  return `<select data-key="${f.key}"><option value="">${f.label}: all</option>` +
- vals.map(v => `<option>${esc(String(v))}</option>`).join('') + `</select>`;
+ vals.map(v => `<option${String(v) === cur ? ' selected' : ''}>${esc(String(v))}</option>`).join('') +
+ `</select>`;
  }).join('');
  [...$('filters').querySelectorAll('select')].forEach(sel => sel.addEventListener('input', renderTable));
 }
@@ -902,7 +987,7 @@ function visibleSpells() {
  const sels = [...$('filters').querySelectorAll('select')];
  let list = spells.filter(s =>
  tab().match(s) &&
- sels.every(sel => !sel.value || String(gf(s, sel.dataset.key) ?? '') === sel.value) &&
+ sels.every(sel => !sel.value || facetMatch(s, sel.dataset.key, sel.value)) &&
  (!q || String(gf(s, 'name') ?? '').toLowerCase().includes(q) ||
  String(gf(s, 'description') ?? '').toLowerCase().includes(q)));
  if (sortKey) {
@@ -1024,6 +1109,45 @@ function syncTableWidth() {
  total += parseInt(c.style.width, 10) || 110;
  });
  $('dataTable').style.width = total + 'px';
+}
+
+/* ── Sidebar width ─────────────────────────────────────── */
+const PANEL_DEFAULT = 460, PANEL_MIN = 300, TABLE_MIN = 260;
+function panelWidth() { return colPrefs.editorWidth ?? PANEL_DEFAULT; }
+/* Clamp to the window so the table can never be squeezed out of sight */
+function applyPanelWidth(w) {
+ const max = Math.max(PANEL_MIN, window.innerWidth - TABLE_MIN);
+ const px = Math.min(Math.max(Math.round(w), PANEL_MIN), max);
+ $('editor').style.width = px + 'px';
+ return px;
+}
+function showPanel() {
+ applyPanelWidth(panelWidth());
+ $('edSplit').hidden = false;
+}
+function attachPanelResizer() {
+ const bar = $('edSplit');
+ bar.addEventListener('mousedown', e => {
+ e.preventDefault();
+ const startX = e.clientX;
+ const startW = $('editor').getBoundingClientRect().width;
+ bar.classList.add('active');
+ document.body.style.cursor = 'col-resize';
+ const move = ev => { colPrefs.editorWidth = applyPanelWidth(startW + startX - ev.clientX); };
+ const up = () => {
+ document.removeEventListener('mousemove', move);
+ document.removeEventListener('mouseup', up);
+ document.body.style.cursor = '';
+ bar.classList.remove('active');
+ savePrefs();
+ };
+ document.addEventListener('mousemove', move);
+ document.addEventListener('mouseup', up);
+ });
+ bar.addEventListener('dblclick', () => {
+ colPrefs.editorWidth = applyPanelWidth(PANEL_DEFAULT);
+ savePrefs();
+ });
 }
 
 function attachResizer(r) {
@@ -1170,11 +1294,14 @@ function refreshStatus(visCount) {
 
 /* ── Bulk selection ────────────────────────────────────── */
 function rowClickOpen(id) {
+ if (!confirmLeaveEdit('open that entry')) return;
  if (bulkSelected.size) { bulkSelected.clear(); bulkTouched.clear(); }
  openEditor(id);
 }
 
 function toggleBulk(id, on) {
+ /* renderTable() repaints the checkbox from state, undoing the click */
+ if (!confirmLeaveEdit('start a bulk selection')) { renderTable(); return; }
  const wasBulk = editorMode === 'bulk';
  if (on) bulkSelected.add(id); else bulkSelected.delete(id);
  const n = bulkSelected.size;
@@ -1189,6 +1316,7 @@ function toggleBulk(id, on) {
 }
 
 function onSelectAll(checked) {
+ if (!confirmLeaveEdit('select every visible row')) { renderTable(); return; }
  const wasBulk = editorMode === 'bulk';
  const vis = visibleSpells();
  if (checked) vis.forEach(s => bulkSelected.add(s._id));
@@ -1217,6 +1345,65 @@ function openBulkEditor() {
  bulkTouched.clear();
  renderEditor({}, 'bulk');
  renderTable();
+ $('editor').scrollTop = 0;
+}
+
+/* ── View panel (read-only) ────────────────────────────── */
+/* Flatten the edit layout's row groups into a plain field list */
+function flatFields(layout) {
+ return layout.flatMap(f => (f.row ? f.row : [f]));
+}
+
+/* "Sphere (Priest only)" → "Sphere", "5e Classes (comma-separated)" → "5e Classes" */
+function viewLabel(f) { return f.label.replace(/\s*\([^)]*\)\s*$/, ''); }
+
+function viewText(s, f) {
+ /* Spheres carry an access level that gf() drops — surface it here */
+ if (f.k === 'sphere' && Array.isArray(s.spheres) && s.spheres.length) {
+   return s.spheres
+     .map(x => (typeof x === 'string' ? x : (x.access ? `${x.name} (${x.access})` : x.name)))
+     .filter(Boolean).join(', ');
+ }
+ const v = gf(s, f.k);
+ if (f.type === 'toggle' || f.type === 'radio') return v ? 'Yes' : 'No';
+ if (v === undefined || v === null) return '';
+ if (Array.isArray(v)) return v.join(', ');
+ return String(v).trim();
+}
+
+function renderViewer(s) {
+ editorMode = 'view';
+ const isPriest = /priest|cleric/i.test(String(gf(s, 'class') ?? ''));
+ const rows = flatFields(tab().editLayout).map(f => {
+   if (f.k === 'name') return '';           // already the heading
+   if (f.priestOnly && !isPriest) return '';
+   const v = viewText(s, f);
+   if (v === '') return '';
+   return `<dt>${esc(viewLabel(f))}</dt><dd>${esc(v)}</dd>`;
+ }).join('');
+
+ const desc = String(gf(s, 'description') ?? '');
+ const descHtml = desc.trim()
+   ? `<div class="md-preview view-desc">${mdToHtml(desc)}</div>`
+   : '<div class="view-desc empty">No description.</div>';
+
+ $('editor').innerHTML = `
+ <h2 id="edTitle">${esc(gf(s, 'name') || '(unnamed)')}</h2>
+ <div class="meta">${tab().meta(s)}</div>
+ <dl class="view-stats">${rows}</dl>
+ <div class="view-sec">Description</div>
+ ${descHtml}
+ <div id="editorBtns">
+ <button id="btnEdit" class="primary">Edit</button>
+ <span class="spacer"></span>
+ <button id="btnEdClose">Close</button>
+ </div>`;
+ $('editor').classList.add('open', 'view');
+ $('editor').classList.remove('bulk');
+ showPanel();
+
+ $('btnEdit').onclick = () => { renderEditor(s, 'edit'); $('editor').scrollTop = 0; };
+ $('btnEdClose').onclick = closeEditor;
  $('editor').scrollTop = 0;
 }
 
@@ -1301,17 +1488,21 @@ function renderEditor(s, mode) {
  <button id="btnRevert">Revert</button>
  <span class="spacer"></span>
  ${isBulk ? '' : `<button id="btnDelete" class="danger">${isNew ? 'Discard Draft' : 'Delete Entry'}</button>`}
- <button id="btnEdClose">Close</button>
+ <button id="btnEdClose"${isNew || isBulk ? '' : ' title="Back to the read-only view"'}>Close</button>
  </div>`;
  $('editor').classList.add('open');
  $('editor').classList.toggle('bulk', isBulk);
+ $('editor').classList.remove('view');
+ showPanel();
 
  const selClass = $('selClass');
  const syncSphere = () => {
  const f = $('f_sphere');
  if (!f) return;
+ /* Bulk edit opens with a blank Class, which must not hide Sphere — the
+ selection may be all priest spells. Hide only if Class is set non-priest. */
  const cls = selClass ? selClass.value : String(gf(s, 'class') ?? '');
- f.style.display = /priest|cleric/i.test(cls) ? '' : 'none';
+ f.style.display = (/priest|cleric/i.test(cls) || (isBulk && !cls)) ? '' : 'none';
  };
  if (selClass) selClass.addEventListener('change', syncSphere);
  syncSphere();
@@ -1352,23 +1543,32 @@ function renderEditor(s, mode) {
  $('btnRevert').onclick = () => {
  if (isBulk) { bulkTouched.clear(); openBulkEditor(); }
  else if (isNew) { pendingNew = makeBlank(); renderEditor(pendingNew, 'new'); }
- else openEditor(s._id);
+ else openEditor(s._id, 'edit');
  };
  if (!isBulk) $('btnDelete').onclick = () => {
  if (isNew) { pendingNew = null; closeEditor(); }
  else deleteEntry(s);
  };
- $('btnEdClose').onclick = () => { if (isNew) pendingNew = null; closeEditor(); };
+ $('btnEdClose').onclick = () => {
+ /* Editing an existing record steps back to the view card; a draft or a
+ bulk selection has no card to return to, so those close the sidebar. */
+ if (isNew) { pendingNew = null; closeEditor(); return; }
+ if (isBulk) { closeEditor(); return; }
+ if (!confirmLeaveEdit('go back to the view')) return;
+ renderViewer(s);
+ $('editor').scrollTop = 0;
+ };
 
  $('editor').scrollTop = 0;
 }
 
-function openEditor(id) {
+/* mode: 'view' (default — read-only card) or 'edit' (the form) */
+function openEditor(id, mode) {
  const s = spells.find(x => x._id === id);
  if (!s) return;
  pendingNew = null;
  selectedId = id;
- renderEditor(s, 'edit');
+ if (mode === 'edit') renderEditor(s, 'edit'); else renderViewer(s);
  renderTable();
  $('editor').scrollTop = 0;
 }
@@ -1383,8 +1583,12 @@ function readControlValue(el) {
  return el.value;
 }
 
-function collectEdits(s) {
- let changed = false;
+/* Form controls whose value differs from the record → [{ k, v }].
+   strict = the comparison Apply uses (also rewrites values that only differ by
+   type, e.g. "1" → 1). Loose is for "did the user actually change anything?" —
+   it ignores those type-only differences so Close doesn't nag about nothing. */
+function fieldDiffs(s, strict) {
+ const out = [];
  $('editor').querySelectorAll('[data-k]').forEach(el => {
  const k = el.dataset.k;
  let v = readControlValue(el);
@@ -1396,11 +1600,42 @@ function collectEdits(s) {
  if (typeof v === 'string' && PIPE_FIX_KEYS.includes(k)) v = fixPipes(v);
  // Compare against current (arrays compared via their joined display form)
  const cur = gf(s, k);
+ let same;
+ if (strict) {
  const curCmp = ARRAY_KEYS.includes(k) ? String(cur ?? '') : cur;
  const vCmp = ARRAY_KEYS.includes(k) ? String(v ?? '') : v;
- if (curCmp !== vCmp) { sf(s, k, v); changed = true; }
+ same = curCmp === vCmp;
+ } else if (typeof v === 'boolean') {
+ same = !!cur === v;                       // absent ≡ No
+ } else {
+ same = normText(cur) === normText(v);     // "1" ≡ 1, CRLF ≡ LF
+ }
+ if (!same) out.push({ k, v });
  });
- return changed;
+ return out;
+}
+function normText(v) { return String(v ?? '').replace(/\r\n/g, '\n').trim(); }
+
+function collectEdits(s) {
+ const diffs = fieldDiffs(s, true);
+ diffs.forEach(({ k, v }) => sf(s, k, v));
+ return diffs.length > 0;
+}
+
+/* Real, user-made edits sitting in the form — used to warn before discarding */
+function unsavedEdits(s) { return fieldDiffs(s, false).length; }
+
+/* Gate for anything that would tear down the edit form. Returns false only when
+   the user chose to stay put. `action` completes "OK = discard and …". */
+function confirmLeaveEdit(action) {
+ if (editorMode !== 'edit' || selectedId === null) return true;
+ const s = spells.find(x => x._id === selectedId);
+ if (!s) return true;
+ const n = unsavedEdits(s);
+ if (!n) return true;
+ return confirm(
+ `${n} unsaved change${n === 1 ? '' : 's'} to "${gf(s, 'name') || '(unnamed)'}".\n\n` +
+ `OK = discard and ${action}\nCancel = keep editing`);
 }
 
 function applyEdit(s) {
@@ -1461,21 +1696,24 @@ function deleteEntry(s) {
 function closeEditor() {
  selectedId = null;
  pendingNew = null;
- editorMode = 'edit';
+ editorMode = 'view';
  bulkSelected.clear();
  bulkTouched.clear();
- $('editor').classList.remove('open', 'bulk');
+ $('editor').classList.remove('open', 'bulk', 'view');
+ $('edSplit').hidden = true;
  $('editor').innerHTML = '';
  if (rawData) renderTable();
 }
 
 function step(delta) {
  if (selectedId === null) return;
+ const mode = editorMode === 'edit' ? 'edit' : 'view';   // stay in whichever panel is open
  const list = visibleSpells();
  const i = list.findIndex(s => s._id === selectedId);
  const next = list[i + delta];
  if (next) {
- openEditor(next._id);
+ if (!confirmLeaveEdit('move to that entry')) return;
+ openEditor(next._id, mode);
  document.querySelector(`tr[data-id="${next._id}"]`)?.scrollIntoView({ block: 'nearest' });
  }
 }
@@ -1530,6 +1768,10 @@ $('btnClear').onclick = () => {
  renderTable();
 };
 $('search').addEventListener('input', renderTable);
+attachPanelResizer();
+window.addEventListener('resize', () => {
+ if ($('editor').classList.contains('open')) applyPanelWidth(panelWidth());
+});
 
 $('dlgWrite').onclick = dlgSetWrite;
 $('dlgPreviewBtn').onclick = dlgSetPreview;
@@ -1547,6 +1789,7 @@ document.addEventListener('keydown', e => {
  if (e.key === 'Escape') {
  const m = $('colMenu');
  if (!m.hidden) { m.hidden = true; return; }
+ if (!confirmLeaveEdit('close the panel')) return;
  closeEditor();
  }
  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); if (rawData) saveFile(false); }

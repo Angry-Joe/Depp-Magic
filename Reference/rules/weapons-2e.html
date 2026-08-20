@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>weapons-2e.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="add-2e--dark-sun-weapons">AD&amp;D 2e + Dark Sun Weapons</h1>
+<p>Flat list. category: melee|missile|ammunition. Combat stats from PHB Table 44 / DSRB / Dragon 185. tags[] carry app flags (thrown, returning, reach, two_handed, off_hand, set_vs_charge, dismount, dm_permission, charge_mount_x2). source[] lists origin books. No materials (bone/obsidian/etc.) per scope.</p>
+<p>Sources: PHB Table 44, Dark Sun Rules Book, Dragon Magazine 185. Mechanics only, no materials. <strong>Reference only, not integrated.</strong></p>
+<p>88 weapons.</p>
+<table>
+<thead>
+<tr>
+<th>Weapon</th>
+<th>Cat</th>
+<th>Cost</th>
+<th>Wt</th>
+<th>Size</th>
+<th>Type</th>
+<th>Spd</th>
+<th>Dmg S-M</th>
+<th>Dmg L</th>
+<th>Tags</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Barbed Dart</td>
+<td>ammunition</td>
+<td>1 sp</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d3</td>
+<td>1d2</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Flight arrow</td>
+<td>ammunition</td>
+<td>3sp/12</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d6</td>
+<td>1d6</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Hand quarrel</td>
+<td>ammunition</td>
+<td>1 gp</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d3</td>
+<td>1d2</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Heavy quarrel</td>
+<td>ammunition</td>
+<td>2 sp</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d4+1</td>
+<td>1d6+1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Light quarrel</td>
+<td>ammunition</td>
+<td>1 sp</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d4</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Needle</td>
+<td>ammunition</td>
+<td>2 cp</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sheaf arrow</td>
+<td>ammunition</td>
+<td>3 sp/6</td>
+<td></td>
+<td>S</td>
+<td>P</td>
+<td></td>
+<td>1d8</td>
+<td>1d8</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sling bullet</td>
+<td>ammunition</td>
+<td>1 cp</td>
+<td>0.5</td>
+<td>S</td>
+<td>B</td>
+<td></td>
+<td>1d4+1</td>
+<td>1d6+1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sling stone</td>
+<td>ammunition</td>
+<td></td>
+<td>0.5</td>
+<td>S</td>
+<td>B</td>
+<td></td>
+<td>1d4</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Awl pike</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>12</td>
+<td>L</td>
+<td>P</td>
+<td>13</td>
+<td>1d6</td>
+<td>1d12</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bard's friend</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>3</td>
+<td>S</td>
+<td>P/S</td>
+<td>3</td>
+<td>1d4+1</td>
+<td>1d3</td>
+<td></td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Bardiche</td>
+<td>melee</td>
+<td>7 gp</td>
+<td>12</td>
+<td>L</td>
+<td>S</td>
+<td>9</td>
+<td>2d4</td>
+<td>2d6</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bastard sword, one-handed</td>
+<td>melee</td>
+<td>25 gp</td>
+<td>10</td>
+<td>M</td>
+<td>S</td>
+<td>6</td>
+<td>1d8</td>
+<td>1d12</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bastard sword, two-handed</td>
+<td>melee</td>
+<td>25 gp</td>
+<td>10</td>
+<td>M</td>
+<td>S</td>
+<td>8</td>
+<td>2d4</td>
+<td>2d8</td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Battle axe</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>7</td>
+<td>M</td>
+<td>S</td>
+<td>7</td>
+<td>1d8</td>
+<td>1d8</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bec de corbin</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>10</td>
+<td>L</td>
+<td>P/B</td>
+<td>9</td>
+<td>1d8</td>
+<td>1d6</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Bill-guisarme</td>
+<td>melee</td>
+<td>7 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P/S</td>
+<td>10</td>
+<td>2d4</td>
+<td>1d10</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Broad sword</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>4</td>
+<td>M</td>
+<td>S</td>
+<td>5</td>
+<td>2d4</td>
+<td>1d6+1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Cahulaks</td>
+<td>melee</td>
+<td>12 gp</td>
+<td>12</td>
+<td>M</td>
+<td>P/B</td>
+<td>5</td>
+<td>1d6</td>
+<td>1d6</td>
+<td>thrown, reach</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Club</td>
+<td>melee</td>
+<td></td>
+<td>3</td>
+<td>M</td>
+<td>B</td>
+<td>4</td>
+<td>1d6</td>
+<td>1d3</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Crusher</td>
+<td>melee</td>
+<td>24 gp</td>
+<td>9</td>
+<td>L</td>
+<td>B</td>
+<td>10</td>
+<td>1d4</td>
+<td>1d3</td>
+<td>reach, two_handed</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Dagger or dirk</td>
+<td>melee</td>
+<td>2 gp</td>
+<td>1</td>
+<td>S</td>
+<td>P</td>
+<td>2</td>
+<td>1d4</td>
+<td>1d3</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Datchi club</td>
+<td>melee</td>
+<td>12 gp</td>
+<td>10</td>
+<td>L</td>
+<td>B</td>
+<td>4</td>
+<td>1d6</td>
+<td>1d4</td>
+<td>two_handed</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Dragon's paw</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>9</td>
+<td>L</td>
+<td>P</td>
+<td>8</td>
+<td>1d6</td>
+<td>1d6+1</td>
+<td>reach, two_handed</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Fauchard</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>7</td>
+<td>L</td>
+<td>P/S</td>
+<td>8</td>
+<td>1d6</td>
+<td>1d8</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Fauchard-fork</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>9</td>
+<td>L</td>
+<td>P/S</td>
+<td>8</td>
+<td>1d8</td>
+<td>1d10</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Footman's flail</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>15</td>
+<td>M</td>
+<td>B</td>
+<td>7</td>
+<td>1d6+1</td>
+<td>2d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Footman's mace</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>10</td>
+<td>M</td>
+<td>B</td>
+<td>7</td>
+<td>1d6+1</td>
+<td>1d6</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Footman's pick</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>6</td>
+<td>M</td>
+<td>P</td>
+<td>7</td>
+<td>1d6+1</td>
+<td>2d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Glaive</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>8</td>
+<td>L</td>
+<td>S</td>
+<td>8</td>
+<td>1d6</td>
+<td>1d10</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Glaive-guisarme</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>10</td>
+<td>L</td>
+<td>P/S</td>
+<td>9</td>
+<td>2d4</td>
+<td>2d6</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Gouge</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>12</td>
+<td>L</td>
+<td>P/S</td>
+<td>8</td>
+<td>1d8</td>
+<td>1d10</td>
+<td>two_handed</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Guisarme</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>8</td>
+<td>L</td>
+<td>S</td>
+<td>8</td>
+<td>2d4</td>
+<td>1d8</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Guisarme-voulge</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P/S</td>
+<td>10</td>
+<td>2d4</td>
+<td>2d4</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Gythka</td>
+<td>melee</td>
+<td>6 cp</td>
+<td>12</td>
+<td>L</td>
+<td>P/B</td>
+<td>9</td>
+<td>2d4</td>
+<td>1d10</td>
+<td>reach, two_handed</td>
+<td>DSRB</td>
+</tr>
+<tr>
+<td>Halberd</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P/S</td>
+<td>9</td>
+<td>1d10</td>
+<td>2d6</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Hand or throwing axe</td>
+<td>melee</td>
+<td>1 gp</td>
+<td>5</td>
+<td>M</td>
+<td>S</td>
+<td>4</td>
+<td>1d6</td>
+<td>1d4</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Harpoon</td>
+<td>melee</td>
+<td>20 gp</td>
+<td>6</td>
+<td>L</td>
+<td>P</td>
+<td>7</td>
+<td>2d4</td>
+<td>2d6</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Heavy horse lance</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P</td>
+<td>8</td>
+<td>1d8+1</td>
+<td>3d6</td>
+<td>reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Hook fauchard</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>8</td>
+<td>L</td>
+<td>P/S</td>
+<td>9</td>
+<td>1d4</td>
+<td>1d4</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Horseman's flail</td>
+<td>melee</td>
+<td>8 gp</td>
+<td>5</td>
+<td>M</td>
+<td>B</td>
+<td>6</td>
+<td>1d4+1</td>
+<td>1d4+1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Horseman's mace</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>6</td>
+<td>M</td>
+<td>B</td>
+<td>6</td>
+<td>1d6</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Horseman's pick</td>
+<td>melee</td>
+<td>7 gp</td>
+<td>4</td>
+<td>M</td>
+<td>P</td>
+<td>5</td>
+<td>1d4+1</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Impaler</td>
+<td>melee</td>
+<td>4 cp</td>
+<td>5</td>
+<td>M</td>
+<td>P</td>
+<td>5</td>
+<td>1d8</td>
+<td>1d8</td>
+<td></td>
+<td>DSRB</td>
+</tr>
+<tr>
+<td>Javelin</td>
+<td>melee</td>
+<td>5 sp</td>
+<td>2</td>
+<td>M</td>
+<td>P</td>
+<td>4</td>
+<td>1d6</td>
+<td>1d6</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Jousting lance</td>
+<td>melee</td>
+<td>20 gp</td>
+<td>20</td>
+<td>L</td>
+<td>P</td>
+<td>10</td>
+<td>1d3-1</td>
+<td>1d2-1</td>
+<td>reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Khopesh</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>7</td>
+<td>M</td>
+<td>S</td>
+<td>9</td>
+<td>2d4</td>
+<td>1d6</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Knife</td>
+<td>melee</td>
+<td>5 sp</td>
+<td>0.5</td>
+<td>S</td>
+<td>P/S</td>
+<td>2</td>
+<td>1d3</td>
+<td>1d2</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Light horse lance</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>5</td>
+<td>L</td>
+<td>P</td>
+<td>6</td>
+<td>1d6</td>
+<td>1d8</td>
+<td>reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Long sword</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>4</td>
+<td>M</td>
+<td>S</td>
+<td>5</td>
+<td>1d8</td>
+<td>1d12</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Lucern hammer</td>
+<td>melee</td>
+<td>7 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P/B</td>
+<td>9</td>
+<td>2d4</td>
+<td>1d6</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Mancatcher</td>
+<td>melee</td>
+<td>30 gp</td>
+<td>8</td>
+<td>L</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td>dismount, reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Master's whip</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>3</td>
+<td>M</td>
+<td>P</td>
+<td>8</td>
+<td>1d3</td>
+<td>1d2</td>
+<td>reach</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Medium horse lance</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>10</td>
+<td>L</td>
+<td>P</td>
+<td>7</td>
+<td>1d6+1</td>
+<td>2d6</td>
+<td>reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Military fork</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>7</td>
+<td>L</td>
+<td>P</td>
+<td>7</td>
+<td>1d8</td>
+<td>2d4</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Morning star</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>12</td>
+<td>M</td>
+<td>B</td>
+<td>7</td>
+<td>2d4</td>
+<td>1d6+1</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Partisan</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>8</td>
+<td>L</td>
+<td>P</td>
+<td>9</td>
+<td>1d6</td>
+<td>1d6+1</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Quabone</td>
+<td>melee</td>
+<td>1 cp</td>
+<td>4</td>
+<td>M</td>
+<td>P/S</td>
+<td>7</td>
+<td>1d4</td>
+<td>1d3</td>
+<td></td>
+<td>DSRB</td>
+</tr>
+<tr>
+<td>Quarterstaff</td>
+<td>melee</td>
+<td></td>
+<td>4</td>
+<td>L</td>
+<td>B</td>
+<td>4</td>
+<td>1d6</td>
+<td>1d6</td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Ranseur</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>7</td>
+<td>L</td>
+<td>P</td>
+<td>8</td>
+<td>2d4</td>
+<td>2d4</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Scimitar</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>4</td>
+<td>M</td>
+<td>S</td>
+<td>5</td>
+<td>1d8</td>
+<td>1d8</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Scourge</td>
+<td>melee</td>
+<td>1 gp</td>
+<td>2</td>
+<td>S</td>
+<td></td>
+<td>5</td>
+<td>1d4</td>
+<td>1d2</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Short sword</td>
+<td>melee</td>
+<td>10 gp</td>
+<td>3</td>
+<td>S</td>
+<td>P</td>
+<td>3</td>
+<td>1d6</td>
+<td>1d8</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sickle</td>
+<td>melee</td>
+<td>6 sp</td>
+<td>3</td>
+<td>S</td>
+<td>S</td>
+<td>4</td>
+<td>1d4+1</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Spear</td>
+<td>melee</td>
+<td>8 sp</td>
+<td>5</td>
+<td>M</td>
+<td>P</td>
+<td>6</td>
+<td>1d6</td>
+<td>1d8</td>
+<td>thrown, reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Spetum</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>7</td>
+<td>L</td>
+<td>P</td>
+<td>8</td>
+<td>1d6+1</td>
+<td>2d6</td>
+<td>reach, two_handed, set_vs_charge</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Tortoise blades</td>
+<td>melee</td>
+<td>9 gp</td>
+<td>5</td>
+<td>M</td>
+<td>P/S</td>
+<td>5</td>
+<td>1d6</td>
+<td>1d6+1</td>
+<td>off_hand</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Trident</td>
+<td>melee</td>
+<td>15 gp</td>
+<td>5</td>
+<td>L</td>
+<td>P</td>
+<td>7</td>
+<td>1d6+1</td>
+<td>3d4</td>
+<td>thrown, reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Two-handed sword</td>
+<td>melee</td>
+<td>50 gp</td>
+<td>15</td>
+<td>L</td>
+<td>S</td>
+<td>10</td>
+<td>1d10</td>
+<td>3d6</td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Voulge</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>12</td>
+<td>L</td>
+<td>S</td>
+<td>10</td>
+<td>2d4</td>
+<td>2d4</td>
+<td>reach, two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Warhammer</td>
+<td>melee</td>
+<td>2 gp</td>
+<td>6</td>
+<td>M</td>
+<td>B</td>
+<td>4</td>
+<td>1d4+1</td>
+<td>1d4</td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Weighted pike</td>
+<td>melee</td>
+<td>6 gp</td>
+<td>15</td>
+<td>L</td>
+<td>P/B</td>
+<td>12</td>
+<td>1d6</td>
+<td>1d12</td>
+<td>reach, two_handed</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Whip</td>
+<td>melee</td>
+<td>1 sp</td>
+<td>2</td>
+<td>M</td>
+<td></td>
+<td>8</td>
+<td>1d2</td>
+<td>1</td>
+<td>reach</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Widow's knife</td>
+<td>melee</td>
+<td>5 gp</td>
+<td>4</td>
+<td>M</td>
+<td>P/S</td>
+<td>3</td>
+<td>1d4</td>
+<td>1d3</td>
+<td>thrown</td>
+<td>Dragon185</td>
+</tr>
+<tr>
+<td>Wrist razor</td>
+<td>melee</td>
+<td>1 sp</td>
+<td>1</td>
+<td>S</td>
+<td>S</td>
+<td>2</td>
+<td>1d6+1</td>
+<td>1d4+1</td>
+<td>off_hand</td>
+<td>DSRB</td>
+</tr>
+<tr>
+<td>Arquebus</td>
+<td>missile</td>
+<td>500 gp</td>
+<td>10</td>
+<td>M</td>
+<td>P</td>
+<td>15</td>
+<td>1d10</td>
+<td>1d10</td>
+<td>dm_permission, firearm</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Blowgun</td>
+<td>missile</td>
+<td>5 gp</td>
+<td>2</td>
+<td>L</td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Chatkcha</td>
+<td>missile</td>
+<td>1 cp</td>
+<td>0.5</td>
+<td>S</td>
+<td>S</td>
+<td>4</td>
+<td>1d6+2</td>
+<td>1d4+1</td>
+<td>thrown, returning</td>
+<td>DSRB</td>
+</tr>
+<tr>
+<td>Composite long bow</td>
+<td>missile</td>
+<td>100 gp</td>
+<td>3</td>
+<td>L</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Composite short bow</td>
+<td>missile</td>
+<td>75 gp</td>
+<td>2</td>
+<td>M</td>
+<td></td>
+<td>6</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Dart</td>
+<td>missile</td>
+<td>5 sp</td>
+<td>0.5</td>
+<td>S</td>
+<td>P</td>
+<td>2</td>
+<td>1d3</td>
+<td>1d2</td>
+<td>thrown</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Hand crossbow</td>
+<td>missile</td>
+<td>300 gp</td>
+<td>3</td>
+<td>S</td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Heavy crossbow</td>
+<td>missile</td>
+<td>50 gp</td>
+<td>14</td>
+<td>M</td>
+<td></td>
+<td>10</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Light crossbow</td>
+<td>missile</td>
+<td>35 gp</td>
+<td>7</td>
+<td>M</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Long bow</td>
+<td>missile</td>
+<td>75 gp</td>
+<td>3</td>
+<td>L</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Short bow</td>
+<td>missile</td>
+<td>30 gp</td>
+<td>2</td>
+<td>M</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Sling</td>
+<td>missile</td>
+<td>5 cp</td>
+<td></td>
+<td>S</td>
+<td></td>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PHB</td>
+</tr>
+<tr>
+<td>Staff sling</td>
+<td>missile</td>
+<td>2 sp</td>
+<td>2</td>
+<td>M</td>
+<td></td>
+<td>11</td>
+<td></td>
+<td></td>
+<td>two_handed</td>
+<td>PHB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="notes--footnotes">Notes / footnotes</h2>
+<ul>
+<li><strong>Arquebus</strong>: Available only if allowed by DM.</li>
+<li><strong>Mancatcher</strong>: Can dismount a rider on a hit.</li>
+<li><strong>Awl pike</strong>: Double damage when firmly set to receive a charge.</li>
+<li><strong>Glaive</strong>: Double damage vs charging L+ creatures when set.</li>
+<li><strong>Glaive-guisarme</strong>: Double damage vs charging L+ creatures when set.</li>
+<li><strong>Lucern hammer</strong>: Double damage when firmly set to receive a charge.</li>
+<li><strong>Military fork</strong>: Double damage vs charging L+ creatures when set.</li>
+<li><strong>Partisan</strong>: Double damage when firmly set to receive a charge.</li>
+<li><strong>Ranseur</strong>: Double damage when firmly set to receive a charge.</li>
+<li><strong>Spetum</strong>: Double damage when firmly set to receive a charge.</li>
+</ul>
+
+</body>
+</html>

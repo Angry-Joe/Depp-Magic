@@ -1,0 +1,1854 @@
+{
+  "_meta": {
+    "title": "AD&D 2e + Dark Sun Weapons",
+    "schema": "Flat list. category: melee|missile|ammunition. Combat stats from PHB Table 44 / DSRB / Dragon 185. tags[] carry app flags (thrown, returning, reach, two_handed, off_hand, set_vs_charge, dismount, dm_permission, charge_mount_x2). source[] lists origin books. No materials (bone/obsidian/etc.) per scope.",
+    "sources": [
+      "PHB Table 44 (via adnd2e.fandom.com)",
+      "Dark Sun Rules Book weapon table (OCR)",
+      "Dragon Magazine 185 Athasian arsenal (column OCR)"
+    ],
+    "license": "Mechanics tables only; no descriptive prose. Personal-use corpus.",
+    "captured": "2026-08-13",
+    "status": "reference only - NOT integrated",
+    "known_gaps": "PHB missile RANGE (yardage) and RATE OF FIRE come from PHB Table 45, not yet pulled; range/rof are null for PHB missiles (Dark Sun thrown ranges partially populated). Weighted pike is a combination weapon (pike/mace modes); damage shown is the pike/mace values."
+  },
+  "count": 88,
+  "weapons": [
+    {
+      "name": "Arquebus",
+      "cost": "500 gp",
+      "weight": 10,
+      "size": "M",
+      "type": "P",
+      "speed": 15,
+      "damage_sm": "1d10",
+      "damage_l": "1d10",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "dm_permission",
+        "firearm"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Available only if allowed by DM."
+    },
+    {
+      "name": "Battle axe",
+      "cost": "5 gp",
+      "weight": 7,
+      "size": "M",
+      "type": "S",
+      "speed": 7,
+      "damage_sm": "1d8",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Blowgun",
+      "cost": "5 gp",
+      "weight": 2,
+      "size": "L",
+      "type": null,
+      "speed": 5,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo": "needle/barbed dart",
+      "notes": null
+    },
+    {
+      "name": "Barbed Dart",
+      "cost": "1 sp",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d3",
+      "damage_l": "1d2",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "blowgun",
+      "notes": null
+    },
+    {
+      "name": "Needle",
+      "cost": "2 cp",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1",
+      "damage_l": "1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "blowgun",
+      "notes": null
+    },
+    {
+      "name": "Composite long bow",
+      "cost": "100 gp",
+      "weight": 3,
+      "size": "L",
+      "type": null,
+      "speed": 7,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "arrow",
+      "notes": null
+    },
+    {
+      "name": "Composite short bow",
+      "cost": "75 gp",
+      "weight": 2,
+      "size": "M",
+      "type": null,
+      "speed": 6,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "arrow",
+      "notes": null
+    },
+    {
+      "name": "Flight arrow",
+      "cost": "3sp/12",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d6",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "bow",
+      "notes": null
+    },
+    {
+      "name": "Long bow",
+      "cost": "75 gp",
+      "weight": 3,
+      "size": "L",
+      "type": null,
+      "speed": 8,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "arrow",
+      "notes": null
+    },
+    {
+      "name": "Sheaf arrow",
+      "cost": "3 sp/6",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d8",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "bow",
+      "notes": null
+    },
+    {
+      "name": "Short bow",
+      "cost": "30 gp",
+      "weight": 2,
+      "size": "M",
+      "type": null,
+      "speed": 7,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "arrow",
+      "notes": null
+    },
+    {
+      "name": "Club",
+      "cost": null,
+      "weight": 3,
+      "size": "M",
+      "type": "B",
+      "speed": 4,
+      "damage_sm": "1d6",
+      "damage_l": "1d3",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Hand quarrel",
+      "cost": "1 gp",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d3",
+      "damage_l": "1d2",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "hand crossbow",
+      "notes": null
+    },
+    {
+      "name": "Hand crossbow",
+      "cost": "300 gp",
+      "weight": 3,
+      "size": "S",
+      "type": null,
+      "speed": 5,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo": "quarrel",
+      "notes": null
+    },
+    {
+      "name": "Heavy quarrel",
+      "cost": "2 sp",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d6+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "heavy crossbow",
+      "notes": null
+    },
+    {
+      "name": "Heavy crossbow",
+      "cost": "50 gp",
+      "weight": 14,
+      "size": "M",
+      "type": null,
+      "speed": 10,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "quarrel",
+      "notes": null
+    },
+    {
+      "name": "Light quarrel",
+      "cost": "1 sp",
+      "weight": null,
+      "size": "S",
+      "type": "P",
+      "speed": null,
+      "damage_sm": "1d4",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "light crossbow",
+      "notes": null
+    },
+    {
+      "name": "Light crossbow",
+      "cost": "35 gp",
+      "weight": 7,
+      "size": "M",
+      "type": null,
+      "speed": 7,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo": "quarrel",
+      "notes": null
+    },
+    {
+      "name": "Dagger or dirk",
+      "cost": "2 gp",
+      "weight": 1,
+      "size": "S",
+      "type": "P",
+      "speed": 2,
+      "damage_sm": "1d4",
+      "damage_l": "1d3",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Dart",
+      "cost": "5 sp",
+      "weight": 0.5,
+      "size": "S",
+      "type": "P",
+      "speed": 2,
+      "damage_sm": "1d3",
+      "damage_l": "1d2",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Footman's flail",
+      "cost": "15 gp",
+      "weight": 15,
+      "size": "M",
+      "type": "B",
+      "speed": 7,
+      "damage_sm": "1d6+1",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Footman's mace",
+      "cost": "8 gp",
+      "weight": 10,
+      "size": "M",
+      "type": "B",
+      "speed": 7,
+      "damage_sm": "1d6+1",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Footman's pick",
+      "cost": "8 gp",
+      "weight": 6,
+      "size": "M",
+      "type": "P",
+      "speed": 7,
+      "damage_sm": "1d6+1",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Hand or throwing axe",
+      "cost": "1 gp",
+      "weight": 5,
+      "size": "M",
+      "type": "S",
+      "speed": 4,
+      "damage_sm": "1d6",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Harpoon",
+      "cost": "20 gp",
+      "weight": 6,
+      "size": "L",
+      "type": "P",
+      "speed": 7,
+      "damage_sm": "2d4",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Horseman's flail",
+      "cost": "8 gp",
+      "weight": 5,
+      "size": "M",
+      "type": "B",
+      "speed": 6,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d4+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Horseman's mace",
+      "cost": "5 gp",
+      "weight": 6,
+      "size": "M",
+      "type": "B",
+      "speed": 6,
+      "damage_sm": "1d6",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Horseman's pick",
+      "cost": "7 gp",
+      "weight": 4,
+      "size": "M",
+      "type": "P",
+      "speed": 5,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Javelin",
+      "cost": "5 sp",
+      "weight": 2,
+      "size": "M",
+      "type": "P",
+      "speed": 4,
+      "damage_sm": "1d6",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Knife",
+      "cost": "5 sp",
+      "weight": 0.5,
+      "size": "S",
+      "type": "P/S",
+      "speed": 2,
+      "damage_sm": "1d3",
+      "damage_l": "1d2",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Heavy horse lance",
+      "cost": "15 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P",
+      "speed": 8,
+      "damage_sm": "1d8+1",
+      "damage_l": "3d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Light horse lance",
+      "cost": "6 gp",
+      "weight": 5,
+      "size": "L",
+      "type": "P",
+      "speed": 6,
+      "damage_sm": "1d6",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Jousting lance",
+      "cost": "20 gp",
+      "weight": 20,
+      "size": "L",
+      "type": "P",
+      "speed": 10,
+      "damage_sm": "1d3-1",
+      "damage_l": "1d2-1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Medium horse lance",
+      "cost": "10 gp",
+      "weight": 10,
+      "size": "L",
+      "type": "P",
+      "speed": 7,
+      "damage_sm": "1d6+1",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Mancatcher",
+      "cost": "30 gp",
+      "weight": 8,
+      "size": "L",
+      "type": null,
+      "speed": 7,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "dismount",
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Can dismount a rider on a hit."
+    },
+    {
+      "name": "Morning star",
+      "cost": "10 gp",
+      "weight": 12,
+      "size": "M",
+      "type": "B",
+      "speed": 7,
+      "damage_sm": "2d4",
+      "damage_l": "1d6+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Awl pike",
+      "cost": "5 gp",
+      "weight": 12,
+      "size": "L",
+      "type": "P",
+      "speed": 13,
+      "damage_sm": "1d6",
+      "damage_l": "1d12",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage when firmly set to receive a charge."
+    },
+    {
+      "name": "Bardiche",
+      "cost": "7 gp",
+      "weight": 12,
+      "size": "L",
+      "type": "S",
+      "speed": 9,
+      "damage_sm": "2d4",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Bec de corbin",
+      "cost": "8 gp",
+      "weight": 10,
+      "size": "L",
+      "type": "P/B",
+      "speed": 9,
+      "damage_sm": "1d8",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Bill-guisarme",
+      "cost": "7 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P/S",
+      "speed": 10,
+      "damage_sm": "2d4",
+      "damage_l": "1d10",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Fauchard",
+      "cost": "5 gp",
+      "weight": 7,
+      "size": "L",
+      "type": "P/S",
+      "speed": 8,
+      "damage_sm": "1d6",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Fauchard-fork",
+      "cost": "8 gp",
+      "weight": 9,
+      "size": "L",
+      "type": "P/S",
+      "speed": 8,
+      "damage_sm": "1d8",
+      "damage_l": "1d10",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Glaive",
+      "cost": "6 gp",
+      "weight": 8,
+      "size": "L",
+      "type": "S",
+      "speed": 8,
+      "damage_sm": "1d6",
+      "damage_l": "1d10",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage vs charging L+ creatures when set."
+    },
+    {
+      "name": "Glaive-guisarme",
+      "cost": "10 gp",
+      "weight": 10,
+      "size": "L",
+      "type": "P/S",
+      "speed": 9,
+      "damage_sm": "2d4",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage vs charging L+ creatures when set."
+    },
+    {
+      "name": "Guisarme",
+      "cost": "5 gp",
+      "weight": 8,
+      "size": "L",
+      "type": "S",
+      "speed": 8,
+      "damage_sm": "2d4",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Guisarme-voulge",
+      "cost": "8 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P/S",
+      "speed": 10,
+      "damage_sm": "2d4",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Halberd",
+      "cost": "10 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P/S",
+      "speed": 9,
+      "damage_sm": "1d10",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Hook fauchard",
+      "cost": "10 gp",
+      "weight": 8,
+      "size": "L",
+      "type": "P/S",
+      "speed": 9,
+      "damage_sm": "1d4",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Lucern hammer",
+      "cost": "7 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P/B",
+      "speed": 9,
+      "damage_sm": "2d4",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage when firmly set to receive a charge."
+    },
+    {
+      "name": "Military fork",
+      "cost": "5 gp",
+      "weight": 7,
+      "size": "L",
+      "type": "P",
+      "speed": 7,
+      "damage_sm": "1d8",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage vs charging L+ creatures when set."
+    },
+    {
+      "name": "Partisan",
+      "cost": "10 gp",
+      "weight": 8,
+      "size": "L",
+      "type": "P",
+      "speed": 9,
+      "damage_sm": "1d6",
+      "damage_l": "1d6+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage when firmly set to receive a charge."
+    },
+    {
+      "name": "Ranseur",
+      "cost": "6 gp",
+      "weight": 7,
+      "size": "L",
+      "type": "P",
+      "speed": 8,
+      "damage_sm": "2d4",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage when firmly set to receive a charge."
+    },
+    {
+      "name": "Spetum",
+      "cost": "5 gp",
+      "weight": 7,
+      "size": "L",
+      "type": "P",
+      "speed": 8,
+      "damage_sm": "1d6+1",
+      "damage_l": "2d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed",
+        "set_vs_charge"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": "Double damage when firmly set to receive a charge."
+    },
+    {
+      "name": "Voulge",
+      "cost": "5 gp",
+      "weight": 12,
+      "size": "L",
+      "type": "S",
+      "speed": 10,
+      "damage_sm": "2d4",
+      "damage_l": "2d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Quarterstaff",
+      "cost": null,
+      "weight": 4,
+      "size": "L",
+      "type": "B",
+      "speed": 4,
+      "damage_sm": "1d6",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Scourge",
+      "cost": "1 gp",
+      "weight": 2,
+      "size": "S",
+      "type": null,
+      "speed": 5,
+      "damage_sm": "1d4",
+      "damage_l": "1d2",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Sickle",
+      "cost": "6 sp",
+      "weight": 3,
+      "size": "S",
+      "type": "S",
+      "speed": 4,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Sling",
+      "cost": "5 cp",
+      "weight": null,
+      "size": "S",
+      "type": null,
+      "speed": 6,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo": "bullet/stone",
+      "notes": null
+    },
+    {
+      "name": "Sling bullet",
+      "cost": "1 cp",
+      "weight": 0.5,
+      "size": "S",
+      "type": "B",
+      "speed": null,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d6+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "sling",
+      "notes": null
+    },
+    {
+      "name": "Sling stone",
+      "cost": null,
+      "weight": 0.5,
+      "size": "S",
+      "type": "B",
+      "speed": null,
+      "damage_sm": "1d4",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": true,
+      "category": "ammunition",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "ammo_for": "sling",
+      "notes": null
+    },
+    {
+      "name": "Spear",
+      "cost": "8 sp",
+      "weight": 5,
+      "size": "M",
+      "type": "P",
+      "speed": 6,
+      "damage_sm": "1d6",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown",
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Staff sling",
+      "cost": "2 sp",
+      "weight": 2,
+      "size": "M",
+      "type": null,
+      "speed": 11,
+      "damage_sm": null,
+      "damage_l": null,
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "ammo": "bullet/stone",
+      "notes": null
+    },
+    {
+      "name": "Bastard sword, one-handed",
+      "cost": "25 gp",
+      "weight": 10,
+      "size": "M",
+      "type": "S",
+      "speed": 6,
+      "damage_sm": "1d8",
+      "damage_l": "1d12",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Bastard sword, two-handed",
+      "cost": "25 gp",
+      "weight": 10,
+      "size": "M",
+      "type": "S",
+      "speed": 8,
+      "damage_sm": "2d4",
+      "damage_l": "2d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Broad sword",
+      "cost": "10 gp",
+      "weight": 4,
+      "size": "M",
+      "type": "S",
+      "speed": 5,
+      "damage_sm": "2d4",
+      "damage_l": "1d6+1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Khopesh",
+      "cost": "10 gp",
+      "weight": 7,
+      "size": "M",
+      "type": "S",
+      "speed": 9,
+      "damage_sm": "2d4",
+      "damage_l": "1d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Long sword",
+      "cost": "15 gp",
+      "weight": 4,
+      "size": "M",
+      "type": "S",
+      "speed": 5,
+      "damage_sm": "1d8",
+      "damage_l": "1d12",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Scimitar",
+      "cost": "15 gp",
+      "weight": 4,
+      "size": "M",
+      "type": "S",
+      "speed": 5,
+      "damage_sm": "1d8",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Short sword",
+      "cost": "10 gp",
+      "weight": 3,
+      "size": "S",
+      "type": "P",
+      "speed": 3,
+      "damage_sm": "1d6",
+      "damage_l": "1d8",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Two-handed sword",
+      "cost": "50 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "S",
+      "speed": 10,
+      "damage_sm": "1d10",
+      "damage_l": "3d6",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Trident",
+      "cost": "15 gp",
+      "weight": 5,
+      "size": "L",
+      "type": "P",
+      "speed": 7,
+      "damage_sm": "1d6+1",
+      "damage_l": "3d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown",
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Warhammer",
+      "cost": "2 gp",
+      "weight": 6,
+      "size": "M",
+      "type": "B",
+      "speed": 4,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d4",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Whip",
+      "cost": "1 sp",
+      "weight": 2,
+      "size": "M",
+      "type": null,
+      "speed": 8,
+      "damage_sm": "1d2",
+      "damage_l": "1",
+      "source": [
+        "PHB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Chatkcha",
+      "cost": "1 cp",
+      "weight": 0.5,
+      "size": "S",
+      "type": "S",
+      "speed": 4,
+      "damage_sm": "1d6+2",
+      "damage_l": "1d4+1",
+      "source": [
+        "DSRB"
+      ],
+      "is_ammo": false,
+      "category": "missile",
+      "tags": [
+        "thrown",
+        "returning"
+      ],
+      "range": "90 yd (returns if it misses)",
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Impaler",
+      "cost": "4 cp",
+      "weight": 5,
+      "size": "M",
+      "type": "P",
+      "speed": 5,
+      "damage_sm": "1d8",
+      "damage_l": "1d8",
+      "source": [
+        "DSRB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Gythka",
+      "cost": "6 cp",
+      "weight": 12,
+      "size": "L",
+      "type": "P/B",
+      "speed": 9,
+      "damage_sm": "2d4",
+      "damage_l": "1d10",
+      "source": [
+        "DSRB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Quabone",
+      "cost": "1 cp",
+      "weight": 4,
+      "size": "M",
+      "type": "P/S",
+      "speed": 7,
+      "damage_sm": "1d4",
+      "damage_l": "1d3",
+      "source": [
+        "DSRB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Wrist razor",
+      "cost": "1 sp",
+      "weight": 1,
+      "size": "S",
+      "type": "S",
+      "speed": 2,
+      "damage_sm": "1d6+1",
+      "damage_l": "1d4+1",
+      "source": [
+        "DSRB"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "off_hand"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Bard's friend",
+      "cost": "10 gp",
+      "weight": 3,
+      "size": "S",
+      "type": "P/S",
+      "speed": 3,
+      "damage_sm": "1d4+1",
+      "damage_l": "1d3",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Cahulaks",
+      "cost": "12 gp",
+      "weight": 12,
+      "size": "M",
+      "type": "P/B",
+      "speed": 5,
+      "damage_sm": "1d6",
+      "damage_l": "1d6",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown",
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Crusher",
+      "cost": "24 gp",
+      "weight": 9,
+      "size": "L",
+      "type": "B",
+      "speed": 10,
+      "damage_sm": "1d4",
+      "damage_l": "1d3",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Datchi club",
+      "cost": "12 gp",
+      "weight": 10,
+      "size": "L",
+      "type": "B",
+      "speed": 4,
+      "damage_sm": "1d6",
+      "damage_l": "1d4",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Dragon's paw",
+      "cost": "15 gp",
+      "weight": 9,
+      "size": "L",
+      "type": "P",
+      "speed": 8,
+      "damage_sm": "1d6",
+      "damage_l": "1d6+1",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Gouge",
+      "cost": "6 gp",
+      "weight": 12,
+      "size": "L",
+      "type": "P/S",
+      "speed": 8,
+      "damage_sm": "1d8",
+      "damage_l": "1d10",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Master's whip",
+      "cost": "6 gp",
+      "weight": 3,
+      "size": "M",
+      "type": "P",
+      "speed": 8,
+      "damage_sm": "1d3",
+      "damage_l": "1d2",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Tortoise blades",
+      "cost": "9 gp",
+      "weight": 5,
+      "size": "M",
+      "type": "P/S",
+      "speed": 5,
+      "damage_sm": "1d6",
+      "damage_l": "1d6+1",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "off_hand"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Weighted pike",
+      "cost": "6 gp",
+      "weight": 15,
+      "size": "L",
+      "type": "P/B",
+      "speed": 12,
+      "damage_sm": "1d6",
+      "damage_l": "1d12",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "reach",
+        "two_handed"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    },
+    {
+      "name": "Widow's knife",
+      "cost": "5 gp",
+      "weight": 4,
+      "size": "M",
+      "type": "P/S",
+      "speed": 3,
+      "damage_sm": "1d4",
+      "damage_l": "1d3",
+      "source": [
+        "Dragon185"
+      ],
+      "is_ammo": false,
+      "category": "melee",
+      "tags": [
+        "thrown"
+      ],
+      "range": null,
+      "rof": null,
+      "notes": null
+    }
+  ]
+}

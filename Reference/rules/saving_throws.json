@@ -1,0 +1,53 @@
+{
+"names" : {"ppd":"Paralization, Poison, Death","rod":"Staffs, Wands or Rods","pp":"Petrification or Polymorth","breath":"Breath Weapons","spell":"Spells"},
+"priest" :
+	{
+	"1-3":{ "ppd":"10","rod":"14","pp":"13","breath":"16","spell":"15"  },
+	"4-6":{ "ppd":"9","rod":"13","pp":"12","breath":"15","spell":"14"  },
+	"7-9":{ "ppd":"7","rod":"11","pp":"10","breath":"13","spell":"12"  },
+	"10-12":{ "ppd":"6","rod":"10","pp":"9","breath":"12","spell":"11"  },
+	"13-15":{ "ppd":"5","rod":"9","pp":"8","breath":"11","spell":"10"  },
+	"16-18":{ "ppd":"4","rod":"8","pp":"7","breath":"10","spell":"9"  },
+	"19-999":{ "ppd":"2","rod":"6","pp":"5","breath":"8","spell":"7"  }
+	},
+"rogue" :
+	{
+	"1-4":{ "ppd":"13","rod":"14","pp":"12","breath":"16","spell":"15"  },
+	"5-8":{ "ppd":"12","rod":"12","pp":"11","breath":"15","spell":"13"  },
+	"9-12":{ "ppd":"11","rod":"10","pp":"10","breath":"14","spell":"11"  },
+	"13-16":{ "ppd":"10","rod":"8","pp":"9","breath":"13","spell":"9"  },
+	"17-20":{ "ppd":"9","rod":"6","pp":"8","breath":"12","spell":"7"  },
+	"21-999":{ "ppd":"8","rod":"4","pp":"7","breath":"11","spell":"5"  }
+
+	},
+"warrior" :
+	{
+	"1-2":{ "ppd":"14","rod":"16","pp":"15","breath":"17","spell":"17"  },
+	"3-4":{ "ppd":"13","rod":"15","pp":"14","breath":"16","spell":"16"  },
+	"5-6":{ "ppd":"11","rod":"13","pp":"12","breath":"13","spell":"14"  },
+	"7-8":{ "ppd":"10","rod":"12","pp":"11","breath":"12","spell":"13"  },
+	"9-10":{ "ppd":"8","rod":"10","pp":"9","breath":"9","spell":"11"  },
+	"11-12":{ "ppd":"7","rod":"9","pp":"8","breath":"8","spell":"10"  },
+	"13-14":{ "ppd":"5","rod":"7","pp":"6","breath":"5","spell":"8"  },
+	"15-16":{ "ppd":"4","rod":"6","pp":"5","breath":"4","spell":"7"  },
+	"17-999":{ "ppd":"3","rod":"5","pp":"4","breath":"4","spell":"6"  }
+
+	},
+"wizard" :
+	{
+	"1-5":{ "ppd":"14","rod":"11","pp":"13","breath":"15","spell":"12"  },
+	"6-10":{ "ppd":"13","rod":"9","pp":"11","breath":"13","spell":"10"  },
+	"11-15":{ "ppd":"11","rod":"7","pp":"9","breath":"11","spell":"8"  },
+	"16-20":{ "ppd":"10","rod":"5","pp":"7","breath":"9","spell":"6"  },
+	"21-999":{ "ppd":"8","rod":"3","pp":"5","breath":"7","spell":"4"  }
+
+	},
+"dwarf":
+        {
+        "4-6":1,
+        "7-10":2,
+        "11-13":3,
+        "14-17":4,
+        "18-999":5
+        }
+}

@@ -1,0 +1,111 @@
+{
+  "setting": "Dark Sun",
+  "count": 15,
+  "books": [
+    {
+      "publish_id": "2400",
+      "title": "Dark Sun Campaign Setting (original)",
+      "year": "1991",
+      "author": "Timothy B. Brown, Troy Denning, William W. Connors, J. Robert King, Brom and Tom Baxa,",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2405",
+      "title": "MC12 Dark Sun Appendix I - Terrors of the Desert",
+      "year": "1991",
+      "author": "Tom Prusa, Louis J. Prosperi, Walter M. Baas",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2407",
+      "title": "DSR2 Dune Trader",
+      "year": "1992",
+      "author": "Anthony Pryor, Mike Breault, David O. Miller, Brom, Tracey Zamagne, Dave Sutherland",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2408",
+      "title": "Dragon Kings (hardback)",
+      "year": "1992",
+      "author": "Timothy B. Brown",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2412",
+      "title": "DSQ3 Asticlian Gambit",
+      "year": "1992",
+      "author": "Anthony Pryor",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2413",
+      "title": "DSR4 Valley of Dust and Fire",
+      "year": "1992",
+      "author": "L. Richard Baker III",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2417",
+      "title": "DSM1 Black Flames",
+      "year": "1993",
+      "author": "Sam Witt",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2418",
+      "title": "The Ivory Triangle",
+      "year": "1993",
+      "author": "Curtis Scott, Kirk Botula",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2428",
+      "title": "DSE2 Black Spine",
+      "year": "1994",
+      "author": "Walter Baas, Dustin Browder, Tom Prusa, Jonathan Tweet, Ann Goetz, Steve Maggi, Tom Baxa",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2432",
+      "title": "City by the Silt Sea",
+      "year": "1994",
+      "author": "Shane Lacy Hensley",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2433",
+      "title": "Dark Sun Appendix II - Terrors Beyond Tyr",
+      "year": "1991",
+      "author": "Jim Atkiss, Steve Brown, Timothy B. Brown, Andrew P. Morris, Bruce Nesmith, Wes Nicholson, Bill Slavicsek",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2437",
+      "title": "Thri-Kreen of Athas",
+      "year": "1995",
+      "author": "Tim Beach and Dori Hein",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2438",
+      "title": "Dark Sun Campaign Setting (revised)",
+      "year": "1991",
+      "author": "Bill Slavicsek",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2439",
+      "title": "Windriders of the Jagged Cliffs",
+      "year": "1995",
+      "author": "Monte Cook",
+      "setting": "Dark Sun"
+    },
+    {
+      "publish_id": "2444",
+      "title": "Mind Lords of the Last Sea",
+      "year": "1996",
+      "author": "Matt Forbeck",
+      "setting": "Dark Sun"
+    }
+  ]
+}
