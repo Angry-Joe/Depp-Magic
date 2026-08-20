@@ -26,5 +26,13 @@
     ],
     "verified": false,
     "originalSource": "DSCS-Rev-WayOfThePsionicist",
-    "ruleset": "revised"
+    "allowedSettings": ["ds", "xx"],
+    "ruleset": {
+        "revised": {
+            "mac": 8,
+            "pspCost": "5/2",
+            "pspCostSuccess": 5,
+            "pspCostFailure": 2
+        }
+    }
 }

@@ -11,7 +11,35 @@ node run-parser.mjs file.pdf
 That writes `output/parsed-spells.json`. Then open `spell-editor.html` in a
 browser and load that file to review and correct the results.
 
+## Version 3.5
+
+Branch `version-3-5` adds per-campaign and per-ruleset overlays on every record
+in `Reference/Spells-Powers-Combined-DarkSun.json`.
+
+**Spells**
+
+- `allowedSettings` — array of abbreviated campaign settings (`ds`, `xx`, `fr`, …)
+- `campaignSettings` — `{ [abbr]: partial spell }` overrides. Selecting a Setting
+  filter in `tools/spells-powers-editor.html` shows base fields with that
+  overlay applied; edits write into the overlay.
+
+**Psionic powers**
+
+- `allowedSettings` — same abbreviations
+- `ruleset` — object, not a string: `{ adnd2e?: partial, revised?: partial }`
+  - `adnd2e` = original Complete Psionics Handbook (Power Score, initial / maintenance)
+  - `revised` = Player's Option / *The Way of the Psionicist* (MAC, PSP x/y)
+
+Setting abbreviations live in `Reference/schema/campaign-settings.json`.
+Migrate a corpus with:
+
+```
+node migrate-to-v3.5.mjs
+node migrate-to-v3.5.mjs --in=path.json --out=path.json
+```
+
 ## Version 2
+
 
 Version 2 drops the original .NET implementation (`DeepMagic.App` and the
 `src/` solution) in favour of the Node parser, which is now the whole tool.

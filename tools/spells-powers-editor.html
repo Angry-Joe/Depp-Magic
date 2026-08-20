@@ -147,6 +147,12 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
  min-height:0;max-height:none;overflow:visible;font-size:13.5px;line-height:1.6
  }
  .view-desc.empty{color:var(--muted);font-style:italic}
+ .overlay-banner{
+ background:#3a2410;border:1px solid var(--accent2);color:var(--ink);
+ border-radius:6px;padding:8px 10px;margin:0 0 12px;font-size:12.5px;line-height:1.45
+ }
+ .overlay-banner code{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+
 
  /* ── Radio groups (booleans) ─────────────────────────── */
  .radio-group{display:flex;gap:18px;padding:4px 2px}
@@ -269,8 +275,11 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 
 <main>
  <div id="empty">
- <p><strong>Open a schema-v2 file (e.g. <kbd>output/DragonKings-AllSpells-parsed.json</kbd>) to get started.</strong></p>
- <p>Loads the v2 wrapper object <kbd>{ schemaVersion, spells: [...] }</kbd> or a plain array. Click column headers to sort,
+ <p><strong>Open a schema-v3.5 file (or use the bundled Dark Sun corpus) to get started.</strong></p>
+ <p>Loads <kbd>{ schemaVersion, spells: [...] }</kbd> or a plain array. Use the <strong>Setting</strong> filter to
+ view Dark Sun (or any other campaign) overlays from <kbd>campaignSettings</kbd>. On the Psionics tab, the
+ <strong>Ruleset</strong> filter applies <kbd>adnd2e</kbd> vs <kbd>revised</kbd> overlays from <kbd>ruleset</kbd>.</p>
+
  drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to read it, then
  <strong>Edit</strong> to change it — or tick the checkboxes to bulk-edit several at once.</p>
  <p><strong>+ Add</strong> opens a draft form — the entry is only added when you click <strong>Apply</strong>.
@@ -317,7 +326,41 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 'use strict';
 
 /* ── Schema ────────────────────────────────────────────── */
-const SCHEMA_VERSION = '2.0.0';
+const SCHEMA_VERSION = '3.5.0';
+const DEFAULT_DATA_URLS = [
+ 'data/Spells-Powers-Combined-DarkSun.json',
+ '../Reference/Spells-Powers-Combined-DarkSun.json',
+];
+
+const SETTINGS = {
+ xx: 'AD&D 2nd Edition (core)',
+ aq: 'Al-Qadim',
+ al: 'Alternity',
+ br: 'Birthright',
+ ds: 'Dark Sun',
+ dr: 'Dragon Magazine',
+ dl: 'Dragonlance',
+ du: 'Dungeon Magazine',
+ ff: 'Fiend Folio',
+ fr: 'Forgotten Realms',
+ gh: 'Greyhawk',
+ kt: 'Kara-Tur',
+ lm: 'Lankhmar',
+ rd: 'Masque of the Red Death',
+ mz: 'Maztica',
+ ms: 'Mystara',
+ ps: 'Planescape',
+ rv: 'Ravenloft',
+ rs: 'Red Steel',
+ sj: 'Spelljammer',
+ th: 'The Horde',
+};
+const RULESETS = {
+ adnd2e: 'Original 2e (Complete Psionics Handbook)',
+ revised: "Revised (Player's Option / Way of the Psionicist)",
+};
+const BASE_ONLY = new Set(['id', 'allowedSettings', 'campaignSettings', 'ruleset', '_id', '_isNew']);
+
 
 /* ── State ─────────────────────────────────────────────── */
 let rawData = null;
@@ -357,7 +400,7 @@ const DEFAULT_WIDTHS = {
  name: 220, class: 90, level: 52, school: 140, sphere: 140, range: 110,
  castingTime: 70, duration: 130, page: 60, source: 150, reversible: 52, verified: 44,
  discipline: 140, tier: 100, powerScore: 92, initialCost: 64, maintenanceCost: 74,
- mac: 54, pspCost: 66, ruleset: 84, preparationTime: 80, fiveE: 170,
+ mac: 54, pspCost: 66, ruleset: 84, allowedSettings: 90, preparationTime: 80, fiveE: 170,
 };
 function colWidth(k) { return prefs().widths[k] ?? DEFAULT_WIDTHS[k] ?? 110; }
 
@@ -381,6 +424,7 @@ const TABS = {
  { key: 'verified', label: '✓' },
  ],
  filters: [
+ { key: 'allowedSettings', label: 'Setting', catalog: 'settings' },
  { key: 'level', label: 'Level', numeric: true },
  { key: 'school', label: 'School' },
  { key: 'sphere', label: 'Sphere' },
@@ -391,7 +435,9 @@ const TABS = {
  editLayout: [
  { row: [ { k: 'class', label: 'Class', type: 'select', options: ['Wizard', 'Cleric'] }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
  { k: 'name', label: 'Name' },
+ { k: 'allowedSettings', label: 'Allowed settings (abbr, comma-separated)' },
  { k: 'school', label: 'School' },
+
  { k: 'sphere', label: 'Sphere (Priest only)', priestOnly: true },
  { k: '5e_classes', label: '5e Classes (comma-separated)' },
  { k: 'reversible', label: 'Reversible', type: 'toggle' },
@@ -419,23 +465,27 @@ const TABS = {
  { key: 'initialCost', label: 'Init' },
  { key: 'maintenanceCost', label: 'Maint' },
  { key: 'range', label: 'Range' },
+ { key: 'allowedSettings', label: 'Settings' },
  { key: '5e_classes', label: '5e Classes' },
  { key: 'ruleset', label: 'Rules' },
+
  { key: 'page', label: 'Page', num: true },
  { key: 'source', label: 'Source' },
  { key: 'verified', label: '✓' },
  ],
  filters: [
+ { key: 'allowedSettings', label: 'Setting', catalog: 'settings' },
  { key: 'discipline', label: 'Discipline' },
  { key: 'tier', label: 'Tier' },
- { key: 'ruleset', label: 'Ruleset' },
+ { key: 'ruleset', label: 'Ruleset', catalog: 'rulesets' },
  { key: 'source', label: 'Source' },
  ],
  editLayout: [
  { k: 'name', label: 'Name' },
+ { k: 'allowedSettings', label: 'Allowed settings (abbr, comma-separated)' },
  { row: [ { k: 'discipline', label: 'Discipline' }, { k: 'tier', label: 'Tier' } ] },
  { row: [ { k: 'powerScoreStat', label: 'Power Score', type: 'select', options: ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Cha'] }, { k: 'powerScoreMod', label: 'Modifier' } ], cols: '1fr 110px' },
- { k: 'ruleset', label: 'Ruleset', type: 'select', options: ['2e', 'revised'] },
+
  { row: [ { k: 'initialCost', label: 'Initial Cost' }, { k: 'maintenanceCost', label: 'Maintenance Cost' } ] },
  { row: [ { k: 'mac', label: 'MAC' }, { k: 'pspCost', label: 'PSP Cost (x/y)' } ], cols: '110px 1fr' },
  { k: 'range', label: 'Range' },
@@ -453,15 +503,81 @@ let activeTab = 'spells';
 const tab = () => TABS[activeTab];
 
 function isPsionic(s) {
- return gf(s, 'class') === 'Psionic' || getPath(s, 'discipline') != null;
+ return gfRaw(s, 'class') === 'Psionic' || getPath(s, 'discipline') != null;
 }
+
+const BASE_ONLY_KEYS = BASE_ONLY;
+
+function filterValue(key) {
+ const sel = document.querySelector(`#filters select[data-key="${key}"]`);
+ return sel && sel.value ? sel.value : '';
+}
+function activeOverlaySpec(s) {
+ if (!s) return null;
+ if (s.class === 'Psionic' || s.discipline != null) {
+ const rs = filterValue('ruleset');
+ if (!rs) return null;
+ return { bag: 'ruleset', key: rs };
+ }
+ const st = filterValue('allowedSettings');
+ if (!st) return null;
+ return { bag: 'campaignSettings', key: st };
+}
+function overlayOf(s) {
+ const spec = activeOverlaySpec(s);
+ if (!spec) return null;
+ const bag = s[spec.bag];
+ if (!bag || typeof bag !== 'object' || Array.isArray(bag)) return null;
+ const ov = bag[spec.key];
+ return ov && typeof ov === 'object' && !Array.isArray(ov) ? ov : null;
+}
+function ensureOverlay(s) {
+ const spec = activeOverlaySpec(s);
+ if (!spec) return null;
+ if (!s[spec.bag] || typeof s[spec.bag] !== 'object' || Array.isArray(s[spec.bag])) s[spec.bag] = {};
+ if (!s[spec.bag][spec.key] || typeof s[spec.bag][spec.key] !== 'object' || Array.isArray(s[spec.bag][spec.key])) {
+ s[spec.bag][spec.key] = {};
+ }
+ return s[spec.bag][spec.key];
+}
+function overlayLabel() {
+ if (activeTab === 'psionics') {
+ const rs = filterValue('ruleset');
+ if (!rs) return '';
+ return RULESETS[rs] ? `${RULESETS[rs]} (${rs})` : rs;
+ }
+ const st = filterValue('allowedSettings');
+ if (!st) return '';
+ return SETTINGS[st] ? `${SETTINGS[st]} (${st})` : st;
+}
+function overlayBannerHtml() {
+ const lab = overlayLabel();
+ if (!lab) return '';
+ const bag = activeTab === 'psionics' ? 'ruleset' : 'campaignSettings';
+ return `<div class="overlay-banner">Showing <strong>${esc(lab)}</strong>. Sidebar fields use <code>${bag}</code> overrides when present, otherwise the base entry. Edits write to the overlay, not the base.</div>`;
+}
+function sourceFor(s, key) {
+ if (BASE_ONLY_KEYS.has(key)) return s;
+ const ov = overlayOf(s);
+ if (ov && Object.prototype.hasOwnProperty.call(ov, key) && ov[key] !== undefined) return ov;
+ return s;
+}
+
+function gfRaw(s, key) {
+ for (const p of FIELD_PATHS[key] ?? [key]) {
+ const v = getPath(s, p);
+ if (v !== undefined && v !== null) return v;
+ }
+ return undefined;
+}
+
 
 const $ = id => document.getElementById(id);
 const hasFS = 'showOpenFilePicker' in window;
 
 const PIPE_FIX_KEYS = ['range', 'castingTime', 'duration'];
 const NUM_KEYS = ['level', 'page', 'mac'];
-const ARRAY_KEYS = ['5e_classes', 'prerequisites'];
+const ARRAY_KEYS = ['5e_classes', 'prerequisites', 'allowedSettings'];
 
 function fixPipes(v) {
  if (v == null) return v;
@@ -505,6 +621,7 @@ const FIELD_PATHS = {
  pspCostFailure: ['pspCostFailure'],
  ruleset: ['ruleset'],
  prerequisites: ['prerequisites', 'Prerequisites'],
+ allowedSettings: ['allowedSettings'],
 };
 
 function getPath(obj, path) {
@@ -517,88 +634,98 @@ function getPath(obj, path) {
 }
 
 function gf(s, key) {
+ const src = sourceFor(s, key);
+ if (key === 'allowedSettings') {
+ if (Array.isArray(s.allowedSettings)) return s.allowedSettings.join(', ');
+ }
+ if (key === 'ruleset') {
+ const r = s.ruleset;
+ if (r && typeof r === 'object' && !Array.isArray(r)) return Object.keys(r).join(', ');
+ return r;
+ }
  if (key === 'sphere') {
- if (Array.isArray(s.spheres) && s.spheres.length) {
- return s.spheres.map(x => (typeof x === 'string' ? x : (x.name || ''))).filter(Boolean).join(', ');
+ if (Array.isArray(src.spheres) && src.spheres.length) {
+ return src.spheres.map(x => (typeof x === 'string' ? x : (x.name || ''))).filter(Boolean).join(', ');
  }
  }
  if (key === 'components') {
- if (Array.isArray(s.components)) return s.components.join(', ');
+ if (Array.isArray(src.components)) return src.components.join(', ');
  }
  if (key === '5e_classes') {
- if (Array.isArray(s['5e_classes'])) return s['5e_classes'].join(', ');
+ if (Array.isArray(src['5e_classes'])) return src['5e_classes'].join(', ');
  }
  if (key === 'prerequisites') {
- if (Array.isArray(s.prerequisites)) return s.prerequisites.join(', ');
+ if (Array.isArray(src.prerequisites)) return src.prerequisites.join(', ');
  }
  if (key === 'powerScore') {
- // Combined display: prefer split stat/mod, fall back to legacy string
- const stat = s.powerScoreStat ?? '';
- const mod = s.powerScoreMod ?? '';
+ const stat = src.powerScoreStat ?? '';
+ const mod = src.powerScoreMod ?? '';
  if (stat !== '' || mod !== '') return `${stat} ${mod}`.trim();
  }
  if (key === 'source') {
- if (Array.isArray(s.sourceBooks) && s.sourceBooks.length) return s.sourceBooks[0];
+ if (Array.isArray(src.sourceBooks) && src.sourceBooks.length) return src.sourceBooks[0];
  }
  for (const p of FIELD_PATHS[key] ?? [key]) {
- const v = getPath(s, p);
+ const v = getPath(src, p);
  if (v !== undefined && v !== null) return v;
  }
  return undefined;
 }
 
 function sf(s, key, value) {
- if (key === 'sphere' && (Array.isArray(s.spheres) || s.id || s._isNew)) {
- /* Keep the existing entry (access level and any other props) for spheres the
- record already had — only spheres that are genuinely new default to Major. */
- const prior = new Map((Array.isArray(s.spheres) ? s.spheres : [])
+ const t = BASE_ONLY_KEYS.has(key) ? s : (ensureOverlay(s) || s);
+ if (key === 'allowedSettings') {
+ s.allowedSettings = String(value || '').split(/[,;]/).map(x => x.trim().toLowerCase()).filter(Boolean);
+ return;
+ }
+ if (key === 'sphere' && (Array.isArray(t.spheres) || Array.isArray(s.spheres) || s.id || s._isNew)) {
+ const prior = new Map((Array.isArray(t.spheres) ? t.spheres : (Array.isArray(s.spheres) ? s.spheres : []))
  .map(x => (typeof x === 'string' ? [x, { name: x, access: 'Major' }] : [x?.name, x]))
  .filter(([n]) => n));
- s.spheres = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean)
+ t.spheres = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean)
  .map(name => prior.get(name) ?? { name, access: 'Major' });
- s.sphere = String(value || '');
+ t.sphere = String(value || '');
  return;
  }
  if (key === 'components') {
- if (Array.isArray(s.components) || s.id || s._isNew) {
- s.components = String(value || '').split(/[,/]/).map(x => x.trim()).filter(Boolean);
+ t.components = String(value || '').split(/[,/]/).map(x => x.trim()).filter(Boolean);
  return;
  }
- }
  if (key === '5e_classes') {
- s['5e_classes'] = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
+ t['5e_classes'] = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
  return;
  }
  if (key === 'prerequisites') {
- s.prerequisites = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
+ t.prerequisites = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
  return;
  }
- if (key === 'powerScoreStat') { s.powerScoreStat = value === '' ? null : value; return; }
- if (key === 'powerScoreMod') { s.powerScoreMod = value === '' ? null : value; return; }
+ if (key === 'powerScoreStat') { t.powerScoreStat = value === '' ? null : value; return; }
+ if (key === 'powerScoreMod') { t.powerScoreMod = value === '' ? null : value; return; }
  if (key === 'pspCost') {
  const str = String(value || '').trim();
- s.pspCost = str === '' ? null : str;
+ t.pspCost = str === '' ? null : str;
  const pair = str.match(/^(\d+)\s*\/\s*(\d+)$/);
- if (pair) { s.pspCostSuccess = Number(pair[1]); s.pspCostFailure = Number(pair[2]); }
- else if (/^\d+$/.test(str)) { s.pspCostSuccess = Number(str); s.pspCostFailure = null; }
- else { s.pspCostSuccess = null; s.pspCostFailure = null; }
+ if (pair) { t.pspCostSuccess = Number(pair[1]); t.pspCostFailure = Number(pair[2]); }
+ else if (/^\d+$/.test(str)) { t.pspCostSuccess = Number(str); t.pspCostFailure = null; }
+ else { t.pspCostSuccess = null; t.pspCostFailure = null; }
  return;
  }
  if (key === 'mac') {
- s.mac = (value === '' || value == null) ? null : (Number.isFinite(Number(value)) ? Number(value) : value);
+ t.mac = (value === '' || value == null) ? null : (Number.isFinite(Number(value)) ? Number(value) : value);
  return;
  }
  if (key === 'source') {
- if (Array.isArray(s.sourceBooks) || s.id || s._isNew) {
- const rest = Array.isArray(s.sourceBooks) ? s.sourceBooks.slice(1) : [];
- s.sourceBooks = value ? [String(value), ...rest] : rest;
- if (!s.originalSource) s.originalSource = value;
+ if (Array.isArray(t.sourceBooks) || Array.isArray(s.sourceBooks) || s.id || s._isNew) {
+ const rest = Array.isArray(t.sourceBooks) ? t.sourceBooks.slice(1)
+ : (Array.isArray(s.sourceBooks) ? s.sourceBooks.slice(1) : []);
+ t.sourceBooks = value ? [String(value), ...rest] : rest;
+ if (!t.originalSource && !s.originalSource) t.originalSource = value;
  return;
  }
  }
  for (const p of FIELD_PATHS[key] ?? [key]) {
  const parts = p.split('.');
- let cur = s;
+ let cur = t;
  for (let i = 0; i < parts.length - 1; i++) {
  if (cur == null || typeof cur[parts[i]] !== 'object') { cur = null; break; }
  cur = cur[parts[i]];
@@ -608,7 +735,7 @@ function sf(s, key, value) {
  return;
  }
  }
- s[key] = value;
+ t[key] = value;
 }
 
 /* ── Dataset insertion (single source of truth) ─────────── */
@@ -698,6 +825,7 @@ async function importFile() {
  }
 
  for (const s of incoming) {
+ normalizeRecord(s);
  s._id = nextId++;
  for (const k of PIPE_FIX_KEYS) {
  const v = gf(s, k);
@@ -800,6 +928,23 @@ function closeFile() {
 }
 
 /* ── Data shaping ──────────────────────────────────────── */
+function normalizeRecord(s) {
+ if (!s || typeof s !== 'object') return s;
+ if (!Array.isArray(s.allowedSettings)) s.allowedSettings = [];
+ const psi = s.class === 'Psionic' || s.discipline != null;
+ if (psi) {
+ if (typeof s.ruleset === 'string') {
+ const k = (s.ruleset === '2e' || s.ruleset === 'adnd2e') ? 'adnd2e' : (s.ruleset || 'revised');
+ s.ruleset = k ? { [k]: {} } : {};
+ } else if (!s.ruleset || typeof s.ruleset !== 'object' || Array.isArray(s.ruleset)) {
+ s.ruleset = {};
+ }
+ } else if (!s.campaignSettings || typeof s.campaignSettings !== 'object' || Array.isArray(s.campaignSettings)) {
+ s.campaignSettings = {};
+ }
+ return s;
+}
+
 function loadData(json) {
  rawData = json;
  if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
@@ -813,7 +958,7 @@ function loadData(json) {
  rawData = null;
  return;
  }
- spells.forEach((s, i) => s._id = i);
+ spells.forEach((s, i) => { normalizeRecord(s); s._id = i; });
  nextId = spells.length;
  spells.forEach(s => {
  for (const k of PIPE_FIX_KEYS) {
@@ -862,7 +1007,9 @@ function makeBlank() {
  verified: false,
  page: null,
  _isNew: true,
+ allowedSettings: isPsi ? ['ds', 'xx'] : ['xx'],
  };
+ if (!isPsi) blank.campaignSettings = {};
  if (isPsi) {
  blank.discipline = '';
  blank.tier = '';
@@ -875,7 +1022,7 @@ function makeBlank() {
  blank.pspCostSuccess = null;
  blank.pspCostFailure = null;
  blank.prerequisites = [];
- blank.ruleset = '2e';
+ blank.ruleset = {};
  }
  return blank;
 }
@@ -958,6 +1105,13 @@ function facetMatch(s, key, value) {
 /* Applying an edit repaints the dropdowns, which must not disturb what the
    table is showing — the active choices are carried across. Pass reset = true
    only for a genuinely new view (other tab, other file). */
+function optionLabel(f, v) {
+ const sv = String(v);
+ if (f.catalog === 'settings') return SETTINGS[sv] ? `${SETTINGS[sv]} (${sv})` : sv;
+ if (f.catalog === 'rulesets') return RULESETS[sv] ? `${RULESETS[sv]}` : sv;
+ return sv;
+}
+
 function buildFilters(reset) {
  const pool = spells.filter(tab().match);
  const prev = {};
@@ -968,18 +1122,27 @@ function buildFilters(reset) {
  }
  $('filters').innerHTML = tab().filters.map(f => {
  const cur = prev[f.key];
- let vals = [...new Set(pool.flatMap(s => facetValues(s, f.key)))];
- /* An edit can remove the last record holding the filtered value. Keep the
- option anyway, so the table stays filtered instead of springing open. */
+ let vals = [...new Set(pool.flatMap(s => facetValues(s, f.key)))].map(String);
+ if (f.catalog === 'settings') vals = [...new Set([...Object.keys(SETTINGS), ...vals])];
+ if (f.catalog === 'rulesets') vals = [...new Set([...Object.keys(RULESETS), ...vals])];
  if (cur !== undefined && !vals.some(v => String(v) === cur)) vals.push(cur);
  vals.sort(f.numeric
  ? (a, b) => a - b
- : (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
+ : (a, b) => optionLabel(f, a).localeCompare(optionLabel(f, b), undefined, { numeric: true }));
  return `<select data-key="${f.key}"><option value="">${f.label}: all</option>` +
- vals.map(v => `<option${String(v) === cur ? ' selected' : ''}>${esc(String(v))}</option>`).join('') +
+ vals.map(v => `<option value="${esc(String(v))}"${String(v) === cur ? ' selected' : ''}>${esc(optionLabel(f, v))}</option>`).join('') +
  `</select>`;
  }).join('');
- [...$('filters').querySelectorAll('select')].forEach(sel => sel.addEventListener('input', renderTable));
+ [...$('filters').querySelectorAll('select')].forEach(sel => sel.addEventListener('input', () => {
+ if (selectedId != null) {
+ const mode = editorMode === 'edit' ? 'edit' : 'view';
+ const id = selectedId;
+ renderTable();
+ openEditor(id, mode);
+ } else {
+ renderTable();
+ }
+ }));
 }
 
 function visibleSpells() {
@@ -1358,11 +1521,13 @@ function flatFields(layout) {
 function viewLabel(f) { return f.label.replace(/\s*\([^)]*\)\s*$/, ''); }
 
 function viewText(s, f) {
- /* Spheres carry an access level that gf() drops — surface it here */
- if (f.k === 'sphere' && Array.isArray(s.spheres) && s.spheres.length) {
-   return s.spheres
+ if (f.k === 'sphere') {
+ const src = sourceFor(s, 'sphere');
+ if (Array.isArray(src.spheres) && src.spheres.length) {
+   return src.spheres
      .map(x => (typeof x === 'string' ? x : (x.access ? `${x.name} (${x.access})` : x.name)))
      .filter(Boolean).join(', ');
+ }
  }
  const v = gf(s, f.k);
  if (f.type === 'toggle' || f.type === 'radio') return v ? 'Yes' : 'No';
@@ -1390,6 +1555,7 @@ function renderViewer(s) {
  $('editor').innerHTML = `
  <h2 id="edTitle">${esc(gf(s, 'name') || '(unnamed)')}</h2>
  <div class="meta">${tab().meta(s)}</div>
+ ${overlayBannerHtml()}
  <dl class="view-stats">${rows}</dl>
  <div class="view-sec">Description</div>
  ${descHtml}
@@ -1469,6 +1635,7 @@ function renderEditor(s, mode) {
  $('editor').innerHTML = `
  <h2 id="edTitle">${esc(title)}${badge}</h2>
  <div class="meta">${metaHtml}</div>
+ ${isBulk ? '' : overlayBannerHtml()}
  ${tab().editLayout.map(f => fieldHtml(f, s)).join('')}
  <div class="field">
  <label>Description (Markdown)</label>
@@ -1797,6 +1964,20 @@ document.addEventListener('keydown', e => {
  if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowUp') { e.preventDefault(); step(-1); }
 });
 window.addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
+
+async function tryAutoLoad() {
+ for (const url of DEFAULT_DATA_URLS) {
+ try {
+ const r = await fetch(url);
+ if (!r.ok) continue;
+ const json = await r.json();
+ fileName = url.split('/').pop();
+ loadData(json);
+ return;
+ } catch { /* try next */ }
+ }
+}
+tryAutoLoad();
 </script>
 </body>
 </html>

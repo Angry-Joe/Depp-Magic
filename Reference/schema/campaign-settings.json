@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "3.5.0",
+  "description": "Canonical AD&D 2e campaign-setting abbreviations and psionic rulesets used by allowedSettings, campaignSettings, and ruleset overlays.",
+  "settings": {
+    "xx": { "id": "adnd2e", "name": "AD&D 2nd Edition (core)", "abbr": "xx" },
+    "aq": { "id": "alqadim", "name": "Al-Qadim", "abbr": "aq" },
+    "al": { "id": "alternity", "name": "Alternity", "abbr": "al" },
+    "br": { "id": "birthright", "name": "Birthright", "abbr": "br" },
+    "ds": { "id": "dark_sun", "name": "Dark Sun", "abbr": "ds" },
+    "dr": { "id": "dragon_magazine", "name": "Dragon Magazine", "abbr": "dr" },
+    "dl": { "id": "dragonlance", "name": "Dragonlance", "abbr": "dl" },
+    "du": { "id": "dungeon_magazine", "name": "Dungeon Magazine", "abbr": "du" },
+    "ff": { "id": "fiends_folio", "name": "Fiend Folio", "abbr": "ff" },
+    "fr": { "id": "forgotten_realms", "name": "Forgotten Realms", "abbr": "fr" },
+    "gh": { "id": "greyhawk", "name": "Greyhawk", "abbr": "gh" },
+    "kt": { "id": "kara-tur", "name": "Kara-Tur", "abbr": "kt" },
+    "lm": { "id": "lankhmar", "name": "Lankhmar", "abbr": "lm" },
+    "rd": { "id": "masque_of_the_red_death", "name": "Masque of the Red Death", "abbr": "rd" },
+    "mz": { "id": "maztica", "name": "Maztica", "abbr": "mz" },
+    "ms": { "id": "mystara", "name": "Mystara", "abbr": "ms" },
+    "ps": { "id": "planescape", "name": "Planescape", "abbr": "ps" },
+    "rv": { "id": "ravenloft", "name": "Ravenloft", "abbr": "rv" },
+    "rs": { "id": "red_steel", "name": "Red Steel", "abbr": "rs" },
+    "sj": { "id": "spelljammer", "name": "Spelljammer", "abbr": "sj" },
+    "th": { "id": "the_horde", "name": "The Horde", "abbr": "th" }
+  },
+  "rulesets": {
+    "adnd2e": {
+      "id": "adnd2e",
+      "name": "Original 2e (Complete Psionics Handbook)",
+      "abbr": "adnd2e",
+      "notes": "Power Score, initial cost, maintenance cost. Used by The Complete Psionics Handbook and original Dark Sun."
+    },
+    "revised": {
+      "id": "revised",
+      "name": "Revised (Player's Option / Way of the Psionicist)",
+      "abbr": "revised",
+      "notes": "MAC, MTHAC0, PSP cost (success/failure). Player's Option: Skills and Powers, restated in The Way of the Psionicist (Dark Sun Campaign Setting Revised)."
+    }
+  },
+  "legacyMap": {
+    "adnd2e": "xx",
+    "alqadim": "aq",
+    "alternity": "al",
+    "birthright": "br",
+    "dark_sun": "ds",
+    "dragon_magazine": "dr",
+    "dragonlance": "dl",
+    "dungeon_magazine": "du",
+    "fiends_folio": "ff",
+    "forgotten_realms": "fr",
+    "greyhawk": "gh",
+    "kara-tur": "kt",
+    "lankhmar": "lm",
+    "masque_of_the_red_death": "rd",
+    "maztica": "mz",
+    "mystara": "ms",
+    "planescape": "ps",
+    "ravenloft": "rv",
+    "red_steel": "rs",
+    "spelljammer": "sj",
+    "the_horde": "th"
+  }
+}
