@@ -1,0 +1,290 @@
+{
+    "schemaVersion": "3.5",
+    "dateUpdate": "24AUG26",
+    "rulesets": [
+        {
+            "name": "Advanced Dungeons and Dragons 2nd Edition",
+            "acronym": "xx",
+            "alias": "AD&D 2e"
+        },
+        {
+            "name": "Player's Option: Skills and Powers",
+            "acronym": "xr",
+            "alias": ["AD&D 2e Revised", "Dark Sun Campaign Setting (Revised)"]
+        },
+        {
+            "name": "Dungeons and Dragons 5th Edition",
+            "acronym": "5e",
+            "alias": "D&D 5e"
+        }
+    ],
+    "spells": [
+        {
+            "class": "Arcane",
+            "spells": [
+                {
+                    "srdIndex": null,
+                    "id": "spell_wakefulness_2e",
+                    "level": 2,
+                    "name": "Wakefulness",
+                    "school": "Enchantment/Charm",
+                    "spheres": [],
+                    "reversible": true,
+                    "charClass": [
+                        "Wizard"
+                    ],
+                    "range": "Touch",
+                    "components": [
+                        "V",
+                        "S",
+                        "M"
+                    ],
+                    "duration": "1 hour/level",
+                    "castingTime": "1",
+                    "areaOfEffect": "One creature",
+                    "savingThrow": "Neg.",
+                    "materialComponent": "",
+                    "preparationTime": null,
+                    "description": "Full spell text…",
+                    "summary": "First ~160 chars of description…",
+                    "flavorLore": "",
+                    "allowedCampaignSettings": [
+                        "xx",
+                        "ds",
+                        "fr"
+                    ],
+                    "campaignSettings": {
+                        "ds": {
+                            "range": "60 feet",
+                            "athasianStatus": "Restricted",
+                            "defilerCost": 1,
+                            "materialComponent": null
+                        },
+                        "fr": {
+                            "range": "120 feet"
+                        }
+                    },
+                    "concentration": false,
+                    "ritual": false,
+                    "higherLevel": null,
+                    "tags": [],
+                    "artworkPrompt": null,
+                    "sourceBooks": [
+                        {
+                            "source": "Dragon Kings",
+                            "page": "69"
+                        }
+                    ],
+                    "relatedEntries": [],
+                    "verified": false
+                },
+                {
+                    "id": "spell_animate_dead_animals_2e",
+                    "name": "Animate Dead Animals",
+                    "srdIndex": null,
+                    "level": 1,
+                    "school": "Necromancy",
+                    "class": "Wizard",
+                    "spheres": [],
+                    "castingTime": "2 rounds",
+                    "range": "10 feet",
+                    "components": [
+                        "V",
+                        "S",
+                        "M"
+                    ],
+                    "duration": "Permanent",
+                    "concentration": false,
+                    "ritual": false,
+                    "description": "This spell creates undead skeletons and zombies from the bones and bodies of dead animals, specifically vertebrates (fish, amphibians, reptiles, birds, and mammals). The animated remains obey simple verbal commands given by the caster, regardless of the language employed. Only naturally occurring animals of no higher than semi-intelligence can be animated with this particular spell (lizards, cats, frogs, weasels, tigers, and so on), including animals and non-magical, giant-sized animals. These undead remain animated until they are destroyed in combat or turned; the animating magic cannot be dispelled. The number of undead that a wizard can animate depends on the animal's original hit dice, the caster's level, and the type of undead being created.\n\nThe caster can create the following number of animal skeletons: \n1/4 HD animal or less: 4/caster level \n1/2 to 1 HD animal: 2/caster level \n1+ to 3 HD animal: 1/caster level \n3+ to 6 HD animal: 1/2 caster levels \nAnimal of over 6 HD: 1/4 caster levels \n\nThe caster can create the following number of animal zombies: e 1/4HD animal or less: 2/caster level e 1/2 to 1-1 HD animal: 1/caster level e 1  to3 HD animal: 1/2 caster levels e Animal of over 3 HD: 1  /4 caster levels \n\nAnimated skeletons of animals that had 1/4 to 1 HI) conform to the statistics of animal skeletons (see \"Skeleton\" in the MC). Skeletons of animals that had less than 1/4 HD when living conform to those same statistics/ with the following changes: AC 9, HD 1/4; hp 1, #AT 1, Dmg 1. Skeletons of those animals of over 1 HD conform to the regular animal statistics in the MM, with the following changes: armor class is worsened by two (AC 10 maximum), damage per attack is reduced by two (1 hp minimum), and movement is reduced by half. Animal zombies conform to the statistics for the particular animal that has been animated, with the following changes: the animal's number of hit dice is increased by one, AC is worsened by three (AC 8 maximum), and movement is reduced by half. Skeletal and zombie animals gain the standard undead immunities (resistance to cold-based, sleep, charm, and hold spells), but lose any normal defenses that the living animal might have had. They also lose any special attacks (raking of rear claws, swallowing whole, and so on) and cannot inject poison or emit fluids, such as musk or saliva. Swallowing does no further damage to the creature swallowed, except to trap it within the swallower's rib cage. Priests gain a +1 bonus when turning these undead. \n\nThis spell is often a necromancer's first experience animating corpses. For this to work, the animal bodies or skeletons must be intact.\n\nThe material components are a blood drop and bone chip from the same species as the target remains (only animals belonging to the same species may be animated per spell).",
+                    "higherLevel": null,
+                    "athasianVariant": {
+                        "modifiedEffect": null,
+                        "materialComponentAthas": null,
+                        "defilerCost": 0,
+                        "planeSource": null
+                    },
+                    "flavorLore": "",
+                    "artworkPrompt": "",
+                    "tags": [],
+                    "relatedEntries": [],
+                    "sourceBooks": [
+                        "The Complete Book of Necromancers"
+                    ],
+                    "verified": false,
+                    "reversible": false,
+                    "areaOfEffect": "Special",
+                    "savingThrow": "None",
+                    "athasianStatus": "Core",
+                    "summary": "This spell creates undead skeletons and zombies from the bones and bodies of dead animals, specifically vertebrates (fish, amphibians, reptiles, birds, and m…",
+                    "page": 34,
+                    "preparationTime": "",
+                    "originalSource": "CNHB-text",
+                    "sphere": "",
+                    "allowedSettings": [
+                        "ds",
+                        "xx"
+                    ],
+                    "campaignSettings": {}
+                },
+                {
+                    "srdIndex": null,
+                    "id": "dummy_spell",
+                    "level": 1,
+                    "name": "Dummy Arcane Spell",
+                    "school": ["Evocation"],
+                    "spheres": null,
+                    "reversible": false,
+                    "charClass": ["Wizard"],
+                    "range": "120 feet",
+                    "components": [ "V", "S" ],
+                    "duration": "Instantaneous",
+                    "castingTime": "1",
+                    "areaOfEffect": "1 or more creatures in a 10' cube",
+                    "savingThrow": "None",
+                    "materialComponent": null,
+                    "preparationTime": null,
+                    "description": "...",
+                    "summary": "First ~160 chars of description…",
+                    "flavorLore": null,
+                    "allowedCampaignSettings": [ "xx","ds","fr" ],
+                    "campaignSettings": {
+                        "ds": {
+                            "range": "60 feet",
+                            "athasianStatus": "Restricted",
+                            "defilerCost": 1,
+                            "materialComponent": null
+                        },
+                        "fr": {
+                            "range": "120 feet"
+                        }
+                    },
+                    "concentration": false,
+                    "ritual": false,
+                    "higherLevel":null,
+                    "tags": [],
+
+                    "artworkPrompt": null,
+                    "sourceBooks": [
+                        {
+                            "source": "Dragon Kings",
+                            "page": "69"
+                        }
+                    ],
+                    "relatedEntries": [],
+                    "verified": false
+                }
+            ]
+        },
+        {
+            "class": "Divine",
+            "spells": [
+                {
+                    "srdIndex": null,
+                    "id": "spell_mirage_of_despair_2e",
+                    "level": 4,
+                    "name": "Mirage of Despair",
+                    "school": ["Conjuration/Summoning, Invocation/Evocation"],
+                    "spheres": [ "Sun" ],
+                    "reversible": false,
+                    "charClass": ["Cleric"],
+                    "range": "30 yards",
+                    "components": ["V","S"],
+                    "duration": "1 hour per level",
+                    "castingTime": "4 rounds",
+                    "areaOfEffect": "1 creature",
+                    "savingThrow": "Vs. paralyzation",
+                    "materialComponent": "",
+                    "preparationTime": null,
+                    "description": "This spell is similar to create mirage, except that it affects a single target. The victim sees everything in its worst possible light - friends are monsters, oases of beauty are deformed pools of black water. Once a character has been affected by the mirage, he should make a second saving throw vs. paralyzation. Failure means he is terrified of the things he sees and flees as if under the 4th-level wizardís spell, fear. \nIf the target makes the save, he attacks the closest target It doesnít matter whether the target is friend or foeóall are monstrous. The reverse of the spell, mirage of deception, makes everything seem beautiful, warm, and friendly. Athasian sloths are harmless woodland creatures, and an ancient enemy is suddenly friendly andtrustworthy.Asthevictimbecomesmoretrustingand 86 gullible, he will agree to any reasonable requests for the duration of the spell. Requests of a dangerous or suicidal nature grant him a second saving throw. \nEither version of the spell affects only one creature of at least medium intelligence. Companions who notice strange behavior from a friend can try to talk him out of the mirage, and this gives the victim one additional saving throw. Dispel magic or reversing the spell ends the illusion.",
+                    "summary": "This spell is similar to create mirage, except that it affects a single target. The victim sees everything in its worst possible light - friends are monsters, …",
+                    "flavorLore": "",
+                    "allowedCampaignSettings": ["ds"],
+                    "campaignSettings":{},
+                    "concentration": false,
+                    "ritual": false,
+                    "higherLevel": null,
+                    "tags": [],
+                    "artworkPrompt": null,
+                    "sourceBooks": [
+                        {
+                            "source": "Earth, Air, Fire and Water",
+                            "page": "69"
+                        }
+                    ],
+                    "relatedEntries": [],
+                    "verified": false
+                }
+            ]
+        }
+    ],
+    "psionics": [
+        {
+            "class": "Psionic",
+            "srdIndex": null,
+            "attackModes": [],
+            "defenseModes": [],
+            "powers": [
+                {
+                    "id": "psionic_probe_2e",
+                    "name": "Probe",
+                    "discipline": "Telepathy",
+                    "tier": "Science",
+                    "range": "2 yards",
+                    "areaOfEffect": "Individual",
+                    "level": null,
+                    "allowedRuleset": ["xx", "xr"],
+                    "rulesets": [
+                        {
+                            "xx": {
+                                    "initialCost": "contact",
+                                    "maintenanceCost": "9/round",
+                                    "preparationTime": "0",
+                                    "prerequisites": [
+                                        "mindlink",
+                                        "ESP",
+                                        "contact"
+                                    ],
+                                    "description": "A probe is similar to ESP (a telepathic devotion), but a probe allows psionicists to dig much deeper into a subject's subconscious. If the subject fails a saving throw vs. spells, then all his memories and knowledge are accessible to the prober - from memories deep below the surface to those still fresh in the subject's mind. The information gained is not necessarily true, but it is true as far as the subject knows. The telepath can learn the answer to one question per round. DMs have some discretion in determining this rate. If the telepath's questions (or the answers) become too complicated, each may take longer than one round to resolve. Telepaths can probe a subject who is conscious, as well as one who resists. A probe can even be carried out in the midst of melee, provided the telepath can get close enough. If a probed wizard or cleric tries casting a spell, the telepath knows both that a spell is being cast and what the general effects of that spell are. Power Score - Two questions may be asked per round and the psionicist knows of their validity. 20 - The subject knows about the probe attempt and is not pleased.",
+                                    "powerScore": "Two questions may be asked per round and the psionicist knows of their validity. 20 - The subject knows about the probe attempt and is not pleased.",
+                                    "20": "The subject knows about the probe attempt and is not pleased.",
+                                    "sourceBooks": [
+                                        {
+                                            "source": "The Complete Psionics Handbook",
+                                            "page": 76
+                                        }
+                                    ],
+                                    "allowedSettings": ["ds","xx"],
+                                    "verified": true
+                                }
+                        },
+                        {
+                            "xr": {
+                                    "mac": 8,
+                                    "pspCost": "8+/4+",
+                                    "pspCostSuccess": 8,
+                                    "pspCostFailure": 4,
+                                    "prerequisites": ["ESP"],
+                                    "description": "This power only can be used against an open mind. With it, the user can dig deeply into a target's subconscious. If the target fails a saving throw vs. spell, then all of his memories and knowledge are accessible to the user—from memories deep below the surface to those still fresh in the target's mind. The information is true (or at least the target believes it to be true). A probe can be tried during melee if the user is close enough and the target's mind is opened. The user knows when a probed spellcaster is casting a spell and what the general effects of that spell are. The user can learn the answer to one question per round, though DMs can alter this rate. Complex questions and answers may take longer than a round to resolve. The PSP cost is per the target's level, as shown below. 1–5 levels or HD 8/4 6–10 levels or HD 9/5 11–15 levels or HD 10/5 16–20 levels or HD 11/6 21+ levels or HD 13/7",
+                                    "sourceBooks": [
+                                        {
+                                            "source": "Player's Option: Skills and Powers",
+                                            "page": 172
+                                        },
+                                        {
+                                            "source": "The Way of the Psionicist",
+                                            "page": "29"
+                                        }
+                                    ],
+                                    "originalSource": "DSCS-Rev-WayOfThePsionicist",
+                                    "5e_classes": [],
+                                    "allowedSettings": ["ds","xr"],
+                                    "verified": false
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

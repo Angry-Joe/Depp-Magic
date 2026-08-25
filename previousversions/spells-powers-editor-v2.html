@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Depp-Magic Spell &amp; Power Editor (schema 3.6)</title>
+<title>Depp-Magic Spell &amp; Power Editor</title>
 <style>
  :root{
  --bg:#1c140d;--panel:#251a10;--panel2:#2f2114;--ink:#f2e4cf;--muted:#c7a97e;
@@ -65,7 +65,7 @@
  thead th .arrow{color:var(--accent);font-size:11px}
  th .resizer{
  position:absolute;top:0;right:0;width:7px;height:100%;
-cursor:col-resize;-webkit-user-select:none;user-select:none
+ cursor:col-resize;-webkit-user-select:none;user-select:none
  }
  th .resizer:hover,th .resizer.active{background:var(--accent)}
  th.colmenu-th{cursor:default;text-align:center;padding:4px 2px}
@@ -100,16 +100,9 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 
  /* ── Edit panel ──────────────────────────────────────── */
  #editor{
- width:460px;min-width:300px;border-left:1px solid var(--line);
+ width:460px;min-width:360px;border-left:1px solid var(--line);
  background:var(--panel);overflow-y:auto;padding:14px;display:none;flex:none
  }
- /* Drag handle on the panel's left edge */
- #edSplit{
- width:6px;flex:none;cursor:col-resize;background:var(--line);
- -webkit-user-select:none;user-select:none
- }
- #edSplit[hidden]{display:none}
- #edSplit:hover,#edSplit.active{background:var(--accent)}
  #editor.open{display:block}
  #editor.bulk{border-left:2px solid var(--accent2)}
  #editor h2{margin:0 0 4px;font-size:16px;color:var(--accent)}
@@ -126,33 +119,6 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
  .row-compact{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px}
  #editorBtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
  #editorBtns .spacer{flex:1}
-
- /* ── View panel (read-only) ──────────────────────────── */
- .view-stats{
- display:grid;grid-template-columns:auto 1fr;gap:5px 14px;
- margin:0 0 14px;font-size:13.5px;line-height:1.5
- }
- .view-stats dt{
- color:var(--muted);font-size:11px;text-transform:uppercase;
- letter-spacing:.4px;white-space:nowrap;padding-top:3px
- }
- .view-stats dd{margin:0;color:var(--ink)}
- .view-sec{
- color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.5px;
- border-bottom:1px solid var(--line);padding-bottom:4px;margin:0 0 8px
- }
- /* Reuse the markdown styling, minus the boxed-input look */
- .md-preview.view-desc{
- background:none;border:none;border-radius:0;padding:0;
- min-height:0;max-height:none;overflow:visible;font-size:13.5px;line-height:1.6
- }
- .view-desc.empty{color:var(--muted);font-style:italic}
- .overlay-banner{
- background:#3a2410;border:1px solid var(--accent2);color:var(--ink);
- border-radius:6px;padding:8px 10px;margin:0 0 12px;font-size:12.5px;line-height:1.45
- }
- .overlay-banner code{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
-
 
  /* ── Radio groups (booleans) ─────────────────────────── */
  .radio-group{display:flex;gap:18px;padding:4px 2px}
@@ -219,25 +185,19 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
  .modal[hidden]{display:none}
  .modal-box{
  background:var(--panel);border:1px solid var(--line);border-radius:8px;
- width:min(880px,94vw);height:min(720px,88vh);max-height:92vh;
- display:flex;flex-direction:column;
- padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6);
- /* Drag the bottom-right corner to resize the dialog */
- resize:both;overflow:auto;min-width:420px;min-height:320px;max-width:98vw
+ width:min(880px,94vw);max-height:90vh;display:flex;flex-direction:column;
+ padding:16px;box-shadow:0 10px 34px rgba(0,0,0,.6)
  }
- .modal-box::-webkit-resizer{background:var(--line)}
  .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
  .modal-head span{color:var(--accent);font-size:15px;font-weight:600}
  .modal-x{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0 6px}
  .modal-x:hover{color:var(--accent)}
- /* min-height:0 so these flex down when the dialog is dragged smaller —
- the dialog itself now carries the sizing, so the textarea grip is off */
  #dlgBox{
- flex:1;min-height:0;background:#150e07;color:var(--ink);
+ flex:1;min-height:360px;background:#150e07;color:var(--ink);
  border:1px solid var(--line);border-radius:5px;padding:10px 12px;
- font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:none
+ font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:vertical
  }
- #dlgPreview{flex:1;min-height:0;max-height:none}
+ #dlgPreview{flex:1;min-height:360px;max-height:none}
  .modal-btns{display:flex;gap:8px;margin-top:12px;align-items:center}
  .modal-btns .spacer{flex:1}
 
@@ -256,9 +216,9 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 <body>
 
 <header>
- <h1>🐉 Spell &amp; Power Editor · 3.6</h1>
+ <h1>🐉 Spell &amp; Power Editor</h1>
  <button id="btnOpen" class="primary">Open JSON…</button>
- <button id="btnImport" title="Merge another JSON file into the current dataset">Import…</button>
+ <button id="btnImport" disabled title="Merge another JSON file into the current dataset">Import…</button>
  <button id="btnAdd" title="Draft a new entry — it is only added to the dataset when you click Apply">+ Add</button>
  <button id="btnSave" disabled>Save</button>
  <button id="btnSaveAs" disabled>Save As…</button>
@@ -275,13 +235,10 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 
 <main>
  <div id="empty">
- <p><strong>Open a schema-v3.6 file (or a legacy 3.5 / flat array) to get started.</strong></p>
- <p>Loads <kbd>{ schemaVersion: "3.6.0", spells: [...], psionics: [...] }</kbd> or older shapes.
- Use the <strong>Setting</strong> filter for <kbd>campaignSettings</kbd> overlays and the
- <strong>Ruleset</strong> filter for <kbd>rulesets</kbd> mechanical overlays (<kbd>2e</kbd> / <kbd>2e-rev</kbd> / <kbd>5e</kbd>).</p>
-
- drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to read it, then
- <strong>Edit</strong> to change it — or tick the checkboxes to bulk-edit several at once.</p>
+ <p><strong>Open a schema-v2 file (e.g. <kbd>output/DragonKings-AllSpells-parsed.json</kbd>) to get started.</strong></p>
+ <p>Loads the v2 wrapper object <kbd>{ schemaVersion, spells: [...] }</kbd> or a plain array. Click column headers to sort,
+ drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to edit it, or tick the
+ checkboxes to bulk-edit several at once.</p>
  <p><strong>+ Add</strong> opens a draft form — the entry is only added when you click <strong>Apply</strong>.
  Use <strong>Import…</strong> to merge another JSON, and <strong>Close File</strong> when done.</p>
  <p><kbd>Ctrl+S</kbd> save &nbsp;·&nbsp; <kbd>Esc</kbd> close editor
@@ -294,7 +251,6 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
  <tbody id="tbody"></tbody>
  </table>
  </div>
- <div id="edSplit" hidden title="Drag to resize · double-click to reset"></div>
  <aside id="editor"></aside>
 </main>
 <div id="colMenu" class="col-menu" hidden></div>
@@ -326,50 +282,7 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 'use strict';
 
 /* ── Schema ────────────────────────────────────────────── */
-const SCHEMA_VERSION = '3.6.0';
-const DEFAULT_DATA_URLS = [
- 'data/spell-powers-v3.6.json',
- '../Reference/spell-powers-v3.6.json',
- '../Reference/Spells-Powers-Combined-DarkSun.json',
-];
-
-const SETTINGS = {
- xx: 'Generic / Core',
- ds: 'Dark Sun (Athas)',
- fr: 'Forgotten Realms',
- aq: 'Al-Qadim',
- al: 'Alternity',
- br: 'Birthright',
- dr: 'Dragon Magazine',
- dl: 'Dragonlance',
- du: 'Dungeon Magazine',
- ff: 'Fiend Folio',
- gh: 'Greyhawk',
- kt: 'Kara-Tur',
- lm: 'Lankhmar',
- rd: 'Masque of the Red Death',
- mz: 'Maztica',
- ms: 'Mystara',
- ps: 'Planescape',
- rv: 'Ravenloft',
- rs: 'Red Steel',
- sj: 'Spelljammer',
- th: 'The Horde',
-};
-const RULESETS = {
- '2e':     'AD&D 2nd Edition',
- '2e-rev': "Player's Option / Dark Sun Revised",
- '5e':     'D&D 5th Edition',
- // legacy aliases still accepted when loading old files
- adnd2e:  'AD&D 2nd Edition (legacy code)',
- revised: "Revised (legacy code)",
-};
-const BASE_ONLY = new Set([
-  'id', 'allowedCampaignSettings', 'allowedRulesets',
-  'campaignSettings', 'rulesets', 'tradition',
-  '_id', '_isNew', '_kind'
-]);
-
+const SCHEMA_VERSION = '2.0.0';
 
 /* ── State ─────────────────────────────────────────────── */
 let rawData = null;
@@ -387,7 +300,7 @@ let nextId = 0; // monotonic for newly-added entries
 /* Bulk-edit state */
 const bulkSelected = new Set();
 const bulkTouched = new Set();
-let editorMode = 'view';        // 'view' | 'edit' | 'new' | 'bulk'
+let editorMode = 'edit';        // 'edit' | 'new' | 'bulk'
 let dlgOriginal = '';
 
 /* Column preferences (widths + hidden columns), persisted per tab */
@@ -406,12 +319,10 @@ function prefs() {
  return p;
 }
 const DEFAULT_WIDTHS = {
- name: 220, classes: 110, tradition: 70, level: 52, school: 140, sphere: 140, range: 110,
+ name: 220, class: 90, level: 52, school: 140, sphere: 140, range: 110,
  castingTime: 70, duration: 130, page: 60, source: 150, reversible: 52, verified: 44,
  discipline: 140, tier: 100, powerScore: 92, initialCost: 64, maintenanceCost: 74,
- mac: 54, pspCost: 66, ruleset: 84, rulesets: 90,
- allowedSettings: 90, allowedCampaignSettings: 100, allowedRulesets: 90,
- preparationTime: 80, fiveE: 170, class: 90,
+ mac: 54, pspCost: 66, ruleset: 84, preparationTime: 80, fiveE: 170,
 };
 function colWidth(k) { return prefs().widths[k] ?? DEFAULT_WIDTHS[k] ?? 110; }
 
@@ -421,37 +332,33 @@ const TABS = {
  match: s => !isPsionic(s),
  cols: [
  { key: 'name', label: 'Name' },
- { key: 'classes', label: 'Classes' },
- { key: 'tradition', label: 'Trad.' },
+ { key: 'class', label: 'Class' },
  { key: 'level', label: 'Lvl', num: true },
  { key: 'school', label: 'School' },
  { key: 'sphere', label: 'Sphere' },
+ { key: '5e_classes', label: '5e Classes' },
  { key: 'range', label: 'Range' },
  { key: 'castingTime', label: 'CT' },
  { key: 'duration', label: 'Duration' },
+ { key: 'page', label: 'Page', num: true },
  { key: 'source', label: 'Source' },
  { key: 'reversible', label: 'Rev' },
  { key: 'verified', label: '✓' },
  ],
  filters: [
- { key: 'allowedCampaignSettings', label: 'Setting', catalog: 'settings' },
- { key: 'allowedRulesets', label: 'Ruleset', catalog: 'rulesets' },
  { key: 'level', label: 'Level', numeric: true },
  { key: 'school', label: 'School' },
  { key: 'sphere', label: 'Sphere' },
- { key: 'classes', label: 'Class' },
- { key: 'tradition', label: 'Tradition' },
+ { key: 'class', label: 'Class' },
  { key: 'source', label: 'Source' },
  ],
  /* Edit-form layout, top to bottom */
  editLayout: [
- { row: [ { k: 'classes', label: 'Classes (comma-separated)' }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
+ { row: [ { k: 'class', label: 'Class', type: 'select', options: ['Wizard', 'Cleric'] }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
  { k: 'name', label: 'Name' },
- { k: 'tradition', label: 'Tradition', type: 'select', options: ['arcane', 'divine'] },
- { k: 'allowedCampaignSettings', label: 'Allowed campaign settings (abbr, comma-separated)' },
- { k: 'allowedRulesets', label: 'Allowed rulesets (2e, 2e-rev, 5e)' },
  { k: 'school', label: 'School' },
  { k: 'sphere', label: 'Sphere (Priest only)', priestOnly: true },
+ { k: '5e_classes', label: '5e Classes (comma-separated)' },
  { k: 'reversible', label: 'Reversible', type: 'toggle' },
  { row: [ { k: 'range', label: 'Range' }, { k: 'components', label: 'Components' } ] },
  { k: 'preparationTime', label: 'Preparation Time' },
@@ -477,137 +384,49 @@ const TABS = {
  { key: 'initialCost', label: 'Init' },
  { key: 'maintenanceCost', label: 'Maint' },
  { key: 'range', label: 'Range' },
- { key: 'allowedCampaignSettings', label: 'Settings' },
- { key: 'allowedRulesets', label: 'Rulesets' },
+ { key: '5e_classes', label: '5e Classes' },
+ { key: 'ruleset', label: 'Rules' },
+ { key: 'page', label: 'Page', num: true },
  { key: 'source', label: 'Source' },
  { key: 'verified', label: '✓' },
  ],
  filters: [
- { key: 'allowedCampaignSettings', label: 'Setting', catalog: 'settings' },
- { key: 'allowedRulesets', label: 'Ruleset', catalog: 'rulesets' },
  { key: 'discipline', label: 'Discipline' },
  { key: 'tier', label: 'Tier' },
+ { key: 'ruleset', label: 'Ruleset' },
  { key: 'source', label: 'Source' },
  ],
  editLayout: [
  { k: 'name', label: 'Name' },
- { k: 'allowedCampaignSettings', label: 'Allowed campaign settings (abbr, comma-separated)' },
- { k: 'allowedRulesets', label: 'Allowed rulesets (2e, 2e-rev, 5e)' },
  { row: [ { k: 'discipline', label: 'Discipline' }, { k: 'tier', label: 'Tier' } ] },
  { row: [ { k: 'powerScoreStat', label: 'Power Score', type: 'select', options: ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Cha'] }, { k: 'powerScoreMod', label: 'Modifier' } ], cols: '1fr 110px' },
+ { k: 'ruleset', label: 'Ruleset', type: 'select', options: ['2e', 'revised'] },
  { row: [ { k: 'initialCost', label: 'Initial Cost' }, { k: 'maintenanceCost', label: 'Maintenance Cost' } ] },
  { row: [ { k: 'mac', label: 'MAC' }, { k: 'pspCost', label: 'PSP Cost (x/y)' } ], cols: '110px 1fr' },
  { k: 'range', label: 'Range' },
  { k: 'preparationTime', label: 'Preparation Time' },
  { k: 'areaOfEffect', label: 'Area of Effect' },
  { k: 'prerequisites', label: 'Prerequisites (comma-separated)' },
- { k: 'source', label: 'Source' },
+ { k: '5e_classes', label: '5e Classes (comma-separated)' },
+ { row: [ { k: 'page', label: 'Page' }, { k: 'source', label: 'Source' } ], cols: '110px 1fr' },
  { k: 'verified', label: 'Verified', type: 'toggle' },
  ],
- meta: s => `${esc(gf(s,'discipline') ?? '?')} · ${esc(gf(s,'tier') ?? '?')} · ${(gf(s,'allowedRulesets') || ['2e']).join?.(', ') || '2e'} · ${esc(gf(s,'source') ?? '')}`,
+ meta: s => `${esc(gf(s,'discipline') ?? '?')} · ${esc(gf(s,'tier') ?? '?')} · ${esc(gf(s,'ruleset') ?? '2e')} · p.${esc(gf(s,'page') ?? '?')} · ${esc(gf(s,'source') ?? '')}`,
  },
 };
 let activeTab = 'spells';
 const tab = () => TABS[activeTab];
 
 function isPsionic(s) {
-  if (!s) return false;
-  if (s._kind === 'psionic') return true;
-  if (s.tradition === 'psionic') return true;
-  if (s.discipline != null) return true;
-  if (Array.isArray(s.classes) && s.classes.some(c => String(c).toLowerCase() === 'psionic')) return true;
-  if (gfRaw(s, 'class') === 'Psionic') return true;
-  return false;
+ return gf(s, 'class') === 'Psionic' || getPath(s, 'discipline') != null;
 }
-
-const BASE_ONLY_KEYS = BASE_ONLY;
-
-function filterValue(key) {
-  const sel = document.querySelector(`#filters select[data-key="${key}"]`);
-  return sel && sel.value ? sel.value : '';
-}
-
-/** Prefer campaign-setting overlay, then ruleset overlay. */
-function activeOverlaySpec(s) {
-  if (!s) return null;
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st) return { bag: 'campaignSettings', key: st };
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
-  if (rs) return { bag: 'rulesets', key: rs };
-  return null;
-}
-
-function overlayOf(s) {
-  const spec = activeOverlaySpec(s);
-  if (!spec) return null;
-  // accept both new "rulesets" and legacy "ruleset" bag names
-  const bagName = spec.bag;
-  const bag = s[bagName] || (bagName === 'rulesets' ? s.ruleset : null);
-  if (!bag || typeof bag !== 'object' || Array.isArray(bag)) return null;
-  const ov = bag[spec.key];
-  return ov && typeof ov === 'object' && !Array.isArray(ov) ? ov : null;
-}
-
-function ensureOverlay(s) {
-  const spec = activeOverlaySpec(s);
-  if (!spec) return null;
-  const bagName = spec.bag;
-  if (!s[bagName] || typeof s[bagName] !== 'object' || Array.isArray(s[bagName])) s[bagName] = {};
-  if (!s[bagName][spec.key] || typeof s[bagName][spec.key] !== 'object' || Array.isArray(s[bagName][spec.key])) {
-    s[bagName][spec.key] = {};
-  }
-  return s[bagName][spec.key];
-}
-
-function overlayLabel() {
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st) return SETTINGS[st] ? `${SETTINGS[st]} (${st})` : st;
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
-  if (rs) return RULESETS[rs] ? `${RULESETS[rs]} (${rs})` : rs;
-  return '';
-}
-
-function overlayBannerHtml() {
-  const lab = overlayLabel();
-  if (!lab) return '';
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  const bag = st ? 'campaignSettings' : 'rulesets';
-  return `<div class="overlay-banner">Showing <strong>${esc(lab)}</strong>. Sidebar fields use <code>${bag}</code> overrides when present, otherwise the base entry. Edits write to the overlay, not the base.</div>`;
-}
-
-function sourceFor(s, key) {
-  if (BASE_ONLY_KEYS.has(key)) return s;
-  // 1. campaign setting override
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st && s.campaignSettings?.[st] && Object.prototype.hasOwnProperty.call(s.campaignSettings[st], key)
-      && s.campaignSettings[st][key] !== undefined) {
-    return s.campaignSettings[st];
-  }
-  // 2. ruleset override (new bag name or legacy)
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
-  const rbag = s.rulesets || s.ruleset;
-  if (rs && rbag?.[rs] && Object.prototype.hasOwnProperty.call(rbag[rs], key)
-      && rbag[rs][key] !== undefined) {
-    return rbag[rs];
-  }
-  return s;
-}
-
-function gfRaw(s, key) {
- for (const p of FIELD_PATHS[key] ?? [key]) {
- const v = getPath(s, p);
- if (v !== undefined && v !== null) return v;
- }
- return undefined;
-}
-
 
 const $ = id => document.getElementById(id);
 const hasFS = 'showOpenFilePicker' in window;
 
 const PIPE_FIX_KEYS = ['range', 'castingTime', 'duration'];
 const NUM_KEYS = ['level', 'page', 'mac'];
-const ARRAY_KEYS = ['classes', 'prerequisites', 'allowedCampaignSettings', 'allowedRulesets', '5e_classes', 'allowedSettings'];
+const ARRAY_KEYS = ['5e_classes', 'prerequisites'];
 
 function fixPipes(v) {
  if (v == null) return v;
@@ -619,8 +438,6 @@ function fixPipes(v) {
 const FIELD_PATHS = {
  name: ['name', 'Name'],
  class: ['class', 'Class'],
- classes: ['classes', 'class', 'Class', '5e_classes'],
- tradition: ['tradition'],
  school: ['school', 'School'],
  level: ['level', 'Level'],
  castingTime: ['castingTime', 'CastingTime', 'stats.casting_time', 'casting_time'],
@@ -639,7 +456,7 @@ const FIELD_PATHS = {
  id: ['id'],
  athasianStatus: ['athasianStatus'],
  summary: ['summary'],
- '5e_classes': ['5e_classes', 'classes'],
+ '5e_classes': ['5e_classes'],
  discipline: ['discipline', 'Discipline'],
  tier: ['tier', 'Tier'],
  powerScore: ['powerScore', 'PowerScore', 'power_score'],
@@ -651,12 +468,8 @@ const FIELD_PATHS = {
  pspCost: ['pspCost'],
  pspCostSuccess: ['pspCostSuccess'],
  pspCostFailure: ['pspCostFailure'],
- ruleset: ['rulesets', 'ruleset'],
- rulesets: ['rulesets', 'ruleset'],
+ ruleset: ['ruleset'],
  prerequisites: ['prerequisites', 'Prerequisites'],
- allowedSettings: ['allowedCampaignSettings', 'allowedSettings'],
- allowedCampaignSettings: ['allowedCampaignSettings', 'allowedSettings'],
- allowedRulesets: ['allowedRulesets'],
 };
 
 function getPath(obj, path) {
@@ -669,110 +482,83 @@ function getPath(obj, path) {
 }
 
 function gf(s, key) {
-  const src = sourceFor(s, key);
-  if (key === 'allowedCampaignSettings' || key === 'allowedSettings') {
-    const arr = s.allowedCampaignSettings || s.allowedSettings;
-    if (Array.isArray(arr)) return arr.join(', ');
-  }
-  if (key === 'allowedRulesets') {
-    if (Array.isArray(s.allowedRulesets)) return s.allowedRulesets.join(', ');
-  }
-  if (key === 'ruleset' || key === 'rulesets') {
-    const r = s.rulesets || s.ruleset;
-    if (r && typeof r === 'object' && !Array.isArray(r)) return Object.keys(r).join(', ');
-    return r;
-  }
-  if (key === 'classes' || key === '5e_classes') {
-    const arr = src.classes || src['5e_classes'] || (src.class ? [src.class] : null);
-    if (Array.isArray(arr)) return arr.join(', ');
-  }
-  if (key === 'sphere') {
-    if (Array.isArray(src.spheres) && src.spheres.length) {
-      return src.spheres.map(x => (typeof x === 'string' ? x : (x.name || ''))).filter(Boolean).join(', ');
-    }
-  }
-  if (key === 'components') {
-    if (Array.isArray(src.components)) return src.components.join(', ');
-  }
-  if (key === 'prerequisites') {
-    if (Array.isArray(src.prerequisites)) return src.prerequisites.join(', ');
-  }
-  if (key === 'powerScore') {
-    const stat = src.powerScoreStat ?? '';
-    const mod = src.powerScoreMod ?? '';
-    if (stat !== '' || mod !== '') return `${stat} ${mod}`.trim();
-  }
-  if (key === 'source') {
-    if (Array.isArray(src.sourceBooks) && src.sourceBooks.length) {
-      const b = src.sourceBooks[0];
-      return typeof b === 'object' ? (b.source || '') : b;
-    }
-  }
-  for (const p of FIELD_PATHS[key] ?? [key]) {
-    const v = getPath(src, p);
-    if (v !== undefined && v !== null) return v;
-  }
-  return undefined;
+ if (key === 'sphere') {
+ if (Array.isArray(s.spheres) && s.spheres.length) {
+ return s.spheres.map(x => (typeof x === 'string' ? x : (x.name || ''))).filter(Boolean).join(', ');
+ }
+ }
+ if (key === 'components') {
+ if (Array.isArray(s.components)) return s.components.join(', ');
+ }
+ if (key === '5e_classes') {
+ if (Array.isArray(s['5e_classes'])) return s['5e_classes'].join(', ');
+ }
+ if (key === 'prerequisites') {
+ if (Array.isArray(s.prerequisites)) return s.prerequisites.join(', ');
+ }
+ if (key === 'powerScore') {
+ // Combined display: prefer split stat/mod, fall back to legacy string
+ const stat = s.powerScoreStat ?? '';
+ const mod = s.powerScoreMod ?? '';
+ if (stat !== '' || mod !== '') return `${stat} ${mod}`.trim();
+ }
+ if (key === 'source') {
+ if (Array.isArray(s.sourceBooks) && s.sourceBooks.length) return s.sourceBooks[0];
+ }
+ for (const p of FIELD_PATHS[key] ?? [key]) {
+ const v = getPath(s, p);
+ if (v !== undefined && v !== null) return v;
+ }
+ return undefined;
 }
 
 function sf(s, key, value) {
-  const t = BASE_ONLY_KEYS.has(key) ? s : (ensureOverlay(s) || s);
-  if (key === 'allowedCampaignSettings' || key === 'allowedSettings') {
-    s.allowedCampaignSettings = String(value || '').split(/[,;]/).map(x => x.trim().toLowerCase()).filter(Boolean);
-    return;
-  }
-  if (key === 'allowedRulesets') {
-    s.allowedRulesets = String(value || '').split(/[,;]/).map(x => x.trim().toLowerCase()).filter(Boolean);
-    return;
-  }
-  if (key === 'classes' || key === '5e_classes') {
-    t.classes = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
-    return;
-  }
-  if (key === 'sphere' && (Array.isArray(t.spheres) || Array.isArray(s.spheres) || s.id || s._isNew)) {
-    const prior = new Map((Array.isArray(t.spheres) ? t.spheres : (Array.isArray(s.spheres) ? s.spheres : []))
-      .map(x => (typeof x === 'string' ? [x, { name: x, access: 'Major' }] : [x?.name, x]))
-      .filter(([n]) => n));
-    t.spheres = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean)
-      .map(name => prior.get(name) ?? { name, access: 'Major' });
-    t.sphere = String(value || '');
-    return;
-  }
-  if (key === 'components') {
-    t.components = String(value || '').split(/[,/]/).map(x => x.trim()).filter(Boolean);
-    return;
-  }
-  if (key === 'prerequisites') {
-    t.prerequisites = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
-    return;
-  }
- if (key === 'powerScoreStat') { t.powerScoreStat = value === '' ? null : value; return; }
- if (key === 'powerScoreMod') { t.powerScoreMod = value === '' ? null : value; return; }
+ if (key === 'sphere' && (Array.isArray(s.spheres) || s.id || s._isNew)) {
+ s.spheres = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean)
+ .map(name => ({ name, access: 'Major' }));
+ s.sphere = String(value || '');
+ return;
+ }
+ if (key === 'components') {
+ if (Array.isArray(s.components) || s.id || s._isNew) {
+ s.components = String(value || '').split(/[,/]/).map(x => x.trim()).filter(Boolean);
+ return;
+ }
+ }
+ if (key === '5e_classes') {
+ s['5e_classes'] = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
+ return;
+ }
+ if (key === 'prerequisites') {
+ s.prerequisites = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
+ return;
+ }
+ if (key === 'powerScoreStat') { s.powerScoreStat = value === '' ? null : value; return; }
+ if (key === 'powerScoreMod') { s.powerScoreMod = value === '' ? null : value; return; }
  if (key === 'pspCost') {
  const str = String(value || '').trim();
- t.pspCost = str === '' ? null : str;
+ s.pspCost = str === '' ? null : str;
  const pair = str.match(/^(\d+)\s*\/\s*(\d+)$/);
- if (pair) { t.pspCostSuccess = Number(pair[1]); t.pspCostFailure = Number(pair[2]); }
- else if (/^\d+$/.test(str)) { t.pspCostSuccess = Number(str); t.pspCostFailure = null; }
- else { t.pspCostSuccess = null; t.pspCostFailure = null; }
+ if (pair) { s.pspCostSuccess = Number(pair[1]); s.pspCostFailure = Number(pair[2]); }
+ else if (/^\d+$/.test(str)) { s.pspCostSuccess = Number(str); s.pspCostFailure = null; }
+ else { s.pspCostSuccess = null; s.pspCostFailure = null; }
  return;
  }
  if (key === 'mac') {
- t.mac = (value === '' || value == null) ? null : (Number.isFinite(Number(value)) ? Number(value) : value);
+ s.mac = (value === '' || value == null) ? null : (Number.isFinite(Number(value)) ? Number(value) : value);
  return;
  }
  if (key === 'source') {
- if (Array.isArray(t.sourceBooks) || Array.isArray(s.sourceBooks) || s.id || s._isNew) {
- const rest = Array.isArray(t.sourceBooks) ? t.sourceBooks.slice(1)
- : (Array.isArray(s.sourceBooks) ? s.sourceBooks.slice(1) : []);
- t.sourceBooks = value ? [String(value), ...rest] : rest;
- if (!t.originalSource && !s.originalSource) t.originalSource = value;
+ if (Array.isArray(s.sourceBooks) || s.id || s._isNew) {
+ const rest = Array.isArray(s.sourceBooks) ? s.sourceBooks.slice(1) : [];
+ s.sourceBooks = value ? [String(value), ...rest] : rest;
+ if (!s.originalSource) s.originalSource = value;
  return;
  }
  }
  for (const p of FIELD_PATHS[key] ?? [key]) {
  const parts = p.split('.');
- let cur = t;
+ let cur = s;
  for (let i = 0; i < parts.length - 1; i++) {
  if (cur == null || typeof cur[parts[i]] !== 'object') { cur = null; break; }
  cur = cur[parts[i]];
@@ -782,12 +568,20 @@ function sf(s, key, value) {
  return;
  }
  }
- t[key] = value;
+ s[key] = value;
 }
 
 /* ── Dataset insertion (single source of truth) ─────────── */
 function addToDataset(s) {
- if (!rawData) ensureDataset();
+ const grouped = Array.isArray(rawData) && rawData.length && Array.isArray(rawData[0]?.spells);
+ if (grouped) {
+ rawData[0].spells.push(s);
+ spells.push(s);
+ return;
+ }
+ const arr = Array.isArray(rawData) ? rawData
+ : (rawData && Array.isArray(rawData.spells) ? rawData.spells : null);
+ if (arr && arr !== spells) arr.push(s);
  spells.push(s);
 }
 
@@ -797,20 +591,10 @@ function ensureDataset() {
  spells = [];
  rawData = {
  schemaVersion: SCHEMA_VERSION,
- dateUpdated: new Date().toISOString().slice(0, 10),
  generator: 'spells-powers-editor',
- rulesets: [
-   { code: '2e', name: 'AD&D 2nd Edition', alias: ['AD&D 2e'] },
-   { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-   { code: '5e', name: 'D&D 5th Edition', alias: ['5e'] },
- ],
- campaignSettings: [
-   { code: 'xx', name: 'Generic / Core' },
-   { code: 'ds', name: 'Dark Sun (Athas)' },
-   { code: 'fr', name: 'Forgotten Realms' },
- ],
- spells: [],
- psionics: [],
+ generatedAt: new Date().toISOString(),
+ recordCount: 0,
+ spells,
  };
  fileName = fileName || 'new-spells.json';
  $('empty').style.display = 'none';
@@ -820,124 +604,97 @@ function ensureDataset() {
 }
 
 /* ── File I/O ──────────────────────────────────────────── */
-function extractRecords(json) {
-  if (!json) return [];
-  if (json && typeof json === 'object' && !Array.isArray(json)
-      && (Array.isArray(json.spells) || Array.isArray(json.psionics))) {
-    return [
-      ...(json.spells || []).map(s => ({ ...s, _kind: isPsionic(s) ? 'psionic' : 'spell' })),
-      ...(json.psionics || []).map(p => ({ ...p, _kind: 'psionic' })),
-    ];
-  }
-  if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
-    return json.flatMap(g => g.spells || []);
-  }
-  if (Array.isArray(json)) return json.slice();
-  return [];
-}
-
 async function openFile() {
-  if (!confirmLeaveEdit('open another file')) return;
-  if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
-  const picked = await pickViaInput();
-  if (!picked) return;
-  try { loadData(JSON.parse(picked.text)); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); }
+ if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
+ let text;
+ if (hasFS) {
+ try {
+ [fileHandle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ } catch { return; }
+ const f = await fileHandle.getFile();
+ fileName = f.name;
+ text = await f.text();
+ } else {
+ text = await pickViaInput();
+ if (text === null) return;
+ }
+ try { loadData(JSON.parse(text)); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); }
 }
 
 /** Merge another JSON file into the current dataset (does not replace). */
 async function importFile() {
-  if (!confirmLeaveEdit('import another file')) return;
-  if (!rawData) ensureDataset();
-  const picked = await pickViaInput(true);
-  if (!picked) return;
-  let json;
-  try { json = JSON.parse(picked.text); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); return; }
+ if (!rawData) { alert('Open a file first, or use Open JSON to start a new dataset.'); return; }
+ let text;
+ if (hasFS) {
+ try {
+ const [handle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ text = await (await handle.getFile()).text();
+ } catch { return; }
+ } else {
+ text = await pickViaInput(true);
+ if (text === null) return;
+ }
+ let json;
+ try { json = JSON.parse(text); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); return; }
 
-  const incoming = extractRecords(json);
-  if (!incoming.length) {
-    alert('Unrecognised JSON shape for import. Expected a 3.6 { spells, psionics } document, a 3.5 wrapper, or a flat array of records.');
-    return;
-  }
+ let incoming = [];
+ if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
+ incoming = json.flatMap(g => g.spells);
+ } else if (Array.isArray(json)) {
+ incoming = json;
+ } else if (json && Array.isArray(json.spells)) {
+ incoming = json.spells;
+ } else {
+ alert('Unrecognised JSON shape for import.');
+ return;
+ }
 
-  for (const s of incoming) {
-    normalizeRecord(s);
-    s._id = nextId++;
-    for (const k of PIPE_FIX_KEYS) {
-      const v = gf(s, k);
-      if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
-    }
-    addToDataset(s);
-  }
-  dirty = true;
-  buildFilters();
-  renderTabs();
-  renderTable();
-  refreshStatus();
-  alert(`Imported ${incoming.length} record(s).`);
+ for (const s of incoming) {
+ s._id = nextId++;
+ for (const k of PIPE_FIX_KEYS) {
+ const v = gf(s, k);
+ if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
+ }
+ addToDataset(s);
+ }
+ dirty = true;
+ buildFilters();
+ renderTabs();
+ renderTable();
+ refreshStatus();
+ alert(`Imported ${incoming.length} record(s).`);
 }
 
 function pickViaInput(keepFileName = false) {
-  return new Promise(resolve => {
-    const inp = document.createElement('input');
-    inp.type = 'file';
-    inp.accept = '.json,application/json,text/json,*/*';
-    inp.style.display = 'none';
-    document.body.appendChild(inp);
-    let settled = false;
-    const finish = (val) => {
-      if (settled) return;
-      settled = true;
-      window.removeEventListener('focus', onFocus);
-      inp.remove();
-      resolve(val);
-    };
-    const onFocus = () => setTimeout(() => { if (!settled && !inp.files.length) finish(null); }, 400);
-    inp.addEventListener('change', async () => {
-      if (!inp.files.length) return finish(null);
-      const f = inp.files[0];
-      if (!keepFileName) fileName = f.name;
-      finish({ name: f.name, text: await f.text() });
-    });
-    inp.addEventListener('cancel', () => finish(null));
-    window.addEventListener('focus', onFocus);
-    inp.click();
-  });
+ return new Promise(resolve => {
+ const inp = document.createElement('input');
+ inp.type = 'file'; inp.accept = '.json,application/json';
+ inp.onchange = async () => {
+ if (!inp.files.length) return resolve(null);
+ if (!keepFileName) fileName = inp.files[0].name;
+ resolve(await inp.files[0].text());
+ };
+ inp.click();
+ });
 }
 
-
 function serialise() {
-  spells.forEach(s => { delete s._id; delete s._isNew; delete s._kind; });
-
-  if (rawData && !Array.isArray(rawData)) {
-    rawData.schemaVersion = SCHEMA_VERSION;
-    rawData.dateUpdated = new Date().toISOString().slice(0, 10);
-    rawData.spells = spells.filter(s => !isPsionic(s));
-    rawData.psionics = spells.filter(s => isPsionic(s));
-    if (!Array.isArray(rawData.rulesets)) {
-      rawData.rulesets = [
-        { code: '2e', name: 'AD&D 2nd Edition', alias: ['AD&D 2e'] },
-        { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-        { code: '5e', name: 'D&D 5th Edition', alias: ['5e'] },
-      ];
-    }
-    if (!Array.isArray(rawData.campaignSettings)) {
-      rawData.campaignSettings = [
-        { code: 'xx', name: 'Generic / Core' },
-        { code: 'ds', name: 'Dark Sun (Athas)' },
-        { code: 'fr', name: 'Forgotten Realms' },
-      ];
-    }
-  } else if (Array.isArray(rawData)) {
-    // legacy flat array — keep flat on save
-    rawData = spells.slice();
-  }
-
-  const out = JSON.stringify(rawData, null, 2);
-  spells.forEach((s, i) => s._id = i);
-  nextId = spells.length;
-  return out;
+ spells.forEach(s => { delete s._id; delete s._isNew; });
+ // Refresh v2 wrapper metadata on save
+ if (rawData && !Array.isArray(rawData) && Array.isArray(rawData.spells)) {
+ rawData.schemaVersion = rawData.schemaVersion || SCHEMA_VERSION;
+ rawData.recordCount = rawData.spells.length;
+ }
+ const out = JSON.stringify(rawData, null, 2);
+ spells.forEach((s, i) => s._id = i);
+ nextId = spells.length;
+ return out;
 }
 
 async function saveFile(as = false) {
@@ -971,7 +728,6 @@ async function saveFile(as = false) {
 /** Prompt for unsaved changes, then clear everything. */
 function closeFile() {
  if (!rawData && !spells.length) return;
- if (!confirmLeaveEdit('close the file')) return;
  if (dirty) {
  const ans = confirm('You have unsaved changes.\n\nOK = discard and close\nCancel = keep working');
  if (!ans) return;
@@ -1001,93 +757,34 @@ function closeFile() {
 }
 
 /* ── Data shaping ──────────────────────────────────────── */
-function normalizeRecord(s) {
-  if (!s || typeof s !== 'object') return s;
-
-  // allowed lists
-  if (!Array.isArray(s.allowedCampaignSettings)) {
-    s.allowedCampaignSettings = Array.isArray(s.allowedSettings) ? s.allowedSettings : ['xx'];
-  }
-  if (!Array.isArray(s.allowedRulesets)) {
-    s.allowedRulesets = ['2e'];
-  }
-
-  // classes
-  if (!Array.isArray(s.classes)) {
-    if (Array.isArray(s['5e_classes']) && s['5e_classes'].length) s.classes = s['5e_classes'];
-    else if (s.class && s.class !== 'Psionic') s.classes = [s.class];
-    else s.classes = [];
-  }
-
-  // tradition
-  if (!s.tradition) {
-    s.tradition = isPsionic(s) ? 'psionic'
-      : (Array.isArray(s.spheres) && s.spheres.length) ? 'divine'
-      : 'arcane';
-  }
-
-  // bags
-  if (!s.campaignSettings || typeof s.campaignSettings !== 'object' || Array.isArray(s.campaignSettings)) {
-    s.campaignSettings = {};
-  }
-  if (!s.rulesets || typeof s.rulesets !== 'object' || Array.isArray(s.rulesets)) {
-    // migrate legacy singular ruleset bag
-    if (s.ruleset && typeof s.ruleset === 'object' && !Array.isArray(s.ruleset)) {
-      s.rulesets = s.ruleset;
-    } else if (typeof s.ruleset === 'string') {
-      const k = (s.ruleset === '2e' || s.ruleset === 'adnd2e') ? '2e'
-        : (s.ruleset === 'revised' || s.ruleset === 'xr') ? '2e-rev'
-        : s.ruleset;
-      s.rulesets = k ? { [k]: {} } : {};
-    } else {
-      s.rulesets = {};
-    }
-  }
-
-  return s;
-}
-
 function loadData(json) {
-  rawData = json;
-
-  if (json && typeof json.schemaVersion === 'string' && json.schemaVersion.startsWith('3.6')
-      && (Array.isArray(json.spells) || Array.isArray(json.psionics))) {
-    // Preferred 3.6 document
-    spells = [
-      ...(json.spells || []).map(s => ({ ...s, _kind: 'spell' })),
-      ...(json.psionics || []).map(p => ({ ...p, _kind: 'psionic' })),
-    ];
-  } else if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
-    spells = json.flatMap(g => g.spells);
-  } else if (Array.isArray(json)) {
-    spells = json;
-  } else if (json && Array.isArray(json.spells)) {
-    // 3.5 wrapper or mixed
-    spells = [
-      ...json.spells,
-      ...(Array.isArray(json.psionics) ? json.psionics : []),
-    ];
-  } else {
-    alert('Unrecognised JSON shape — expected schema 3.6 { spells, psionics }, a 3.5 wrapper, or a flat array of records.');
-    rawData = null;
-    return;
-  }
-
-  spells.forEach((s, i) => { normalizeRecord(s); s._id = i; });
-  nextId = spells.length;
-  spells.forEach(s => {
-    for (const k of PIPE_FIX_KEYS) {
-      const v = gf(s, k);
-      if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
-    }
-  });
-  dirty = false; editedIds.clear(); selectedId = null; pendingNew = null;
+ rawData = json;
+ if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
+ spells = json.flatMap(g => g.spells);
+ } else if (Array.isArray(json)) {
+ spells = json;
+ } else if (json && Array.isArray(json.spells)) {
+ spells = json.spells;
+ } else {
+ alert('Unrecognised JSON shape — expected the v2 wrapper { spells: [...] }, an array of records, or parser groups.');
+ rawData = null;
+ return;
+ }
+ spells.forEach((s, i) => s._id = i);
+ nextId = spells.length;
+ spells.forEach(s => {
+ for (const k of PIPE_FIX_KEYS) {
+ const v = gf(s, k);
+ if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
+ }
+ });
+ dirty = false; editedIds.clear(); selectedId = null; pendingNew = null;
  bulkSelected.clear(); bulkTouched.clear();
  sortKey = null; sortDir = 1;
  activeTab = spells.some(s => TABS.spells.match(s)) ? 'spells' : 'psionics';
  closeEditor();
  renderTabs();
- buildFilters(true);   // new dataset — start with no filters applied
+ buildFilters();
  $('empty').style.display = 'none';
  $('tableWrap').style.display = '';
  ['search','tabSpells','tabPsionics','btnClear','btnSave','btnSaveAs','btnImport','btnAdd','btnCloseFile']
@@ -1096,57 +793,51 @@ function loadData(json) {
  renderTable(); refreshStatus();
 }
 
-/** Build a blank 3.6-shaped entry (a DRAFT — not yet in the dataset). */
+/** Build a blank SSR-shaped entry (a DRAFT — not yet in the dataset). */
 function makeBlank() {
-  const isPsi = activeTab === 'psionics';
-  const blank = {
-    id: `${isPsi ? 'psionic' : 'spell'}_new_${Date.now()}`,
-    name: '',
-    classes: isPsi ? [] : ['Wizard'],
-    tradition: isPsi ? 'psionic' : 'arcane',
-    level: isPsi ? null : 1,
-    school: '',
-    spheres: [],
-    sphere: '',
-    components: [],
-    castingTime: '',
-    range: '',
-    duration: '',
-    savingThrow: '',
-    areaOfEffect: '',
-    preparationTime: '',
-    description: '',
-    sourceBooks: [],
-    source: '',
-    reversible: false,
-    verified: false,
-    tags: [],
-    relatedEntries: [],
-    _isNew: true,
-    _kind: isPsi ? 'psionic' : 'spell',
-    allowedCampaignSettings: isPsi ? ['ds', 'xx'] : ['xx'],
-    allowedRulesets: isPsi ? ['2e', '2e-rev'] : ['2e'],
-    campaignSettings: {},
-    rulesets: {},
-  };
-  if (isPsi) {
-    blank.discipline = '';
-    blank.tier = '';
-    blank.powerScoreStat = null;
-    blank.powerScoreMod = null;
-    blank.initialCost = '';
-    blank.maintenanceCost = '';
-    blank.mac = null;
-    blank.pspCost = null;
-    blank.pspCostSuccess = null;
-    blank.pspCostFailure = null;
-    blank.prerequisites = [];
-  }
-  return blank;
+ const isPsi = activeTab === 'psionics';
+ const blank = {
+ id: `${isPsi ? 'psionic' : 'spell'}_new_${Date.now()}_2e`,
+ name: '',
+ class: isPsi ? 'Psionic' : 'Wizard',
+ '5e_classes': isPsi ? [] : ['Wizard'],
+ level: isPsi ? null : 1,
+ school: '',
+ spheres: [],
+ sphere: '',
+ components: [],
+ castingTime: '',
+ range: '',
+ duration: '',
+ savingThrow: '',
+ areaOfEffect: '',
+ preparationTime: '',
+ description: '',
+ sourceBooks: [],
+ source: '',
+ reversible: false,
+ verified: false,
+ page: null,
+ _isNew: true,
+ };
+ if (isPsi) {
+ blank.discipline = '';
+ blank.tier = '';
+ blank.powerScoreStat = null;
+ blank.powerScoreMod = null;
+ blank.initialCost = '';
+ blank.maintenanceCost = '';
+ blank.mac = null;
+ blank.pspCost = null;
+ blank.pspCostSuccess = null;
+ blank.pspCostFailure = null;
+ blank.prerequisites = [];
+ blank.ruleset = '2e';
+ }
+ return blank;
 }
 
 function addSpell() {
- if (!confirmLeaveEdit('start a new entry')) return;
  bulkSelected.clear();
  bulkTouched.clear();
  pendingNew = makeBlank();
@@ -1170,7 +861,7 @@ function commitNew(s) {
  pendingNew = null;
  buildFilters();
  renderTabs();
- openEditor(s._id, 'edit');   // keep the form open after a new entry is committed
+ openEditor(s._id);
  refreshStatus();
 }
 
@@ -1185,82 +876,25 @@ function renderTabs() {
 
 function setTab(t) {
  if (t === activeTab || !TABS[t]) return;
- if (!confirmLeaveEdit('switch tabs')) return;
  activeTab = t;
  selectedId = null; sortKey = null; sortDir = 1;
  bulkSelected.clear(); bulkTouched.clear();
  $('search').value = '';
  closeEditor();
  renderTabs();
- buildFilters(true);   // the other tab has its own fields — clear the choices
+ buildFilters();
  renderTable();
 }
 
-/* The individual filterable values of a field. School and Sphere hold several
-   per spell — as an array, an array of {name, access}, or a "Combat, Healing"
-   string — and each one has to become its own option, not a combined label. */
-function facetValues(s, key) {
- const atoms = [];
- const push = v => {
- if (v === undefined || v === null) return;
- if (Array.isArray(v)) { v.forEach(push); return; }
- if (typeof v === 'object') { push(v.name ?? v.value); return; }
- if (typeof v === 'string') {
- v.split(/[,;]/).map(x => x.trim()).filter(Boolean).forEach(x => atoms.push(x));
- return;
- }
- atoms.push(v);   // numbers (level, page) pass through untouched
- };
- push(gf(s, key));
- return atoms;
-}
-
-/* True if the record carries `value` among that field's values */
-function facetMatch(s, key, value) {
- return facetValues(s, key).some(v => String(v) === value);
-}
-
-/* Applying an edit repaints the dropdowns, which must not disturb what the
-   table is showing — the active choices are carried across. Pass reset = true
-   only for a genuinely new view (other tab, other file). */
-function optionLabel(f, v) {
- const sv = String(v);
- if (f.catalog === 'settings') return SETTINGS[sv] ? `${SETTINGS[sv]} (${sv})` : sv;
- if (f.catalog === 'rulesets') return RULESETS[sv] ? `${RULESETS[sv]}` : sv;
- return sv;
-}
-
-function buildFilters(reset) {
+function buildFilters() {
  const pool = spells.filter(tab().match);
- const prev = {};
- if (!reset) {
- $('filters').querySelectorAll('select').forEach(sel => {
- if (sel.value) prev[sel.dataset.key] = sel.value;
- });
- }
  $('filters').innerHTML = tab().filters.map(f => {
- const cur = prev[f.key];
- let vals = [...new Set(pool.flatMap(s => facetValues(s, f.key)))].map(String);
- if (f.catalog === 'settings') vals = [...new Set([...Object.keys(SETTINGS), ...vals])];
- if (f.catalog === 'rulesets') vals = [...new Set([...Object.keys(RULESETS), ...vals])];
- if (cur !== undefined && !vals.some(v => String(v) === cur)) vals.push(cur);
- vals.sort(f.numeric
- ? (a, b) => a - b
- : (a, b) => optionLabel(f, a).localeCompare(optionLabel(f, b), undefined, { numeric: true }));
+ let vals = [...new Set(pool.map(s => gf(s, f.key)).filter(v => v !== undefined && v !== null && v !== ''))];
+ vals.sort(f.numeric ? (a, b) => a - b : undefined);
  return `<select data-key="${f.key}"><option value="">${f.label}: all</option>` +
- vals.map(v => `<option value="${esc(String(v))}"${String(v) === cur ? ' selected' : ''}>${esc(optionLabel(f, v))}</option>`).join('') +
- `</select>`;
+ vals.map(v => `<option>${esc(String(v))}</option>`).join('') + `</select>`;
  }).join('');
- [...$('filters').querySelectorAll('select')].forEach(sel => sel.addEventListener('input', () => {
- if (selectedId != null) {
- const mode = editorMode === 'edit' ? 'edit' : 'view';
- const id = selectedId;
- renderTable();
- openEditor(id, mode);
- } else {
- renderTable();
- }
- }));
+ [...$('filters').querySelectorAll('select')].forEach(sel => sel.addEventListener('input', renderTable));
 }
 
 function visibleSpells() {
@@ -1268,7 +902,7 @@ function visibleSpells() {
  const sels = [...$('filters').querySelectorAll('select')];
  let list = spells.filter(s =>
  tab().match(s) &&
- sels.every(sel => !sel.value || facetMatch(s, sel.dataset.key, sel.value)) &&
+ sels.every(sel => !sel.value || String(gf(s, sel.dataset.key) ?? '') === sel.value) &&
  (!q || String(gf(s, 'name') ?? '').toLowerCase().includes(q) ||
  String(gf(s, 'description') ?? '').toLowerCase().includes(q)));
  if (sortKey) {
@@ -1390,45 +1024,6 @@ function syncTableWidth() {
  total += parseInt(c.style.width, 10) || 110;
  });
  $('dataTable').style.width = total + 'px';
-}
-
-/* ── Sidebar width ─────────────────────────────────────── */
-const PANEL_DEFAULT = 460, PANEL_MIN = 300, TABLE_MIN = 260;
-function panelWidth() { return colPrefs.editorWidth ?? PANEL_DEFAULT; }
-/* Clamp to the window so the table can never be squeezed out of sight */
-function applyPanelWidth(w) {
- const max = Math.max(PANEL_MIN, window.innerWidth - TABLE_MIN);
- const px = Math.min(Math.max(Math.round(w), PANEL_MIN), max);
- $('editor').style.width = px + 'px';
- return px;
-}
-function showPanel() {
- applyPanelWidth(panelWidth());
- $('edSplit').hidden = false;
-}
-function attachPanelResizer() {
- const bar = $('edSplit');
- bar.addEventListener('mousedown', e => {
- e.preventDefault();
- const startX = e.clientX;
- const startW = $('editor').getBoundingClientRect().width;
- bar.classList.add('active');
- document.body.style.cursor = 'col-resize';
- const move = ev => { colPrefs.editorWidth = applyPanelWidth(startW + startX - ev.clientX); };
- const up = () => {
- document.removeEventListener('mousemove', move);
- document.removeEventListener('mouseup', up);
- document.body.style.cursor = '';
- bar.classList.remove('active');
- savePrefs();
- };
- document.addEventListener('mousemove', move);
- document.addEventListener('mouseup', up);
- });
- bar.addEventListener('dblclick', () => {
- colPrefs.editorWidth = applyPanelWidth(PANEL_DEFAULT);
- savePrefs();
- });
 }
 
 function attachResizer(r) {
@@ -1575,14 +1170,11 @@ function refreshStatus(visCount) {
 
 /* ── Bulk selection ────────────────────────────────────── */
 function rowClickOpen(id) {
- if (!confirmLeaveEdit('open that entry')) return;
  if (bulkSelected.size) { bulkSelected.clear(); bulkTouched.clear(); }
  openEditor(id);
 }
 
 function toggleBulk(id, on) {
- /* renderTable() repaints the checkbox from state, undoing the click */
- if (!confirmLeaveEdit('start a bulk selection')) { renderTable(); return; }
  const wasBulk = editorMode === 'bulk';
  if (on) bulkSelected.add(id); else bulkSelected.delete(id);
  const n = bulkSelected.size;
@@ -1597,7 +1189,6 @@ function toggleBulk(id, on) {
 }
 
 function onSelectAll(checked) {
- if (!confirmLeaveEdit('select every visible row')) { renderTable(); return; }
  const wasBulk = editorMode === 'bulk';
  const vis = visibleSpells();
  if (checked) vis.forEach(s => bulkSelected.add(s._id));
@@ -1626,68 +1217,6 @@ function openBulkEditor() {
  bulkTouched.clear();
  renderEditor({}, 'bulk');
  renderTable();
- $('editor').scrollTop = 0;
-}
-
-/* ── View panel (read-only) ────────────────────────────── */
-/* Flatten the edit layout's row groups into a plain field list */
-function flatFields(layout) {
- return layout.flatMap(f => (f.row ? f.row : [f]));
-}
-
-/* "Sphere (Priest only)" → "Sphere", "5e Classes (comma-separated)" → "5e Classes" */
-function viewLabel(f) { return f.label.replace(/\s*\([^)]*\)\s*$/, ''); }
-
-function viewText(s, f) {
- if (f.k === 'sphere') {
- const src = sourceFor(s, 'sphere');
- if (Array.isArray(src.spheres) && src.spheres.length) {
-   return src.spheres
-     .map(x => (typeof x === 'string' ? x : (x.access ? `${x.name} (${x.access})` : x.name)))
-     .filter(Boolean).join(', ');
- }
- }
- const v = gf(s, f.k);
- if (f.type === 'toggle' || f.type === 'radio') return v ? 'Yes' : 'No';
- if (v === undefined || v === null) return '';
- if (Array.isArray(v)) return v.join(', ');
- return String(v).trim();
-}
-
-function renderViewer(s) {
- editorMode = 'view';
- const isPriest = /priest|cleric/i.test(String(gf(s, 'class') ?? ''));
- const rows = flatFields(tab().editLayout).map(f => {
-   if (f.k === 'name') return '';           // already the heading
-   if (f.priestOnly && !isPriest) return '';
-   const v = viewText(s, f);
-   if (v === '') return '';
-   return `<dt>${esc(viewLabel(f))}</dt><dd>${esc(v)}</dd>`;
- }).join('');
-
- const desc = String(gf(s, 'description') ?? '');
- const descHtml = desc.trim()
-   ? `<div class="md-preview view-desc">${mdToHtml(desc)}</div>`
-   : '<div class="view-desc empty">No description.</div>';
-
- $('editor').innerHTML = `
- <h2 id="edTitle">${esc(gf(s, 'name') || '(unnamed)')}</h2>
- <div class="meta">${tab().meta(s)}</div>
- ${overlayBannerHtml()}
- <dl class="view-stats">${rows}</dl>
- <div class="view-sec">Description</div>
- ${descHtml}
- <div id="editorBtns">
- <button id="btnEdit" class="primary">Edit</button>
- <span class="spacer"></span>
- <button id="btnEdClose">Close</button>
- </div>`;
- $('editor').classList.add('open', 'view');
- $('editor').classList.remove('bulk');
- showPanel();
-
- $('btnEdit').onclick = () => { renderEditor(s, 'edit'); $('editor').scrollTop = 0; };
- $('btnEdClose').onclick = closeEditor;
  $('editor').scrollTop = 0;
 }
 
@@ -1753,7 +1282,6 @@ function renderEditor(s, mode) {
  $('editor').innerHTML = `
  <h2 id="edTitle">${esc(title)}${badge}</h2>
  <div class="meta">${metaHtml}</div>
- ${isBulk ? '' : overlayBannerHtml()}
  ${tab().editLayout.map(f => fieldHtml(f, s)).join('')}
  <div class="field">
  <label>Description (Markdown)</label>
@@ -1773,21 +1301,17 @@ function renderEditor(s, mode) {
  <button id="btnRevert">Revert</button>
  <span class="spacer"></span>
  ${isBulk ? '' : `<button id="btnDelete" class="danger">${isNew ? 'Discard Draft' : 'Delete Entry'}</button>`}
- <button id="btnEdClose"${isNew || isBulk ? '' : ' title="Back to the read-only view"'}>Close</button>
+ <button id="btnEdClose">Close</button>
  </div>`;
  $('editor').classList.add('open');
  $('editor').classList.toggle('bulk', isBulk);
- $('editor').classList.remove('view');
- showPanel();
 
  const selClass = $('selClass');
  const syncSphere = () => {
  const f = $('f_sphere');
  if (!f) return;
- /* Bulk edit opens with a blank Class, which must not hide Sphere — the
- selection may be all priest spells. Hide only if Class is set non-priest. */
  const cls = selClass ? selClass.value : String(gf(s, 'class') ?? '');
- f.style.display = (/priest|cleric/i.test(cls) || (isBulk && !cls)) ? '' : 'none';
+ f.style.display = /priest|cleric/i.test(cls) ? '' : 'none';
  };
  if (selClass) selClass.addEventListener('change', syncSphere);
  syncSphere();
@@ -1828,32 +1352,23 @@ function renderEditor(s, mode) {
  $('btnRevert').onclick = () => {
  if (isBulk) { bulkTouched.clear(); openBulkEditor(); }
  else if (isNew) { pendingNew = makeBlank(); renderEditor(pendingNew, 'new'); }
- else openEditor(s._id, 'edit');
+ else openEditor(s._id);
  };
  if (!isBulk) $('btnDelete').onclick = () => {
  if (isNew) { pendingNew = null; closeEditor(); }
  else deleteEntry(s);
  };
- $('btnEdClose').onclick = () => {
- /* Editing an existing record steps back to the view card; a draft or a
- bulk selection has no card to return to, so those close the sidebar. */
- if (isNew) { pendingNew = null; closeEditor(); return; }
- if (isBulk) { closeEditor(); return; }
- if (!confirmLeaveEdit('go back to the view')) return;
- renderViewer(s);
- $('editor').scrollTop = 0;
- };
+ $('btnEdClose').onclick = () => { if (isNew) pendingNew = null; closeEditor(); };
 
  $('editor').scrollTop = 0;
 }
 
-/* mode: 'view' (default — read-only card) or 'edit' (the form) */
-function openEditor(id, mode) {
+function openEditor(id) {
  const s = spells.find(x => x._id === id);
  if (!s) return;
  pendingNew = null;
  selectedId = id;
- if (mode === 'edit') renderEditor(s, 'edit'); else renderViewer(s);
+ renderEditor(s, 'edit');
  renderTable();
  $('editor').scrollTop = 0;
 }
@@ -1868,12 +1383,8 @@ function readControlValue(el) {
  return el.value;
 }
 
-/* Form controls whose value differs from the record → [{ k, v }].
-   strict = the comparison Apply uses (also rewrites values that only differ by
-   type, e.g. "1" → 1). Loose is for "did the user actually change anything?" —
-   it ignores those type-only differences so Close doesn't nag about nothing. */
-function fieldDiffs(s, strict) {
- const out = [];
+function collectEdits(s) {
+ let changed = false;
  $('editor').querySelectorAll('[data-k]').forEach(el => {
  const k = el.dataset.k;
  let v = readControlValue(el);
@@ -1885,42 +1396,11 @@ function fieldDiffs(s, strict) {
  if (typeof v === 'string' && PIPE_FIX_KEYS.includes(k)) v = fixPipes(v);
  // Compare against current (arrays compared via their joined display form)
  const cur = gf(s, k);
- let same;
- if (strict) {
  const curCmp = ARRAY_KEYS.includes(k) ? String(cur ?? '') : cur;
  const vCmp = ARRAY_KEYS.includes(k) ? String(v ?? '') : v;
- same = curCmp === vCmp;
- } else if (typeof v === 'boolean') {
- same = !!cur === v;                       // absent ≡ No
- } else {
- same = normText(cur) === normText(v);     // "1" ≡ 1, CRLF ≡ LF
- }
- if (!same) out.push({ k, v });
+ if (curCmp !== vCmp) { sf(s, k, v); changed = true; }
  });
- return out;
-}
-function normText(v) { return String(v ?? '').replace(/\r\n/g, '\n').trim(); }
-
-function collectEdits(s) {
- const diffs = fieldDiffs(s, true);
- diffs.forEach(({ k, v }) => sf(s, k, v));
- return diffs.length > 0;
-}
-
-/* Real, user-made edits sitting in the form — used to warn before discarding */
-function unsavedEdits(s) { return fieldDiffs(s, false).length; }
-
-/* Gate for anything that would tear down the edit form. Returns false only when
-   the user chose to stay put. `action` completes "OK = discard and …". */
-function confirmLeaveEdit(action) {
- if (editorMode !== 'edit' || selectedId === null) return true;
- const s = spells.find(x => x._id === selectedId);
- if (!s) return true;
- const n = unsavedEdits(s);
- if (!n) return true;
- return confirm(
- `${n} unsaved change${n === 1 ? '' : 's'} to "${gf(s, 'name') || '(unnamed)'}".\n\n` +
- `OK = discard and ${action}\nCancel = keep editing`);
+ return changed;
 }
 
 function applyEdit(s) {
@@ -1981,24 +1461,21 @@ function deleteEntry(s) {
 function closeEditor() {
  selectedId = null;
  pendingNew = null;
- editorMode = 'view';
+ editorMode = 'edit';
  bulkSelected.clear();
  bulkTouched.clear();
- $('editor').classList.remove('open', 'bulk', 'view');
- $('edSplit').hidden = true;
+ $('editor').classList.remove('open', 'bulk');
  $('editor').innerHTML = '';
  if (rawData) renderTable();
 }
 
 function step(delta) {
  if (selectedId === null) return;
- const mode = editorMode === 'edit' ? 'edit' : 'view';   // stay in whichever panel is open
  const list = visibleSpells();
  const i = list.findIndex(s => s._id === selectedId);
  const next = list[i + delta];
  if (next) {
- if (!confirmLeaveEdit('move to that entry')) return;
- openEditor(next._id, mode);
+ openEditor(next._id);
  document.querySelector(`tr[data-id="${next._id}"]`)?.scrollIntoView({ block: 'nearest' });
  }
 }
@@ -2053,10 +1530,6 @@ $('btnClear').onclick = () => {
  renderTable();
 };
 $('search').addEventListener('input', renderTable);
-attachPanelResizer();
-window.addEventListener('resize', () => {
- if ($('editor').classList.contains('open')) applyPanelWidth(panelWidth());
-});
 
 $('dlgWrite').onclick = dlgSetWrite;
 $('dlgPreviewBtn').onclick = dlgSetPreview;
@@ -2074,7 +1547,6 @@ document.addEventListener('keydown', e => {
  if (e.key === 'Escape') {
  const m = $('colMenu');
  if (!m.hidden) { m.hidden = true; return; }
- if (!confirmLeaveEdit('close the panel')) return;
  closeEditor();
  }
  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); if (rawData) saveFile(false); }
@@ -2082,20 +1554,6 @@ document.addEventListener('keydown', e => {
  if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowUp') { e.preventDefault(); step(-1); }
 });
 window.addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
-
-async function tryAutoLoad() {
- for (const url of DEFAULT_DATA_URLS) {
- try {
- const r = await fetch(url);
- if (!r.ok) continue;
- const json = await r.json();
- fileName = url.split('/').pop();
- loadData(json);
- return;
- } catch { /* try next */ }
- }
-}
-tryAutoLoad();
 </script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "3.6.0",
+  "dateUpdated": "2026-08-25",
+  "rulesets": [
+    {
+      "code": "2e",
+      "name": "AD&D 2nd Edition",
+      "alias": [
+        "AD&D 2e"
+      ]
+    },
+    {
+      "code": "2e-rev",
+      "name": "Player's Option: Skills & Powers / Dark Sun Revised",
+      "alias": [
+        "Skills & Powers",
+        "DSCS Revised",
+        "xr"
+      ]
+    },
+    {
+      "code": "5e",
+      "name": "D&D 5th Edition",
+      "alias": [
+        "5e"
+      ]
+    }
+  ],
+  "campaignSettings": [
+    {
+      "code": "xx",
+      "name": "Generic / Core"
+    },
+    {
+      "code": "ds",
+      "name": "Dark Sun (Athas)"
+    },
+    {
+      "code": "fr",
+      "name": "Forgotten Realms"
+    }
+  ],
+  "spells": [],
+  "psionics": []
+}

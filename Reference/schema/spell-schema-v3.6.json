@@ -1,0 +1,188 @@
+{
+    "schemaVersion": "3.6.0",
+    "dateUpdated": "2026-08-25",
+    "rulesets": [
+        {
+            "code": "2e",
+            "name": "AD&D 2nd Edition",
+            "alias": [
+                "AD&D 2e"
+            ]
+        },
+        {
+            "code": "2e-rev",
+            "name": "Player's Option: Skills & Powers / Dark Sun Revised",
+            "alias": [
+                "Skills & Powers",
+                "DSCS Revised"
+            ]
+        },
+        {
+            "code": "5e",
+            "name": "D&D 5th Edition",
+            "alias": [
+                "5e"
+            ]
+        }
+    ],
+    "campaignSettings": [
+        {
+            "code": "xx",
+            "name": "AD&D 2e"
+        },
+        {
+            "code": "ds",
+            "name": "Dark Sun (Athas)"
+        },
+        {
+            "code": "fr",
+            "name": "Forgotten Realms"
+        }
+    ],
+    "spells": [
+        {
+            "id": "spell_wakefulness_2e",
+            "name": "Wakefulness",
+            "level": 2,
+            "school": "Enchantment/Charm",
+            "tradition": "arcane",
+            "classes": [
+                "Wizard"
+            ],
+            "spheres": [],
+            "reversible": true,
+            "range": "Touch",
+            "components": [
+                "V",
+                "S",
+                "M"
+            ],
+            "duration": "1 hour/level",
+            "castingTime": "1",
+            "areaOfEffect": "One creature",
+            "savingThrow": "Neg.",
+            "materialComponent": null,
+            "concentration": false,
+            "ritual": false,
+            "higherLevel": null,
+            "description": "Full spell text…",
+            "summary": "First ~160 chars…",
+            "allowedRulesets": [
+                "2e",
+                "5e"
+            ],
+            "allowedCampaignSettings": [
+                "xx",
+                "ds",
+                "fr"
+            ],
+            "rulesets": {
+                "5e": {
+                    "range": "Touch",
+                    "castingTime": "1 action",
+                    "duration": "1 hour",
+                    "components": [
+                        "V",
+                        "S",
+                        "M"
+                    ],
+                    "description": "5e-adapted text if different…"
+                }
+            },
+            "campaignSettings": {
+                "ds": {
+                    "range": "Touch",
+                    "athasianStatus": "Restricted",
+                    "defilerCost": 1,
+                    "materialComponent": "a drop of blood from a creature that has gone without sleep for three days",
+                    "flavorLore": "On Athas the spell tastes of bitter resin and leaves the recipient with a dry, metallic aftertaste."
+                }
+            },
+            "tags": [
+                "#enchantment",
+                "#sleep"
+            ],
+            "artworkPrompt": null,
+            "sourceBooks": [
+                {
+                    "source": "Dragon Kings",
+                    "page": 69
+                }
+            ],
+            "relatedEntries": [],
+            "verified": false
+        }
+    ],
+    "psionics": [
+        {
+            "id": "psionic_probe_2e",
+            "name": "Probe",
+            "discipline": "Telepathy",
+            "tier": "Science",
+            "level": null,
+            "allowedRulesets": [
+                "2e",
+                "2e-rev"
+            ],
+            "allowedCampaignSettings": [
+                "ds",
+                "xx"
+            ],
+            "range": "2 yards",
+            "areaOfEffect": "Individual",
+            "rulesets": {
+                "2e": {
+                    "initialCost": "contact",
+                    "maintenanceCost": "9/round",
+                    "preparationTime": "0",
+                    "prerequisites": [
+                        "Mindlink",
+                        "ESP",
+                        "Contact"
+                    ],
+                    "powerScore": "Wis -2",
+                    "description": "… Complete Psionics Handbook text …",
+                    "powerScoreEffect": "Two questions per round…",
+                    "natural20": "The subject becomes aware of the probe.",
+                    "sourceBooks": [
+                        {
+                            "source": "The Complete Psionics Handbook",
+                            "page": 76
+                        }
+                    ]
+                },
+                "2e-rev": {
+                    "mac": 8,
+                    "pspCost": "8+/4+",
+                    "pspCostSuccess": 8,
+                    "pspCostFailure": 4,
+                    "prerequisites": [
+                        "ESP"
+                    ],
+                    "description": "… Skills & Powers / Way of the Psionicist text …",
+                    "sourceBooks": [
+                        {
+                            "source": "Player's Option: Skills and Powers",
+                            "page": 172
+                        },
+                        {
+                            "source": "The Way of the Psionicist",
+                            "page": 29
+                        }
+                    ]
+                }
+            },
+            "campaignSettings": {
+                "ds": {
+                    "flavorLore": "Among the orders of the Veiled Alliance this power is considered a necessary evil…"
+                }
+            },
+            "tags": [
+                "#telepathy",
+                "#science"
+            ],
+            "artworkPrompt": null,
+            "verified": true
+        }
+    ]
+}
