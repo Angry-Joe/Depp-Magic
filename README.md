@@ -11,6 +11,35 @@ node run-parser.mjs file.pdf
 That writes `output/parsed-spells.json`. Then open `spell-editor.html` in a
 browser and load that file to review and correct the results.
 
+## Version 3.6.1
+
+New files use the `v3.6.1` suffix. Schema stays **3.6.0** (`Reference/schema/spell-powers-schema-v3.6.json`). The v3.6 HTML and JSON stay as-is.
+
+- Editor: [`spells-powers-editor-v3.6.1.html`](spells-powers-editor-v3.6.1.html) (copy under `tools/`)
+- Working corpus: `Reference/spell-powers-v3.6.1.json`
+- Official corpus: `Reference/spell-powers-official-v3.6.1.json`
+- Migrator: `migrate-to-v3.6.1.mjs`
+
+**How to open.** From the repo root, serve the directory (fetch auto-load does not work from `file://`):
+
+```
+npx --yes serve -p 4173
+```
+
+Then open http://localhost:4173/spells-powers-editor-v3.6.1.html. It auto-loads `Reference/spell-powers-v3.6.1.json`, then the official v3.6.1 corpus if the working file is missing.
+
+- **Setting overlay.** With Setting set to a campaign (not all), the panel says **Editing Dark Sun overlay** (or the chosen world). Edits write into `campaignSettings[abbr]` only (partial overlay); the base definition is unchanged.
+- **Rulesets (exactly three).** AD&D 2nd Edition (`2e`); Player's Option (Dark Sun Revised) (`2e-rev`, psionics only — spells share the 2e definition); 5th Edition (`5e`).
+- **2e classes.** Priest or Wizard (Cleric was renamed Priest).
+- **Source filter.** Book titles only (the EAFW book is not split into Air/Earth/Fire/Water).
+
+Re-run cleanup with:
+
+```
+node migrate-to-v3.6.1.mjs
+node migrate-to-v3.6.1.mjs --dry-run
+```
+
 ## Version 3.5
 
 Branch `version-3-5` adds per-campaign and per-ruleset overlays on every record
