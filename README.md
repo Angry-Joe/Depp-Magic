@@ -11,6 +11,35 @@ node run-parser.mjs file.pdf
 That writes `output/parsed-spells.json`. Then open `spell-editor.html` in a
 browser and load that file to review and correct the results.
 
+## Version 3.6.2
+
+New files use the `v3.6.2` suffix. Schema stays **3.6.0**. The v3.6 / v3.6.1 HTML and JSON stay as-is.
+
+- Editor: [`spells-powers-editor-v3.6.2.html`](spells-powers-editor-v3.6.2.html) (copy under `tools/`)
+- Official corpus (preferred auto-load): `Reference/spell-powers-official-v3.6.2.json`
+- Working corpus: `Reference/spell-powers-v3.6.2.json`
+- Migrator: `migrate-to-v3.6.2.mjs`
+
+**How to open.** From the repo root, serve the directory (fetch auto-load does not work from `file://`):
+
+```
+npx --yes serve -p 4173
+```
+
+Then open http://localhost:4173/spells-powers-editor-v3.6.2.html. It auto-loads the official v3.6.2 corpus first, then the working file.
+
+- **Expand Editor stay-open.** The description pop-out no longer closes on backdrop click, blur, or resize; only **Close**, **X**, or **Esc**.
+- **Larger UI fonts.** Base UI ~17px (+4px across the editor chrome).
+- **Prerequisite on all power overlays.** Shown in the edit UI for every ruleset (2e, 2e-rev, and 5e).
+- **Psionic `combatMode`.** Top-level field: `Att` (Attack), `Def` (Defense), or `N/A`. Filterable and editable. Five classic attacks and five defenses are tagged; all other powers are `N/A`.
+
+Re-run JSON transforms with:
+
+```
+node migrate-to-v3.6.2.mjs
+node migrate-to-v3.6.2.mjs --dry-run
+```
+
 ## Version 3.6.1
 
 New files use the `v3.6.1` suffix. Schema stays **3.6.0** (`Reference/schema/spell-powers-schema-v3.6.json`). The v3.6 HTML and JSON stay as-is.
