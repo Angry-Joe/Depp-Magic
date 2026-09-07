@@ -22,9 +22,9 @@
  *         --out=path    write all results to this single file (overrides per-source default)
  *         Default out:  output/<source-title>-parsed.json  (one file per PDF)
  *
- * Output (schema v3.6):
- *   { schemaVersion, dateUpdated, generator, rulesets, campaignSettings, spells: [...], psionics: [...] }
- * See migrate-to-v3.6.mjs / the 3.6 editor for the record shape.
+ * Output (schema v2): a metadata-wrapped object
+ *   { schemaVersion, generator, generatedAt, source|sources, recordCount, spells: [ …SSR records… ] }
+ * See spell-schema.v2.json for the record shape.
  */
 
 import { readFile, writeFile } from 'fs/promises';
@@ -44,19 +44,7 @@ try {
 }
 
 // ── Schema version ───────────────────────────────────────────────────────────
-const SCHEMA_VERSION = '3.6.0';
-
-const RULESET_CATALOG = [
-  { code: '2e',     name: 'AD&D 2nd Edition',                                    alias: ['AD&D 2e'] },
-  { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-  { code: '5e',     name: 'D&D 5th Edition',                                     alias: ['5e'] },
-];
-
-const CAMPAIGN_CATALOG = [
-  { code: 'xx', name: 'Generic / Core' },
-  { code: 'ds', name: 'Dark Sun (Athas)' },
-  { code: 'fr', name: 'Forgotten Realms' },
-];
+const SCHEMA_VERSION = '2.0.0';
 
 // ── Regexes ──────────────────────────────────────────────────────────────────
 
@@ -243,20 +231,9 @@ function parsePspCost(raw) {
   return { pspCost: s, success: Number(ints[0]), failure: null };
 }
 
-/** Revised Dark Sun / Skills & Powers vs original 2e, inferred from the source stem. */
+/** Revised Dark Sun psionics vs original 2e, inferred from the source stem. */
 function detectRuleset(src) {
-  return /\brev(?:ised)?\b|-rev|skills.?and.?powers|way of the psionicist/i.test(String(src || ''))
-    ? '2e-rev'
-    : '2e';
-}
-
-function inferSettingCodes(sourceName, book) {
-  const s = `${sourceName || ''} ${book || ''}`.toLowerCase();
-  if (isDarkSunSource(sourceName) || /dark sun|athas|dragon kings|defilers|veiled alliance|earth,\s*air/.test(s)) {
-    return ['ds'];
-  }
-  if (/forgotten realms|fr\b/.test(s)) return ['fr'];
-  return ['xx'];
+  return /\brev(?:ised)?\b|-rev/i.test(String(src || '')) ? 'revised' : '2e';
 }
 
 /** Prerequisites string → array of strings. "" → []. */
@@ -321,71 +298,46 @@ function buildSpheres(sphereRaw) {
   return results;
 }
 
-function toV36Record(legacy, sourceName) {
+function toSsrSpell(legacy, sourceName) {
+  // Already SSR-shaped if it has id + spheres array
+  if (legacy.id && Array.isArray(legacy.spheres)) return legacy;
+
   const book = humanSource(sourceName || legacy.source || 'Unknown');
-  const isPsi = legacy.class === 'Psionic' || String(legacy.source || '').includes('Psionic') || legacy.discipline;
-  const rulesetCode = detectRuleset(legacy.source || sourceName);
-  const settings = inferSettingCodes(sourceName, book);
-  const page = legacy.page != null && legacy.page !== '' ? String(legacy.page) : undefined;
-  const sourceBooks = [{ source: book + (isPsi && String(legacy.source || '').includes('Psionic') ? ' (Psionic)' : ''), ...(page ? { page } : {}) }];
+  const isPsi = legacy.class === 'Psionic' || String(legacy.source || '').includes('Psionic');
 
   if (isPsi) {
     const { stat, mod } = splitPowerScore(legacy.powerScore);
     const psp = parsePspCost(legacy.pspCost);
-    const desc = legacy.description || '';
-    const rulesetBag = {};
-    if (rulesetCode === '2e-rev') {
-      rulesetBag['2e-rev'] = {
-        mac: parseMac(legacy.mac),
-        pspCost: psp.pspCost,
-        pspCostSuccess: psp.success,
-        pspCostFailure: psp.failure,
-        prerequisites: parsePrerequisites(legacy.prerequisites),
-        description: desc,
-        sourceBooks,
-      };
-    } else {
-      rulesetBag['2e'] = {
-        initialCost: legacy.initialCost || '',
-        maintenanceCost: legacy.maintenanceCost || '',
-        preparationTime: legacy.preparationTime || '',
-        prerequisites: parsePrerequisites(legacy.prerequisites),
-        powerScore: legacy.powerScore || (stat ? `${stat}${mod ? ' ' + mod : ''}` : ''),
-        powerScoreStat: stat,
-        powerScoreMod: mod,
-        description: desc,
-        sourceBooks,
-      };
-    }
-    const rec = {
+    return {
       id: `psionic_${slug(legacy.name)}_2e`,
       name: legacy.name,
-      tradition: 'psionic',
+      class: 'Psionic',
+      '5e_classes': Array.isArray(legacy['5e_classes']) ? legacy['5e_classes'] : [],
       discipline: legacy.discipline || null,
       tier: legacy.tier || null,
       level: null,
+      powerScoreStat: stat,
+      powerScoreMod: mod,
+      initialCost: legacy.initialCost || '',
+      maintenanceCost: legacy.maintenanceCost || '',
+      mac: parseMac(legacy.mac),
+      pspCost: psp.pspCost,
+      pspCostSuccess: psp.success,
+      pspCostFailure: psp.failure,
       range: legacy.range || '',
+      preparationTime: legacy.preparationTime || '',
       areaOfEffect: legacy.areaOfEffect || '',
-      description: desc,
-      summary: desc.length > 160 ? desc.slice(0, 157) + '…' : desc,
-      tags: ['#psionics', ...(legacy.discipline ? ['#' + String(legacy.discipline).toLowerCase()] : [])],
-      artworkPrompt: null,
-      relatedEntries: [],
+      prerequisites: parsePrerequisites(legacy.prerequisites),
+      description: legacy.description || '',
+      page: legacy.page ?? null,
+      sourceBooks: [book + (String(legacy.source || '').includes('Psionic') ? ' (Psionic)' : '')],
       verified: false,
-      sourceBooks,
-      allowedRulesets: [rulesetCode],
-      allowedCampaignSettings: settings.includes('ds') ? uniqSettings(settings) : uniqSettings([...settings, 'ds', 'xx']),
-      rulesets: rulesetBag,
+      originalSource: legacy.source || sourceName,
+      ruleset: detectRuleset(legacy.source || sourceName),
     };
-    if (settings.includes('ds')) {
-      rec.campaignSettings = { ds: { flavorLore: '' } };
-    }
-    return rec;
   }
 
   const cls = (legacy.class === 'Priest' || legacy.class === 'Cleric') ? 'Cleric' : 'Wizard';
-  const tradition = (cls === 'Cleric' || (legacy.sphere || (Array.isArray(legacy.spheres) && legacy.spheres.length)))
-    ? 'divine' : 'arcane';
   const sphereRaw = legacy.sphere || '';
   const spheres = Array.isArray(legacy.spheres) ? legacy.spheres : buildSpheres(sphereRaw);
   const comps = Array.isArray(legacy.components)
@@ -399,62 +351,47 @@ function toV36Record(legacy, sourceName) {
   const tags = [];
   if (athStatus.startsWith('New')) tags.push('#new-dark-sun');
   for (const sp of spheres) {
-    if (sp.name) tags.push('#' + String(sp.name).toLowerCase().replace(/\s+/g, '-'));
+    if (sp.name) tags.push('#' + sp.name.toLowerCase());
   }
 
-  const rec = {
+  return {
     id: `spell_${slug(legacy.name)}_2e`,
     name: legacy.name,
     srdIndex: null,
     level: legacy.level ?? 0,
     school: legacy.school || null,
-    tradition,
-    classes: Array.isArray(legacy.classes) ? legacy.classes : (legacy['5e_classes'] || default5eClasses(cls)),
+    class: cls,
+    '5e_classes': Array.isArray(legacy['5e_classes']) ? legacy['5e_classes'] : default5eClasses(cls),
     spheres,
-    reversible: !!legacy.reversible,
+    castingTime: legacy.castingTime || '',
     range: legacy.range || '',
     components: comps,
     duration: legacy.duration || '',
-    castingTime: legacy.castingTime || '',
-    areaOfEffect: legacy.areaOfEffect || '',
-    savingThrow: legacy.savingThrow || '',
-    materialComponent: legacy.materialComponent || null,
-    preparationTime: legacy.preparationTime || '',
     concentration: false,
     ritual: false,
-    higherLevel: null,
     description: desc,
-    summary: desc.length > 160 ? desc.slice(0, 157) + '…' : desc,
+    higherLevel: null,
+    athasianVariant: {
+      modifiedEffect: null,
+      materialComponentAthas: null,
+      defilerCost: 0,
+      planeSource: null,
+    },
     flavorLore: '',
-    artworkPrompt: null,
+    artworkPrompt: '',
     tags,
     relatedEntries: [],
-    sourceBooks,
+    sourceBooks: [book],
     verified: false,
-    allowedRulesets: [rulesetCode],
-    allowedCampaignSettings: settings,
+    reversible: !!legacy.reversible,
+    areaOfEffect: legacy.areaOfEffect || '',
+    savingThrow: legacy.savingThrow || '',
+    athasianStatus: athStatus,
+    summary: desc.length > 160 ? desc.slice(0, 157) + '…' : desc,
+    page: legacy.page ?? null,
+    preparationTime: legacy.preparationTime || '',
+    originalSource: legacy.source || sourceName,
   };
-
-  if (settings.includes('ds')) {
-    rec.campaignSettings = {
-      ds: {
-        athasianStatus: athStatus,
-      },
-    };
-  }
-
-  return rec;
-}
-
-function uniqSettings(list) {
-  const seen = new Set();
-  const out = [];
-  for (const c of list) {
-    if (!c || seen.has(c)) continue;
-    seen.add(c);
-    out.push(c);
-  }
-  return out;
 }
 
 // ── PDF page text extraction ─────────────────────────────────────────────────
@@ -776,26 +713,17 @@ function printPsionicSummary(psionics) {
   }
 }
 
-// ── Output wrapper (schema 3.6) ───────────────────────────────────────────────
+// ── Output wrapper (schema v2) ────────────────────────────────────────────────
 
-function isPsiRecord(r) {
-  return r?.tradition === 'psionic' || r?.discipline != null;
-}
-
-/** Wrap records in the 3.6 document envelope (flat spells[] + psionics[]). */
-function wrapPayload(records, meta) {
-  const spells = records.filter(r => !isPsiRecord(r));
-  const psionics = records.filter(r => isPsiRecord(r));
+/** Wrap the record array in the v2 metadata envelope. */
+function wrapPayload(spells, meta) {
   return {
     schemaVersion: SCHEMA_VERSION,
-    dateUpdated: new Date().toISOString().slice(0, 10),
     generator: 'run-parser.mjs',
     generatedAt: new Date().toISOString(),
     ...meta,
-    rulesets: RULESET_CATALOG,
-    campaignSettings: CAMPAIGN_CATALOG,
+    recordCount: spells.length,
     spells,
-    psionics,
   };
 }
 
@@ -863,23 +791,23 @@ for (const pdfPath of pdfPaths) {
 
   if (byType.psionic.length) printPsionicSummary(byType.psionic);
 
-  // Convert to schema 3.6
-  const v36 = spells.map(sp => toV36Record(sp, sourceName));
+  // Always convert to SSR schema
+  const ssrSpells = spells.map(sp => toSsrSpell(sp, sourceName));
 
   if (cliOut) {
     // --out: accumulate into one combined file written after the loop
-    combinedSsr.push(...v36);
+    combinedSsr.push(...ssrSpells);
   } else {
     // Default: one file per source → output/<source-title>-parsed.json
     const safeTitle = sourceName.replace(/[^A-Za-z0-9._-]+/g, '_');
     const outPath = join(__dirname, 'output', `${safeTitle}-parsed.json`);
     mkdirSync(dirname(outPath), { recursive: true });
-    const payload = wrapPayload(v36, {
+    const payload = wrapPayload(ssrSpells, {
       source: humanSource(sourceName),
       sourceFile: fileName,
     });
     await writeFile(outPath, JSON.stringify(payload, null, 2));
-    console.log(`\n  Wrote ${payload.spells.length} spells + ${payload.psionics.length} powers (schema ${SCHEMA_VERSION}) → ${outPath}`);
+    console.log(`\n  Wrote ${ssrSpells.length} SSR v${SCHEMA_VERSION} records → ${outPath}`);
   }
 }
 
@@ -891,9 +819,8 @@ if (cliOut) {
   });
   await writeFile(outPath, JSON.stringify(payload, null, 2));
   console.log(`\n${'═'.repeat(60)}`);
-  console.log(`Output written → ${outPath}`);
-  console.log(`  ${payload.spells.length} spells, ${payload.psionics.length} powers  (schema ${SCHEMA_VERSION})`);
+  console.log(`Output written → ${outPath}  (${combinedSsr.length} SSR v${SCHEMA_VERSION} records)`);
 } else {
   console.log(`\n${'═'.repeat(60)}`);
-  console.log('Done. Schema 3.6 files are in the output/ folder.');
+  console.log('Done. SSR schema files are in the output/ folder.');
 }

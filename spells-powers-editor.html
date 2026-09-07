@@ -258,7 +258,7 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 <header>
  <h1>🐉 Spell &amp; Power Editor · 3.6</h1>
  <button id="btnOpen" class="primary">Open JSON…</button>
- <button id="btnImport" title="Merge another JSON file into the current dataset">Import…</button>
+ <button id="btnImport" disabled title="Merge another JSON file into the current dataset">Import…</button>
  <button id="btnAdd" title="Draft a new entry — it is only added to the dataset when you click Apply">+ Add</button>
  <button id="btnSave" disabled>Save</button>
  <button id="btnSaveAs" disabled>Save As…</button>
@@ -746,6 +746,7 @@ function sf(s, key, value) {
     t.prerequisites = String(value || '').split(/[,;]/).map(x => x.trim()).filter(Boolean);
     return;
   }
+ }
  if (key === 'powerScoreStat') { t.powerScoreStat = value === '' ? null : value; return; }
  if (key === 'powerScoreMod') { t.powerScoreMod = value === '' ? null : value; return; }
  if (key === 'pspCost') {
@@ -787,7 +788,15 @@ function sf(s, key, value) {
 
 /* ── Dataset insertion (single source of truth) ─────────── */
 function addToDataset(s) {
- if (!rawData) ensureDataset();
+ const grouped = Array.isArray(rawData) && rawData.length && Array.isArray(rawData[0]?.spells);
+ if (grouped) {
+ rawData[0].spells.push(s);
+ spells.push(s);
+ return;
+ }
+ const arr = Array.isArray(rawData) ? rawData
+ : (rawData && Array.isArray(rawData.spells) ? rawData.spells : null);
+ if (arr && arr !== spells) arr.push(s);
  spells.push(s);
 }
 
@@ -797,20 +806,10 @@ function ensureDataset() {
  spells = [];
  rawData = {
  schemaVersion: SCHEMA_VERSION,
- dateUpdated: new Date().toISOString().slice(0, 10),
  generator: 'spells-powers-editor',
- rulesets: [
-   { code: '2e', name: 'AD&D 2nd Edition', alias: ['AD&D 2e'] },
-   { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-   { code: '5e', name: 'D&D 5th Edition', alias: ['5e'] },
- ],
- campaignSettings: [
-   { code: 'xx', name: 'Generic / Core' },
-   { code: 'ds', name: 'Dark Sun (Athas)' },
-   { code: 'fr', name: 'Forgotten Realms' },
- ],
- spells: [],
- psionics: [],
+ generatedAt: new Date().toISOString(),
+ recordCount: 0,
+ spells,
  };
  fileName = fileName || 'new-spells.json';
  $('empty').style.display = 'none';
@@ -820,92 +819,88 @@ function ensureDataset() {
 }
 
 /* ── File I/O ──────────────────────────────────────────── */
-function extractRecords(json) {
-  if (!json) return [];
-  if (json && typeof json === 'object' && !Array.isArray(json)
-      && (Array.isArray(json.spells) || Array.isArray(json.psionics))) {
-    return [
-      ...(json.spells || []).map(s => ({ ...s, _kind: isPsionic(s) ? 'psionic' : 'spell' })),
-      ...(json.psionics || []).map(p => ({ ...p, _kind: 'psionic' })),
-    ];
-  }
-  if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
-    return json.flatMap(g => g.spells || []);
-  }
-  if (Array.isArray(json)) return json.slice();
-  return [];
-}
-
 async function openFile() {
-  if (!confirmLeaveEdit('open another file')) return;
-  if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
-  const picked = await pickViaInput();
-  if (!picked) return;
-  try { loadData(JSON.parse(picked.text)); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); }
+ if (!confirmLeaveEdit('open another file')) return;
+ if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
+ let text;
+ if (hasFS) {
+ try {
+ [fileHandle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ } catch { return; }
+ const f = await fileHandle.getFile();
+ fileName = f.name;
+ text = await f.text();
+ } else {
+ text = await pickViaInput();
+ if (text === null) return;
+ }
+ try { loadData(JSON.parse(text)); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); }
 }
 
 /** Merge another JSON file into the current dataset (does not replace). */
 async function importFile() {
-  if (!confirmLeaveEdit('import another file')) return;
-  if (!rawData) ensureDataset();
-  const picked = await pickViaInput(true);
-  if (!picked) return;
-  let json;
-  try { json = JSON.parse(picked.text); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); return; }
+ if (!rawData) { alert('Open a file first, or use Open JSON to start a new dataset.'); return; }
+ if (!confirmLeaveEdit('import another file')) return;
+ let text;
+ if (hasFS) {
+ try {
+ const [handle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ text = await (await handle.getFile()).text();
+ } catch { return; }
+ } else {
+ text = await pickViaInput(true);
+ if (text === null) return;
+ }
+ let json;
+ try { json = JSON.parse(text); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); return; }
 
-  const incoming = extractRecords(json);
-  if (!incoming.length) {
-    alert('Unrecognised JSON shape for import. Expected a 3.6 { spells, psionics } document, a 3.5 wrapper, or a flat array of records.');
-    return;
-  }
+ let incoming = [];
+ if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
+ incoming = json.flatMap(g => g.spells);
+ } else if (Array.isArray(json)) {
+ incoming = json;
+ } else if (json && Array.isArray(json.spells)) {
+ incoming = json.spells;
+ } else {
+ alert('Unrecognised JSON shape for import.');
+ return;
+ }
 
-  for (const s of incoming) {
-    normalizeRecord(s);
-    s._id = nextId++;
-    for (const k of PIPE_FIX_KEYS) {
-      const v = gf(s, k);
-      if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
-    }
-    addToDataset(s);
-  }
-  dirty = true;
-  buildFilters();
-  renderTabs();
-  renderTable();
-  refreshStatus();
-  alert(`Imported ${incoming.length} record(s).`);
+ for (const s of incoming) {
+ normalizeRecord(s);
+ s._id = nextId++;
+ for (const k of PIPE_FIX_KEYS) {
+ const v = gf(s, k);
+ if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
+ }
+ addToDataset(s);
+ }
+ dirty = true;
+ buildFilters();
+ renderTabs();
+ renderTable();
+ refreshStatus();
+ alert(`Imported ${incoming.length} record(s).`);
 }
 
 function pickViaInput(keepFileName = false) {
-  return new Promise(resolve => {
-    const inp = document.createElement('input');
-    inp.type = 'file';
-    inp.accept = '.json,application/json,text/json,*/*';
-    inp.style.display = 'none';
-    document.body.appendChild(inp);
-    let settled = false;
-    const finish = (val) => {
-      if (settled) return;
-      settled = true;
-      window.removeEventListener('focus', onFocus);
-      inp.remove();
-      resolve(val);
-    };
-    const onFocus = () => setTimeout(() => { if (!settled && !inp.files.length) finish(null); }, 400);
-    inp.addEventListener('change', async () => {
-      if (!inp.files.length) return finish(null);
-      const f = inp.files[0];
-      if (!keepFileName) fileName = f.name;
-      finish({ name: f.name, text: await f.text() });
-    });
-    inp.addEventListener('cancel', () => finish(null));
-    window.addEventListener('focus', onFocus);
-    inp.click();
-  });
+ return new Promise(resolve => {
+ const inp = document.createElement('input');
+ inp.type = 'file'; inp.accept = '.json,application/json';
+ inp.onchange = async () => {
+ if (!inp.files.length) return resolve(null);
+ if (!keepFileName) fileName = inp.files[0].name;
+ resolve(await inp.files[0].text());
+ };
+ inp.click();
+ });
 }
-
 
 function serialise() {
   spells.forEach(s => { delete s._id; delete s._isNew; delete s._kind; });

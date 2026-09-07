@@ -1,0 +1,2467 @@
+{
+    "schemaVersion": "1.0.0",
+    "generated": "2026-08-23T03:56:19.509Z",
+    "source": "src/data/ALL_MONSTERS.json",
+    "fieldCodes": {
+        "ct": "Climate/Terrain",
+        "fr": "Frequency",
+        "org": "Organization",
+        "cyc": "Activity Cycle",
+        "dt": "Diet",
+        "int": "Intelligence",
+        "tr": "Treasure",
+        "al": "Alignment",
+        "na": "No. Appearing",
+        "ac": "Armor Class",
+        "mv": "Movement",
+        "hd": "Hit Dice",
+        "th": "THAC0",
+        "noa": "No. of Attacks",
+        "dmg": "Damage/Attack",
+        "sa": "Special Attacks",
+        "sd": "Special Defenses",
+        "mr": "Magic Resistance",
+        "sz": "Size",
+        "mor": "Morale",
+        "xp": "XP Value"
+    },
+    "counts": {
+        "pages": 2499,
+        "rows": 3509,
+        "books": 287,
+        "settings": 22,
+        "pagesWithoutStatblock": 48
+    },
+    "settings": [
+        "ADnD",
+        "Advanced Dungeons & Dragons 2nd Edition",
+        "Al-Qadim (Forgotten Realms)",
+        "Alternity",
+        "Birthright",
+        "Dark Sun",
+        "Dragon Magazine",
+        "Dragonlance",
+        "Dungeon Magazine",
+        "Fiends Folio",
+        "Forgotten Realms",
+        "Greyhawk",
+        "Kara-Tur (Forgotten Realms)",
+        "Lankhmar",
+        "Masque of the Red Death (Ravenloft)",
+        "Maztica (Forgotten Realms)",
+        "Mystara",
+        "Planescape",
+        "Ravenloft",
+        "Red Steel (Mystara)",
+        "Spelljammer",
+        "The Horde (Forgotten Realms)"
+    ],
+    "settingAcronyms": {
+        "ADnD": "add2_01",
+        "Advanced Dungeons &amp; Dragons 2nd Edition": "add2_01",
+        "Advanced Dungeons & Dragons 2nd Edition": "add2_01",
+        "Al-Qadim (Forgotten Realms)": "aq",
+        "Alternity": "al",
+        "Birthright": "br",
+        "Dark Sun": "ds",
+        "Dragon Magazine": "dr",
+        "Dragonlance": "dl",
+        "Dungeon Magazine": "du",
+        "Fiends Folio": "ff",
+        "Forgotten Realms": "fr",
+        "Greyhawk": "gh",
+        "Kara-Tur (Forgotten Realms)": "kt",
+        "Lankhmar": "lm",
+        "Masque of the Red Death (Ravenloft)": "rd",
+        "Maztica (Forgotten Realms)": "mz",
+        "Mystara": "ms",
+        "Planescape": "ps",
+        "Ravenloft": "rv",
+        "Red Steel (Mystara)": "rs",
+        "Spelljammer": "sj",
+        "The Horde (Forgotten Realms)": "th"
+    },
+    "settingByAcronym": {
+        "add2_01": "Advanced Dungeons & Dragons 2nd Edition",
+        "aq": "Al-Qadim (Forgotten Realms)",
+        "al": "Alternity",
+        "br": "Birthright",
+        "ds": "Dark Sun",
+        "dr": "Dragon Magazine",
+        "dl": "Dragonlance",
+        "du": "Dungeon Magazine",
+        "ff": "Fiends Folio",
+        "fr": "Forgotten Realms",
+        "gh": "Greyhawk",
+        "kt": "Kara-Tur (Forgotten Realms)",
+        "lm": "Lankhmar",
+        "rd": "Masque of the Red Death (Ravenloft)",
+        "mz": "Maztica (Forgotten Realms)",
+        "ms": "Mystara",
+        "ps": "Planescape",
+        "rv": "Ravenloft",
+        "rs": "Red Steel (Mystara)",
+        "sj": "Spelljammer",
+        "th": "The Horde (Forgotten Realms)"
+    },
+    "books": {
+        "404": {
+            "title": "404",
+            "year": null,
+            "author": null,
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 0
+        },
+        "1049": {
+            "title": "AD&D Adventures In Space",
+            "year": "1989",
+            "author": "Jeff Grub",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 28
+        },
+        "1050": {
+            "title": "Time of the Dragon",
+            "year": "1989",
+            "author": "David Cook",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 9
+        },
+        "1053": {
+            "title": "Ravenloft Campaign Setting, 1st Ed. (\"Realm of Terror\")",
+            "year": "1994",
+            "author": "Bruce Nesmith and Andria Hayday",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 8
+        },
+        "1055": {
+            "title": "The Horde (boxed set)",
+            "year": "1990",
+            "author": "David Cook",
+            "setting": "The Horde (Forgotten Realms)",
+            "acr": "th",
+            "count": 10
+        },
+        "1060": {
+            "title": "Ruins of Undermountain I",
+            "year": "1994",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 11
+        },
+        "1064": {
+            "title": "From the Ashes",
+            "year": "1992",
+            "author": "Carl Sargent",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 8
+        },
+        "1065": {
+            "title": "Legend of the Spelljammer",
+            "year": "1991",
+            "author": "Jeff Grub",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 5
+        },
+        "1066": {
+            "title": "Maztica (boxed set)",
+            "year": "1998",
+            "author": "Douglas Niles",
+            "setting": "Maztica (Forgotten Realms)",
+            "acr": "mz",
+            "count": 6
+        },
+        "1077": {
+            "title": "Land of Fate Box Set",
+            "year": "1992",
+            "author": "Jeff Grubb, Andria Hayday, Fred Fields, Karl Waller, David C. Sutherland III, Robin Raab, Stephanie Tabat, Dori Watry, Angelika Lokotz, John Knecht, Julia Martin, Jon Pickens, John Rateliff, Dori Watry, Thomas Reid, Michele Carter, Tim Beach, David Hirsch, Slade Henson.",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 11
+        },
+        "1083": {
+            "title": "Menzoberranzan",
+            "year": "1992",
+            "author": "Greenwood, Niles, and Salvatore",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 7
+        },
+        "1084": {
+            "title": "The Ruins of Myth Drannor Box Set",
+            "year": "1993",
+            "author": "Jeff Grubb, Ed Greenwood, Julia Martin, Karen S. Boomgarden, Arnie Sweikel, John Statema",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 16
+        },
+        "1085": {
+            "title": "Forgotten Realms Campaign Setting, Revised Edition",
+            "year": "1993",
+            "author": "Jeff Grubb, Ed Greenwood, Julia Martin",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 15
+        },
+        "1088": {
+            "title": "Castles Forlorn",
+            "year": "1993",
+            "author": "Lisa Smedman",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 3
+        },
+        "1089": {
+            "title": "Dragon Mountain",
+            "year": "1993",
+            "author": "Colin McComb, Paul Arden Lidberg",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 16
+        },
+        "1090": {
+            "title": "Cardmaster Adventure Design Deck",
+            "year": "1993",
+            "author": "Rich Borg",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 0
+        },
+        "1091": {
+            "title": "City of Delights",
+            "year": "1993",
+            "author": "tom Prusa, Tim Beach, Steve Kurtz",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 24
+        },
+        "1104": {
+            "title": "Ruins of Undermountain II",
+            "year": "1994",
+            "author": "Jean Rabe, Norm Ritchie",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 21
+        },
+        "1109": {
+            "title": "City of Splendors",
+            "year": "1994",
+            "author": "Ed Greenwood, Elain Cunningham",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 21
+        },
+        "1120": {
+            "title": "Ruins of Zhentil Keep",
+            "year": "1995",
+            "author": "John Terra and Kevin Melka",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 17
+        },
+        "1121": {
+            "title": "Spellbound: Thay, Rasheman, & Aglarond",
+            "year": "1995",
+            "author": "Anthony Pryor",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 18
+        },
+        "1124": {
+            "title": "The Nightmare Lands",
+            "year": "1995",
+            "author": "Shane Lacy Hensley",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 16
+        },
+        "1125": {
+            "title": "Night Below",
+            "year": "1995",
+            "author": "Carl Sargent, John D. Rateliff, Miranda Horner, Arnie Swekel, Glen Michael Angus",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 5
+        },
+        "1145": {
+            "title": "The Rod of Seven Parts",
+            "year": "1996",
+            "author": "Skip Williams",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 10
+        },
+        "1146": {
+            "title": "Requiem: The Grim Harvest",
+            "year": "1996",
+            "author": "William W. Connors, Lisa Smedman",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "1147": {
+            "title": "Netheril: Empire of Magic",
+            "year": "1996",
+            "author": "slade with Jim Butler",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 3
+        },
+        "1162": {
+            "title": "Return to the Tomb of Horrors",
+            "year": "1998",
+            "author": "Bruce R. Cordell, Gary Gygax",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 7
+        },
+        "1163": {
+            "title": "The Shadow Rift",
+            "year": "1998",
+            "author": "William W. Connors, John D. Rateliff, Cindi Rice",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 17
+        },
+        "2012": {
+            "title": "Fiend Folio",
+            "year": "1981",
+            "author": "Don Turnbull",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 0
+        },
+        "2102": {
+            "title": "MC1 Volume I (w/binder #1)",
+            "year": "1991",
+            "author": "Jay Batista, Scott Bennie, Grant Boucher, William W. Connors, Steve Gilbert, Heike Kubasch, James Lowder, David Edward Martin, Bruce Nesmith, Jean Rabe, Rick Swan, John J. Terra, Gary L. Thomas",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 263
+        },
+        "2103": {
+            "title": "MC2 Volume II",
+            "year": "1993",
+            "author": "Jay Batista, Scott Bennie, Grant Boucher, William W. Connors, Steve Gilbert, Heike Kubasch, James Lowder, David Edward Martin, Bruce Nesmith, Jean Rabe, Rick Swan, John J. Terra, Gary L. Thomas",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 260
+        },
+        "2104": {
+            "title": "MC3 Volume III Forgotten Realms Appendix I",
+            "year": "1989",
+            "author": "William Connors, David Martin, Rick Swan, Gary Thomas",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 72
+        },
+        "2105": {
+            "title": "MC4 Dragonlance Appendix (w/binder #2)",
+            "year": "1989",
+            "author": "Rick Swan",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 89
+        },
+        "2107": {
+            "title": "MC5 Greyhawk Appendix",
+            "year": "1989",
+            "author": "Grant Boucher, William W. Connors, Steve Gilbert, Bruce Nesmith, Chris Mortika, Skip Williams",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 77
+        },
+        "2109": {
+            "title": "MC7 Spelljammer Appendix I",
+            "year": "1990",
+            "author": "various",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 69
+        },
+        "2116": {
+            "title": "MC6 Kara-Tur Appendix",
+            "year": "1990",
+            "author": "Rick Swan",
+            "setting": "Kara-Tur (Forgotten Realms)",
+            "acr": "kt",
+            "count": 76
+        },
+        "2117": {
+            "title": "PHBR5 The Complete Psionics Handbook",
+            "year": "1990",
+            "author": "Blake Mobley, Andria Hayday, Steve Winter",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 11
+        },
+        "2118": {
+            "title": "MC8 Outer Planes Appendix",
+            "year": "1990",
+            "author": "Timothy B. Brown, Jamie LaFountain",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 99
+        },
+        "2119": {
+            "title": "MC9 Spelljammer Appendix II",
+            "year": "1991",
+            "author": "Scott Davis, Newton Ewell, John Terra",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 65
+        },
+        "2122": {
+            "title": "MC10 Ravenloft Appendix I",
+            "year": "1989",
+            "author": "William W. Connors",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 58
+        },
+        "2125": {
+            "title": "MC11 Forgotten Realms Appendix II",
+            "year": "1991",
+            "author": "Tim Beach, Tim Brown, William W. Connors, Dale Donovan, Ed Greenwood, Jeff Grubb, Bruce Heard, Slade Henson, Rob King, Colin McComb, Roger E. Moore, Bruce Nesmith, Jon Pickens, Jean Rabe, Dori Watry, Skip Williams",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 72
+        },
+        "2129": {
+            "title": "MC13 Al-Qadim Appendix",
+            "year": "1992",
+            "author": "C. Terry Phillips",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 61
+        },
+        "2131": {
+            "title": "PHBR8 - The Complete Book of Elves",
+            "year": "1992",
+            "author": "Colin McComb, Dori hein, Steve Winter, Brom, Larry Elmore, John & Laura Lakey, Terry Dyksra, Robin Raab, Gaye O'Keefe",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 2
+        },
+        "2132": {
+            "title": "MC14 Fiend Folio Appendix",
+            "year": "1992",
+            "author": "Don Bingle, John Terra, Wes Nicholson, Tim Beach, Steve Hardinger, Kris Hardinger, Rob Nicholls, Greg Swedberg, Al Boyce, Vince Garcia, Norm Ritchie",
+            "setting": "Fiends Folio",
+            "acr": "ff",
+            "count": 56
+        },
+        "2137": {
+            "title": "Lankhmar: City of Adventure (2nd Ed.)",
+            "year": "1993",
+            "author": "Bruce Nesmith, Douglas Niles, and Ken Rolston",
+            "setting": "Lankhmar",
+            "acr": "lm",
+            "count": 17
+        },
+        "2139": {
+            "title": "Ravenloft Appendix II: Children of the Night",
+            "year": "1991",
+            "author": "William W. Connors",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 20
+        },
+        "2140": {
+            "title": "Monstrous Manual",
+            "year": "1995",
+            "author": "Tim Beach",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 662
+        },
+        "2144": {
+            "title": "DMRG6 Complete Book of Villains",
+            "year": "1993",
+            "author": "Kirk Botula",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 0
+        },
+        "2145": {
+            "title": "Monstrous Compendium, 1994 Annual, Volume 1",
+            "year": "1995",
+            "author": "David Wise",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 130
+        },
+        "2153": {
+            "title": "Ravenloft Appendix III",
+            "year": "1991",
+            "author": "Kirk Botulla",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 124
+        },
+        "2158": {
+            "title": "Monstrous Compendium, 1995 Annual, Volume 2",
+            "year": "1995",
+            "author": "Jon Pickens",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 162
+        },
+        "2166": {
+            "title": "Monstrous Compendium, 1996 Annual, Volume 3",
+            "year": "1995",
+            "author": "Jon Pickens",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 135
+        },
+        "2173": {
+            "title": "Monstrous Compendium, 1997 Annual, Volume 4",
+            "year": "1995",
+            "author": "Jon Pickens",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 106
+        },
+        "2400": {
+            "title": "Dark Sun Campaign Setting (original)",
+            "year": "1991",
+            "author": "Timothy B. Brown, Troy Denning, William W. Connors, J. Robert King, Brom and Tom Baxa,",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 18
+        },
+        "2405": {
+            "title": "MC12 Dark Sun Appendix I - Terrors of the Desert",
+            "year": "1991",
+            "author": "Tom Prusa, Louis J. Prosperi, Walter M. Baas",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 97
+        },
+        "2406": {
+            "title": "DSQ1 Road to Urik",
+            "year": "1993",
+            "author": "David Cook",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 0
+        },
+        "2407": {
+            "title": "DSR2 Dune Trader",
+            "year": "1992",
+            "author": "Anthony Pryor, Mike Breault, David O. Miller, Brom, Tracey Zamagne, Dave Sutherland",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 2
+        },
+        "2408": {
+            "title": "Dragon Kings (hardback)",
+            "year": "1992",
+            "author": "Timothy B. Brown",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 3
+        },
+        "2412": {
+            "title": "DSQ3 Asticlian Gambit",
+            "year": "1992",
+            "author": "Anthony Pryor",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 1
+        },
+        "2413": {
+            "title": "DSR4 Valley of Dust and Fire",
+            "year": "1992",
+            "author": "L. Richard Baker III",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 7
+        },
+        "2417": {
+            "title": "DSM1 Black Flames",
+            "year": "1993",
+            "author": "Sam Witt",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 2
+        },
+        "2418": {
+            "title": "The Ivory Triangle",
+            "year": "1993",
+            "author": "Curtis Scott, Kirk Botula",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 4
+        },
+        "2422": {
+            "title": "DSS2 Earth, Air, Fire, and Water",
+            "year": "1993",
+            "author": "Shane Lacy Hensley",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 0
+        },
+        "2428": {
+            "title": "DSE2 Black Spine",
+            "year": "1994",
+            "author": "Walter Baas, Dustin Browder, Tom Prusa, Jonathan Tweet, Ann Goetz, Steve Maggi, Tom Baxa",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 59
+        },
+        "2432": {
+            "title": "City by the Silt Sea",
+            "year": "1994",
+            "author": "Shane Lacy Hensley",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 16
+        },
+        "2433": {
+            "title": "Dark Sun Appendix II - Terrors Beyond Tyr",
+            "year": "1991",
+            "author": "Jim Atkiss, Steve Brown, Timothy B. Brown, Andrew P. Morris, Bruce Nesmith, Wes Nicholson, Bill Slavicsek",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 111
+        },
+        "2434": {
+            "title": "The Chronicles of Athas 1, The Brazen Gambit",
+            "year": "1997",
+            "author": "Lynn Abbey",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 0
+        },
+        "2437": {
+            "title": "Thri-Kreen of Athas",
+            "year": "1995",
+            "author": "Tim Beach and Dori Hein",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 3
+        },
+        "2438": {
+            "title": "Dark Sun Campaign Setting (revised)",
+            "year": "1991",
+            "author": "Bill Slavicsek",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 12
+        },
+        "2439": {
+            "title": "Windriders of the Jagged Cliffs",
+            "year": "1995",
+            "author": "Monte Cook",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 2
+        },
+        "2444": {
+            "title": "Mind Lords of the Last Sea",
+            "year": "1996",
+            "author": "Matt Forbeck",
+            "setting": "Dark Sun",
+            "acr": "ds",
+            "count": 9
+        },
+        "2501": {
+            "title": "Mystara Appendix",
+            "year": "1994",
+            "author": "John Nephew, Teeuwynn Woodruff, John Terra, Skip Williams",
+            "setting": "Mystara",
+            "acr": "ms",
+            "count": 179
+        },
+        "2524": {
+            "title": "Monstrous Compendium Savage Coast Appendix (Online Exclusive)",
+            "year": "1995",
+            "author": "Loren L Coleman, Ted James, Thomas Zuvich, Cindi M. Rice",
+            "setting": "Mystara",
+            "acr": "ms",
+            "count": 109
+        },
+        "2600": {
+            "title": "Planescape Campaign Setting",
+            "year": "1994",
+            "author": "David Cook",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 27
+        },
+        "2602": {
+            "title": "MC Planescape I",
+            "year": "1991",
+            "author": "various",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 108
+        },
+        "2603": {
+            "title": "Planes of Chaos",
+            "year": "1994",
+            "author": "Wolfgang Baur, L. W. Smith",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 18
+        },
+        "2607": {
+            "title": "Planes of Law",
+            "year": "1995",
+            "author": "Colin McComb, Wolfgang Baur",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 22
+        },
+        "2613": {
+            "title": "Planescape II",
+            "year": "1996",
+            "author": "Rich Baker, Karen S. Boomgarden",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 66
+        },
+        "2615": {
+            "title": "Planes of Conflict",
+            "year": "1995",
+            "author": "Colin Mccomb, Dale Donovan",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 16
+        },
+        "2621": {
+            "title": "Hellbound: The Blood War",
+            "year": "1996",
+            "author": "Colin Mccomb",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 1
+        },
+        "2626": {
+            "title": "Doors to the Unknown",
+            "year": "1996",
+            "author": "Bill Slavicsek",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 1
+        },
+        "2631": {
+            "title": "Dead Gods",
+            "year": "1997",
+            "author": "Monte Cook",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 1
+        },
+        "2635": {
+            "title": "Planescape III",
+            "year": "1996",
+            "author": "Monte Cook",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 80
+        },
+        "3100": {
+            "title": "Birthright Campaign Setting Box Set",
+            "year": "1995",
+            "author": "L. Richard Baker III, Colin McComb, Walter Velez, Tony Szczudlo, William O'Connor, Eric Hotz, Carrie Bebris, Roger E. Moore, Sue Weinlein, Peggy Cooper",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 9
+        },
+        "3110": {
+            "title": "Warlock of the Stonecrowns",
+            "year": "1995",
+            "author": "Wolfgang Baur",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 2
+        },
+        "3117": {
+            "title": "Book of Magecraft",
+            "year": "1994",
+            "author": "Carrie A. Bebris, Anne Brown, Jean Rabe, Steven Schend, Ed Stark",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 9
+        },
+        "3118": {
+            "title": "The Sword of Roele",
+            "year": "1996",
+            "author": "Wolfgang Baur, Anne Gray McCready, Karen S. boomgarden, Nick Choles",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 2
+        },
+        "3121": {
+            "title": "The Rjurik Highlands",
+            "year": "1996",
+            "author": "Anne Brown, Anthony Pryor",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 1
+        },
+        "3140": {
+            "title": "Blood Spawn: Creatures of Light and Shadow",
+            "year": "1995",
+            "author": "Carrie A. Bebris",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 28
+        },
+        "3147": {
+            "title": "Tribes of the Heartless Waste",
+            "year": "1997",
+            "author": "Ed Stark",
+            "setting": "Birthright",
+            "acr": "br",
+            "count": 1
+        },
+        "9244": {
+            "title": "DLE2 - Dragon Magic",
+            "year": "1990",
+            "author": "Rick Swan",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 3
+        },
+        "9245": {
+            "title": "DLE3 - Dragon Keep",
+            "year": "1989",
+            "author": "Rick Swan",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 2
+        },
+        "9247": {
+            "title": "FRE1 Shadowdale",
+            "year": "1989",
+            "author": "Ed Greenwood, Ned Dameron",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 5
+        },
+        "9248": {
+            "title": "FRE2 Tantras",
+            "year": "1989",
+            "author": "Ed Greenwood, Anne Brown, Kim Mohan, Karl Waller",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9249": {
+            "title": "FRE3 Waterdeep",
+            "year": "1989",
+            "author": "Ed Greenwood, Allen Varney, Kim Mohan, Allen Nunis",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9258": {
+            "title": "OA7 Test of the Samurai",
+            "year": "1990",
+            "author": "Rick Swan",
+            "setting": "Kara-Tur (Forgotten Realms)",
+            "acr": "kt",
+            "count": 4
+        },
+        "9270": {
+            "title": "WG12 Vale of the Mage",
+            "year": "1989",
+            "author": "Jean Rabe",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 4
+        },
+        "9273": {
+            "title": "SJA1 Wildspace",
+            "year": "1990",
+            "author": "Allen Varney",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 3
+        },
+        "9274": {
+            "title": "FR10 Old Empires",
+            "year": "1987",
+            "author": "Scott Bennie",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 8
+        },
+        "9275": {
+            "title": "DLA1 Dragon Dawn",
+            "year": "1985",
+            "author": "Deborah Christian",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 2
+        },
+        "9278": {
+            "title": "DLR1 Otherlands",
+            "year": "1992",
+            "author": "Haring, Bennie, and Terra",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 8
+        },
+        "9279": {
+            "title": "WGA1 Falcon's Revenge",
+            "year": "1989",
+            "author": "Richard W and Anne Brown",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 3
+        },
+        "9280": {
+            "title": "SJR1 Lost Ships",
+            "year": "1990",
+            "author": "Ed Greenwood, Paul Jaquays, Anne Brown, Dell Barras, Brom, Jeff Grubb",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 10
+        },
+        "9281": {
+            "title": "FRA1 Storm Riders",
+            "year": "1990",
+            "author": "Troy Denning, Timothy Brown, Paul Abrams",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9286": {
+            "title": "SJA2 Skull & Crossbows",
+            "year": "1990",
+            "author": "Nigel Findley",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 2
+        },
+        "9289": {
+            "title": "WGA2 Falconmaster",
+            "year": "1990",
+            "author": "Richard W and Anne Brown",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 3
+        },
+        "9290": {
+            "title": "FRA2 Black Courser",
+            "year": "1990",
+            "author": "Troy Denning,Paul Abrams",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 3
+        },
+        "9292": {
+            "title": "WGR1 Greyhawk Ruins",
+            "year": "1990",
+            "author": "Blake Mobley and Timothy B. Brown, Grant Boucher, William W. Connors, Steve Gilbert, Bruce Nesmith, Chris Mortika, Skip Williams",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 18
+        },
+        "9294": {
+            "title": "DLA3 Dragon's Rest",
+            "year": "1990",
+            "author": "Rick Swan, Mike Breault, Valerie Valusek",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 3
+        },
+        "9295": {
+            "title": "LNR1 Wonders of Lankhmar",
+            "year": "1992",
+            "author": "Dale \"Slade\" Henson",
+            "setting": "Lankhmar",
+            "acr": "lm",
+            "count": 4
+        },
+        "9297": {
+            "title": "FOR1 - Draconomicon",
+            "year": "1990",
+            "author": "Nigel Findley et al.",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 4
+        },
+        "9298": {
+            "title": "RA1 Feast of Goblyns",
+            "year": "1990",
+            "author": "Blake Mobley, William W. Connors, Stephen Fabian, Clyde Caldwell",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 3
+        },
+        "9299": {
+            "title": "SJA3 - Crystal Spheres",
+            "year": "1990",
+            "author": "J. Paul LaFountain, Anne Brown, Brom, Paul Abrams, Diesel, Angelika Lokotz, Paul Hanchette",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 5
+        },
+        "9300": {
+            "title": "FR11 Dwarves Deep",
+            "year": "1990",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9301": {
+            "title": "FA1 Halls of the High King",
+            "year": "1990",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 8
+        },
+        "9302": {
+            "title": "WGA3 Flames of the Falcon",
+            "year": "1990",
+            "author": "Richard and Anne Brown",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 7
+        },
+        "9304": {
+            "title": "FRA3 Blood Charge",
+            "year": "1990",
+            "author": "Troy Denning, Anne Brown, Paul Abrams",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 4
+        },
+        "9305": {
+            "title": "LNA2 Nehwon",
+            "year": "1990",
+            "author": "Blake Mobley, Karen Boomgarden, Fred Fields, Ken Frank",
+            "setting": "Lankhmar",
+            "acr": "lm",
+            "count": 2
+        },
+        "9309": {
+            "title": "WGA4 Vecna Lives!",
+            "year": "1990",
+            "author": "David \"Zeb\" Cook",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 2
+        },
+        "9312": {
+            "title": "SJR2 - Realmspace",
+            "year": "1991",
+            "author": "Dale \"Slade\" Henson, Karen S. Boomgarden, Gary L. Thomas",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 9
+        },
+        "9315": {
+            "title": "LC4 Port of Ravens Bluff",
+            "year": "1991",
+            "author": "Jean Rabe and Skip Williams, David Wise, kevin Ward, Valerie Valusek",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9318": {
+            "title": "LNA3 Prince of Lankhmar",
+            "year": "1990",
+            "author": "Dale \"Slade\" Henson",
+            "setting": "Lankhmar",
+            "acr": "lm",
+            "count": 1
+        },
+        "9320": {
+            "title": "FR13 Anauroch",
+            "year": "1991",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 6
+        },
+        "9321": {
+            "title": "RA2 Ship of Horrors",
+            "year": "1990",
+            "author": "Anne Brown, Mike Breault",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 3
+        },
+        "9325": {
+            "title": "SJA4 Under the Dark Fist",
+            "year": "1991",
+            "author": "Grant Boucher",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 5
+        },
+        "9326": {
+            "title": "The Drow of the Underdark",
+            "year": "1991",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 19
+        },
+        "9329": {
+            "title": "LNR2 Tales of Lankhmar",
+            "year": "1991",
+            "author": "Anthony Pryor, Jon Pickens, Terry Dykstra",
+            "setting": "Lankhmar",
+            "acr": "lm",
+            "count": 2
+        },
+        "9331": {
+            "title": "RR1 Darklords",
+            "year": "1990",
+            "author": "Andria Hayday, William W. Connors, Bruce Nesmith, James Lowder, Mike Breault, Stephen Fabian",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "9333": {
+            "title": "FMA1 Fires of Zatal",
+            "year": "1991",
+            "author": "Jeff Grub and Tim Beach",
+            "setting": "Maztica (Forgotten Realms)",
+            "acr": "mz",
+            "count": 4
+        },
+        "9334": {
+            "title": "Wild Elves",
+            "year": "1991",
+            "author": "Scott Bennie",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 6
+        },
+        "9336": {
+            "title": "RR2 Book of Crypts",
+            "year": "1990",
+            "author": "Dale Slade Henson, J. Robert King, Anne Brows, Jean Rabe, Laura and Kelly Freas, Stephen Fabian",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "9337": {
+            "title": "WGS2 Howl From the North",
+            "year": "1991",
+            "author": "Dale \"Slade\" Henson, Mike Breault, Ken Frank",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 1
+        },
+        "9340": {
+            "title": "FMA2 Endless Armies",
+            "year": "1991",
+            "author": "Jeff Grub and Tim Beach",
+            "setting": "Maztica (Forgotten Realms)",
+            "acr": "mz",
+            "count": 2
+        },
+        "9341": {
+            "title": "FA2 Nightmare Keep",
+            "year": "1991",
+            "author": "Rick Swan",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9343": {
+            "title": "SJS1 Goblins Return",
+            "year": "1991",
+            "author": "Bruce Nesmith",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 6
+        },
+        "9344": {
+            "title": "DLR2 Taladas: The Minotaurs",
+            "year": "1990",
+            "author": "Colin McComb",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 6
+        },
+        "9347": {
+            "title": "SJQ1 Heart of the Enemy",
+            "year": "1992",
+            "author": "Rick Swan",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 7
+        },
+        "9348": {
+            "title": "RR4 Islands of Terror",
+            "year": "1991",
+            "author": "Colin McComb and Scott Bennie",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "9349": {
+            "title": "FMQ1 City of Gold",
+            "year": "1991",
+            "author": "John Nephew and Jonathan Tweet",
+            "setting": "Maztica (Forgotten Realms)",
+            "acr": "mz",
+            "count": 1
+        },
+        "9351": {
+            "title": "FR14 The Great Glacier",
+            "year": "1991",
+            "author": "Rick Swan",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 8
+        },
+        "9354": {
+            "title": "FRQ1 Haunted Halls of Eveningstar",
+            "year": "1992",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9364": {
+            "title": "RQ2: Thoughts of Darkness",
+            "year": "1992",
+            "author": "David Wise",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 3
+        },
+        "9366": {
+            "title": "ALQ1 Golden Voygages",
+            "year": "1992",
+            "author": "David \"Zeb\" Cook",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 3
+        },
+        "9369": {
+            "title": "FRQ2 Hordes of Dragonspear",
+            "year": "1992",
+            "author": "William W. Connors, Arnie Swekel",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 3
+        },
+        "9374": {
+            "title": "SJR6 Greyspace",
+            "year": "1992",
+            "author": "Nigel Findley",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 3
+        },
+        "9376": {
+            "title": "HR3 Celts Campaign",
+            "year": "1992",
+            "author": "Graeme Davis",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 4
+        },
+        "9382": {
+            "title": "Flint's Axe",
+            "year": "1992",
+            "author": "Tim Beach",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 2
+        },
+        "9388": {
+            "title": "FR16 The Shining South",
+            "year": "1992",
+            "author": "Tom Prusa",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9390": {
+            "title": "FOR4 The Code of the Harpers",
+            "year": "1993",
+            "author": "Ed Greenwood, Mike Breault, Scott Rosema",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9391": {
+            "title": "FRQ3 Doom of Daggerdale",
+            "year": "1992",
+            "author": "Wolfgang Baur",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9408": {
+            "title": "HR6 Age of Heroes",
+            "year": "1994",
+            "author": "Nicky Rea, Matt Forbeck",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 1
+        },
+        "9409": {
+            "title": "SJR7 Krynnspace",
+            "year": "1993",
+            "author": "Jean Rabe",
+            "setting": "Spelljammer",
+            "acr": "sj",
+            "count": 2
+        },
+        "9413": {
+            "title": "RM1 Roots of Evil",
+            "year": "1993",
+            "author": "Eric Haddock and David Wise",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "9414": {
+            "title": "RM2 The Created",
+            "year": "1992",
+            "author": "Bruce Nesmith, Dori Jean Watry, Dave Simons",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "9416": {
+            "title": "RR7 Van Richten's Guide to Werebeasts",
+            "year": "1992",
+            "author": "Nigel findley",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "9419": {
+            "title": "RM5 Dark of the Moon",
+            "year": "1993",
+            "author": "L Richard Baker III, Thomas M Reid",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "9430": {
+            "title": "FOR5 Elves of Evermeet",
+            "year": "1993",
+            "author": "Anthony Prior",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 6
+        },
+        "9431": {
+            "title": "ALQ2 Assassin Mountain",
+            "year": "1993",
+            "author": "Wolfgang Baur, Michele Carter, Anne Brown, Karl Waller",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 8
+        },
+        "9433": {
+            "title": "ALQ4 Secrets of the Lamp",
+            "year": "1993",
+            "author": "Wolfgang Baur",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 8
+        },
+        "9439": {
+            "title": "RE1 Adam's Wrath",
+            "year": "1990",
+            "author": "Lisa Smedman, Doug Stewart",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "9440": {
+            "title": "Ruined Kingdoms",
+            "year": "1994",
+            "author": "Steven Kurtz, Richard Pike-Brown, John D. Rateliff",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 4
+        },
+        "9444": {
+            "title": "Departure",
+            "year": "1996",
+            "author": "Anthony Pryor",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 1
+        },
+        "9449": {
+            "title": "Corsairs of the Great Sea",
+            "year": "1994",
+            "author": "Nicky Rea",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 7
+        },
+        "9452": {
+            "title": "The Awakening",
+            "year": "1994",
+            "author": "Lisa Smedman, Richard Pike-Brown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "9459": {
+            "title": "Caravans",
+            "year": "1994",
+            "author": "Rick Swan, C. Terry, Dezra D. Phillips, Fred Fields",
+            "setting": "Al-Qadim (Forgotten Realms)",
+            "acr": "aq",
+            "count": 3
+        },
+        "9484": {
+            "title": "The Sword of the Dales",
+            "year": "1995",
+            "author": "Jim Butler, Allison Lassieur, Elizabeth T. Danforth",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9485": {
+            "title": "FRB1 The Secret of Spiderhaunt",
+            "year": "1995",
+            "author": "Jim Butler, Allison Lassieur, David Day",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9487": {
+            "title": "FOR7 Giantcraft",
+            "year": "1993",
+            "author": "Ray Winninger",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 3
+        },
+        "9488": {
+            "title": "FRB3 The Return of Randal Morn",
+            "year": "1995",
+            "author": "Jim Butler, Allison Lassieur, Elizabeth T. Danforth",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 2
+        },
+        "9491": {
+            "title": "FOR8 Pages from the Mages",
+            "year": "1993",
+            "author": "Ed Greenwood and Tim Beach",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 3
+        },
+        "9506": {
+            "title": "Chronomancer",
+            "year": "1995",
+            "author": "Loren Coleman, Matt Forbeck",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 9
+        },
+        "9507": {
+            "title": "Shaman",
+            "year": "1995",
+            "author": "Kevin Hassal, Steve Miller, Karen S. Boomgarden, Roger Moore",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 15
+        },
+        "9526": {
+            "title": "Death Ascendant",
+            "year": "1996",
+            "author": "Lisa Smedman, Steven Brown, Steven Miller",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "9529": {
+            "title": "A Guide to Transylvania",
+            "year": "1996",
+            "author": "Nicky Rea",
+            "setting": "Masque of the Red Death (Ravenloft)",
+            "acr": "rd",
+            "count": 1
+        },
+        "9533": {
+            "title": "The Gates of Firestorm Peak",
+            "year": "1996",
+            "author": "Bruce Cordell",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 5
+        },
+        "9535": {
+            "title": "Volo's Guide to All Things Magical",
+            "year": "1996",
+            "author": "Ed Greenwood with Eric L. Boyd",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9539": {
+            "title": "The Sea Devils",
+            "year": "1997",
+            "author": "Skip Williams",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 2
+        },
+        "9540": {
+            "title": "How the Mighty Are Fallen",
+            "year": "1996",
+            "author": "slade",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9541": {
+            "title": "Servants of Darkness",
+            "year": "1998",
+            "author": "Kevin Melka and Steve Miller",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "9544": {
+            "title": "Castle Spulzeer",
+            "year": "1997",
+            "author": "Doug Stewart, Carrie A. Bebris, Dawn Murin, Paul Hanchette",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 1
+        },
+        "9547": {
+            "title": "FOR11 Cult of the Dragon",
+            "year": "1990",
+            "author": "Dale Donovan",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 11
+        },
+        "9552": {
+            "title": "Villains' Lorebook",
+            "year": "1998",
+            "author": "Dale Donovan, Bill Olmesdahl, Todd Lockwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 10
+        },
+        "9563": {
+            "title": "Powers and Pantheons",
+            "year": "1997",
+            "author": "Eric L. Boyd, Kate Grubb, Skip Williams, Julia Martin",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 5
+        },
+        "9569": {
+            "title": "The Illithiad",
+            "year": "1998",
+            "author": "Bruce R Cordel",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 4
+        },
+        "9570": {
+            "title": "A Darkness Gathering",
+            "year": "1998",
+            "author": "Bruce R Cordel",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 1
+        },
+        "9572": {
+            "title": "Dawn of the Overmind",
+            "year": "1998",
+            "author": "Bruce R Cordel",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 2
+        },
+        "9574": {
+            "title": "For Duty & Deity",
+            "year": "1998",
+            "author": "Dale Donovan",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 4
+        },
+        "9575": {
+            "title": "The City of Ravens Bluff",
+            "year": "1998",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 4
+        },
+        "9582": {
+            "title": "Vecna Reborn",
+            "year": "1998",
+            "author": "Monte Cook",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "11347": {
+            "title": "Axe of the Dwarvish Lords",
+            "year": "1999",
+            "author": "Skip Williams",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 5
+        },
+        "11372": {
+            "title": "Chaos Spawn",
+            "year": "1999",
+            "author": "Douglas Niles",
+            "setting": "Dragonlance",
+            "acr": "dl",
+            "count": 4
+        },
+        "11374": {
+            "title": "The Scarlet Brotherhood",
+            "year": "1999",
+            "author": "Sean Reynolds, Kij Johnson, Chris McKitterick, Lisa Stevens, Erik Mona, Roger Moore, Steve Wilson, Sam Wood, Dawn Murin",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 6
+        },
+        "11383": {
+            "title": "Campaign Option: Council of Wyrms",
+            "year": "1998",
+            "author": "Bill Slavicsek",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 1
+        },
+        "11405": {
+            "title": "The Wyrmskull Throne",
+            "year": "1994",
+            "author": "Steven E. Schend, thomas M. Reid",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 5
+        },
+        "11413": {
+            "title": "Against the Giants: The Liberation of Geoff",
+            "year": "1999",
+            "author": "Gary Gygax, Sean K Reynolds",
+            "setting": "Greyhawk",
+            "acr": "gh",
+            "count": 1
+        },
+        "11430": {
+            "title": "FOR13 Secrets of the Magister",
+            "year": "1990",
+            "author": "Ed Greenwood",
+            "setting": "Forgotten Realms",
+            "acr": "fr",
+            "count": 4
+        },
+        "11431": {
+            "title": "Guide to Hell",
+            "year": "1999",
+            "author": "Chris Pramas",
+            "setting": "Planescape",
+            "acr": "ps",
+            "count": 11
+        },
+        "11444": {
+            "title": "Dungeons of Despair",
+            "year": "1999",
+            "author": "Christopher Perkins",
+            "setting": "Advanced Dungeons & Dragons 2nd Edition",
+            "acr": "add2_01",
+            "count": 1
+        },
+        "11507": {
+            "title": "Van Richten's Monster Hunter's Compendium, Volume Two",
+            "year": "1999",
+            "author": "William W. Connors, Eric W. Haddock, Skip Williams, David Wise, David Wu",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "Dungeon23": {
+            "title": "Dungeon #23",
+            "year": "1990",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon193": {
+            "title": "Dragon193",
+            "year": "1993",
+            "author": "John Power, Terry Dykstra, Randy Maxwell, Tom Baxa",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "Dragon268": {
+            "title": "Dragon268",
+            "year": "2000",
+            "author": "Michael Kuciak, Pete Venters",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "Dragon204": {
+            "title": "Dragon204",
+            "year": "1994",
+            "author": "Gregory W. Detwiler, Tony DiTerlizzi",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 13
+        },
+        "Dragon248": {
+            "title": "Dragon248",
+            "year": "1998",
+            "author": "Gregory W. Detwiler, Terry Dykstra",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 11
+        },
+        "Dragon237": {
+            "title": "Dragon237",
+            "year": "1996",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 2
+        },
+        "Dragon159": {
+            "title": "Dragon159",
+            "year": "1990",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon235": {
+            "title": "Dragon235",
+            "year": "1996",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 10
+        },
+        "Dragon198": {
+            "title": "Dragon198",
+            "year": "1993",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 9
+        },
+        "Dragon167": {
+            "title": "Dragon167",
+            "year": "1991",
+            "author": "David Howery, Gregg Chamberlain,",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 18
+        },
+        "Dragon162": {
+            "title": "Dragon162",
+            "year": "1990",
+            "author": "Spike Y. Jones, Thomas Baxa",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "DragonMagazineAnnual1998": {
+            "title": "Dragon Magazine Annual 3 - 1998",
+            "year": "1998",
+            "author": "Johnathan M. Richards, David Day",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 11
+        },
+        "Dragon165": {
+            "title": "Dragon165",
+            "year": "1991",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 2
+        },
+        "Dragon243": {
+            "title": "Dragon243",
+            "year": "1998",
+            "author": "Steve Berman, Roger Raupp, Johnathan M. Richards, George Vrbanic",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 9
+        },
+        "Dragon244": {
+            "title": "Dragon244",
+            "year": "1998",
+            "author": "Michael Lambert, David Day, Roger Raupp, with Chris Perkins and Jesse Decker",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 8
+        },
+        "Dragon191": {
+            "title": "Dragon191",
+            "year": "1993",
+            "author": "Richard A. Hunt, L.A. Williams",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 2
+        },
+        "Dragon172": {
+            "title": "Dragon172",
+            "year": "1991",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "TerrorsFromAbove": {
+            "title": "Terrors From Above",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 2
+        },
+        "Dragon185": {
+            "title": "Dragon185",
+            "year": "1992",
+            "author": "Timothy B. Brown, Brom",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 8
+        },
+        "Dragon227": {
+            "title": "Dragon227",
+            "year": "1996",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 10
+        },
+        "Dragon197": {
+            "title": "Dragon197",
+            "year": "1993",
+            "author": "Ed Greenwood, Tom Baxa",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon156": {
+            "title": "Dragon156",
+            "year": "1990",
+            "author": "Mark Nelson, Bruce A. Heard",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 14
+        },
+        "BookofSorrows": {
+            "title": "Bookof Sorrows",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 9
+        },
+        "TheLonesomeRoad": {
+            "title": "The Lonesome Road",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 27
+        },
+        "Dragon270": {
+            "title": "Dragon270",
+            "year": "2000",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon223": {
+            "title": "Dragon223",
+            "year": "1995",
+            "author": "Rob Letts, Wayne A. Haskett",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 7
+        },
+        "Dragon239": {
+            "title": "Dragon239",
+            "year": "1997",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "Dragon269": {
+            "title": "Dragon269",
+            "year": "2000",
+            "author": "Jack Pitsker, David Day",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 11
+        },
+        "Dragon206": {
+            "title": "Dragon206",
+            "year": "1994",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "DragonMagazineAnnual1996": {
+            "title": "Dragon Magazine Annual 1 - 1996",
+            "year": "1996",
+            "author": "Keith Strohm, James Holloway",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "Dungeon37": {
+            "title": "Dungeon #37",
+            "year": "1992",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 2
+        },
+        "Dragon186": {
+            "title": "Dragon186",
+            "year": "1992",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon267": {
+            "title": "Dragon267",
+            "year": "2000",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon238": {
+            "title": "Dragon238",
+            "year": "1997",
+            "author": "John Baichtal, Brian Walton, Tom Baxa",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 7
+        },
+        "Dragon210": {
+            "title": "Dragon210",
+            "year": "1994",
+            "author": "Tom Moldvay, Jim Holloway",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dungeon76": {
+            "title": "Dungeon #76",
+            "year": "1999",
+            "author": "Raymond E. Dyer, Toren Atkinson",
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 6
+        },
+        "Dragon190": {
+            "title": "Dragon190",
+            "year": "1993",
+            "author": "Gregory W. Detwiler, Michael John Wybo II, Alan Pollack, Ruth Thompson",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 31
+        },
+        "Dragon174": {
+            "title": "Dragon174",
+            "year": "1991",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 13
+        },
+        "Dragon246": {
+            "title": "Dragon246",
+            "year": "1998",
+            "author": "Gregory W. Detwiler, George Vrbanic",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon252": {
+            "title": "Dragon252",
+            "year": "1998",
+            "author": "Michael D. Winkle, Mark Nelson",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "BookofSouls": {
+            "title": "Bookof Souls",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "Dragon170": {
+            "title": "Dragon170",
+            "year": "1991",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 10
+        },
+        "Dragon163": {
+            "title": "Dragon163",
+            "year": "1990",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "Dragon183": {
+            "title": "Dragon183",
+            "year": "1992",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "Dragon182": {
+            "title": "Dragon182",
+            "year": "1992",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 7
+        },
+        "Dungeon24": {
+            "title": "Dungeon #24",
+            "year": "1990",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon272": {
+            "title": "Dragon272",
+            "year": "2000",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon271": {
+            "title": "Dragon271",
+            "year": "2000",
+            "author": "Richard Sanders, Leon Chang, Talon Dunning, Dennis Caiero",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon173": {
+            "title": "Dragon173",
+            "year": "1991",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "Dungeon56": {
+            "title": "Dungeon #56",
+            "year": "1995",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "BookofSecrets": {
+            "title": "Bookof Secrets",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 4
+        },
+        "Dragon180": {
+            "title": "Dragon180",
+            "year": "1992",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon247": {
+            "title": "Dragon247",
+            "year": "1998",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon209": {
+            "title": "Dragon209",
+            "year": "1994",
+            "author": "Don Webb, Terry Dykstra",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dragon228": {
+            "title": "Dragon228",
+            "year": "1996",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "BookofShadows": {
+            "title": "Bookof Shadows",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 3
+        },
+        "Dragon262": {
+            "title": "Dragon262",
+            "year": "1999",
+            "author": "Chris Avellone",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "DragonMagazineAnnual1997": {
+            "title": "Dragon Magazine Annual 2 -1997",
+            "year": "1997",
+            "author": "Belinda G. Ashley, C.H. Burnett",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon164": {
+            "title": "Dragon164",
+            "year": "1990",
+            "author": "Spike Y. Jones",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 2
+        },
+        "Dungeon57": {
+            "title": "Dungeon #57",
+            "year": "1996",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon214": {
+            "title": "Dragon214",
+            "year": "1995",
+            "author": "Norman Abrahamsen, Terry Dykstra; Johnathan M. Richards, Scott Rosema",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dungeon33": {
+            "title": "Dungeon #33",
+            "year": "1992",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon249": {
+            "title": "Dragon249",
+            "year": "1998",
+            "author": "James Wyatt, Roger Raupp",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dragon187": {
+            "title": "Dragon187",
+            "year": "1992",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 2
+        },
+        "Dragon192": {
+            "title": "Dragon192",
+            "year": "1993",
+            "author": "Spike Y. Jones",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dragon266": {
+            "title": "Dragon266",
+            "year": "1999",
+            "author": "Brian P. Hudson, Scott Fisher",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 3
+        },
+        "Dungeon62": {
+            "title": "Dungeon #62",
+            "year": "1997",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dungeon31": {
+            "title": "Dungeon #31",
+            "year": "1991",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "ShawnMulder": {
+            "title": "Homebrew",
+            "year": null,
+            "author": "Shawn Mulder",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "Dragon242": {
+            "title": "Dragon242",
+            "year": "1997",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "Dungeon71": {
+            "title": "Dungeon #71",
+            "year": "1998",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon213": {
+            "title": "Dragon213",
+            "year": "1995",
+            "author": "Edward Bonny",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dungeon35": {
+            "title": "Dungeon #35",
+            "year": "1992",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dungeon28": {
+            "title": "Dungeon #28",
+            "year": "1991",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon234": {
+            "title": "Dragon234",
+            "year": "1996",
+            "author": "Rudy Thauberger, Ray VanTilburg",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 6
+        },
+        "Dragon221": {
+            "title": "Dragon221",
+            "year": "1995",
+            "author": "Edward Bonny, Terry Dykstra",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 4
+        },
+        "Dragon233": {
+            "title": "Dragon233",
+            "year": "1996",
+            "author": "Monte Cook, Adam Rex",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dungeon61": {
+            "title": "Dungeon #61",
+            "year": "1997",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dungeon64": {
+            "title": "Dungeon #64",
+            "year": "1997",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon199": {
+            "title": "Dragon199",
+            "year": "1993",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 5
+        },
+        "Dragon205": {
+            "title": "Dragon205",
+            "year": "1994",
+            "author": null,
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dragon184": {
+            "title": "Dragon184",
+            "year": "1992",
+            "author": "Jason M. Walker, Thomas Baxa",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "BookofSacrifices": {
+            "title": "Bookof Sacrifices",
+            "year": null,
+            "author": "Unknown",
+            "setting": "Ravenloft",
+            "acr": "rv",
+            "count": 1
+        },
+        "Dungeon54": {
+            "title": "Dungeon #54",
+            "year": "1995",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 1
+        },
+        "Dragon224": {
+            "title": "Dragon224",
+            "year": "1995",
+            "author": "Skip Williams, Terry Dykstra",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "Dragon230": {
+            "title": "Dragon230",
+            "year": "1996",
+            "author": "Ed Stark, David O. Miller",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 1
+        },
+        "DragonMagazineAnnual1999": {
+            "title": "Dragon Magazine Annual 4 - 1999",
+            "year": "1999",
+            "author": "Troy Denning, Pete Venters",
+            "setting": "Dragon Magazine",
+            "acr": "dr",
+            "count": 0
+        },
+        "Dungeon26": {
+            "title": "Dungeon #26",
+            "year": "1990",
+            "author": null,
+            "setting": "Dungeon Magazine",
+            "acr": "du",
+            "count": 0
+        }
+    },
+    "rows":[
+        {
+            "id": 1,
+            "key": "aarakath",
+            "page": "Aarakocra (Athas)",
+            "name": "Aarakocra (Athas)",
+            "set": "Dark Sun",
+            "acr": "ds",
+            "allowedSettings": [
+                "ds"
+            ],
+            "src": [
+                "2433"
+            ],
+            "psi": true,
+            "sb": {
+                "cyc": "Day",
+                "al": "Any",
+                "ac": "7",
+                "ct": "Deep desert",
+                "dmg": "1d3/1d3 or by weapon",
+                "dt": "Carnivore",
+                "fr": "Rare",
+                "hd": "2+2",
+                "int": "Average (8-10)",
+                "mr": "Nil",
+                "mor": "Steady (11)",
+                "mv": "6, Fl 36 (C)",
+                "na": "1d10",
+                "noa": "2",
+                "org": "Tribal",
+                "sz": "M (20'+ wingspan)",
+                "sa": "Nil",
+                "sd": "Nil",
+                "th": "17",
+                "tr": "Varies",
+                "xp": "65"
+            },
+            "d": {
+                "hd": 2,
+                "hdMod": 2,
+                "hdMax": null,
+                "hdSort": 2.02,
+                "ac": 7,
+                "thac0": 17,
+                "xp": 65,
+                "mor": 11,
+                "mv": 6,
+                "modes": [
+                    "Fly"
+                ],
+                "sz": "Medium",
+                "int": "Average",
+                "intScore": 8,
+                "fr": "Rare",
+                "dt": "Carnivore",
+                "cyc": "Day",
+                "al": "Any",
+                "noa": 2
+            }
+        }
+    ]
+}

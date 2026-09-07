@@ -11,7 +11,93 @@ node run-parser.mjs file.pdf
 That writes `output/parsed-spells.json`. Then open `spell-editor.html` in a
 browser and load that file to review and correct the results.
 
+## Version 3.6.2
+
+New files use the `v3.6.2` suffix. Schema stays **3.6.0**. The v3.6 / v3.6.1 HTML and JSON stay as-is.
+
+- Editor: [`spells-powers-editor-v3.6.2.html`](spells-powers-editor-v3.6.2.html) (copy under `tools/`)
+- Official corpus (preferred auto-load): `Reference/spell-powers-official-v3.6.2.json`
+- Working corpus: `Reference/spell-powers-v3.6.2.json`
+- Migrator: `migrate-to-v3.6.2.mjs`
+
+**How to open.** From the repo root, serve the directory (fetch auto-load does not work from `file://`):
+
+```
+npx --yes serve -p 4173
+```
+
+Then open http://localhost:4173/spells-powers-editor-v3.6.2.html. It auto-loads the official v3.6.2 corpus first, then the working file.
+
+- **Expand Editor stay-open.** The description pop-out no longer closes on backdrop click, blur, or resize; only **Close**, **X**, or **Esc**.
+- **Larger UI fonts.** Base UI ~17px (+4px across the editor chrome).
+- **Prerequisite on all power overlays.** Shown in the edit UI for every ruleset (2e, 2e-rev, and 5e).
+- **Psionic `combatMode`.** Top-level field: `Att` (Attack), `Def` (Defense), or `N/A`. Filterable and editable. Five classic attacks and five defenses are tagged; all other powers are `N/A`.
+
+Re-run JSON transforms with:
+
+```
+node migrate-to-v3.6.2.mjs
+node migrate-to-v3.6.2.mjs --dry-run
+```
+
+## Version 3.6.1
+
+New files use the `v3.6.1` suffix. Schema stays **3.6.0** (`Reference/schema/spell-powers-schema-v3.6.json`). The v3.6 HTML and JSON stay as-is.
+
+- Editor: [`spells-powers-editor-v3.6.1.html`](spells-powers-editor-v3.6.1.html) (copy under `tools/`)
+- Working corpus: `Reference/spell-powers-v3.6.1.json`
+- Official corpus: `Reference/spell-powers-official-v3.6.1.json`
+- Migrator: `migrate-to-v3.6.1.mjs`
+
+**How to open.** From the repo root, serve the directory (fetch auto-load does not work from `file://`):
+
+```
+npx --yes serve -p 4173
+```
+
+Then open http://localhost:4173/spells-powers-editor-v3.6.1.html. It auto-loads `Reference/spell-powers-v3.6.1.json`, then the official v3.6.1 corpus if the working file is missing.
+
+- **Setting overlay.** With Setting set to a campaign (not all), the panel says **Editing Dark Sun overlay** (or the chosen world). Edits write into `campaignSettings[abbr]` only (partial overlay); the base definition is unchanged.
+- **Rulesets (exactly three).** AD&D 2nd Edition (`2e`); Player's Option (Dark Sun Revised) (`2e-rev`, psionics only — spells share the 2e definition); 5th Edition (`5e`).
+- **2e classes.** Priest or Wizard (Cleric was renamed Priest).
+- **Source filter.** Book titles only (the EAFW book is not split into Air/Earth/Fire/Water).
+
+Re-run cleanup with:
+
+```
+node migrate-to-v3.6.1.mjs
+node migrate-to-v3.6.1.mjs --dry-run
+```
+
+## Version 3.5
+
+Branch `version-3-5` adds per-campaign and per-ruleset overlays on every record
+in `Reference/Spells-Powers-Combined-DarkSun.json`.
+
+**Spells**
+
+- `allowedSettings` — array of abbreviated campaign settings (`ds`, `xx`, `fr`, …)
+- `campaignSettings` — `{ [abbr]: partial spell }` overrides. Selecting a Setting
+  filter in `tools/spells-powers-editor.html` shows base fields with that
+  overlay applied; edits write into the overlay.
+
+**Psionic powers**
+
+- `allowedSettings` — same abbreviations
+- `ruleset` — object, not a string: `{ adnd2e?: partial, revised?: partial }`
+  - `adnd2e` = original Complete Psionics Handbook (Power Score, initial / maintenance)
+  - `revised` = Player's Option / *The Way of the Psionicist* (MAC, PSP x/y)
+
+Setting abbreviations live in `Reference/schema/campaign-settings.json`.
+Migrate a corpus with:
+
+```
+node migrate-to-v3.5.mjs
+node migrate-to-v3.5.mjs --in=path.json --out=path.json
+```
+
 ## Version 2
+
 
 Version 2 drops the original .NET implementation (`DeepMagic.App` and the
 `src/` solution) in favour of the Node parser, which is now the whole tool.

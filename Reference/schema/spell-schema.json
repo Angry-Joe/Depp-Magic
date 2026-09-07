@@ -47,5 +47,11 @@
     "summary": "First ~160 chars of description…",
     "page": 12,
     "preparationTime": "",
-    "originalSource": "DragonKings-AllSpells"
+    "originalSource": "DragonKings-AllSpells",
+    "allowedSettings": ["ds"],
+    "campaignSettings": {
+        "ds": {
+            "athasianStatus": "New (Dark Sun)"
+        }
+    }
 }

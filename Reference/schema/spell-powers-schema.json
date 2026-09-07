@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "2.0.0",
-  "generator": "run-parser.mjs",
-  "generatedAt": "2026-08-10T15:00:00.000Z",
+  "schemaVersion": "3.5.0",
+  "generator": "migrate-to-v3.5.mjs",
+  "generatedAt": "2026-08-20T22:00:00.000Z",
   "source": "Dragon Kings",
   "sourceFile": "DragonKings-AllSpells.pdf",
   "recordCount": 3,
@@ -44,7 +44,13 @@
       "summary": "The caster draws moisture and nutrients from a wide area into a single plant...",
       "page": 61,
       "preparationTime": "",
-      "originalSource": "DragonKings-AllSpells"
+      "originalSource": "DragonKings-AllSpells",
+      "allowedSettings": ["ds"],
+      "campaignSettings": {
+        "ds": {
+          "athasianStatus": "New (Dark Sun)"
+        }
+      }
     },
     {
       "id": "psionic_id_insinuation_2e",
@@ -67,7 +73,15 @@
       "sourceBooks": ["The Will and the Way (Psionic)"],
       "verified": false,
       "originalSource": "TheWillAndTheWay",
-      "ruleset": "2e"
+      "allowedSettings": ["ds"],
+      "ruleset": {
+        "adnd2e": {
+          "powerScoreStat": "Wis",
+          "powerScoreMod": "-3",
+          "initialCost": "20",
+          "maintenanceCost": "8/round"
+        }
+      }
     },
     {
       "id": "psionic_clairaudience_2e",
@@ -89,12 +103,20 @@
       "range": "Unlimited",
       "areaOfEffect": "Special",
       "prerequisites": ["None"],
-      "description": "This power allows the user to hear sounds from a distant area. The user picks a location he knows, makes an MTHAC0 roll, then gets to hear everything that he would be able to hear normally if he were standing in that spot. If the user has enhanced hearing, that ability also applies to the use of clairaudience. The power doesn’t screen out noise around the user’s physical body, which may make it difficult to hear sounds elsewhere. The power doesn’t provide any abilities to understand languages or interpret sounds. The distance of the listening spot modifies the power’s MAC, as shown below. For example, a user trying to hear something 10,000 miles away would require a roll against a lower MAC. Instead of 8, the mental armor class would now be -2. If the user’s MTHAC0 is 15, he needs to roll a 17 to successfully employ this power.\n\nPower’s MAC -2 -4\n\n* Clairaudience only works within a given plane or crystal sphere.",
+      "description": "This power allows the user to hear sounds from a distant area...",
       "page": 20,
       "sourceBooks": ["Dark Sun Campaign Setting (Revised)"],
       "verified": false,
       "originalSource": "DSCS-Rev-WayOfThePsionicist",
-      "ruleset": "revised"
+      "allowedSettings": ["ds", "xx"],
+      "ruleset": {
+        "revised": {
+          "mac": 8,
+          "pspCost": "5/2",
+          "pspCostSuccess": 5,
+          "pspCostFailure": 2
+        }
+      }
     }
   ]
 }

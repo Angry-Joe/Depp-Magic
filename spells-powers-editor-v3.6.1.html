@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Depp-Magic Spell &amp; Power Editor (schema 3.6)</title>
+<title>Depp-Magic Spell &amp; Power Editor 3.6.1 (schema 3.6.0)</title>
 <style>
  :root{
  --bg:#1c140d;--panel:#251a10;--panel2:#2f2114;--ink:#f2e4cf;--muted:#c7a97e;
@@ -151,6 +151,10 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
  background:#3a2410;border:1px solid var(--accent2);color:var(--ink);
  border-radius:6px;padding:8px 10px;margin:0 0 12px;font-size:12.5px;line-height:1.45
  }
+ .overlay-banner.overlay-editing{
+ background:#4a2810;border-color:var(--accent);font-weight:600
+ }
+ .overlay-banner .ov-kicker{display:block;color:var(--accent);font-size:11px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:2px}
  .overlay-banner code{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
 
 
@@ -256,9 +260,9 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 <body>
 
 <header>
- <h1>🐉 Spell &amp; Power Editor · 3.6</h1>
+ <h1>🐉 Spell &amp; Power Editor · 3.6.1</h1>
  <button id="btnOpen" class="primary">Open JSON…</button>
- <button id="btnImport" title="Merge another JSON file into the current dataset">Import…</button>
+ <button id="btnImport" disabled title="Merge another JSON file into the current dataset">Import…</button>
  <button id="btnAdd" title="Draft a new entry — it is only added to the dataset when you click Apply">+ Add</button>
  <button id="btnSave" disabled>Save</button>
  <button id="btnSaveAs" disabled>Save As…</button>
@@ -275,10 +279,12 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 
 <main>
  <div id="empty">
- <p><strong>Open a schema-v3.6 file (or a legacy 3.5 / flat array) to get started.</strong></p>
- <p>Loads <kbd>{ schemaVersion: "3.6.0", spells: [...], psionics: [...] }</kbd> or older shapes.
- Use the <strong>Setting</strong> filter for <kbd>campaignSettings</kbd> overlays and the
- <strong>Ruleset</strong> filter for <kbd>rulesets</kbd> mechanical overlays (<kbd>2e</kbd> / <kbd>2e-rev</kbd> / <kbd>5e</kbd>).</p>
+ <p><strong>Open a schema-v3.6 file (editor 3.6.1) to get started.</strong></p>
+ <p>Schema stays <kbd>3.6.0</kbd>. Auto-loads working then official <kbd>Reference/spell-powers-v3.6.1.json</kbd>.
+ A specific <strong>Setting</strong> filter writes a partial overlay into <kbd>campaignSettings[abbr]</kbd> only
+ (the panel says <em>Editing Dark Sun overlay</em>) — it does not mutate the base definition.
+ Rulesets: AD&amp;D 2nd Edition (<kbd>2e</kbd>), Player's Option (Dark Sun Revised) (<kbd>2e-rev</kbd>, psionics only),
+ 5th Edition (<kbd>5e</kbd>). 2e classes are Priest or Wizard. Source filter lists book titles only.</p>
 
  drag a column edge to resize, and use the <kbd>☰</kbd> button to show/hide columns. Click a row to read it, then
  <strong>Edit</strong> to change it — or tick the checkboxes to bulk-edit several at once.</p>
@@ -326,11 +332,14 @@ cursor:col-resize;-webkit-user-select:none;user-select:none
 'use strict';
 
 /* ── Schema ────────────────────────────────────────────── */
+const EDITOR_VERSION = '3.6.1';
 const SCHEMA_VERSION = '3.6.0';
 const DEFAULT_DATA_URLS = [
- 'data/spell-powers-v3.6.json',
- '../Reference/spell-powers-v3.6.json',
- '../Reference/Spells-Powers-Combined-DarkSun.json',
+ 'Reference/spell-powers-v3.6.1.json',
+ 'Reference/spell-powers-official-v3.6.1.json',
+ '../Reference/spell-powers-v3.6.1.json',
+ '../Reference/spell-powers-official-v3.6.1.json',
+ 'data/spell-powers-v3.6.1.json',
 ];
 
 const SETTINGS = {
@@ -358,12 +367,21 @@ const SETTINGS = {
 };
 const RULESETS = {
  '2e':     'AD&D 2nd Edition',
- '2e-rev': "Player's Option / Dark Sun Revised",
- '5e':     'D&D 5th Edition',
- // legacy aliases still accepted when loading old files
- adnd2e:  'AD&D 2nd Edition (legacy code)',
- revised: "Revised (legacy code)",
+ '2e-rev': "Player's Option (Dark Sun Revised)",
+ '5e':     '5th Edition',
 };
+const RULESET_ALIASES = { adnd2e: '2e', revised: '2e-rev', xr: '2e-rev' };
+const PSI_2E_KEYS = new Set(['powerScore','powerScoreStat','powerScoreMod','powerScoreEffect','initialCost','maintenanceCost','preparationTime','natural20']);
+const PSI_REV_KEYS = new Set(['mac','pspCost','pspCostSuccess','pspCostFailure']);
+const CANONICAL_EAFW = 'Earth, Air, Fire, and Water';
+const NON_BOOK_SOURCES = new Set([
+  'air','earth','fire','water','silt','magma','rain','sun','cosmos',
+  'plant','animal','combat','healing','guardian','protection','wards',
+  'charm','divination','necromancy','summoning','creation','time','war',
+  'numbers','astral','travelers','law','thought','weather','chaos',
+  'elemental (all)','elemental','gladiator','templar','bard','trader',
+  'defiler','preserver','druid','cleric','priest','wizard','kit',
+]);
 const BASE_ONLY = new Set([
   'id', 'allowedCampaignSettings', 'allowedRulesets',
   'campaignSettings', 'rulesets', 'tradition',
@@ -445,7 +463,7 @@ const TABS = {
  ],
  /* Edit-form layout, top to bottom */
  editLayout: [
- { row: [ { k: 'classes', label: 'Classes (comma-separated)' }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
+ { row: [ { k: 'classes', label: 'Class (2e)', type: 'select', options: ['Priest', 'Wizard'] }, { k: 'level', label: 'Level' } ], cols: '1fr 96px' },
  { k: 'name', label: 'Name' },
  { k: 'tradition', label: 'Tradition', type: 'select', options: ['arcane', 'divine'] },
  { k: 'allowedCampaignSettings', label: 'Allowed campaign settings (abbr, comma-separated)' },
@@ -496,11 +514,11 @@ const TABS = {
  { row: [ { k: 'discipline', label: 'Discipline' }, { k: 'tier', label: 'Tier' } ] },
  { row: [ { k: 'powerScoreStat', label: 'Power Score', type: 'select', options: ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Cha'] }, { k: 'powerScoreMod', label: 'Modifier' } ], cols: '1fr 110px' },
  { row: [ { k: 'initialCost', label: 'Initial Cost' }, { k: 'maintenanceCost', label: 'Maintenance Cost' } ] },
- { row: [ { k: 'mac', label: 'MAC' }, { k: 'pspCost', label: 'PSP Cost (x/y)' } ], cols: '110px 1fr' },
+ { row: [ { k: 'mac', label: 'MAC' }, { k: 'pspCost', label: 'PSP Cost' } ], cols: '110px 1fr' },
  { k: 'range', label: 'Range' },
  { k: 'preparationTime', label: 'Preparation Time' },
  { k: 'areaOfEffect', label: 'Area of Effect' },
- { k: 'prerequisites', label: 'Prerequisites (comma-separated)' },
+ { k: 'prerequisites', label: 'Prerequisite' },
  { k: 'source', label: 'Source' },
  { k: 'verified', label: 'Verified', type: 'toggle' },
  ],
@@ -509,6 +527,42 @@ const TABS = {
 };
 let activeTab = 'spells';
 const tab = () => TABS[activeTab];
+
+function psiEditLayout() {
+  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
+  const ident = [
+    { k: 'name', label: 'Name' },
+    { k: 'allowedCampaignSettings', label: 'Allowed campaign settings (abbr, comma-separated)' },
+    { k: 'allowedRulesets', label: 'Allowed rulesets (2e, 2e-rev, 5e)' },
+    { row: [ { k: 'discipline', label: 'Discipline' }, { k: 'tier', label: 'Tier' } ] },
+  ];
+  const twoE = [
+    { row: [ { k: 'powerScoreStat', label: 'Power Score', type: 'select', options: ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Cha'] }, { k: 'powerScoreMod', label: 'Modifier' } ], cols: '1fr 110px' },
+    { row: [ { k: 'initialCost', label: 'Initial Cost' }, { k: 'maintenanceCost', label: 'Maintenance Cost' } ] },
+    { k: 'range', label: 'Range' },
+    { k: 'preparationTime', label: 'Preparation Time' },
+    { k: 'areaOfEffect', label: 'Area of Effect' },
+    { k: 'prerequisites', label: 'Prerequisite' },
+  ];
+  const rev = [
+    { k: 'mac', label: 'MAC' },
+    { k: 'pspCost', label: 'PSP Cost' },
+    { k: 'range', label: 'Range' },
+    { k: 'areaOfEffect', label: 'Area of Effect' },
+    { k: 'prerequisites', label: 'Prerequisite' },
+  ];
+  const tail = [
+    { k: 'source', label: 'Source' },
+    { k: 'verified', label: 'Verified', type: 'toggle' },
+  ];
+  if (rs === '2e-rev') return [...ident, ...rev, ...tail];
+  if (rs === '5e') return [...ident, { k: 'range', label: 'Range' }, { k: 'areaOfEffect', label: 'Area of Effect' }, ...tail];
+  if (rs === '2e') return [...ident, ...twoE, ...tail];
+  return [...ident, ...twoE, { k: 'mac', label: 'MAC' }, { k: 'pspCost', label: 'PSP Cost' }, ...tail];
+}
+function currentEditLayout() {
+  return activeTab === 'psionics' ? psiEditLayout() : TABS.spells.editLayout;
+}
 
 function isPsionic(s) {
   if (!s) return false;
@@ -527,20 +581,37 @@ function filterValue(key) {
   return sel && sel.value ? sel.value : '';
 }
 
-/** Prefer campaign-setting overlay, then ruleset overlay. */
+/** Prefer campaign-setting overlay, then ruleset overlay.
+ *  Spells have no separate 2e-rev overlay — 2e and 2e-rev share the 2e definition.
+ */
+function settingFilterValue() {
+  return filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
+}
+function rulesetFilterValue() {
+  const raw = filterValue('allowedRulesets') || filterValue('ruleset');
+  return RULESET_ALIASES[raw] || raw;
+}
 function activeOverlaySpec(s) {
-  if (!s) return null;
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st) return { bag: 'campaignSettings', key: st };
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
-  if (rs) return { bag: 'rulesets', key: rs };
-  return null;
+  if (!s) {
+    const st0 = settingFilterValue();
+    if (st0) return { bag: 'campaignSettings', key: st0, kind: 'setting' };
+    const rs0 = rulesetFilterValue();
+    if (!rs0) return null;
+    if (activeTab !== 'psionics' && rs0 === '2e-rev') return null;
+    return { bag: 'rulesets', key: rs0, kind: 'ruleset' };
+  }
+  const st = settingFilterValue();
+  if (st) return { bag: 'campaignSettings', key: st, kind: 'setting' };
+  const rs = rulesetFilterValue();
+  if (!rs) return null;
+  const psi = isPsionic(s) || activeTab === 'psionics';
+  if (!psi && rs === '2e-rev') return null;
+  return { bag: 'rulesets', key: rs, kind: 'ruleset' };
 }
 
 function overlayOf(s) {
   const spec = activeOverlaySpec(s);
   if (!spec) return null;
-  // accept both new "rulesets" and legacy "ruleset" bag names
   const bagName = spec.bag;
   const bag = s[bagName] || (bagName === 'rulesets' ? s.ruleset : null);
   if (!bag || typeof bag !== 'object' || Array.isArray(bag)) return null;
@@ -548,49 +619,105 @@ function overlayOf(s) {
   return ov && typeof ov === 'object' && !Array.isArray(ov) ? ov : null;
 }
 
+function ensureNamedOverlay(s, bagName, key) {
+  if (!s[bagName] || typeof s[bagName] !== 'object' || Array.isArray(s[bagName])) s[bagName] = {};
+  if (!s[bagName][key] || typeof s[bagName][key] !== 'object' || Array.isArray(s[bagName][key])) {
+    s[bagName][key] = {};
+  }
+  return s[bagName][key];
+}
+
 function ensureOverlay(s) {
   const spec = activeOverlaySpec(s);
   if (!spec) return null;
-  const bagName = spec.bag;
-  if (!s[bagName] || typeof s[bagName] !== 'object' || Array.isArray(s[bagName])) s[bagName] = {};
-  if (!s[bagName][spec.key] || typeof s[bagName][spec.key] !== 'object' || Array.isArray(s[bagName][spec.key])) {
-    s[bagName][spec.key] = {};
+  return ensureNamedOverlay(s, spec.bag, spec.key);
+}
+
+function writeTarget(s, key) {
+  const spec = activeOverlaySpec(s);
+  if (spec && spec.kind === 'setting') return ensureOverlay(s);
+  if (isPsionic(s) || activeTab === 'psionics') {
+    if (PSI_2E_KEYS.has(key)) return ensureNamedOverlay(s, 'rulesets', '2e');
+    if (PSI_REV_KEYS.has(key)) return ensureNamedOverlay(s, 'rulesets', '2e-rev');
   }
-  return s[bagName][spec.key];
+  return ensureOverlay(s) || s;
 }
 
 function overlayLabel() {
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st) return SETTINGS[st] ? `${SETTINGS[st]} (${st})` : st;
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
-  if (rs) return RULESETS[rs] ? `${RULESETS[rs]} (${rs})` : rs;
+  const st = settingFilterValue();
+  if (st) return SETTINGS[st] || st;
+  const rs = rulesetFilterValue();
+  if (rs) return RULESETS[rs] ? RULESETS[rs] : rs;
   return '';
 }
 
-function overlayBannerHtml() {
-  const lab = overlayLabel();
-  if (!lab) return '';
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  const bag = st ? 'campaignSettings' : 'rulesets';
-  return `<div class="overlay-banner">Showing <strong>${esc(lab)}</strong>. Sidebar fields use <code>${bag}</code> overrides when present, otherwise the base entry. Edits write to the overlay, not the base.</div>`;
+function overlayBannerHtml(mode) {
+  const st = settingFilterValue();
+  if (st) {
+    const name = SETTINGS[st] || st;
+    if (mode === 'edit' || mode === 'new') {
+      return `<div class="overlay-banner overlay-editing"><span class="ov-kicker">Campaign overlay</span><strong>Editing ${esc(name)} overlay</strong>. Changes write to <code>campaignSettings.${esc(st)}</code> only (partial overlay) — not the base definition.</div>`;
+    }
+    return `<div class="overlay-banner"><span class="ov-kicker">Campaign overlay</span>Viewing <strong>${esc(name)}</strong>. Sidebar fields use <code>campaignSettings.${esc(st)}</code> when present, otherwise the base entry.</div>`;
+  }
+  const rs = rulesetFilterValue();
+  if (!rs) return '';
+  if (activeTab !== 'psionics' && rs === '2e-rev') {
+    return `<div class="overlay-banner">Spells use one <strong>AD&amp;D 2nd Edition</strong> definition for both 2e and 2e-rev (no separate 2e-rev spell overlay).</div>`;
+  }
+  const lab = RULESETS[rs] || rs;
+  const bag = 'rulesets';
+  if (mode === 'edit' || mode === 'new') {
+    return `<div class="overlay-banner overlay-editing"><span class="ov-kicker">Ruleset overlay</span><strong>Editing ${esc(lab)}</strong>. Changes write to <code>${bag}.${esc(rs)}</code>, not the base.</div>`;
+  }
+  return `<div class="overlay-banner">Showing <strong>${esc(lab)}</strong>. Sidebar fields use <code>${bag}.${esc(rs)}</code> overrides when present, otherwise the base entry.</div>`;
+}
+
+function hasOwnField(obj, key) {
+  return obj && typeof obj === 'object' && Object.prototype.hasOwnProperty.call(obj, key) && obj[key] !== undefined;
 }
 
 function sourceFor(s, key) {
   if (BASE_ONLY_KEYS.has(key)) return s;
-  // 1. campaign setting override
-  const st = filterValue('allowedCampaignSettings') || filterValue('allowedSettings');
-  if (st && s.campaignSettings?.[st] && Object.prototype.hasOwnProperty.call(s.campaignSettings[st], key)
-      && s.campaignSettings[st][key] !== undefined) {
-    return s.campaignSettings[st];
-  }
-  // 2. ruleset override (new bag name or legacy)
-  const rs = filterValue('allowedRulesets') || filterValue('ruleset');
+  const st = settingFilterValue();
+  if (st && hasOwnField(s.campaignSettings?.[st], key)) return s.campaignSettings[st];
   const rbag = s.rulesets || s.ruleset;
-  if (rs && rbag?.[rs] && Object.prototype.hasOwnProperty.call(rbag[rs], key)
-      && rbag[rs][key] !== undefined) {
-    return rbag[rs];
+  const rs = rulesetFilterValue();
+  const psi = isPsionic(s);
+  const rsKey = (!psi && rs === '2e-rev') ? '2e' : rs;
+  if (rsKey && hasOwnField(rbag?.[rsKey], key)) return rbag[rsKey];
+  if (psi) {
+    if (PSI_2E_KEYS.has(key) && hasOwnField(rbag?.['2e'], key)) return rbag['2e'];
+    if (PSI_REV_KEYS.has(key) && hasOwnField(rbag?.['2e-rev'], key)) return rbag['2e-rev'];
+    if (hasOwnField(rbag?.['2e'], key)) return rbag['2e'];
+    if (hasOwnField(rbag?.['2e-rev'], key)) return rbag['2e-rev'];
   }
   return s;
+}
+
+function canonicalSourceTitle(title) {
+  const t = String(title || '').trim();
+  if (!t) return t;
+  if (/^(air|earth|fire|water)$/i.test(t)) return CANONICAL_EAFW;
+  if (/earth.*air.*fire.*water/i.test(t) || /dss\s*2\b/i.test(t) || /\b2422\b/.test(t)) return CANONICAL_EAFW;
+  return t;
+}
+
+function sourceTitlesOf(s) {
+  const src = s || {};
+  const books = Array.isArray(src.sourceBooks) ? src.sourceBooks
+    : (Array.isArray(sourceFor(src, 'source').sourceBooks) ? sourceFor(src, 'source').sourceBooks : []);
+  const titles = books.map(b => canonicalSourceTitle(typeof b === 'object' ? (b.source || '') : String(b || ''))).filter(Boolean);
+  if (titles.length) return titles;
+  const legacy = gfRaw(src, 'source');
+  return legacy ? [canonicalSourceTitle(legacy)] : [];
+}
+
+function classText(s) {
+  return String(gf(s, 'classes') ?? gfRaw(s, 'class') ?? '');
+}
+function recordIsPriest(s) {
+  return /priest|cleric/i.test(classText(s));
 }
 
 function gfRaw(s, key) {
@@ -716,7 +843,7 @@ function gf(s, key) {
 }
 
 function sf(s, key, value) {
-  const t = BASE_ONLY_KEYS.has(key) ? s : (ensureOverlay(s) || s);
+  const t = BASE_ONLY_KEYS.has(key) ? s : (writeTarget(s, key) || s);
   if (key === 'allowedCampaignSettings' || key === 'allowedSettings') {
     s.allowedCampaignSettings = String(value || '').split(/[,;]/).map(x => x.trim().toLowerCase()).filter(Boolean);
     return;
@@ -787,7 +914,15 @@ function sf(s, key, value) {
 
 /* ── Dataset insertion (single source of truth) ─────────── */
 function addToDataset(s) {
- if (!rawData) ensureDataset();
+ const grouped = Array.isArray(rawData) && rawData.length && Array.isArray(rawData[0]?.spells);
+ if (grouped) {
+ rawData[0].spells.push(s);
+ spells.push(s);
+ return;
+ }
+ const arr = Array.isArray(rawData) ? rawData
+ : (rawData && Array.isArray(rawData.spells) ? rawData.spells : null);
+ if (arr && arr !== spells) arr.push(s);
  spells.push(s);
 }
 
@@ -797,20 +932,10 @@ function ensureDataset() {
  spells = [];
  rawData = {
  schemaVersion: SCHEMA_VERSION,
- dateUpdated: new Date().toISOString().slice(0, 10),
- generator: 'spells-powers-editor',
- rulesets: [
-   { code: '2e', name: 'AD&D 2nd Edition', alias: ['AD&D 2e'] },
-   { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-   { code: '5e', name: 'D&D 5th Edition', alias: ['5e'] },
- ],
- campaignSettings: [
-   { code: 'xx', name: 'Generic / Core' },
-   { code: 'ds', name: 'Dark Sun (Athas)' },
-   { code: 'fr', name: 'Forgotten Realms' },
- ],
- spells: [],
- psionics: [],
+ generator: 'spells-powers-editor-3.6.1',
+ generatedAt: new Date().toISOString(),
+ recordCount: 0,
+ spells,
  };
  fileName = fileName || 'new-spells.json';
  $('empty').style.display = 'none';
@@ -820,92 +945,88 @@ function ensureDataset() {
 }
 
 /* ── File I/O ──────────────────────────────────────────── */
-function extractRecords(json) {
-  if (!json) return [];
-  if (json && typeof json === 'object' && !Array.isArray(json)
-      && (Array.isArray(json.spells) || Array.isArray(json.psionics))) {
-    return [
-      ...(json.spells || []).map(s => ({ ...s, _kind: isPsionic(s) ? 'psionic' : 'spell' })),
-      ...(json.psionics || []).map(p => ({ ...p, _kind: 'psionic' })),
-    ];
-  }
-  if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
-    return json.flatMap(g => g.spells || []);
-  }
-  if (Array.isArray(json)) return json.slice();
-  return [];
-}
-
 async function openFile() {
-  if (!confirmLeaveEdit('open another file')) return;
-  if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
-  const picked = await pickViaInput();
-  if (!picked) return;
-  try { loadData(JSON.parse(picked.text)); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); }
+ if (!confirmLeaveEdit('open another file')) return;
+ if (dirty && !confirm('Unsaved changes will be lost. Open a new file anyway?')) return;
+ let text;
+ if (hasFS) {
+ try {
+ [fileHandle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ } catch { return; }
+ const f = await fileHandle.getFile();
+ fileName = f.name;
+ text = await f.text();
+ } else {
+ text = await pickViaInput();
+ if (text === null) return;
+ }
+ try { loadData(JSON.parse(text)); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); }
 }
 
 /** Merge another JSON file into the current dataset (does not replace). */
 async function importFile() {
-  if (!confirmLeaveEdit('import another file')) return;
-  if (!rawData) ensureDataset();
-  const picked = await pickViaInput(true);
-  if (!picked) return;
-  let json;
-  try { json = JSON.parse(picked.text); }
-  catch (e) { alert('Could not parse JSON: ' + e.message); return; }
+ if (!rawData) { alert('Open a file first, or use Open JSON to start a new dataset.'); return; }
+ if (!confirmLeaveEdit('import another file')) return;
+ let text;
+ if (hasFS) {
+ try {
+ const [handle] = await window.showOpenFilePicker({
+ types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+ });
+ text = await (await handle.getFile()).text();
+ } catch { return; }
+ } else {
+ text = await pickViaInput(true);
+ if (text === null) return;
+ }
+ let json;
+ try { json = JSON.parse(text); }
+ catch (e) { alert('Could not parse JSON: ' + e.message); return; }
 
-  const incoming = extractRecords(json);
-  if (!incoming.length) {
-    alert('Unrecognised JSON shape for import. Expected a 3.6 { spells, psionics } document, a 3.5 wrapper, or a flat array of records.');
-    return;
-  }
+ let incoming = [];
+ if (Array.isArray(json) && json.length && Array.isArray(json[0]?.spells)) {
+ incoming = json.flatMap(g => g.spells);
+ } else if (Array.isArray(json)) {
+ incoming = json;
+ } else if (json && Array.isArray(json.spells)) {
+ incoming = json.spells;
+ } else {
+ alert('Unrecognised JSON shape for import.');
+ return;
+ }
 
-  for (const s of incoming) {
-    normalizeRecord(s);
-    s._id = nextId++;
-    for (const k of PIPE_FIX_KEYS) {
-      const v = gf(s, k);
-      if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
-    }
-    addToDataset(s);
-  }
-  dirty = true;
-  buildFilters();
-  renderTabs();
-  renderTable();
-  refreshStatus();
-  alert(`Imported ${incoming.length} record(s).`);
+ for (const s of incoming) {
+ normalizeRecord(s);
+ s._id = nextId++;
+ for (const k of PIPE_FIX_KEYS) {
+ const v = gf(s, k);
+ if (typeof v === 'string' && v.includes('|')) sf(s, k, fixPipes(v));
+ }
+ addToDataset(s);
+ }
+ dirty = true;
+ buildFilters();
+ renderTabs();
+ renderTable();
+ refreshStatus();
+ alert(`Imported ${incoming.length} record(s).`);
 }
 
 function pickViaInput(keepFileName = false) {
-  return new Promise(resolve => {
-    const inp = document.createElement('input');
-    inp.type = 'file';
-    inp.accept = '.json,application/json,text/json,*/*';
-    inp.style.display = 'none';
-    document.body.appendChild(inp);
-    let settled = false;
-    const finish = (val) => {
-      if (settled) return;
-      settled = true;
-      window.removeEventListener('focus', onFocus);
-      inp.remove();
-      resolve(val);
-    };
-    const onFocus = () => setTimeout(() => { if (!settled && !inp.files.length) finish(null); }, 400);
-    inp.addEventListener('change', async () => {
-      if (!inp.files.length) return finish(null);
-      const f = inp.files[0];
-      if (!keepFileName) fileName = f.name;
-      finish({ name: f.name, text: await f.text() });
-    });
-    inp.addEventListener('cancel', () => finish(null));
-    window.addEventListener('focus', onFocus);
-    inp.click();
-  });
+ return new Promise(resolve => {
+ const inp = document.createElement('input');
+ inp.type = 'file'; inp.accept = '.json,application/json';
+ inp.onchange = async () => {
+ if (!inp.files.length) return resolve(null);
+ if (!keepFileName) fileName = inp.files[0].name;
+ resolve(await inp.files[0].text());
+ };
+ inp.click();
+ });
 }
-
 
 function serialise() {
   spells.forEach(s => { delete s._id; delete s._isNew; delete s._kind; });
@@ -915,13 +1036,11 @@ function serialise() {
     rawData.dateUpdated = new Date().toISOString().slice(0, 10);
     rawData.spells = spells.filter(s => !isPsionic(s));
     rawData.psionics = spells.filter(s => isPsionic(s));
-    if (!Array.isArray(rawData.rulesets)) {
-      rawData.rulesets = [
+    rawData.rulesets = [
         { code: '2e', name: 'AD&D 2nd Edition', alias: ['AD&D 2e'] },
-        { code: '2e-rev', name: "Player's Option: Skills & Powers / Dark Sun Revised", alias: ['Skills & Powers', 'DSCS Revised'] },
-        { code: '5e', name: 'D&D 5th Edition', alias: ['5e'] },
+        { code: '2e-rev', name: "Player's Option (Dark Sun Revised)", alias: ['Skills & Powers', 'DSCS Revised'] },
+        { code: '5e', name: '5th Edition', alias: ['5e'] },
       ];
-    }
     if (!Array.isArray(rawData.campaignSettings)) {
       rawData.campaignSettings = [
         { code: 'xx', name: 'Generic / Core' },
@@ -1200,13 +1319,23 @@ function setTab(t) {
    per spell — as an array, an array of {name, access}, or a "Combat, Healing"
    string — and each one has to become its own option, not a combined label. */
 function facetValues(s, key) {
+ if (key === 'source') {
+   return sourceTitlesOf(s).filter(t => !NON_BOOK_SOURCES.has(t.toLowerCase()));
+ }
  const atoms = [];
  const push = v => {
  if (v === undefined || v === null) return;
  if (Array.isArray(v)) { v.forEach(push); return; }
  if (typeof v === 'object') { push(v.name ?? v.value); return; }
  if (typeof v === 'string') {
- v.split(/[,;]/).map(x => x.trim()).filter(Boolean).forEach(x => atoms.push(x));
+ if (key === 'classes' || key === 'class') {
+   const mapped = /^cleric$/i.test(v.trim()) ? 'Priest' : v.trim();
+   if (mapped) atoms.push(mapped);
+   return;
+ }
+ v.split(/[,;]/).map(x => x.trim()).filter(Boolean).forEach(x => {
+   atoms.push((key === 'classes' || key === 'class') && /^cleric$/i.test(x) ? 'Priest' : x);
+ });
  return;
  }
  atoms.push(v);   // numbers (level, page) pass through untouched
@@ -1217,6 +1346,16 @@ function facetValues(s, key) {
 
 /* True if the record carries `value` among that field's values */
 function facetMatch(s, key, value) {
+ if (key === 'allowedRulesets' && !isPsionic(s) && (value === '2e' || value === '2e-rev')) {
+   const arr = s.allowedRulesets || [];
+   return arr.includes('2e') || arr.includes('2e-rev');
+ }
+ if (key === 'source') {
+   return sourceTitlesOf(s).some(t => canonicalSourceTitle(t) === canonicalSourceTitle(value));
+ }
+ if ((key === 'classes' || key === 'class') && String(value) === 'Priest') {
+   return facetValues(s, key).some(v => /^(priest|cleric)$/i.test(String(v)));
+ }
  return facetValues(s, key).some(v => String(v) === value);
 }
 
@@ -1242,7 +1381,16 @@ function buildFilters(reset) {
  const cur = prev[f.key];
  let vals = [...new Set(pool.flatMap(s => facetValues(s, f.key)))].map(String);
  if (f.catalog === 'settings') vals = [...new Set([...Object.keys(SETTINGS), ...vals])];
- if (f.catalog === 'rulesets') vals = [...new Set([...Object.keys(RULESETS), ...vals])];
+ if (f.catalog === 'rulesets') vals = [...new Set([...Object.keys(RULESETS), ...vals])]
+   .map(v => RULESET_ALIASES[v] || v)
+   .filter(v => Object.prototype.hasOwnProperty.call(RULESETS, v));
+ if (f.key === 'source') {
+   vals = [...new Set(vals.map(canonicalSourceTitle))]
+     .filter(v => v && !NON_BOOK_SOURCES.has(v.toLowerCase()));
+ }
+ if (f.key === 'classes' || f.key === 'class') {
+   vals = [...new Set(vals.map(v => /^cleric$/i.test(v) ? 'Priest' : v))];
+ }
  if (cur !== undefined && !vals.some(v => String(v) === cur)) vals.push(cur);
  vals.sort(f.numeric
  ? (a, b) => a - b
@@ -1656,8 +1804,8 @@ function viewText(s, f) {
 
 function renderViewer(s) {
  editorMode = 'view';
- const isPriest = /priest|cleric/i.test(String(gf(s, 'class') ?? ''));
- const rows = flatFields(tab().editLayout).map(f => {
+ const isPriest = recordIsPriest(s);
+ const rows = flatFields(currentEditLayout()).map(f => {
    if (f.k === 'name') return '';           // already the heading
    if (f.priestOnly && !isPriest) return '';
    const v = viewText(s, f);
@@ -1673,7 +1821,7 @@ function renderViewer(s) {
  $('editor').innerHTML = `
  <h2 id="edTitle">${esc(gf(s, 'name') || '(unnamed)')}</h2>
  <div class="meta">${tab().meta(s)}</div>
- ${overlayBannerHtml()}
+ ${overlayBannerHtml('view')}
  <dl class="view-stats">${rows}</dl>
  <div class="view-sec">Description</div>
  ${descHtml}
@@ -1703,7 +1851,7 @@ function fieldHtml(f, s) {
  const opts = [...new Set([...(f.options || []), ...(cur ? [cur] : [])])];
  const blank = cur === '' ? '<option value="" selected></option>' : '';
  return `<div class="field"><label>${f.label}</label>
- <select data-k="${f.k}"${f.k === 'class' ? ' id="selClass"' : ''}>${blank}${
+ <select data-k="${f.k}"${(f.k === 'class' || f.k === 'classes') ? ' id="selClass"' : ''}>${blank}${
  opts.map(o => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')
  }</select></div>`;
  }
@@ -1753,8 +1901,8 @@ function renderEditor(s, mode) {
  $('editor').innerHTML = `
  <h2 id="edTitle">${esc(title)}${badge}</h2>
  <div class="meta">${metaHtml}</div>
- ${isBulk ? '' : overlayBannerHtml()}
- ${tab().editLayout.map(f => fieldHtml(f, s)).join('')}
+ ${isBulk ? '' : overlayBannerHtml(mode)}
+ ${currentEditLayout().map(f => fieldHtml(f, s)).join('')}
  <div class="field">
  <label>Description (Markdown)</label>
  <div class="md-row">
@@ -1780,13 +1928,13 @@ function renderEditor(s, mode) {
  $('editor').classList.remove('view');
  showPanel();
 
- const selClass = $('selClass');
+ const selClass = $('selClass') || $('editor').querySelector('[data-k="classes"]');
  const syncSphere = () => {
  const f = $('f_sphere');
  if (!f) return;
  /* Bulk edit opens with a blank Class, which must not hide Sphere — the
  selection may be all priest spells. Hide only if Class is set non-priest. */
- const cls = selClass ? selClass.value : String(gf(s, 'class') ?? '');
+ const cls = selClass ? selClass.value : classText(s);
  f.style.display = (/priest|cleric/i.test(cls) || (isBulk && !cls)) ? '' : 'none';
  };
  if (selClass) selClass.addEventListener('change', syncSphere);
