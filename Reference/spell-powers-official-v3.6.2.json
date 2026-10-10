@@ -1,6 +1,6 @@
 {
   "schemaVersion": "3.6.0",
-  "dateUpdated": "2026-09-07",
+  "dateUpdated": "2026-10-07",
   "rulesets": [
     {
       "code": "2e",
@@ -61486,15 +61486,24 @@
           "pspCostFailure": 4,
           "range": "touch",
           "areaOfEffect": "individual",
-          "prerequisites": [],
+          "prerequisites": [
+            "None"
+          ],
           "sourceBooks": [],
-          "originalSource": ""
+          "originalSource": "",
+          "description": "This power lets the psionicist take the disease from another character's body, and absorb it himself. Presumably, the psionicist will then heal himself (using _**complete healing**_). This power can absorb magical diseases, but not curses, such as **lycanthropy**.\n\n_**Power Score**_ - The disease is automatically destroyed by the psionicist's immune system. \n\n_**20**_ - The disease remains in the victim while spreading to the psionicist."
         }
       },
       "classes": [],
       "tradition": "psionic",
       "campaignSettings": {},
-      "combatMode": "N/A"
+      "combatMode": "N/A",
+      "prerequisites": [
+        "None"
+      ],
+      "sourceBooks": [],
+      "originalSource": "",
+      "description": "This power lets the psionicist take the disease from another character's body, and absorb it himself. Presumably, the psionicist will then heal himself (using complete healing). This power can absorb magical diseases, but not curses, such as lycanthropy.\n\n_**Power Score**_ - The disease is automatically destroyed by the psionicist's immune system. \n\n_**20**_ - The disease remains in the victim while spreading to the psionicist."
     },
     {
       "id": "psionic_accelerate_2e",
@@ -61544,7 +61553,10 @@
           "areaOfEffect": "personal",
           "prerequisites": [
             "None"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "Some psychometabolists are able to drastically alter their own metabo- lisms. doubling their speed for short periods of time. A character using accelerate is effectively hasted for as long as he maintains this power. The psionicist’s movement and rate of attack are doubled. and he gains a -2 bonus to initiative rolls while the power is in effect. Spellcasting and psionics use are not speeded up by this power, although this ability can be used to counter a magical slow effect.\n\nAfter the psionicist stops maintaining accelerate, he must rest for a number of rounds equal to the time he was accelerated, doing nothing but catching his breath. He does not suddenly age a year as the recipient of a haste spell would.\n\n_**Power Score**_: The psionicist’s movement and attacks are tripled, and he automatically strikes first in any melee round.\n\n_**20**_: The psionicist suffers 1d4 damage and must save versus death or pass out for 3d10 rounds."
         }
       },
       "classes": [],
@@ -61600,7 +61612,10 @@
           "areaOfEffect": "None",
           "prerequisites": [
             "This power temporarily boosts the amount of adrenaline in the"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "By controlling the production and release of adrenaline in his system, the\npsionicist can give himself temporary physical boosts on demand. When he\nincreases his adrenaline, the character gains 1d6 points, which he can add\ndirectly to his Strength, Dexterity, or Constitution scores however he chooses.\nHe enjoys all the normal bonuses for high physical attributes while this power is in effect.\n\nIf the psionicist's power check result is a 1, he overtaxes his system with\nthis adrenaline. He still gets the boost, but he loses twice that many hit\npoints, too.\n\n_**Power Score**_ - Instead of dividing the d6 result, the character applies that many points to each of the three attributes.\n\n_**20**_ - The psionicist must make a successful system shock roll or suffer a 50% loss in current hps and pass out for 1d8 hours."
         }
       },
       "classes": [],
@@ -61652,7 +61667,12 @@
           "pspCostFailure": 5,
           "range": "touch",
           "areaOfEffect": "individual",
-          "prerequisites": []
+          "prerequisites": [
+            "None"
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "With this power, an evil psionicist can cause unnatural aging by touch (other psionicists can use this power, too, but their alignment would begin to twist toward evil). The victim ages 1d4 years instantly and must make a saving throw vs. polymorph. Failure means that the change was traumatic, and he ages another year automatically. If the psionicist's power check result was a 1, there is a backlash and he, too, ages 1d4 years. \n---\n_**Power Score**_ - The victim ages 1d20 years.\n\n_**20**_ - The psionicist ages 1d10 years."
         }
       },
       "classes": [],
@@ -61818,7 +61838,12 @@
           "areaOfEffect": "individual",
           "prerequisites": [
             "mindlink. contact"
-          ]
+          ],
+          "sourceBooks": [
+            "The Will and the Way"
+          ],
+          "originalSource": "The Will and the Way",
+          "description": "This devotion allows the psionicist to interfere with the memory of a contacted creature. As long as amnesia is maintained, the subject is unable to remember anything that occurred prior to the psionicist’s contact with his mind. The victim does remember events that occur in his amnesiac state, so he can recall conversations or events that have occurred since the amnesia began.\n\nThe exact effects of amnesia are left to the DM, but generally the victims remember how to talk, how to walk, how to eat, and other physical skills. Knowledge-based skills such as spellcasting, psionics use, or lock-picking would be temporarily forgotten, but talents such as proficiency with the bow or tumbling would not be.\n\nMaking a monster forget everything does not necessarily make it a nice person. General personality traits remain despite the loss of memory.\n\n---\n\n_**Power Score**_: The victim remains an amnesiac for 1d10 days after the psionicist ceases to maintain the power, if the psionicist wishes.\n\n_**20**_: The power backfires, and the psionicist becomes amnesiac himself for 2d10 turns."
         }
       },
       "classes": [],
@@ -61874,7 +61899,10 @@
           "areaOfEffect": "Personal",
           "prerequisites": [
             "None"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "With this power, the user develops an affinity for a particular animal type. Roll on the list below to determine the animal type (see the various DARK SUN MONSTROUS COMPENDIUM® appendices for descriptions). The user undergoes a physical change when this power is used, depending on the animal and ability. For example, he may gain wings or claws.\n\nWhen the user activates this power, he temporarily gains one of the animal’s attributes. He can gain the animal’s Armor Class; movement rate and mode; physical attacks, damage, and THAC0; hit points; or any other special ability—though only one of these can be gained at a time. The attribute lasts for every round that the cost is paid. Switching to a different attribute requires a new MTHAC0 roll. \n\n|1d20 Roll| Result |1d20 Roll| Result|\n|-|-|-|-|\n|1|Ankheg|11|Lizard, Minotaur|\n|2|Carru|12|Mekillot|\n|3|Cilops|13|Pterrax|\n|4|Erdland|14|Rasclinn|\n|5|Flailer|15|Razorwing|\n|6|Corak|16|Ruktoi|\n|7|lnix|17|Scorpion, Giant|\n|8|Jhakar|18|Spider, Giant|\n|9|Kes’trekel|19|Tigone|\n|10|Kirre|20|Wyvern|\n"
         }
       },
       "classes": [],
@@ -64290,7 +64318,10 @@
           "pspCostFailure": 15,
           "range": "0",
           "areaOfEffect": "20 yd. rad.",
-          "prerequisites": []
+          "prerequisites": [],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "A death field is a life-sapping region of negative energy. Only psionicists of evil alignment can learn this power without suffering side effects. If any other psionicist tries to learn the death field, his alignment will gradually be twisted toward evil as he explores this very dark portion of his psyche.\n\nA successful death field takes it toll on everyone inside it, including the psionicist. Before he initiates this power, he must decide how many hit points he will sacrifice. If the power works, the loss is inevitable; he gets no saving throw. Every other living thing within the death field must make a saving throw vs. death. Those who succeed escape damage.\n\nThose who fail lose the same number of hit points as the psionicist. For the weak, that can mean death.\n\n---\n\n_**Power Score**_ - The psionicist loses only half the number of hit points he specifies; victims who fail their saving throws lose the full amount. \n\n_**20**_ - The power fails, but the psionicist loses the hit points anyway."
         }
       },
       "classes": [],
@@ -64345,7 +64376,10 @@
           "areaOfEffect": "one weapon",
           "prerequisites": [
             "telekinesis"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This defensive power allows a psionicist to deflect a missile in flight or a weapon in mid-swing in order to make it miss its target. He may attempt this on a weapon targeted at himself or someone else. The psionicist must have a better initiative than the attacker and hold his action until the attacker actually fires a missile or swings a weapon. If the psionicist successfully initiates deflect, the weapon misses its target automatically.\n\nDeflect can be used on any thrown. fired, or hand-held weapon, including giant-thrown boulders or ballista bolts. It has no effect on creatures attacking with their own natural weaponry such as teeth or claws.\n\n---\n\n_**Power Score**_: The defense is involuntary, and the psionicist may make a separate attack of his own (psionic or physical) in the same combat round.\n\n_**20**_: No effect."
         }
       },
       "classes": [],
@@ -64907,7 +64941,12 @@
           "pspCostFailure": 2,
           "range": "touch",
           "areaOfEffect": "individual",
-          "prerequisites": []
+          "prerequisites": [
+            "None"
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "By touching another person, the psionicist greatly lowers that character's pain threshold (even a little scrape will feel like a serious injury). The effect lasts one turn. During that time, all damage scored against that character is doubled. However, only half of this damage is real; the other half represents the amplified pain. When the character's total of real damage and pain reduces his hit points to zero or less, he passes out. He will regain consciousness 1d10 rounds later. At that time he also regains \"fake\" hit points - those lost only to pain.\n\nIf the victim does not pass out in one turn (the duration of this power's effects), damage scored against him is no longer doubled. However, the points of \"pain damage\" which he has an already incurred will remain in effect for another 1d6 rounds.\n\n---\n\n_**Power Score**_ - The victim must make a system shock roll upon each hit, or pass out due to the excruciating pain.\n\n_**20**_ - The power backfires and affects the psionicist for one hour."
         }
       },
       "classes": [],
@@ -65117,6 +65156,15 @@
               "source": "The Complete Psionics Handbook"
             }
           ]
+        },
+        "2e-rev": {
+          "mac": null,
+          "pspCost": null,
+          "pspCostSuccess": null,
+          "pspCostFailure": null,
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This attack assaults a target’s self-esteem and individuality. It strikes like a glowing whip, its crack slicing open the wells of inferiority and worthlessness buried deep behind the target’s defenses. For every 4 PSPs put into the attack (declared after a successful attack roll is made), the attacker rolls 1d6 to determine psionic damage against his foe. If hit, the defender loses that many PSPs or has his mind opened to further psionic contact if no PSPs remain. A failed attack costs 2 PSPs.\n\nEgo whip has three ranges: short (40 yards), medium (80 yards), and long (120 yards). At medium range, the defender receives a +2 bonus to his MAC; at long range, the bonus is +5.\n\nIf used against an open mind, ego whip leaves the target dazed for 1d4 rounds, costing the attacker 4 PSPs. Though no psionic defenses remain, the attacker must roll the defender’s MAC to successfully hit (this attack receives a +2 bonus). While dazed, all of a character’s die rolls (attacks rolls, saving throws, etc.) receive a -5 penalty, and the character can’t cast spells above 3rd level."
         }
       },
       "classes": [],
@@ -67669,7 +67717,10 @@
           "areaOfEffect": "personal",
           "prerequisites": [
             "None"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This power resembles magical polymorphing, but it has a wider application. The user can change himself into anything with approximately the same mass as his body: a wolf, a chair, or even a tree. While in this form, the user retains his own hit points and THAC0, but he gains the AC of the new form. He also gains all physical attacks the form allows, but no magical or special abilities. (A new attack ability depends on the form chosen; a tree, for example, can’t attack, so it has no THAC0.) Nonmagical movement is also gained. If the user metamorphs into another character race, use the MONSTROUS MANUAL™ or DARK SUN MONSTROUS COMPENDIUM descriptions for that race.\n\nSome forms have intrinsic advantages. Changing into a fish or rock renders the user immune to drowning, though he doesn’t retain any senses not normally associated with his new form. He may opt to keep some of his own senses when he transforms, but these are likely to give him away.\n\nLike any massive change of shape, metamorphosis causes great physical stress. The user must make a system shock roll. If the roll fails, he expends 6 PSPs, changes form for 1 round, and immediately passes out for 2d6 turns."
         }
       },
       "classes": [],
@@ -68344,14 +68395,11 @@
           ],
           "powerScoreStat": "Con",
           "powerScoreMod": "-3",
-          "description": "This power allows the psionicist to do terrible things to the nervous sys- tem of another creature. With a touch, he can inflict wracking pain, unconsciousness. or even death. This power works best on creatures of the psionicist’s own species; there is a -2 penalty to the power check if the psionicist uses the power on a creature of a different species, and a -4 penalty if the psionicist uses the power on a creature of a different order such as an insect or a mollusk. The psionicist must touch the skin of the victim. which can be a diffi- cult proposition in combat-a normal attack roll to hit the victim is required. If he attacks successfully, the effect on the victim is determined by the psionicist’s initiation roll. Power Result Check 1-3 Spasms: -2 to victim’s attacks and AC for 1d3 rounds 4-5 Pain: -4 penalty to victim’s attacks and AC for 1d3 rounds 6-9 Stunning: the victim is stunned and unable to act for 1d4+1 rounds 10-12 Unconsciousness: the victim is out cold for 2d6 full turns 13+ Death: the victim collapses and dies in 1d3 rounds The victim may attempt a saving throw versus poison to avoid the effects of the psionicist’s touch. Any of the effects can be neutralized by the application of a neutralize poison spell or the successful use of the antidote function of the science poison simulation. If the psionicist wishes, he can “pull his punch,” using a lesser effect on the victim than that indicated by the power check result. Power Score: Even if the victim makes his saving throw he is still stunned for 1d2 rounds. 20: The psionicist must save versus poison or suffer one of the above effects, determined randomly.",
+          "description": "This power allows the psionicist to do terrible things to the nervous system of another creature. With a touch, he can inflict wracking pain, unconsciousness. or even death. This power works best on creatures of\nthe psionicists own species; there is a -2 penalty to the power check if the psionicist uses the power on a creature of a different species, and a -4 penalty if the psionicist uses the power on a creature of a different order such as an insect or a mollusk.\n\nThe psionicist must touch the skin of the victim. which can be a difficult proposition in combat-a normal attack roll to hit the victim is required. If he attacks successfully, the effect on the victim is determined\nby the psionicists initiation roll.\n\n|**Power Check** |**Result**|\n|-|-|\n|1-3|Spasms: -2 to victims attacks and AC for 1d3 rounds|\n|4-5|Pain: -4 penalty to victims attacks and AC for 1d3 rounds|\n|6-9|Stunning: the victim is stunned and unable to act for 1d4+1 rounds|\n|10-12|Unconsciousness: the victim is out cold for 2d6 full turns|\n|13+|Death: the victim collapses and dies in 1d3 rounds|\n\nThe victim may attempt a saving throw versus poison to avoid the effects of the psionicists touch. Any of the effects can be neutralized by the application of a neutralize poison spell or the successful use of the\nantidote function of the science poison simulation. If the psionicist wishes, he can pull his punch, using a lesser effect on the victim than that indicated by the power check result.\n\n_**Power Score**_: Even if the victim makes his saving throw he is still stunned for 1d2 rounds.\n\n_**20**_: The psionicist must save versus poison or suffer one of the above effects, determined randomly.\n",
           "range": "touch",
           "areaOfEffect": "one creature",
-          "sourceBooks": [
-            {
-              "source": "The Will and the Way"
-            }
-          ]
+          "sourceBooks": [],
+          "originalSource": ""
         },
         "2e-rev": {
           "mac": 6,
@@ -68362,13 +68410,23 @@
           "areaOfEffect": "one creature",
           "prerequisites": [
             "double pain"
-          ]
+          ],
+          "sourceBooks": [
+            "The Will and the Way"
+          ],
+          "originalSource": "The Will and the Way",
+          "description": "This power allows the psionicist to do terrible things to the nervous system of another creature. With a touch, he can inflict wracking pain, unconsciousness, or even death. This power works best on creatures of\nthe psionicists own species; there is a -2 penalty to the power check if the psionicist uses the power on a creature of a different species, and a -4 penalty if the psionicist uses the power on a creature of a different order such as an insect or a mollusk.\n\nThe psionicist must touch the skin of the victim. which can be a difficult proposition in combat-a normal attack roll to hit the victim is required. If he attacks successfully, the effect on the victim is determined\nby the psionicists initiation roll.\n\n|**Power Check** | **Effect** |**Result**|\n|-|-|-|\n|1-3|Spasms| -2 to victim's attacks and AC for 1d3 rounds|\n|4-5|Pain| -4 penalty to victims attacks and AC for 1d3 rounds|\n|6-9|Stunning| the victim is stunned and unable to act for 1d4+1 rounds|\n|10-12|Unconsciousness| the victim is out cold for 2d6 full turns|\n|13+|Death| the victim collapses and dies in 1d3 rounds|\n\nThe victim may attempt a saving throw versus poison to avoid the effects of the psionicists touch. Any of the effects can be neutralized by the application of a neutralize poison spell or the successful use of the\nantidote function of the science poison simulation. If the psionicist wishes, he can \"pull his punch,\" using a lesser effect on the victim than that indicated by the power check result.\n\n_**Power Score**_: Even if the victim makes his saving throw he is still stunned for 1d2 rounds.\n\n_**20**_: The psionicist must save versus poison or suffer one of the above effects, determined randomly.\n",
+          "verified": true
         }
       },
       "classes": [],
       "tradition": "psionic",
       "campaignSettings": {},
-      "combatMode": "N/A"
+      "combatMode": "N/A",
+      "sourceBooks": [
+        "The Will and the Way"
+      ],
+      "originalSource": "The Will and the Way"
     },
     {
       "id": "psionic_object_reading_2e",
@@ -69371,6 +69429,15 @@
               "source": "The Complete Psionics Handbook"
             }
           ]
+        },
+        "2e-rev": {
+          "mac": null,
+          "pspCost": null,
+          "pspCostSuccess": null,
+          "pspCostFailure": null,
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This attack takes the form of a wave of mental force that jolts a\ndefender’s mind. For every 10 PSPs put into the attack (declared after a successful attack roll is made), the attacker rolls 1d12 to determine psionic damage against his foe. If hit, the defender loses that many PSPs or has his mind opened to further psionic contact if no PSPs remain. A failed attack costs 5 PSPs.\n\nPsionic blast has three ranges: short (20 yards), medium (40 yards), and long (60 yards). At medium range, the defender receives a +2 bonus to his MAC; at long range, the bonus is +5. \n\nIf used against an open mind, psionic blast causes 1d8 points of physical damage (hit point loss) for every 10 PSPs put into the attack. While no psionic defenses remain, the attacker must still roll the defender’s MAC to successfully hit (with a +2 bonus to the attack roll)."
         }
       },
       "classes": [],
@@ -69701,6 +69768,15 @@
               "source": "The Complete Psionics Handbook"
             }
           ]
+        },
+        "2e-rev": {
+          "mac": null,
+          "pspCost": null,
+          "pspCostSuccess": null,
+          "pspCostFailure": null,
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "Like a terrible mental weight, this attack seeks to crush a defender’s\nmind. For every 8 PSPs put into the attack (declared after a successful attack roll is made), the attacker rolls 1d10 to determine psionic damage against his foe. If hit, the defender loses that many PSPs or has his mind opened to further psionic contact if no PSPs remain.\n\nA failed attack costs 4 PSPs.\n\nPsychic crush has a range of 50 yards. If used against an open mind, psychic crush causes 1d6 points of physical damage (hit point loss) for every 8 PSPs put into the attack. Although no psionic defenses remain, the attacker must roll the defender’s MAC to successfully hit (with a +2 bonus to the attack roll)."
         }
       },
       "classes": [],
@@ -70142,7 +70218,10 @@
           "areaOfEffect": "one creature",
           "prerequisites": [
             "cell adjustment"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "With this power the psionicist can repair permanent injuries that natural healing could not restore. Severed limbs can be regrown, blindness or deafness repaired, and even paralyzing injuries to the brain or spinal cord can be healed. The psionicist is capable of healing such injuries in himself as well as in others if the need arises.\n\nRegeneration is a slow and tedious process. It requires one full turn to repair minor damage such as the loss of a finger, a broken bone, or non-destructive loss of eyesight or hearing. Three full turns are required to heal a badly broken, bone or regenerate a mangled hand or foot, and as many as six turns to regenerate an arm severed at the elbow or eyes that were physically destroyed. The DM should use his best judgment in deciding how long it will take to repair any given injury.\n\nRegeneration can be used to repair the damage caused by a disease. but cannot cure a disease. It can also restore lost ability points (Constitution, Dexterity, etc.) that may have been lost to the ravages of disease or injury. _**Regenerate**_ can’t improve a person beyond his original condition. so growing extra arms. for example, is not possible.\n\n---\n\n_**Power Score**_: The healing proceeds twice as fast as would be normally expected.\n\n_**20**_: The psionicist suffers 1d12 points of damage but the patient is unaffected."
         }
       },
       "classes": [],
@@ -71525,7 +71604,10 @@
           "areaOfEffect": "one creature",
           "prerequisites": [
             "magnetism"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "A psionicist with this ability can use his control of magnetism to accumulate a charge of static electricity and then discharge it in the form of violent electrical shocks. The longer the psionicist accumulates the charge. the more damaging the discharge will be; the attack inflicts 1d4+1 points of damage per round of accumulation.\n\nMaintaining this power doesn’t count as an attack, but the discharge does. The psionicist must make an attack roll to hit his target, but only magical protections apply—armor and Dexterity do not.\n\n---\n\n_**Power Score**_: Damage increases to 1d6+1 per round and any metal items on the victim are magnetized.\n\n_**20**_: The psionicist shocks himself for 1d4 damage and magnetizes any metal items he has on him."
         }
       },
       "classes": [],
@@ -73198,6 +73280,143 @@
       "classes": [],
       "tradition": "psionic",
       "campaignSettings": {},
+      "combatMode": "N/A"
+    },
+    {
+      "id": "psionic_new_1791364624557",
+      "name": "",
+      "classes": [],
+      "tradition": "psionic",
+      "level": null,
+      "school": "",
+      "spheres": [],
+      "sphere": "",
+      "components": [],
+      "castingTime": "",
+      "range": "",
+      "duration": "",
+      "savingThrow": "",
+      "areaOfEffect": "",
+      "preparationTime": "",
+      "description": "",
+      "sourceBooks": [],
+      "source": "",
+      "reversible": false,
+      "verified": false,
+      "tags": [],
+      "relatedEntries": [],
+      "allowedCampaignSettings": [
+        "ds",
+        "xx"
+      ],
+      "allowedRulesets": [
+        "2e-rev"
+      ],
+      "campaignSettings": {},
+      "rulesets": {
+        "2e-rev": {
+          "name": "Flesh Armor*",
+          "discipline": "Psychometabolism",
+          "tier": "Devotion",
+          "mac": 6,
+          "pspCost": "5/2",
+          "pspCostSuccess": 5,
+          "pspCostFailure": 2,
+          "range": "0",
+          "areaOfEffect": "personal",
+          "prerequisites": [
+            "None"
+          ],
+          "sourceBooks": [
+            "Custom"
+          ],
+          "originalSource": "Custom",
+          "verified": true,
+          "description": "_***Custom Version**_\n\nThe psionicist transforms his own skin into armor. No one can see the change, but it's as if he had actually acquired some type of armor. The type of armor his body mimics depends on the PSPs spent, as shown in the following table: \n\n|Cost|Armor Type|AC|\n|-|-|-|\n|5|Scale Mail|6|\n|6|Chain Mail|5|\n|7|Banded Mail|4|\n|8|Plate Mail|3|\n|9|Field Plate|2|\n|10|Full Plate|1|\n|11|Full Plate with Shield|0|\n\nBecause this armor is part of his body, the psionicist can enjoy its benefits without suffering any penalty he might have if he were actually wearing that type of armor. The armor created by this power weighs nothing, has no magnetic properties, and in no way encumbers the psionicist.\n\nPower Score - The psionicist gains a +1 bonus to the armor class listed above. \n\n20 - The power just grows ugly hair over his body, which must be shaved off or he loses 2 points of Charisma."
+        }
+      },
+      "discipline": "",
+      "tier": "",
+      "powerScoreStat": null,
+      "powerScoreMod": null,
+      "initialCost": "",
+      "maintenanceCost": "",
+      "mac": null,
+      "pspCost": null,
+      "pspCostSuccess": null,
+      "pspCostFailure": null,
+      "prerequisites": [],
+      "combatMode": "N/A"
+    },
+    {
+      "id": "psionic_new_1791365347071",
+      "name": "",
+      "classes": [],
+      "tradition": "psionic",
+      "level": null,
+      "school": "",
+      "spheres": [],
+      "sphere": "",
+      "components": [],
+      "castingTime": "",
+      "range": "",
+      "duration": "",
+      "savingThrow": "",
+      "areaOfEffect": "",
+      "preparationTime": "",
+      "description": "",
+      "sourceBooks": [],
+      "source": "",
+      "reversible": false,
+      "verified": false,
+      "tags": [],
+      "relatedEntries": [],
+      "allowedCampaignSettings": [
+        "ds",
+        "xx"
+      ],
+      "allowedRulesets": [
+        "2e",
+        "2e-rev"
+      ],
+      "campaignSettings": {},
+      "rulesets": {
+        "2e-rev": {
+          "name": "Nerve Manipulation*",
+          "discipline": "Psychometabolism",
+          "tier": "Science",
+          "mac": 6,
+          "pspCost": "14/5",
+          "pspCostSuccess": 14,
+          "pspCostFailure": 5,
+          "range": "touch",
+          "areaOfEffect": "Creature touched",
+          "prerequisites": [
+            "Double Pain"
+          ],
+          "sourceBooks": [
+            "Custom"
+          ],
+          "originalSource": "Custom",
+          "verified": true,
+          "description": "_***Custom**_\n\nThis power allows the psionicist to do terrible things to the nervous system of another creature. With a touch, he can inflict wracking pain, unconsciousness, or even death. This power works best on creatures of\nthe psionicist's own species; there is a -2 penalty to the power check if the psionicist uses the power on a creature of a different species, and a -4 penalty if the psionicist uses the power on a creature of a different order such as an insect or a mollusk.\n\nThe psionicist must touch the skin of the victim. which can be a difficult proposition in combat - a normal attack roll to hit the victim is required. If he attacks successfully, the effect on the victim is determined\nby the psionicist's initiation roll.\n\n|**Cost** | **Effect** |**Result**|\n|-|-|-|\n|14|Spasms| -2 to victim's attacks and AC for 1d3 rounds|\n|15|Pain| -4 penalty to victim's attacks and AC for 1d3 rounds|\n|16|Shock| the victim is stunned and unable to act for 1d4+1 rounds|\n|17|Unconsciousness| the victim is out cold for 2d6 full turns|\n|20|Death| the victim collapses and dies in 1d3 rounds|\n\nThe victim may attempt a saving throw versus poison to avoid the effects of the psionicist's touch. Any of the effects can be neutralized by the application of a neutralize poison spell or the successful use of the\nantidote function of the science poison simulation. If the psionicist wishes, he can \"pull his punch,\" using a lesser effect on the victim than that indicated by the power check result.\n\n_**Power Score**_: Even if the victim makes his saving throw he is still stunned for 1d2 rounds.\n\n_**Critical Failure (1)**_: The psionicist must save versus poison or suffer one of the above effects, determined randomly.\n"
+        },
+        "2e": {
+          "powerScoreStat": null,
+          "powerScoreMod": null
+        }
+      },
+      "discipline": "",
+      "tier": "",
+      "powerScoreStat": null,
+      "powerScoreMod": null,
+      "initialCost": "",
+      "maintenanceCost": "",
+      "mac": null,
+      "pspCost": null,
+      "pspCostSuccess": null,
+      "pspCostFailure": null,
+      "prerequisites": [],
       "combatMode": "N/A"
     }
   ]
