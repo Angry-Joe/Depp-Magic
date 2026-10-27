@@ -1,6 +1,6 @@
 {
   "schemaVersion": "3.6.0",
-  "dateUpdated": "2026-09-07",
+  "dateUpdated": "2026-10-25",
   "rulesets": [
     {
       "code": "2e",
@@ -61442,6 +61442,49 @@
       "rulesets": {},
       "originalSource": "Dark Sun Rules Book",
       "page": 94
+    },
+    {
+      "id": "spell_new_1792886568056",
+      "name": "Detect Magic",
+      "classes": [
+        "Wizard"
+      ],
+      "tradition": "arcane",
+      "level": 1,
+      "school": "Divination",
+      "spheres": [],
+      "sphere": "",
+      "components": [
+        "V",
+        "S"
+      ],
+      "castingTime": "1",
+      "range": "0",
+      "duration": "2 rds/level",
+      "savingThrow": "None",
+      "areaOfEffect": "10' x 60'",
+      "preparationTime": "",
+      "description": "When the detect magic spell is cast, the wizard detects magical radiations in a path 10 feet wide and up to 60 feet long, in the direction he is facing. The intensity of the magic can be determined (dim, faint, moderate, strong, overwhelming), and the wizard has a 10% chance per level to recognize if a certain type of magic (alteration, conjuration, etc.) is present. The caster can turn, scanning a 60-degree arc per round. A stone wall of 1 foot or more thickness, solid metal of 1 inch thickness, or a yard or more of solid wood\nblocks the spell. Magical areas, multiple types of magic, or strong local magical emanations may confuse or conceal weaker radiations. Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.",
+      "sourceBooks": [
+        "Player's Handbook"
+      ],
+      "source": "",
+      "reversible": false,
+      "verified": true,
+      "tags": [],
+      "relatedEntries": [],
+      "allowedCampaignSettings": [
+        "xx",
+        "ds"
+      ],
+      "allowedRulesets": [
+        "2e",
+        "2e-rev"
+      ],
+      "campaignSettings": {},
+      "rulesets": {},
+      "originalSource": "Player's Handbook",
+      "page": 172
     }
   ],
   "psionics": [
@@ -61818,7 +61861,10 @@
           "areaOfEffect": "individual",
           "prerequisites": [
             "mindlink. contact"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This devotion allows the psionicist to interfere with the memory of a contacted creature. As long as amnesia is maintained, the subject is unable to remember anything that occurred prior to the psionicist’s contact with his mind. The victim does remember events that occur in his amnesiac state, so he can recall conversations or events that have occurred since the amnesia began. The exact effects of amnesia are left to the DM, but generally the victims remember how to talk, how to walk. how to eat, and other physical skills. Knowledge-based skills such as spellcasting, psionics use, or lockpicking would be temporarily forgotten, but talents such as proficiency with the bow or tumbling would not be.\n\nMaking a monster forget everything does not necessarily make it a nice person. General personality traits remain despite the loss of memory.\n\n**Power Score**: The victim remains an amnesiac for 1d10 days after the psionicist ceases to maintain the power, if the psionicist wishes.\n\n**20**: The power backfires, and the psionicist becomes amnesiac himself for 2d10 turns."
         }
       },
       "classes": [],
@@ -66494,7 +66540,10 @@
           "areaOfEffect": "Individual",
           "prerequisites": [
             "Mindlink"
-          ]
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "This power can only be used on an open mind. It is a particularly nasty form of torture, although no actual harm is inflicted on the target and the power leaves no physical scars or marks.\n\nOnly evil characters can learn this power freely; others find their alignments twisting toward evil if they learn and use inflict pain. If the target is an NPC who is being questioned, he receives a save vs. paralyzation to withstand the agony. If he fails the save, he begs for mercy and answers questions as the DM sees fit. If the user finds a way to employ this power in combat, the target still gets the saving throw. Success means he grits his teeth and keeps on fighting. Failure means the pain imposes a -4 penalty to his attack rolls that round or disrupts and ruins spellcasting. PSP costs depend on the target’s level. \n\n|Target’s Level|PSP Cost|\n|-|-|\n|1-5|3/2|\n|6-10|4/2|\n|11-15|5/3|\n|16-20|6/3|\n|21+|8/4|"
         }
       },
       "classes": [],
@@ -72012,7 +72061,12 @@
           "pspCostFailure": 5,
           "range": "0",
           "areaOfEffect": "20/50/90 yds.",
-          "prerequisites": []
+          "prerequisites": [
+            "Mindlink"
+          ],
+          "sourceBooks": [],
+          "originalSource": "",
+          "description": "Synaptic static interferes with all psionic activity within a given area. Even the psionicist is affected; when he creates static, he cannot use any other power simultaneously. However, he may also prevent others from using their powers. Anyone who tries to use a psionic power within the area of effect must fight the static’s creator in a psychic contest. If an opponent succeeds, his power functions normally. If not, his power fails. Exposure to synaptic static for more than five rounds will give anyone a splitting headache. This has no game effect, but it will make NPCs and animals irritable. This power has three ranges: short, medium, and long. At medium range, the character’s power score is reduced by two. At long range, it is reduced by five. \n\n**Power Score** - The psionicist receives a +1 bonus in all psychic contests prompted by the current use of static. \n\n**20** - The character has injured himself trying to create static. He immediately loses 1d20 PSPs and 1d6 hps."
         }
       },
       "classes": [],
